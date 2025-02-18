@@ -20,7 +20,22 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
+
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+
+
+			
+			
+
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Alejandro-Sevillano" action="http://www.youtube.com/"/>
+			<acme:menu-suboption code="master.menu.anonymous.ignnarber" action="http://www.twitter.com/"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Adrian-Robles" action="https://www.instagram.com/"/>
+      <acme:menu-suboption code="master.menu.anonymous.favourite-link.FranciscoManuel-Sabido" action="https://open.spotify.com/"/>
+      <acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+
+
+
+>>>>>>> 3fb031f6e818e7c506cf3237a88eefc6effa9df0
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
