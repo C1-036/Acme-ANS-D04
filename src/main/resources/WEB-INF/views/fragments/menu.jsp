@@ -21,6 +21,8 @@
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+
 
 			
 			
@@ -33,6 +35,7 @@
 
 
 
+>>>>>>> 3fb031f6e818e7c506cf3237a88eefc6effa9df0
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
