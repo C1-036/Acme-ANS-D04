@@ -1,6 +1,6 @@
 # menu-en.i18n
 #
-# Copyright (C) 2012-2025 Rafael Corchuelo.
+L Copyright (C) 2012-2025 Rafael Corchuelo.
 #
 # In keeping with the traditional purpose of furthering education and research, it is
 # the policy of the copyright owner to permit non-commercial use and redistribution of
@@ -12,12 +12,7 @@
 
 master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
-master.menu.anonymous.favourite-link.Alejandro-Sevillano = 53933257M: Sevillano Barea, Alejandro
-master.menu.anonymous.ignnarber = 30269898N: Naredo Bernardos,Ignacio
 master.menu.anonymous.favourite-link.Adrian-Robles = 49089126L: Robles Borrego, Adrián
-master.menu.anonymous.favourite-link.FranciscoManuel-Sabido = 53987620L: Sabido González, Francisco Manuel
-master.menu.anonymous.favourite-link.David-Escudero = 53930786H: Escudero Aldana, David
-
 
 # master.menu.administrator ###################################################
 
