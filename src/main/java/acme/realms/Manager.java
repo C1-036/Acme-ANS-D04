@@ -15,9 +15,9 @@ package acme.realms;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
@@ -96,7 +96,7 @@ public class Manager extends AbstractRole {
 	// Relationships ----------------------------------------------------------
 
 
-	@OneToOne(optional = false)
+	@Embedded
 	@JoinColumn(name = "user_identity_id")
 	private UserIdentity userIdentity;
 
