@@ -1,0 +1,4 @@
+key,key:userAccount,identifierNumber,yearsOfExperience,dateOfBirth,picture,userIdentity_name,userIdentity_surname,userIdentity_email
+manager1,manager1,MA123456,50,1980-05-15,http://www.lorem-ipsum.org,Manager,One,manager1@acme.com
+manager2,manager2,MG654321,50,1975-08-20,,Manager,Two,manager2@acme.com
+manager3,manager3,MT789012,,,,Manager,Three,manager3@acme.com
