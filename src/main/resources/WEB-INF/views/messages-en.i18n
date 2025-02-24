@@ -9,3 +9,4 @@
 # they accept any liabilities with respect to them.
 
 validation.realms.manager.identifierNumber = Identifier number must follow the pattern '^[A-Z]{2,3}\\d{6}$'
+validation.entities.leg.flightNumber = Flight number must follow the pattern: IATA code (2-3 letters) followed by 4 digits.
