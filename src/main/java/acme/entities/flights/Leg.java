@@ -9,10 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,31 +30,46 @@ public class Leg extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{4}$")
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{4}$", message = "{validation.entities.leg.flightNumber}")
+	@Automapped
 	private String				flightNumber;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Mandatory
+	@ValidMoment
+	@Automapped
 	private Date				scheduledDeparture;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Mandatory
+	@ValidMoment
+	@Automapped
 	private Date				scheduledArrival;
 
 	@Mandatory
+	@ValidNumber
+	@Automapped
 	private Double				durationHours;
 
 	@Mandatory
+	@Valid
+	@Automapped
 	private LegStatus			status;
 
 	@Mandatory
+	@ValidString
+	@Automapped
 	private String				departureAirport;
 
 	@Mandatory
+	@ValidString
+	@Automapped
 	private String				arrivalAirport;
 
 	@Mandatory
+	@ValidString
+	@Automapped
 	private String				aircraft;
 
 	// Derived attributes -----------------------------------------------------
