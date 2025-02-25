@@ -1,4 +1,4 @@
-key,key:userAccount,identifierNumber,yearsOfExperience,dateOfBirth,picture,userIdentity_name,userIdentity_surname,userIdentity_email
-manager1,manager1,MA123456,50,1980-05-15,http://www.lorem-ipsum.org,Manager,One,manager1@acme.com
-manager2,manager2,MG654321,50,1975-08-20,,Manager,Two,manager2@acme.com
-manager3,manager3,MT789012,,,,Manager,Three,manager3@acme.com
+key,key:userAccount,identifierNumber,yearsOfExperience,dateOfBirth,picture,userIdentity.name,userIdentity.surname,userIdentity.email
+manager1,user-account-manager-01,MA123456,15,2001/05/15 00:00,http://www.lorem-ipsum.org,Manager,One,manager1@acme.com
+manager2,user-account-manager-02,MG654321,20,2002/08/20 00:00,,Manager,Two,manager2@acme.com
+manager3,user-account-manager-03,MT789012,5,2003/07/10 00:00,,Manager,Three,manager3@acme.com
