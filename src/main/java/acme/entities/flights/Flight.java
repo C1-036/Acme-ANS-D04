@@ -2,20 +2,17 @@
 package acme.entities.flights;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
@@ -36,39 +33,40 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(min = 1, max = 50)
-	@Column(nullable = false)
+	@Column(unique = true)
+	@Automapped
 	private String				tag;
 
 	@Mandatory
+	@Valid
+	@Automapped
 	private Boolean				requiresSelfTransfer; // 
 
 	@Mandatory
-	@ValidMoney(min = 1.00, max = Double.POSITIVE_INFINITY)
+	@ValidMoney
+	@Automapped
 	private Money				cost;
 
-	@ValidString
 	@Optional
+	@ValidString
+	@Automapped
 	private String				description;
 
 	// Derived attributes -----------------------------------------------------
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@NotNull
-	@PastOrPresent
-	@Mandatory
+	@Transient
 	private Date				scheduledDeparture;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Mandatory
+	@Transient
 	private Date				scheduledArrival;
 
-	@Mandatory
+	@Transient
 	private String				originCity;
 
-	@Mandatory
+	@Transient
 	private String				destinationCity;
 
-	@Mandatory
+	@Transient
 	private Integer				layovers;
 
 	// Relationships ----------------------------------------------------------
@@ -81,5 +79,5 @@ public class Flight extends AbstractEntity {
 	@OneToMany
 	@Mandatory
 	@Valid
-	private List<Leg>			legs;
+	private Leg					legs;
 }
