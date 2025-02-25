@@ -17,8 +17,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.Transient;
@@ -27,7 +26,7 @@ import acme.client.components.basis.AbstractRole;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidUrl;
 import acme.datatypes.UserIdentity;
 import lombok.Getter;
@@ -51,11 +50,11 @@ public class Manager extends AbstractRole {
 	private String				identifierNumber;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 100, integer = 3, fraction = 0)
+	@Digits(integer = 3, fraction = 0)
 	private Integer				yearsOfExperience;
 
 	@Mandatory
-	@Temporal(TemporalType.DATE)
+	@ValidMoment(past = true)
 	private Date				dateOfBirth;
 
 	@ValidUrl
