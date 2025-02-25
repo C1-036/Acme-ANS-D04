@@ -36,7 +36,7 @@ public class Booking extends AbstractEntity {
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
 	@Automapped
-	//No se como hacer que sean unicas
+
 	private String				locatorCode;
 
 	@Mandatory
@@ -58,7 +58,7 @@ public class Booking extends AbstractEntity {
 	@Optional
 	@ValidCreditCard
 	@Automapped
-	private String				creditCart; //ATRIBUTO CUSTOM TAMBIEN TENGO QUE HACERLO EL VIERNES 
+	private String				creditCart; //ATRIBUTO CUSTOM TA
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
