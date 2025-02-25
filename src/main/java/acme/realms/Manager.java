@@ -15,20 +15,21 @@ package acme.realms;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.Transient;
 
 import acme.client.components.basis.AbstractRole;
+import acme.client.components.mappings.Automapped;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.datatypes.UserIdentity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,23 +43,26 @@ public class Manager extends AbstractRole {
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-
-	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", message = "{validation.realms.manager.identifierNumber}")
 	@Mandatory
-
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
+	@Automapped
 	private String				identifierNumber;
 
 	@Mandatory
-	@Digits(integer = 3, fraction = 0)
+	@ValidNumber(min = 0, max = 100, integer = 3, fraction = 0)
+	@Automapped
 	private Integer				yearsOfExperience;
 
 	@Mandatory
+	@Temporal(TemporalType.DATE)
 	@ValidMoment(past = true)
+	@Automapped
 	private Date				dateOfBirth;
 
-	@ValidUrl
 	@Optional
+	@ValidUrl
+	@Automapped
 	private String				picture;
 	// Derived attributes -----------------------------------------------------
 
@@ -92,9 +96,5 @@ public class Manager extends AbstractRole {
 	}
 
 	// Relationships ----------------------------------------------------------
-
-
-	@Embedded
-	private UserIdentity userIdentity;
 
 }
