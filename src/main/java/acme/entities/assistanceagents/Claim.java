@@ -16,6 +16,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.realms.AssistanceAgents;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,6 +58,6 @@ public class Claim extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	@Automapped
-	private AssistanceAgent		assistanceAgent;
+	private AssistanceAgents	assistanceAgent;
 
 }
