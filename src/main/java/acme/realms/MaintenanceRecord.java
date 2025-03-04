@@ -1,3 +1,4 @@
+
 package acme.realms;
 
 import java.util.Date;
@@ -11,8 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.scheduling.config.Task;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,29 +33,46 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
+	@Mandatory
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
+	@Automapped
 	@Column(nullable = false)
 	private Date				moment;
 
+	@Mandatory
+	@Automapped
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private Status				status;  // PENDING, IN_PROGRESS, COMPLETED
+	private Status				status;
 
+	@Mandatory
+	@ValidMoment
 	@Temporal(TemporalType.DATE)
+	@Automapped
 	@Column(nullable = false)
 	private Date				nextInspection;
 
+	@Mandatory
+	@Length(min = 0)
+	@Automapped
 	@Column(nullable = false)
 	private double				estimatedCost;
 
-	@Column(length = 255)
+	@Optional
+	@ValidString(max = 255)
+	@Automapped
 	private String				notes;
 
+	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
+	@Automapped
 	private Technician			technician;
 
 	@OneToMany(mappedBy = "maintenanceRecord")
 	private List<Task>			tasks;
+
 
 	public enum Status {
 		PENDING, IN_PROGRESS, COMPLETED
