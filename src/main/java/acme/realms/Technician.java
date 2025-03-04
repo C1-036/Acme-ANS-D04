@@ -1,3 +1,4 @@
+
 package acme.realms;
 
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -57,7 +59,7 @@ public class Technician extends AbstractEntity {
 	private String					certifications;
 
 	@Valid
-	@OneToMany(mappedBy = "technician")
+	@OneToMany
 	private List<MaintenanceRecord>	maintenanceRecords;
 
 }
