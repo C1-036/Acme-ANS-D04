@@ -38,7 +38,7 @@ public class Airport extends AbstractEntity {
 	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{3}$")
 	@Automapped
-	private String				IATACode;
+	private String				iataCode;
 
 	@Mandatory
 	@Valid
