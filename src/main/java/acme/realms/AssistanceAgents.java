@@ -9,6 +9,7 @@ import acme.client.components.basis.AbstractRealm;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,10 +35,12 @@ public class AssistanceAgents extends AbstractRealm {
 
 	@Mandatory
 	@Automapped
+	@ValidString
 	private String				airline;
 
 	@Mandatory
 	@Automapped
+	@ValidMoment
 	private Date				startDate;
 
 	@Optional
@@ -51,6 +54,7 @@ public class AssistanceAgents extends AbstractRealm {
 
 	@Optional
 	@Automapped
+	@ValidString
 	private String				photoLink;
 
 }
