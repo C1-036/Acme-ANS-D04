@@ -1,3 +1,4 @@
+
 package acme.realms;
 
 import javax.persistence.Column;
@@ -5,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,24 +23,34 @@ public class Task extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
+	@Mandatory
+	@Automapped
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private TaskType			type;  // MAINTENANCE, INSPECTION, REPAIR, SYSTEM_CHECK
+	private TaskType			type;
 
-	@Column(length = 255, nullable = false)
+	@Mandatory
+	@ValidString(max = 255)
+	@Automapped
+	@Column(nullable = false)
 	private String				description;
 
-	@Min(0)
-	@Max(10)
+	@Mandatory
+	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 0)
+	@Automapped
 	@Column(nullable = false)
-	private int					priority;  // Rango: 0-10
+	private int					priority;
 
-	@Min(0)
-	@Digits(integer = 2, fraction = 2)
+	@Mandatory
+	@ValidNumber(min = 0, integer = 2, fraction = 2)
+	@Automapped
 	@Column(nullable = false)
-	private double				estimatedDuration;  // En horas
+	private double				estimatedDuration;
 
-	@ManyToOne(optional = false)
+	@Mandatory
+	@Valid
+	@ManyToOne
+	@Automapped
 	private MaintenanceRecord	maintenanceRecord;
 
 
