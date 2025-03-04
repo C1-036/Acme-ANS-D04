@@ -13,9 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-
-import org.hibernate.validator.constraints.Length;
-import org.springframework.scheduling.config.Task;
+import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -54,7 +52,7 @@ public class MaintenanceRecord extends AbstractEntity {
 	private Date				nextInspection;
 
 	@Mandatory
-	@Length(min = 0)
+	@Min(0)
 	@Automapped
 	@Column(nullable = false)
 	private double				estimatedCost;
@@ -66,11 +64,12 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@Automapped
 	private Technician			technician;
 
-	@OneToMany(mappedBy = "maintenanceRecord")
+	@Valid
+	@OneToMany
 	private List<Task>			tasks;
 
 
