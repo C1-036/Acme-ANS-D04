@@ -27,7 +27,7 @@ public class Customers extends AbstractRealm {
 	private String				identifier;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")  // Aqui igual
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
 
