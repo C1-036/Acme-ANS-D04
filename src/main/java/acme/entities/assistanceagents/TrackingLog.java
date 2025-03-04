@@ -46,6 +46,7 @@ public class TrackingLog extends AbstractEntity {
 
 	@ValidString(max = 255)
 	@Automapped
+	@Valid
 	private String				resolutionDetails;
 
 	// Relationships ----------------------------------------------------------
