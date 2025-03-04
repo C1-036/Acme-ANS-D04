@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,26 +22,41 @@ public class Technician extends AbstractEntity {
 
 	private static final long		serialVersionUID	= 1L;
 
+	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Automapped
 	@Column(unique = true, nullable = false)
-	private String					license;  // Formato "^[A-Z]{2-3}\\d{6}$"
+	private String					license;
 
+	@Mandatory
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
 	@Column(nullable = false)
-	private String					phone;  // Formato "^\+?\d{6,15}$"
+	private String					phone;
 
-	@Column(length = 50, nullable = false)
-	private String					specialisation;
+	@Mandatory
+	@ValidString(max = 50)
+	@Automapped
+	@Column(nullable = false)
+	private String					specialization;
 
+	@Mandatory
+	@Automapped
 	@Column(nullable = false)
 	private boolean					passedMedicalTest;
 
+	@Mandatory
+	@ValidNumber(min = 0, max = 100, integer = 3, fraction = 0)
+	@Automapped
 	@Column(nullable = false)
 	private int						yearsExperience;
 
-	@Column(length = 255)
+	@Optional
+	@ValidString(max = 255)
+	@Automapped
 	private String					certifications;
 
+	@Valid
 	@OneToMany(mappedBy = "technician")
 	private List<MaintenanceRecord>	maintenanceRecords;
 
