@@ -45,8 +45,8 @@ public class TrackingLog extends AbstractEntity {
 	private boolean				indicator;
 
 	@ValidString(max = 255)
+	@Mandatory
 	@Automapped
-	@Valid
 	private String				resolutionDetails;
 
 	// Relationships ----------------------------------------------------------
