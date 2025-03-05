@@ -1,10 +1,9 @@
 
-package acme.entities.customers;
+package acme.entities.airline;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -15,50 +14,55 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Passenger extends AbstractEntity {
+public class Airline extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	//Atributos -----------------------------------
+	//Atributos ----------------------------------
 
 	@Mandatory
-	@ValidString(max = 256)
+	@ValidString(max = 50)
 	@Automapped
-	private String				fullName;
+	private String				name;
 
 	@Mandatory
-	@ValidEmail
+	@ValidString
 	@Automapped
-	private String				email;
+	private String				iataCode; //Es custom
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,9}$")
+	@ValidUrl
 	@Automapped
-	private String				passportNumber;
+	private String				website;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Type				type;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
-	private Date				dateBirth;
+	private Date				foundationMoment;
 
 	@Optional
-	@ValidString(min = 51)
+	@ValidEmail
 	@Automapped
-	private String				specialNeeds;
+	private String				emailAdress;
 
-	//Relationsships
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false) //No se si es true
+	@Optional
+	@ValidNumber(min = 9, max = 9)
 	@Automapped
-	private Booking				booking;
+	private Integer				phoneNumber;
+
 }

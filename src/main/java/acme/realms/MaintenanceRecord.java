@@ -1,69 +1,79 @@
 
-package acme.entities.customers;
+package acme.realms;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidCreditCard;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.realms.Customers;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
+public class MaintenanceRecord extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
-
-	//Atributos ------------------------------------
-
-	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
-	@Column(unique = true)
-	@Automapped
-
-	private String				locatorCode;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
-	private Date				purchaseMoment;
+	@Column(nullable = false)
+	private Date				moment;
 
 	@Mandatory
-	@Valid
 	@Automapped
-	private TravelClass			travelClass;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Status				status;
 
 	@Mandatory
-	@ValidMoney
+	@ValidMoment
+	@Temporal(TemporalType.DATE)
 	@Automapped
-	private Money				price;
+	@Column(nullable = false)
+	private Date				nextInspection;
+
+	@Mandatory
+	@Min(0)
+	@Automapped
+	@Column(nullable = false)
+	private double				estimatedCost;
 
 	@Optional
-	@ValidCreditCard
+	@ValidString(max = 255)
 	@Automapped
-	private String				creditCart; //ATRIBUTO CUSTOM 
+	private String				notes;
 
-	// Relationships ----------------------------------------------------------
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@Automapped
-	private Customers			customer;
+	private Technician			technician;
+
+	@Valid
+	@OneToMany
+	private List<Task>			tasks;
+
+
+	public enum Status {
+		PENDING, IN_PROGRESS, COMPLETED
+	}
 }
