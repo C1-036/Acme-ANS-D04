@@ -4,7 +4,6 @@ package acme.entities.airports;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
@@ -12,6 +11,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidUrl;
+import acme.constrains.ValidPromoCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,9 +40,9 @@ public class Service extends AbstractEntity {
 	@Automapped
 	private Double				averageDwellTime;
 
-	@Optional
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{4}-[0-9]{2}$")
+	@ValidPromoCode
+	@Optional
 	@Automapped
 	private String				promoCode;
 
