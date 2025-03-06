@@ -9,7 +9,10 @@ import acme.client.components.basis.AbstractRealm;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.client.components.validation.ValidUrl;
+import acme.constrains.ValidEmployeeCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +26,7 @@ public class AssistanceAgents extends AbstractRealm {
 	//Atributes-----------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidEmployeeCode
 	@Automapped
 	private String				employeeCode;
 
@@ -34,15 +37,17 @@ public class AssistanceAgents extends AbstractRealm {
 
 	@Mandatory
 	@Automapped
+	@ValidString
 	private String				airline;
 
 	@Mandatory
 	@Automapped
+	@ValidMoment(past = true)
 	private Date				startDate;
 
 	@Optional
 	@Automapped
-	@ValidString(min = 255)
+	@ValidString(max = 255)
 	private String				briefBio;
 
 	@Optional
@@ -51,6 +56,7 @@ public class AssistanceAgents extends AbstractRealm {
 
 	@Optional
 	@Automapped
+	@ValidUrl
 	private String				photoLink;
 
 }

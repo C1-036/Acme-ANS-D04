@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.realms.AssistanceAgents;
@@ -36,7 +37,7 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString
+	@ValidEmail
 	private String				passengerEmail;
 
 	@Mandatory
@@ -47,6 +48,7 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Enumerated(EnumType.STRING)
+	@Valid
 	private ClaimType			type;
 
 	@Mandatory
