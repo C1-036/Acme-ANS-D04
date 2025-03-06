@@ -1,6 +1,7 @@
 
 package acme.entities.flights;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.realms.Manager;
+import acme.client.helpers.MomentHelper;
+import acme.client.helpers.SpringHelper;
+import acme.realms.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +42,7 @@ public class Flight extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				requiresSelfTransfer; // 
+	private Indication			indication;
 
 	@Mandatory
 	@ValidMoney
@@ -53,26 +56,60 @@ public class Flight extends AbstractEntity {
 
 	// Derived attributes -----------------------------------------------------
 
-	@Transient
-	private Date				scheduledDeparture;
 
 	@Transient
-	private Date				scheduledArrival;
+	public Date getScheduledDeparture() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		Date departure = repository.findScheduledDeparture(this.getId());
+
+		if (departure != null && !MomentHelper.isInRange(departure, MomentHelper.parse("2000-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss"), MomentHelper.parse("2201-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss")))
+			departure = null;
+
+		return departure;
+	}
 
 	@Transient
-	private String				originCity;
+	public Date getScheduledArrival() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		Date arrival = repository.findScheduledArrival(this.getId());
+		Date departure = this.getScheduledDeparture();
+
+		Date minArrival = MomentHelper.deltaFromMoment(departure, 1, ChronoUnit.MINUTES);
+
+		if (arrival == null || MomentHelper.isBefore(arrival, minArrival))
+			arrival = minArrival;
+
+		if (!MomentHelper.isInRange(arrival, MomentHelper.parse("2000-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss"), MomentHelper.parse("2201-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss")))
+			arrival = null;
+
+		return arrival;
+	}
 
 	@Transient
-	private String				destinationCity;
+	public String getOriginCity() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		return repository.findOriginCity(this.getId());
+	}
 
 	@Transient
-	private Integer				layovers;
+	public String getDestinationCity() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		return repository.findDestinationCity(this.getId());
+	}
+
+	@Transient
+	public Integer getLayovers() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		Integer legs = repository.countLegs(this.getId());
+		return legs != null && legs > 0 ? legs - 1 : 0;
+	}
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
-	@Valid
+
 	@Mandatory
-	private Manager				manager;
+	@Valid
+	@ManyToOne(optional = false)
+	private AirlineManager manager;
 
 }
