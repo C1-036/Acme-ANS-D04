@@ -15,14 +15,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Customers extends AbstractRealm {
+public class Customer extends AbstractRealm {
 
 	private static final long	serialVersionUID	= 1L;
 
 	//Atributes-----------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$") // ESTA BIEN PERO ES UNA RESTRICCION CUSTOM LO DE LAS DOS PRIMERAS LETRAS LO EXPLICAN PROXIMAMENTE
+	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$") // ESTA BIEN PERO ES UNA RESTRICCION CUSTOM LO DE LAS DOS PRIMERAS LETRAS LO EXPLICAN PROXIMAMENTE
 	@Automapped
 	private String				identifier;
 
