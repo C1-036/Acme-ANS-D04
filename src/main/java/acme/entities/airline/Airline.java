@@ -37,7 +37,7 @@ public class Airline extends AbstractEntity {
 	@Mandatory
 	@ValidString
 	@Automapped
-	private String				iataCode; //Es custom
+	private String				iataCode; //Es custom?
 
 	@Mandatory
 	@ValidUrl
