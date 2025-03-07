@@ -1,5 +1,5 @@
 
-package acme.realms;
+package acme.entities.technicians;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +21,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
