@@ -42,7 +42,7 @@ public class TrackingLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean				indicator;
+	private boolean				accepted;
 
 	@ValidString(max = 255)
 	@Mandatory

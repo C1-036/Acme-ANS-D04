@@ -1,0 +1,64 @@
+package acme.entities.airline;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
+
+import acme.client.components.basis.AbstractEntity;
+import acme.client.components.mappings.Automapped;
+import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidString;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class Review extends AbstractEntity {
+
+	private static final long	serialVersionUID	= 1L;
+
+	@Mandatory
+	@ValidString(max = 50)
+	@Automapped
+	@Column(nullable = false, length = 50)
+	private String				username;
+
+	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Automapped
+	@Column(nullable = false)
+	private Date				postedAt;
+
+	@Mandatory
+	@ValidString(max = 50)
+	@Automapped
+	@Column(nullable = false, length = 50)
+	private String				subject;
+
+	@Mandatory
+	@ValidString(max = 255)
+	@Automapped
+	@Column(nullable = false, length = 255)
+	private String				text;
+
+	@Optional
+	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
+	@Automapped
+	@Column
+	private Double				score;
+
+	@Optional
+	@Valid
+	@Automapped
+	@Column
+	private Boolean				recommended;
+}
