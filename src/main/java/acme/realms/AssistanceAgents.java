@@ -3,6 +3,7 @@ package acme.realms;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRealm;
@@ -13,6 +14,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constrains.ValidEmployeeCode;
+
 import lombok.Getter;
 import lombok.Setter;
 
