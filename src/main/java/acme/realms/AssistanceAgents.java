@@ -3,6 +3,7 @@ package acme.realms;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -17,6 +18,7 @@ import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constrains.ValidEmployeeCode;
 import acme.entities.airline.Airline;
+
 import lombok.Getter;
 import lombok.Setter;
 

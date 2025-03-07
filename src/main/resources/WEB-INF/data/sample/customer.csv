@@ -1,0 +1,2 @@
+key,identifier,phoneNumber,physicalAddress,city,country,earnedPoints,key:user-account
+customer-01,AB123456,666666666,Calle Pirineo 23,Sevilla,España,30000,user-account-customer-01

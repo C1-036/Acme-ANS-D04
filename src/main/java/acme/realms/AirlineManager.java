@@ -1,14 +1,3 @@
-/*
- *
- *
- * Copyright (C) 2012-2025 Rafael Corchuelo.
- *
- * In keeping with the traditional purpose of furthering education and research, it is
- * the policy of the copyright owner to permit non-commercial use and redistribution of
- * this software. It has been tested carefully, but it is not guaranteed for any particular
- * purposes. The copyright owner does not offer any warranties or representations, nor do
- * they accept any liabilities with respect to them.
- */
 
 package acme.realms;
 
@@ -16,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,27 +20,27 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidIdentifierNumber;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Manager extends AbstractRole {
-
-	// Serialisation version --------------------------------------------------
+@ValidIdentifierNumber
+public class AirlineManager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes -------------------------------------------------------------
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(min = 9, max = 8, pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	@Automapped
 	private String				identifierNumber;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 100, integer = 3, fraction = 0)
+	@ValidNumber(min = 0, max = 120, integer = 3, fraction = 0)
 	@Automapped
 	private Integer				yearsOfExperience;
 
@@ -64,7 +54,12 @@ public class Manager extends AbstractRole {
 	@ValidUrl
 	@Automapped
 	private String				picture;
-	// Derived attributes -----------------------------------------------------
+
+	// Relaciones
+	@ManyToOne(optional = false)
+	@Mandatory
+	@Automapped
+	private Airline				airline;
 
 
 	@Transient
@@ -83,18 +78,4 @@ public class Manager extends AbstractRole {
 
 		return initials.toString().toUpperCase();
 	}
-
-	@Transient
-	public boolean isIdentifierValid() {
-		if (this.identifierNumber == null || !this.identifierNumber.matches("^[A-Z]{2,3}\\d{6}$"))
-			return false;
-
-		String expectedInitials = this.getInitials();
-		String actualInitials = this.identifierNumber.substring(0, expectedInitials.length());
-
-		return actualInitials.equals(expectedInitials);
-	}
-
-	// Relationships ----------------------------------------------------------
-
 }
