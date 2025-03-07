@@ -56,11 +56,6 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private LegStatus			status;
 
-	@Mandatory
-	@ValidString(min = 1, max = 50)
-	@Automapped
-	private String				aircraft;
-
 	// Derived attributes -----------------------------------------------------
 
 
