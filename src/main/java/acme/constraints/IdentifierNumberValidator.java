@@ -1,54 +1,62 @@
 
 package acme.constraints;
 
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.principals.DefaultUserIdentity;
+import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.realms.AirlineManager;
 
-public class IdentifierNumberValidator implements ConstraintValidator<ValidIdentifierNumber, AirlineManager> {
+@Validator
+public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifierNumber, AirlineManager> {
 
 	@Override
-	public void initialize(final ValidIdentifierNumber annotation) {
+	protected void initialise(final ValidIdentifierNumber annotation) {
+		assert annotation != null;
 	}
 
 	@Override
 	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
-		if (airlineManager == null || airlineManager.getIdentifierNumber() == null)
-			return false;  // Si no hay datos, no es válido
+		assert context != null;
 
-		// Obtener la identidad del usuario
-		DefaultUserIdentity identity = airlineManager.getUserAccount().getIdentity();
-		if (identity == null || identity.getFullName() == null)
-			return false;  // Si no hay identidad, no se puede validar
+		boolean result = true;
 
-		// Separar el nombre y apellido
-		String fullName = identity.getFullName();
-		String[] parts = fullName.split(", ");
-		if (parts.length < 2)
-			return false;  // Si no hay suficiente información, no es válido
+		if (airlineManager == null || airlineManager.getIdentifierNumber() == null) {
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+			result = false;
+		} else {
+			DefaultUserIdentity identity = airlineManager.getUserAccount().getIdentity();
+			if (identity == null || identity.getFullName() == null) {
+				super.state(context, false, "identifierNumber", "acme.validation.identifier-number.missing-name.message");
+				result = false;
+			} else {
+				String fullName = identity.getFullName();
+				String[] parts = fullName.split(", ");
+				if (parts.length < 2) {
+					super.state(context, false, "identifierNumber", "acme.validation.identifier-number.invalid-format.message");
+					result = false;
+				} else {
+					String surname = parts[0];
+					String firstName = parts[1].split(" ")[0];
 
-		String surname = parts[0]; // Apellido
-		String firstName = parts[1].split(" ")[0]; // Primer nombre
+					char expectedFirstLetter = Character.toUpperCase(firstName.charAt(0));
+					char expectedSecondLetter = Character.toUpperCase(surname.charAt(0));
 
-		// Obtener las primeras letras
-		char expectedFirstLetter = Character.toUpperCase(firstName.charAt(0));
-		char expectedSecondLetter = Character.toUpperCase(surname.charAt(0));
+					String identifier = airlineManager.getIdentifierNumber();
+					char actualFirstLetter = Character.toUpperCase(identifier.charAt(0));
+					char actualSecondLetter = Character.toUpperCase(identifier.charAt(1));
 
-		// Obtener las letras del identificador
-		String identifier = airlineManager.getIdentifierNumber();
-		char actualFirstLetter = Character.toUpperCase(identifier.charAt(0));
-		char actualSecondLetter = Character.toUpperCase(identifier.charAt(1));
+					boolean isValid = actualFirstLetter == expectedFirstLetter && actualSecondLetter == expectedSecondLetter;
 
-		// Validar que las letras coincidan
-		boolean isValid = actualFirstLetter == expectedFirstLetter && actualSecondLetter == expectedSecondLetter;
+					super.state(context, isValid, "identifierNumber", "acme.validation.identifier-number.message");
 
-		if (!isValid) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("Las primeras letras del identificador deben coincidir con el nombre y apellido.").addConstraintViolation();
+					if (!isValid)
+						result = false;
+				}
+			}
 		}
 
-		return isValid;
+		return result;
 	}
 }

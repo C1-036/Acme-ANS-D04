@@ -9,11 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.Transient;
-
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
-import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
@@ -31,7 +28,11 @@ import lombok.Setter;
 @ValidIdentifierNumber
 public class AirlineManager extends AbstractRole {
 
+	// Serialisation version --------------------------------------------------
+
 	private static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
 
 	@Mandatory
 	@ValidString(min = 9, max = 8, pattern = "^[A-Z]{2,3}\\d{6}$")
@@ -55,27 +56,11 @@ public class AirlineManager extends AbstractRole {
 	@Automapped
 	private String				picture;
 
-	// Relaciones
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
 	@ManyToOne(optional = false)
 	@Mandatory
 	@Automapped
 	private Airline				airline;
-
-
-	@Transient
-	public String getInitials() {
-		DefaultUserIdentity identity = this.getUserAccount().getIdentity();
-		String fullName = identity.getFullName();
-
-		String[] parts = fullName.split(", ");
-		String[] nameParts = parts[1].split(" ");
-
-		StringBuilder initials = new StringBuilder();
-		initials.append(parts[0].charAt(0));
-
-		for (int i = 0; i < Math.min(nameParts.length, 2); i++)
-			initials.append(nameParts[i].charAt(0));
-
-		return initials.toString().toUpperCase();
-	}
 }

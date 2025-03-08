@@ -1,4 +1,4 @@
-# company-en.i18n
+# validation-es.i18n
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
@@ -8,5 +8,6 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-validation.realms.manager.identifierNumber = Identifier number must follow the pattern '^[A-Z]{2,3}\\d{6}$'
-validation.entities.leg.flightNumber = Flight number must follow the pattern: IATA code (2-3 letters) followed by 4 digits.
+acme.validation.identifier-number.missing-name.message 		= No se pudo obtener el nombre completo del usuario.
+acme.validation.identifier-number.invalid-format.message 	= El formato del nombre completo es inválido. Debe ser 'Apellido, Nombre'.
+acme.validation.identifier-number.message 					= Las primeras letras del identificador deben coincidir con el nombre y el apellido.
