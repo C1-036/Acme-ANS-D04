@@ -1,49 +1,43 @@
 
 package acme.constraints;
 
-import java.util.regex.Pattern;
-
-import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.entities.flights.Leg;
 
-public class FlightNumberValidator implements ConstraintValidator<ValidFlightNumber, Leg> {
-
-	private static final String FLIGHT_NUMBER_PATTERN = "^[A-Z]{3}\\d{4}$";  // IATA Code + 4 dígitos
-
+@Validator
+public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, Leg> {
 
 	@Override
-	public void initialize(final ValidFlightNumber annotation) {
+	protected void initialise(final ValidFlightNumber annotation) {
+		assert annotation != null;
 	}
 
 	@Override
 	public boolean isValid(final Leg leg, final ConstraintValidatorContext context) {
-		if (leg == null || leg.getFlightNumber() == null)
-			return false;  // No puede ser nulo
+		assert context != null;
 
-		String flightNumber = leg.getFlightNumber();
+		boolean result = true;
 
-		// Validar que el formato del flightNumber es correcto (IATA_CODE + 4 dígitos)
-		if (!Pattern.matches(FlightNumberValidator.FLIGHT_NUMBER_PATTERN, flightNumber)) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("El flightNumber debe seguir el formato IATA_CODE + 4 dígitos. Ejemplo: 'MAD1234'").addConstraintViolation();
-			return false;
+		if (leg == null || leg.getFlightNumber() == null) {
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+			result = false;
+		} else if (leg.getFlight() == null || leg.getFlight().getManager() == null || leg.getFlight().getManager().getAirline() == null || leg.getFlight().getManager().getAirline().getIataCode() == null) {
+
+			super.state(context, false, "flightNumber", "acme.validation.leg.flight-number.missing-airline.message");
+			result = false;
+		} else {
+			String airlineIataCode = leg.getFlight().getManager().getAirline().getIataCode();
+			boolean startsWithIata = leg.getFlightNumber().startsWith(airlineIataCode);
+
+			super.state(context, startsWithIata, "flightNumber", "acme.validation.leg.flight-number.mismatch.message");
+
+			if (!startsWithIata)
+				result = false;
 		}
 
-		// Obtener el IATA Code desde el Departure Airport
-		if (leg.getDepartureAirport() == null || leg.getDepartureAirport().getIataCode() == null)
-			return true; // No hay aeropuerto de salida, no podemos validar
-
-		String iataCode = leg.getDepartureAirport().getIataCode(); // 🔹 Ahora sí obtenemos el código IATA correcto
-
-		// Validar que el flightNumber empieza con el código IATA del Departure Airport
-		if (!flightNumber.startsWith(iataCode)) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("El flightNumber debe empezar con el código IATA del aeropuerto de salida: " + iataCode).addConstraintViolation();
-			return false;
-		}
-
-		return true;
+		return result;
 	}
 }
