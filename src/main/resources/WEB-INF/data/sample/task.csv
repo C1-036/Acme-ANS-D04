@@ -1,0 +1,4 @@
+key,key:maintenanceRecord,type,description,priority,estimatedDuration
+task1,maintenance1,MAINTENANCE,Engine oil change,8,2.5
+task2,maintenance2,INSPECTION,Hydraulic leak inspection,5,1.8
+task3,maintenance3,REPAIR,Replace avionics module,9,3.0
