@@ -1,69 +1,64 @@
-
-package acme.entities.customers;
+package acme.entities.airline;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidCreditCard;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Booking extends AbstractEntity {
+public class Review extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	//Atributos ------------------------------------
-
 	@Mandatory
-	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
-	@Column(unique = true)
+	@ValidString(max = 50)
 	@Automapped
-
-	private String				locatorCode;
+	@Column(nullable = false, length = 50)
+	private String				username;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
-	private Date				purchaseMoment;
+	@Column(nullable = false)
+	private Date				postedAt;
 
 	@Mandatory
-	@Valid
+	@ValidString(max = 50)
 	@Automapped
-	private TravelClass			travelClass;
+	@Column(nullable = false, length = 50)
+	private String				subject;
 
 	@Mandatory
-	@ValidMoney
+	@ValidString(max = 255)
 	@Automapped
-	private Money				price;
+	@Column(nullable = false, length = 255)
+	private String				text;
 
 	@Optional
-	@ValidCreditCard
+	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
 	@Automapped
-	private String				creditCard; //ATRIBUTO CUSTOM 
+	@Column
+	private Double				score;
 
-	// Relationships ----------------------------------------------------------
-	@Mandatory
+	@Optional
 	@Valid
-	@ManyToOne(optional = false)
 	@Automapped
-	private Customer			customer;
+	@Column
+	private Boolean				recommended;
 }

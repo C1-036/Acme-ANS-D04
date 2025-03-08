@@ -3,6 +3,7 @@ package acme.entities.airports;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -33,12 +34,12 @@ public class Service extends AbstractEntity {
 	@Mandatory
 	@ValidUrl
 	@Automapped
-	private String				imageUrl;
+	private String				picture;
 
 	@Mandatory
 	@Min(0)
 	@Automapped
-	private Double				averageDwellTime;
+	private Double				avgDwellTime;
 
 	@Column(unique = true)
 	@ValidPromoCode
@@ -48,6 +49,7 @@ public class Service extends AbstractEntity {
 
 	@Optional
 	@Min(0)
+	@Max(100)
 	@Automapped
-	private Double				discountAmount;
+	private Double				money;
 }
