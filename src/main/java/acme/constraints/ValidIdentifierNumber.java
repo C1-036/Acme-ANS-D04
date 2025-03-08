@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = IdentifierNumberValidator.class)
 public @interface ValidIdentifierNumber {
 
-	String message() default "El identificador no es válido para el AirlineManager.";
+	String message() default "acme.validation.airline-manager.identifier-number.message";
 
 	Class<?>[] groups() default {};
 

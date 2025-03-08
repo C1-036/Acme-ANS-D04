@@ -38,16 +38,18 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 					result = false;
 				} else {
 					String surname = parts[0];
-					String firstName = parts[1].split(" ")[0];
+					String[] nameParts = parts[1].split(" ");
 
-					char expectedFirstLetter = Character.toUpperCase(firstName.charAt(0));
-					char expectedSecondLetter = Character.toUpperCase(surname.charAt(0));
+					// Generar iniciales permitiendo 2 o 3 letras
+					StringBuilder expectedInitials = new StringBuilder();
+					expectedInitials.append(Character.toUpperCase(surname.charAt(0))); // Primera letra del apellido
+					for (int i = 0; i < Math.min(nameParts.length, 2); i++)
+						expectedInitials.append(Character.toUpperCase(nameParts[i].charAt(0))); // Hasta 2 letras del nombre
 
 					String identifier = airlineManager.getIdentifierNumber();
-					char actualFirstLetter = Character.toUpperCase(identifier.charAt(0));
-					char actualSecondLetter = Character.toUpperCase(identifier.charAt(1));
+					String actualInitials = identifier.substring(0, expectedInitials.length()); // Extraemos las iniciales del ID
 
-					boolean isValid = actualFirstLetter == expectedFirstLetter && actualSecondLetter == expectedSecondLetter;
+					boolean isValid = actualInitials.equals(expectedInitials.toString());
 
 					super.state(context, isValid, "identifierNumber", "acme.validation.identifier-number.message");
 
