@@ -15,7 +15,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidIdentifierNumber;
 import acme.entities.airline.Airline;
@@ -35,7 +34,6 @@ public class AirlineManager extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(min = 9, max = 8, pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	@Automapped
 	private String				identifierNumber;
