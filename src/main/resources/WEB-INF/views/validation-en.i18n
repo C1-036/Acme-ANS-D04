@@ -11,3 +11,6 @@
 acme.validation.identifier-number.missing-name.message 		= Could not get the user's full name.
 acme.validation.identifier-number.invalid-format.message 	= The full name format is invalid. Must be 'Last Name, First Name'.
 acme.validation.identifier-number.message 					= The first letters of the identifier must match the first and last name.
+acme.validation.leg.flight-number.message 					= The flight number must consist of the airline's IATA code followed by four digits
+acme.validation.leg.flight-number.missing-airline.message 	= The flight number cannot be validated without an associated airline.
+acme.validation.leg.flight-number.mismatch.message 			= The flight number must start with the IATA code of the corresponding airline.
