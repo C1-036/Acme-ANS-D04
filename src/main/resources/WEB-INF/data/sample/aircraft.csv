@@ -1,0 +1,36 @@
+key,model,registrationNumber,passengerCapacity,cargoWeight,status,details,key:airline
+aircraft-01,Boeing 737,ABC123,150,30000,ACTIVE,New aircraft with modern features,airline-01
+aircraft-02,Airbus A320,DEF456,180,25000,UNDER_MAINTENANCE,Engine maintenance required,airline-02
+aircraft-03,Embraer 190,GHI789,100,20000,ACTIVE,High-efficiency regional aircraft,airline-03
+aircraft-04,Boeing 777,JKL012,350,50000,ACTIVE,Long-haul flights,airline-01
+aircraft-05,Airbus A380,MNO345,500,40000,UNDER_MAINTENANCE,Airframe inspection needed,airline-02
+aircraft-06,Boeing 787,PQR678,290,35000,ACTIVE,New generation aircraft,airline-03
+aircraft-07,Airbus A330,STU901,350,40000,ACTIVE,Premium services,airline-01
+aircraft-08,Boeing 737,XYZ234,150,30000,UNDER_MAINTENANCE,Landing gear repair,airline-02
+aircraft-09,Embraer 175,LMN567,80,15000,ACTIVE,Short regional flights,airline-03
+aircraft-10,Airbus A320,OPQ890,180,25000,ACTIVE,High-capacity flights,airline-01
+aircraft-11,Airbus A330,ABC890,280,38000,UNDER_MAINTENANCE,Electrical system check,airline-02
+aircraft-12,Boeing 747,DEF123,400,30000,ACTIVE,International flights,airline-03
+aircraft-13,Embraer 195,GHI234,120,20000,ACTIVE,Regional and charter services,airline-01
+aircraft-14,Boeing 737,JKL567,160,32000,ACTIVE,Flexible for different routes,airline-02
+aircraft-15,Airbus A380,MNO678,520,20000,UNDER_MAINTENANCE,Flight control maintenance,airline-03
+aircraft-16,Boeing 787,OPQ012,290,35000,ACTIVE,Modern long-haul flights,airline-01
+aircraft-17,Airbus A320,PQR345,180,26000,ACTIVE,High-efficiency aircraft,airline-02
+aircraft-18,Embraer 190,STU678,100,22000,ACTIVE,Economical regional aircraft,airline-03
+aircraft-19,Boeing 777,XYZ012,350,50000,ACTIVE,Premium airline services,airline-01
+aircraft-20,Airbus A330,ABC345,350,40000,UNDER_MAINTENANCE,Engine maintenance in progress,airline-02
+aircraft-21,Embraer 175,GHI890,80,15000,ACTIVE,Comfortable regional service,airline-03
+aircraft-22,Boeing 737,JKL890,160,31000,ACTIVE,Popular in short to medium haul routes,airline-01
+aircraft-23,Airbus A320,MNO234,180,27000,ACTIVE,Excellent fuel efficiency,airline-02
+aircraft-24,Boeing 787,OPQ567,300,35000,UNDER_MAINTENANCE,Engine inspection,airline-03
+aircraft-25,Airbus A330,PQR890,280,38000,ACTIVE,Wide-body aircraft for international flights,airline-01
+aircraft-26,Boeing 777,STU234,350,50000,ACTIVE,Long-range flight support,airline-02
+aircraft-27,Embraer 195,XYZ678,120,22000,ACTIVE,Modern regional aircraft,airline-03
+aircraft-28,Airbus A320,ABC567,180,26000,ACTIVE,Ideal for both domestic and international flights,airline-01
+aircraft-29,Boeing 737,GHI890,150,32000,UNDER_MAINTENANCE,Airframe repairs required,airline-02
+aircraft-30,Embraer 175,JKL234,80,15000,ACTIVE,Comfortable for shorter regional routes,airline-03
+aircraft-31,Boeing 787,MNO567,300,40000,ACTIVE,Advanced technology and comfort,airline-01
+aircraft-32,Airbus A330,OPQ678,290,38000,ACTIVE,For long-distance international routes,airline-02
+aircraft-33,Airbus A380,PQR234,500,45000,UNDER_MAINTENANCE,Structural check and repair,airline-03
+aircraft-34,Boeing 777,STU567,350,50000,ACTIVE,First-class amenities,airline-01
+aircraft-35,Embraer 190,XYZ345,100,22000,ACTIVE,Efficient regional operations,airline-02
