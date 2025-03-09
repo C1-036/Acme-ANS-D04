@@ -2,9 +2,8 @@
 package acme.entities.aircraft;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -49,7 +48,7 @@ public class Aircraft extends AbstractRole {
 
 	@Automapped
 	@Mandatory
-	@Enumerated(EnumType.STRING)
+	@Valid
 	private AircraftStatus		status;
 
 	@Automapped
