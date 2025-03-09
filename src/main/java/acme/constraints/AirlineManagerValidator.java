@@ -1,18 +1,22 @@
 
 package acme.constraints;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
 import acme.realms.AirlineManager;
 
 @Validator
-public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifierNumber, AirlineManager> {
+public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, AirlineManager> {
 
 	@Override
-	protected void initialise(final ValidIdentifierNumber annotation) {
+	protected void initialise(final ValidAirlineManager annotation) {
 		assert annotation != null;
 	}
 
@@ -56,6 +60,23 @@ public class IdentifierNumberValidator extends AbstractValidator<ValidIdentifier
 					if (!isValid)
 						result = false;
 				}
+			}
+		}
+
+		Date birthDate = airlineManager.getDateOfBirth();
+		if (birthDate == null) {
+			super.state(context, false, "dateOfBirth", "acme.validation.date-of-birth.required");
+			result = false;
+		} else {
+			// Calculamos la fecha mínima para ser mayor de 18 años usando `MomentHelper`
+			Date minimumValidDate = MomentHelper.deltaFromCurrentMoment(-18, ChronoUnit.YEARS);
+
+			// Verificamos que la fecha de nacimiento esté antes de la fecha mínima
+			boolean isAdult = MomentHelper.isBeforeOrEqual(birthDate, minimumValidDate);
+
+			if (!isAdult) {
+				super.state(context, false, "dateOfBirth", "acme.validation.date-of-birth.must-be-adult");
+				result = false;
 			}
 		}
 

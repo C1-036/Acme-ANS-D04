@@ -11,8 +11,8 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = IdentifierNumberValidator.class)
-public @interface ValidIdentifierNumber {
+@Constraint(validatedBy = AirlineManagerValidator.class)
+public @interface ValidAirlineManager {
 
 	String message() default "acme.validation.airline-manager.identifier-number.message";
 
