@@ -1,0 +1,4 @@
+key,username,postedAt,subject,text,score,recommended
+review-01,davescald,2010/03/18 11:05,Excellent Service,The airport was very clean and the staff was helpful.,9,TRUE
+review-02,juanito,2011/04/18 12:16,Bad Experience,Had to wait 3 hours for my flight with no information.,3,FALSE
+review-03,pepito,2012/05/18 13:27,Average Airport,Decent facilities but food options were limited.,6,TRUE
