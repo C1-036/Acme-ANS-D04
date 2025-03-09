@@ -1,5 +1,5 @@
 
-package acme.constrains;
+package acme.constraints;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
