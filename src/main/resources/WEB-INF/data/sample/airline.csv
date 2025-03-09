@@ -1,2 +1,4 @@
 key,name,iataCode,website,type,foundationMoment,emailAdress,phoneNumber
-airline-01,iberia,DGX,STANDAR,13/04/1999,iberia@gmail.com,956789233
+airline-01,iberia,DGX,http://iberia.com/iberia,STANDAR,2000/03/02 10:00,iberia@gmail.com,666666666
+airline-02,vueling,VZD,http://vueling.com/vueling,LUXURY,2000/05/23 23:000,vueling@hotmail.com,645689456
+airline-03,ryanair,RJH,http://ryanair.com/ryanair,LOWCOST,2022/07/02 23:59,ryanair@gmail.com,945235345

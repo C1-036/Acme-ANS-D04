@@ -1,31 +1,24 @@
 
-package acme.realms;
+package acme.entities.flightCrewMembers;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAirlineManager;
-import acme.entities.airline.Airline;
+import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@ValidAirlineManager
-public class AirlineManager extends AbstractRole {
+public class ActivityLog extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -33,32 +26,32 @@ public class AirlineManager extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
+	@Automapped
 	@Mandatory
-	@Column(unique = true)
-	@Automapped
-	private String				identifierNumber;
+	@ValidMoment
+	private Date				registrationMoment;
 
+	@Automapped
 	@Mandatory
-	@ValidNumber(min = 0, max = 120)
-	@Automapped
-	private Integer				yearsOfExperience;
+	@ValidString(max = 50)
+	private String				incidentType;
 
+	@Automapped
 	@Mandatory
-	@Temporal(TemporalType.DATE)
-	@ValidMoment(past = true)
-	@Automapped
-	private Date				dateOfBirth;
+	@ValidString(max = 255)
+	private String				description;
 
-	@Optional
-	@ValidUrl
 	@Automapped
-	private String				picture;
+	@Mandatory
+	@ValidNumber(min = 0, max = 10)
+	private int					severity;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	@ManyToOne(optional = false)
-	@Mandatory
+
 	@Automapped
-	private Airline				airline;
+	@Mandatory
+	@ManyToOne(optional = false)
+	private FlightAssignment	flightAssignment;
 }

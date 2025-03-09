@@ -1,22 +1,16 @@
 
-package acme.realms;
+package acme.entities.aircraft;
 
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAirlineManager;
+import acme.client.components.validation.ValidString;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidAirlineManager
-public class AirlineManager extends AbstractRole {
+public class Aircraft extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -33,30 +26,40 @@ public class AirlineManager extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@Mandatory
-	@Column(unique = true)
 	@Automapped
-	private String				identifierNumber;
-
 	@Mandatory
-	@ValidNumber(min = 0, max = 120)
-	@Automapped
-	private Integer				yearsOfExperience;
+	@ValidString(max = 50)
+	private String				model;
 
+	@Automapped
 	@Mandatory
-	@Temporal(TemporalType.DATE)
-	@ValidMoment(past = true)
-	@Automapped
-	private Date				dateOfBirth;
+	@ValidString(max = 50)
+	private String				registrationNumber;
 
+	@Automapped
+	@Mandatory
+	@ValidNumber(min = 1, max = 1000)
+	private int					passengerCapacity;
+
+	@Automapped
+	@Mandatory
+	@ValidNumber(min = 2000, max = 50000)
+	private int					cargoWeight;
+
+	@Automapped
+	@Mandatory
+	@Valid
+	private AircraftStatus		status;
+
+	@Automapped
 	@Optional
-	@ValidUrl
-	@Automapped
-	private String				picture;
+	@ValidString(max = 255)
+	private String				details;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
 	@ManyToOne(optional = false)
 	@Mandatory
 	@Automapped

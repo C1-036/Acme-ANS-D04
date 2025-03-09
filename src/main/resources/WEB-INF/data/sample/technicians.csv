@@ -1,4 +1,0 @@
-key,key:userAccount,identifierNumber,yearsOfExperience,dateOfBirth,picture,userIdentity.name,userIdentity.surname,userIdentity.email
-technician1,user-account-technician-01,AB123456,5,1990/05/10 00:00,https://acortar.link/E3smDi,Technician 1,Acme-ANS-C1.036,technician1@acme.com
-technician2,user-account-technician-02,CD654321,3,1992/08/20 00:00,https://acortar.link/ydNKjL,Technician 2,Acme-ANS-C1.036,technician2@acme.com
-technician3,user-account-technician-03,EF987654,7,1988/11/25 00:00,,Technician 3,Acme-ANS-C1.036,technician3@acme.com

@@ -1,10 +1,7 @@
 
-package acme.realms;
+package acme.entities.technicians;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
@@ -24,28 +21,24 @@ public class Task extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
 	private TaskType			type;
 
 	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
-	@Column(nullable = false)
 	private String				description;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 0)
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	@Column(nullable = false)
-	private int					priority;
+	private Integer					priority;
 
 	@Mandatory
-	@ValidNumber(min = 0, integer = 2, fraction = 2)
+	@ValidNumber(min = 0)
 	@Automapped
-	@Column(nullable = false)
-	private double				estimatedDuration;
+	private Double				estimatedDuration;
 
 	@Mandatory
 	@Valid
@@ -53,8 +46,4 @@ public class Task extends AbstractEntity {
 	@Automapped
 	private MaintenanceRecord	maintenanceRecord;
 
-
-	public enum TaskType {
-		MAINTENANCE, INSPECTION, REPAIR, SYSTEM_CHECK
-	}
 }

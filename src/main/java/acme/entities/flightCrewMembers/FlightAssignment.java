@@ -1,31 +1,28 @@
 
-package acme.realms;
+package acme.entities.flightCrewMembers;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAirlineManager;
-import acme.entities.airline.Airline;
+import acme.client.components.validation.ValidString;
+import acme.entities.flights.Leg;
+import acme.realms.FlightCrewMembers;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@ValidAirlineManager
-public class AirlineManager extends AbstractRole {
+public class FlightAssignment extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -33,32 +30,37 @@ public class AirlineManager extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@Mandatory
-	@Column(unique = true)
 	@Automapped
-	private String				identifierNumber;
-
 	@Mandatory
-	@ValidNumber(min = 0, max = 120)
+	@Enumerated(EnumType.STRING)
+	private FlightDuty			duty;
+
 	@Automapped
-	private Integer				yearsOfExperience;
-
 	@Mandatory
-	@Temporal(TemporalType.DATE)
 	@ValidMoment(past = true)
-	@Automapped
-	private Date				dateOfBirth;
+	private Date				lastUpdate;
 
-	@Optional
-	@ValidUrl
 	@Automapped
-	private String				picture;
+	@Mandatory
+	@Enumerated(EnumType.STRING)
+	private AssignmentStatus	status;
+
+	@Automapped
+	@Optional
+	@ValidString(max = 255)
+	private String				remarks;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
-	@ManyToOne(optional = false)
-	@Mandatory
+
 	@Automapped
-	private Airline				airline;
+	@Mandatory
+	@ManyToOne(optional = false)
+	private FlightCrewMembers	flightCrewMember;
+
+	@Automapped
+	@Mandatory
+	@ManyToOne(optional = false)
+	private Leg					flightLeg;
 }

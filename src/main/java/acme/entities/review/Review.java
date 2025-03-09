@@ -1,13 +1,18 @@
 
-package acme.realms;
+package acme.entities.review;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
@@ -16,38 +21,38 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Technician extends AbstractRole {
+public class Review extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(max = 50)
 	@Automapped
-	private String				license;
+	private String				username;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
-	private String				phone;
+	private Date				postedAt;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	private String				specialization;
+	private String				subject;
 
 	@Mandatory
-	@Automapped
-	@Valid
-	private Boolean				passedMedicalTest;
-
-	@Mandatory
-	@ValidNumber(min = 0, max = 100)
-	@Automapped
-	private Integer				yearsExperience;
-
-	@Optional
 	@ValidString(max = 255)
 	@Automapped
-	private String				certifications;
+	private String				text;
 
+	@Optional
+	@ValidNumber(min = 0, max = 10)
+	@Automapped
+	private Double				score;
+
+	@Optional
+	@Valid
+	@Automapped
+	private Boolean				recommended;
 }

@@ -8,7 +8,6 @@ import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,34 +15,29 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Technician extends AbstractRole {
+public class Technicians extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(pattern = "[A-Z]{2-3}\\d{6}$")
 	@Automapped
-	private String				license;
+	private String				licenseNumber;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidString(pattern = "^\\+?\\d{6,15$")
 	@Automapped
-	private String				phone;
+	private String				phoneNumber;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	private String				specialization;
+	private String				specialisation;
 
 	@Mandatory
-	@Automapped
 	@Valid
-	private Boolean				passedMedicalTest;
-
-	@Mandatory
-	@ValidNumber(min = 0, max = 100)
 	@Automapped
-	private Integer				yearsExperience;
+	private Boolean				test;
 
 	@Optional
 	@ValidString(max = 255)
