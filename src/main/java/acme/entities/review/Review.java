@@ -1,8 +1,8 @@
-package acme.entities.airline;
+
+package acme.entities.review;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,12 +49,10 @@ public class Review extends AbstractEntity {
 	@Optional
 	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	@Column(unique = true)
 	private Double				score;
 
 	@Optional
 	@Valid
 	@Automapped
-	@Column(unique = true)
 	private Boolean				recommended;
 }
