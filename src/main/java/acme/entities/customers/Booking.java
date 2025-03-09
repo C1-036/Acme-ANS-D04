@@ -58,7 +58,7 @@ public class Booking extends AbstractEntity {
 	@Optional
 	@ValidCreditCard
 	@Automapped
-	private String				creditCart; //ATRIBUTO CUSTOM 
+	private String				creditCard; //ATRIBUTO CUSTOM 
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory

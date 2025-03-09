@@ -1,0 +1,5 @@
+key,locatorCode,purchaseMoment,travelClass,price,creditCard,key:customer
+booking-01,ABC123,2002/03/05 18:00,ECONOMY,EUR 50.00,0000-0000-0000-0000,customer-01
+booking-02,DEF4567,2009/04/25 23:00,BUSINESS,EUR 800.00,null,customer-01
+booking-03,HJI23456,2007/08/17 13:00,ECONOMY,EUR 23.00,4111-1111-1111-1111,customer-02
+booking-04,YUJ678,2022/07/02 23:59,BUSINESS,EUR 230.00,5555 5555 5555 4444,customer-03
