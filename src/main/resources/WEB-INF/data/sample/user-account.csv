@@ -11,9 +11,9 @@ user-account-customer-03,true,"UserIdentity{name: 'Pablo', surname: 'Murillo', e
 user-account-agent-01,true,"UserIdentity{name: 'Agent 1', surname: 'Acme-ANS-C1.036', email: 'agent1@acme.com'}",agent1,agent1
 user-account-agent-02,true,"UserIdentity{name: 'Agent 2', surname: 'Acme-ANS-C1.036', email: 'agent2@acme.com'}",agent2,agent2
 user-account-agent-03,true,"UserIdentity{name: 'Agent 3', surname: 'Acme-ANS-C1.036', email: 'agent3@acme.com'}",agent3,agent3
-user-account-technician-01,true,"UserIdentity{name: 'Technician 1', surname: 'Acme-ANS-C1.036', email: 'technician1@acme.com'}",technician1,technician1
-user-account-technician-02,true,"UserIdentity{name: 'Technician 2', surname: 'Acme-ANS-C1.036', email: 'technician2@acme.com'}",technician2,technician2
-user-account-technician-03,true,"UserIdentity{name: 'Technician 3', surname: 'Acme-ANS-C1.036', email: 'technician3@acme.com'}",technician3,technician3
+user-account-technician-01,true,"UserIdentity{name: 'David', surname: 'Escudero', email: 'davidescudero@acme.com'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Esperanza', surname: 'Carvajal', email: 'esperanzacarvajal@acme.com'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Catalina', surname: 'Maesso', email: 'catalinamaesso@acme.com'}",technician3,technician3
 user-account-airline-manager-01,true,"UserIdentity{name: 'Airline Manager 1', surname: 'Acme-ANS-C1.036', email: 'airlinemanager1@acme.com'}",airlinemanager1,airlinemanager1
 user-account-airline-manager-02,true,"UserIdentity{name: 'Airline Manager 2', surname: 'Acme-ANS-C1.036', email: 'airlinemanager2@acme.com'}",airlinemanager2,airlinemanager2
 user-account-airline-manager-03,true,"UserIdentity{name: 'Airline Manager 3', surname: 'Acme-ANS-C1.036', email: 'airlinemanager3@acme.com'}",airlinemanager3,airlinemanager3
