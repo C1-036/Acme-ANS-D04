@@ -28,37 +28,33 @@ public class Review extends AbstractEntity {
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	@Column(nullable = false, length = 50)
 	private String				username;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	@Automapped
-	@Column(nullable = false)
 	private Date				postedAt;
 
 	@Mandatory
 	@ValidString(max = 50)
 	@Automapped
-	@Column(nullable = false, length = 50)
 	private String				subject;
 
 	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
-	@Column(nullable = false, length = 255)
 	private String				text;
 
 	@Optional
-	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	@Column
+	@Column(unique = true)
 	private Double				score;
 
 	@Optional
 	@Valid
 	@Automapped
-	@Column
+	@Column(unique = true)
 	private Boolean				recommended;
 }
