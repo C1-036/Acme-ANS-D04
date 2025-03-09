@@ -24,12 +24,12 @@ public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, 
 		if (leg == null || leg.getFlightNumber() == null) {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			result = false;
-		} else if (leg.getFlight() == null || leg.getFlight().getManager() == null || leg.getFlight().getManager().getAirline() == null || leg.getFlight().getManager().getAirline().getIataCode() == null) {
+		} else if (leg.getFlight() == null || leg.getFlight().getAirlinemanager() == null || leg.getFlight().getAirlinemanager().getAirline() == null || leg.getFlight().getAirlinemanager().getAirline().getIataCode() == null) {
 
 			super.state(context, false, "flightNumber", "acme.validation.leg.flight-number.missing-airline.message");
 			result = false;
 		} else {
-			String airlineIataCode = leg.getFlight().getManager().getAirline().getIataCode();
+			String airlineIataCode = leg.getFlight().getAirlinemanager().getAirline().getIataCode();
 			boolean startsWithIata = leg.getFlightNumber().startsWith(airlineIataCode);
 
 			super.state(context, startsWithIata, "flightNumber", "acme.validation.leg.flight-number.mismatch.message");
