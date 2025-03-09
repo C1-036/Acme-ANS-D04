@@ -1,4 +1,0 @@
-key,key:userAccount,employeeCode,spokenLanguages,airline,moment,briefBio,salary,photoLink
-"agent1,user-account-agent-01,AG123456,""English, Spanish"",""American Airlines"",2015/06/12 00:00,""Experienced agent with 10 years in customer service."",45000,http://example.com/photo1.jpg"
-"agent2,user-account-agent-02,AG654321,""French, German"",""Lufthansa"",2018/09/25 00:00,""Multilingual agent specialized in VIP assistance."",42000,http://example.com/photo2.jpg"
-"agent3,user-account-agent-03,AG789012,""Italian, Portuguese"",""Emirates"",2020/01/15 00:00,""Recently joined with a strong background in hospitality."",,"""""
