@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Aircraft extends AbstractRole {
+public class Aircraft extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -60,8 +60,8 @@ public class Aircraft extends AbstractRole {
 
 	// Relationships ----------------------------------------------------------
 
-	@Automapped
-	@Mandatory
 	@ManyToOne(optional = false)
+	@Mandatory
+	@Automapped
 	private Airline				airline;
 }
