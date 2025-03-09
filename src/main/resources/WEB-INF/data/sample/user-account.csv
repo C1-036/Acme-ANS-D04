@@ -19,3 +19,4 @@ user-account-airline-manager-02,true,"UserIdentity{name: 'Airline Manager 2', su
 user-account-airline-manager-03,true,"UserIdentity{name: 'Airline Manager 3', surname: 'Acme-ANS-C1.036', email: 'airlinemanager3@acme.com'}",airlinemanager3,airlinemanager3
 user-account-administrator-001,true,"UserIdentity{name: 'Admin One', surname: 'Acme-ANS-C1.036', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-administrator-002,true,"UserIdentity{name: 'Admin Two', surname: 'Acme-ANS-C1.036', email: 'admin2@acme.com'}",administrator2,administrator2
+user-account-administrator-003,true,"UserIdentity{name: 'Admin Three', surname: 'Acme-ANS-C1.036', email: 'admin3@acme.com'}",administrator3,administrator3
