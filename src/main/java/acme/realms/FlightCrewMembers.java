@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -12,6 +13,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.entities.airline.Airline;
 import acme.entities.flightCrewMembers.AvailabilityStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class FlightCrewMember extends AbstractRole {
+public class FlightCrewMembers extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -47,10 +49,10 @@ public class FlightCrewMember extends AbstractRole {
 	@Enumerated(EnumType.STRING)
 	private AvailabilityStatus	availabilityStatus;
 
-	@Automapped
+	@ManyToOne(optional = false)
 	@Mandatory
-	@ValidString
-	private String				airline;
+	@Automapped
+	private Airline				airline;
 
 	@Automapped
 	@Mandatory

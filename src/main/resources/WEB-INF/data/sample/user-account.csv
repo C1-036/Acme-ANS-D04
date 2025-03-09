@@ -19,3 +19,8 @@ user-account-airline-manager-02,true,"UserIdentity{name: 'Airline Manager 2', su
 user-account-airline-manager-03,true,"UserIdentity{name: 'Airline Manager 3', surname: 'Acme-ANS-C1.036', email: 'airlinemanager3@acme.com'}",airlinemanager3,airlinemanager3
 user-account-administrator-001,true,"UserIdentity{name: 'Admin One', surname: 'Acme-ANS-C1.036', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-administrator-002,true,"UserIdentity{name: 'Admin Two', surname: 'Acme-ANS-C1.036', email: 'admin2@acme.com'}",administrator2,administrator2
+user-account-member-01,true,"UserIdentity{name: 'John', surname: 'Doe', email: 'john.doe@acme.com'}",member1,member1
+user-account-member-02,true,"UserIdentity{name: 'Jane', surname: 'Smith', email: 'jane.smith@acme.com'}",member2,member2
+user-account-member-03,true,"UserIdentity{name: 'Tom', surname: 'Johnson', email: 'tom.johnson@acme.com'}",member3,member3
+user-account-member-04,true,"UserIdentity{name: 'Alice', surname: 'Williams', email: 'alice.williams@acme.com'}",member4,member4
+user-account-member-05,true,"UserIdentity{name: 'Robert', surname: 'Brown', email: 'robert.brown@acme.com'}",member5,member5
