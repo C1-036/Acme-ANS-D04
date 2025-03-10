@@ -34,7 +34,7 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	@ValidString
+	@ValidString(pattern = "^[A-Z]{2}X$")
 	@Automapped
 	private String				iataCode; //Es custom?
 

@@ -1,0 +1,12 @@
+key,flightNumber,scheduledDeparture,scheduledArrival,status,key:departureAirport,key:arrivalAirport,key:aircraft,key:flight
+# base entity
+leg-00,DGX5450,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-00
+# flightNumber - standard variations
+leg-01,DGX0000,2022/09/01 12:10,2022/09/01 12:20,ON_TIME,airport-00,airport-01,aircraft-01,flight-00
+leg-02,DGX0001,2022/09/01 12:30,2022/09/01 12:40,ON_TIME,airport-00,airport-01,aircraft-01,flight-00
+leg-03,DGX9999,2022/09/01 12:50,2022/09/01 13:40,ON_TIME,airport-00,airport-01,aircraft-01,flight-00
+leg-04,DGX9998,2022/09/01 13:50,2022/09/01 14:40,ON_TIME,airport-00,airport-01,aircraft-01,flight-00
+leg-05,VZX4151,2022/09/01 12:30,2022/09/01 12:40,ON_TIME,airport-00,airport-01,aircraft-01,flight-26
+# scheduledDeparture - standard variations
+leg-06,DGX0002,2022/07/30 00:01,2022/07/30 00:02,ON_TIME,airport-00,airport-01,aircraft-01,flight-01
+leg-07,DGX0003,2022/07/30 00:03,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-01

@@ -29,22 +29,22 @@ public class LegValidator implements ConstraintValidator<ValidLeg, Leg> {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		List<Leg> allLegs = repository.findLegsByFlight(flight.getId());
 
-		// ✅ 1️⃣ Validar que el Leg no se solape con otro Leg del mismo vuelo
+		//Validar que el Leg no se solape con otro Leg del mismo vuelo
 		for (Leg otherLeg : allLegs) {
 			if (Objects.equals(otherLeg.getId(), leg.getId()))
 				continue; // No compararse consigo mismo
 
 			if (MomentHelper.isInRange(leg.getScheduledDeparture(), otherLeg.getScheduledDeparture(), otherLeg.getScheduledArrival())) {
 				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate("Los segmentos no pueden estar solapados con otro tramo del vuelo.").addConstraintViolation();
+				context.buildConstraintViolationWithTemplate("acme.validation.leg.valid-leg.overlap").addConstraintViolation();
 				return false;
 			}
 		}
 
-		// ✅ 2️⃣ Validar que scheduledArrival ≥ scheduledDeparture + delta (1 minuto)
+		//Validar que scheduledArrival ≥ scheduledDeparture + delta (1 minuto)
 		if (MomentHelper.isBefore(leg.getScheduledArrival(), MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES))) {
 			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("scheduledArrival debe ser al menos scheduledDeparture + 1 minuto.").addConstraintViolation();
+			context.buildConstraintViolationWithTemplate("acme.validation.leg.valid-leg.time-conflict").addConstraintViolation();
 			return false;
 		}
 
