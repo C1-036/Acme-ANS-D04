@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>256</y>
+      <w>456</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Claim&gt;&gt;
+AssistanceAgents
+--
+- registrationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP), Automapped}
+- passengerEmail: String {Mandatory, ValidEmail, Automapped}
+- description: String {Mandatory, ValidString(max=255), Automapped}
+- type: ClaimType {Mandatory, Enumerated(EnumType.STRING), Valid}
+- accepted: boolean {Mandatory, Automapped}
+- assistanceAgent: AssistanceAgents {Mandatory, ManyToOne, Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>16</y>
+      <w>448</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+AssistanceAgents
+--
+- employeeCode: String {Mandatory, ValidString(min=1, max=50), Automapped}
+- spokenLanguages: String {Mandatory, ValidString(min=1, max=255), Automapped}
+- airline: Airline {Mandatory, ManyToOne, Automapped}
+- moment: Date {Mandatory, ValidMoment(past=true), Automapped}
+- briefBio: String {Optional, ValidString(max=255), Automapped}
+- salary: Money {Optional, ValidMoney, Automapped}
+- picture: String {Optional, ValidUrl, Automapped}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>472</y>
+      <w>560</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+TrackingLog
+--
+- lastUpdateMoment: Date {Mandatory, ValidMoment(past=false), Temporal(TIMESTAMP), Automapped}
+- stepUndergoing: String {Mandatory, ValidString(max=50), Automapped}
+- resolutionPercentage: double {Mandatory, Automapped}
+- accepted: boolean {Mandatory, Automapped}
+- resolutionDetails: String {Mandatory, ValidString(max=255), Automapped}
+- claim: Claim {Mandatory, OneToOne, Automapped}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>376</y>
+      <w>56</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+has &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>144</y>
+      <w>64</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+record &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+</diagram>
