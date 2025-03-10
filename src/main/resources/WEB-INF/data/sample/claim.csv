@@ -1,0 +1,6 @@
+key,registrationMoment,passengerEmail,description,type,accepted,key:assistanceAgent
+claim1,2021/03/01 14:30,john.doe@example.com,Flight delayed for 5 hours,FLIGHT_ISSUES,true,agent1
+claim2,2020/03/02 09:15,jane.smith@example.com,Lost baggage at JFK terminal 4,LUGGAGE_ISSUES,false,agent2
+claim3,2021/03/03 16:45,robert.johnson@example.com,Security check took too long,SECURITY_INCIDENT,true,agent3
+claim4,2021/03/04 12:00,emily.white@example.com,Denied boarding due to overbooking,FLIGHT_ISSUES,true,agent1
+claim5,2020/03/05 18:20,chris.miller@example.com,Incorrect meal provided on flight,OTHER_ISSUES,false,agent2
