@@ -1,0 +1,5 @@
+key,name,picture,avgDwellTime,promoCode,money
+service1,Free WiFi,http://example.com/wifi.jpg,1.5,WIFI-25,10.0
+service2,Parking,http://example.com/parking.jpg,2.0,PARK-25,5.0
+service3,VIP Lounge,http://example.com/lounge.jpg,3.0,VIPL-25,20.0
+service4,Business Class,http://example.com/business.jpg,1.0,,
