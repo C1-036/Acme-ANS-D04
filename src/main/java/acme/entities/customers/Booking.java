@@ -15,10 +15,10 @@ import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidCreditCard;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidNibbleCreditCard;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -56,7 +56,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidCreditCard
+	@ValidNibbleCreditCard
 	@Automapped
 	private String				creditCard; //ATRIBUTO CUSTOM 
 
