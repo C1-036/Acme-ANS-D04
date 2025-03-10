@@ -1,4 +1,4 @@
-key,key:userAccount,employeeCode,spokenLanguages,airline,moment,briefBio,salary,photoLink,userIdentity.name,userIdentity.surname,userIdentity.email
-agent1,user-account-agent-01,AG123456,"English, Spanish",American Airlines,2015/06/12 00:00,Experienced agent with 10 years in customer service.,45000,http://example.com/photo1.jpg,Agent 1,Acme-ANS-C1.036,agent1@acme.com
-agent2,user-account-agent-02,AG654321,"French, German",Lufthansa,2018/09/25 00:00,Multilingual agent specialized in VIP assistance.,42000,http://example.com/photo2.jpg,Agent 2,Acme-ANS-C1.036,agent2@acme.com
-agent3,user-account-agent-03,AG789012,"Italian, Portuguese",Emirates,2020/01/15 00:00,"","","",Agent 3,Acme-ANS-C1.036,agent3@acme.com
+key,employeeCode,spokenLanguages,key:airline,moment,briefBio,salary,picture,key:userAccount
+agent1,AG123456,"English, Spanish",airline-01,2015/06/12 00:00,Experienced agent with 10 years in customer service.,"45000.00 EUR",https://example.com/photo1.jpg,user-account-agent-01
+agent2,AG654321,"French, German",airline-02,2018/09/25 00:00,Multilingual agent specialized in VIP assistance.,"42000.00 EUR",https://example.com/photo2.jpg,user-account-agent-02
+agent3,AG789012,"Italian, Portuguese",airline-03,2020/01/15 00:00,"","","",user-account-agent-03
