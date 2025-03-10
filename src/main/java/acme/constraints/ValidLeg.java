@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = LegValidator.class)
 public @interface ValidLeg {
 
-	String message() default "El segmento del vuelo no es válido.";
+	String message() default "acme.validation.leg.valid-leg.message";
 
 	Class<?>[] groups() default {};
 

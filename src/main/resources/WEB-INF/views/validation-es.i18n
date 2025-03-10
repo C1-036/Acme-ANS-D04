@@ -8,11 +8,18 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.airline-manager.identifier-number.message      = El número de identificación no es válido para un Airline Manager.
-acme.validation.identifier-number.missing-name.message         = No se pudo obtener el nombre completo del usuario.
-acme.validation.identifier-number.invalid-format.message       = El formato del nombre completo no es válido. Debe ser 'Apellido, Nombre'.
-acme.validation.identifier-number.mismatch.message             = Las primeras letras del identificador deben coincidir con las iniciales del nombre y apellido del usuario.
+acme.validation.airline-manager.identifier-number.message                  = El número de identificación no es válido para un Administrador de Aerolínea.
+acme.validation.airline-manager.identifier-number.missing-name.message     = No se pudo obtener el nombre completo del usuario.
+acme.validation.airline-manager.identifier-number.invalid-format.message   = El formato del nombre completo no es válido. Debe ser 'Apellido, Nombre'.
+acme.validation.airline-manager.identifier-number.mismatch.message         = Las primeras letras del identificador deben coincidir con las iniciales del nombre y apellido del usuario.
+acme.validation.airline-manager.date-of-birth.required                     = Debe proporcionar su fecha de nacimiento.
+acme.validation.airline-manager.date-of-birth.must-be-adult                = La fecha de nacimiento indicada no cumple con el requisito de mayoría de edad (mínimo 18 años).
+
 
 acme.validation.leg.flight-number.message                      = El número de vuelo debe consistir en el código IATA de la aerolínea seguido de cuatro dígitos.
-acme.validation.leg.flight-number.missing-airline.message      = No se puede validar el número de vuelo sin una aerolínea asociada.
-acme.validation.leg.flight-number.mismatch.message             = El número de vuelo debe comenzar con el código IATA de la aerolínea correspondiente.
+acme.validation.leg.flight-number.format.message = El formato del número de vuelo no es válido. Debe comenzar con el código IATA de la aerolínea seguido de cuatro dígitos.
+acme.validation.leg.flight-number.duplicate.message = El número de vuelo ya existe. Por favor, proporcione un número de vuelo único.
+
+acme.validation.leg.valid-leg.message						   = El segmento del vuelo no es válido.
+acme.validation.leg.valid-leg.overlap						   = Los segmentos no pueden estar solapados con otro tramo del vuelo.
+acme.validation.leg.valid-leg.time-conflict					   = La hora de llegada programada debe ser, como mínimo, un minuto después de la hora de salida programada.

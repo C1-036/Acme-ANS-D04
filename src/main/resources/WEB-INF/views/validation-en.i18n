@@ -8,11 +8,18 @@
 # purposes. The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.airline-manager.identifier-number.message      = The identifier number is not valid for an Airline Manager.
-acme.validation.identifier-number.missing-name.message         = Could not retrieve the user's full name.
-acme.validation.identifier-number.invalid-format.message       = The full name format is invalid. Must be 'Last Name, First Name'.
-acme.validation.identifier-number.mismatch.message             = The first letters of the identifier must match the initials of the user's first and last name.
+acme.validation.airline-manager.identifier-number.message                  = The identifier number is not valid for an Airline Manager.
+acme.validation.airline-manager.identifier-number.missing-name.message     = Could not retrieve the user's full name.
+acme.validation.airline-manager.identifier-number.invalid-format.message   = The full name format is invalid. Must be 'Last Name, First Name'.
+acme.validation.airline-manager.identifier-number.mismatch.message         = The first letters of the identifier must match the initials of the user's first and last name.
+acme.validation.airline-manager.date-of-birth.required                     = You must provide your date of birth.
+acme.validation.airline-manager.date-of-birth.must-be-adult                = The specified date of birth does not meet the age requirement (minimum 18 years old).
+
 
 acme.validation.leg.flight-number.message                      = The flight number must consist of the airline's IATA code followed by four digits.
-acme.validation.leg.flight-number.missing-airline.message      = The flight number cannot be validated without an associated airline.
-acme.validation.leg.flight-number.mismatch.message             = The flight number must start with the IATA code of the corresponding airline.
+acme.validation.leg.flight-number.format.message = The flight number format is invalid. It must start with the airline's IATA code followed by four digits.
+acme.validation.leg.flight-number.duplicate.message = The flight number already exists. Please provide a unique flight number.
+
+acme.validation.leg.valid-leg.message						   = The flight segment is not valid.
+acme.validation.leg.valid-leg.overlap						   = Segments cannot overlap with another leg of the flight.
+acme.validation.leg.valid-leg.time-conflict					   = The scheduled arrival time must be at least one minute after the scheduled departure time.
