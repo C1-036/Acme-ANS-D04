@@ -1,0 +1,6 @@
+key,lastUpdateMoment,stepUndergoing,resolutionPercentage,accepted,resolutionDetails,key:claim
+tracking1,2021/03/01 15:30,Claim being reviewed,75.0,true,Investigating the cause of delay,claim1
+tracking2,2020/03/02 10:00,Waiting for passenger confirmation,50.0,false,Pending response from the passenger,claim2
+tracking3,2021/03/03 17:30,Escalated to senior agent,90.0,true,Senior agent assigned to handle the case,claim3
+tracking4,2021/03/04 13:00,Finalizing compensation offer,100.0,true,Offer for compensation being sent to passenger,claim4
+tracking5,2020/03/05 19:00,Closed after resolution,100.0,false,Case resolved but passenger rejected resolution,claim5
