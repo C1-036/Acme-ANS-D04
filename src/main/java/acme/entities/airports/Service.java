@@ -5,12 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidPromoCode;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Service extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Size(min = 1, max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				name;
 
@@ -42,8 +42,8 @@ public class Service extends AbstractEntity {
 	private Double				avgDwellTime;
 
 	@Column(unique = true)
-	@ValidPromoCode
 	@Optional
+	@ValidPromoCode
 	@Automapped
 	private String				promoCode;
 

@@ -10,9 +10,6 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Length;
 
 @Documented
 @Target(ElementType.FIELD)
@@ -20,9 +17,6 @@ import org.hibernate.validator.constraints.Length;
 
 @Constraint(validatedBy = PromoCodeValidator.class)
 @ReportAsSingleViolation
-
-@Length(min = 7, max = 7)
-@Pattern(regexp = "^[A-Z]{4}-[0-9]{2}$")
 
 public @interface ValidPromoCode {
 
