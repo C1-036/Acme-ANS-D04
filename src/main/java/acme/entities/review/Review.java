@@ -26,7 +26,7 @@ public class Review extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				username;
 
@@ -36,12 +36,12 @@ public class Review extends AbstractEntity {
 	private Date				postedAt;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				subject;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				text;
 

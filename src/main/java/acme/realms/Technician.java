@@ -21,7 +21,7 @@ public class Technician extends AbstractRole {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
 	private String				license;
 
@@ -31,22 +31,22 @@ public class Technician extends AbstractRole {
 	private String				phone;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				specialization;
 
 	@Mandatory
-	@Automapped
 	@Valid
+	@Automapped
 	private Boolean				passedMedicalTest;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 100)
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
 	private Integer				yearsExperience;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				certifications;
 
