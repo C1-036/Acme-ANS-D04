@@ -33,7 +33,6 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date				moment;
 
 	@Mandatory
@@ -43,28 +42,26 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment
-	@Temporal(TemporalType.DATE)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				nextInspection;
 
 	@Mandatory
-	@ValidMoney(min = 0)
+	@ValidMoney
 	@Automapped
 	private Money				estimatedCost;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				notes;
 
 	@Mandatory
 	@Valid
 	@ManyToOne
-	@Automapped
 	private Technician			technician;
 
 	@Valid
-	@OneToMany
+	@OneToMany(mappedBy = "maintenanceRecord")
 	private List<Task>			tasks;
 
 }
