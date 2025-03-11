@@ -26,18 +26,18 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 
 		boolean result = true;
 
-		if (airlineManager == null || airlineManager.getIdentifierNumber() == null) {
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		if (airlineManager == null || airlineManager.getIdentifierNumber() == null)
+			//super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			result = false;
-		} else {
+		else {
 			DefaultUserIdentity identity = airlineManager.getUserAccount().getIdentity();
-			if (identity == null || identity.getFullName() == null) {
-				super.state(context, false, "identifierNumber", "acme.validation.airline-manager.identifier-number.missing-name.message");
+			if (identity == null || identity.getFullName() == null)
+				//super.state(context, false, "identifierNumber", "acme.validation.airline-manager.identifier-number.missing-name.message");
 				result = false;
-			} else {
+			else {
 				String fullName = identity.getFullName();
 				String[] parts = fullName.split(", ");
-				if (parts.length < 2) {
+				if (parts.length < 2) { //Comprobacion redundante
 					super.state(context, false, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid-format.message");
 					result = false;
 				} else {

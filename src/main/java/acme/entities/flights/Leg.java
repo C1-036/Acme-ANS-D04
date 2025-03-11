@@ -35,20 +35,18 @@ public class Leg extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 	@Mandatory
+	@Valid
 	@Column(unique = true)
-	@Automapped
 	private String				flightNumber;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
 	@Mandatory
-	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
 
 	@Mandatory

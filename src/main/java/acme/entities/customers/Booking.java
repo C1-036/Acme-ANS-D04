@@ -35,14 +35,11 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
-	@Automapped
-
 	private String				locatorCode;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date				purchaseMoment;
 
 	@Mandatory
@@ -56,7 +53,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidNibbleCreditCard
+	@ValidNibbleCreditCard //Puede ser un validString min 0 max 4
 	@Automapped
 	private String				creditCard; //ATRIBUTO CUSTOM 
 
@@ -64,6 +61,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	@Automapped
 	private Customer			customer;
+
+	//falta relacion vuelo
 }

@@ -30,7 +30,7 @@ public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, 
 
 		boolean result = true;
 
-		if (leg == null) {
+		if (leg == null) { //Esto lo hace ya el mandatory
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			result = false;
 		} else {

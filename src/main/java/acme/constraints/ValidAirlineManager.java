@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = AirlineManagerValidator.class)
 public @interface ValidAirlineManager {
 
-	String message() default "acme.validation.airline-manager.identifier-number.message";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 

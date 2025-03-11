@@ -1,6 +1,7 @@
 
 package acme.realms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractRealm;
@@ -22,8 +23,8 @@ public class Customer extends AbstractRealm {
 	//Atributes-----------------------------------
 
 	@Mandatory
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$") // ESTA BIEN PERO ES UNA RESTRICCION CUSTOM LO DE LAS DOS PRIMERAS LETRAS LO EXPLICAN PROXIMAMENTE
-	@Automapped
+	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")//Custome
+	@Column(unique = true)
 	private String				identifier;
 
 	@Mandatory
@@ -47,7 +48,7 @@ public class Customer extends AbstractRealm {
 	private String				country;
 
 	@Optional
-	@ValidNumber(max = 500000)
+	@ValidNumber(min = 0, max = 500000)
 	@Automapped
 	private Integer				earnedPoints;
 

@@ -3,13 +3,12 @@ package acme.entities.airports;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidPromoCode;
@@ -37,19 +36,17 @@ public class Service extends AbstractEntity {
 	private String				picture;
 
 	@Mandatory
-	@Min(0)
+	@ValidNumber(min = 0) //Falta el max fractions = 2
 	@Automapped
 	private Double				avgDwellTime;
 
-	@Column(unique = true)
 	@Optional
 	@ValidPromoCode
-	@Automapped
+	@Column(unique = true)
 	private String				promoCode;
 
 	@Optional
-	@Min(0)
-	@Max(100)
+	@ValidNumber(min = 0, max = 100)
 	@Automapped
 	private Double				money;
 }

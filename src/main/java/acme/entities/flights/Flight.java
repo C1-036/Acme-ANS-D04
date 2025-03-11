@@ -4,7 +4,6 @@ package acme.entities.flights;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -35,7 +34,6 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@ValidString(min = 1, max = 50)
-	@Column(unique = true)
 	@Automapped
 	private String				tag;
 

@@ -22,7 +22,7 @@ public @interface ValidPromoCode {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "Invalid promo code format";
+	String message() default "";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

@@ -29,7 +29,7 @@ public class Passenger extends AbstractEntity {
 	//Atributos -----------------------------------
 
 	@Mandatory
-	@ValidString(max = 256)
+	@ValidString
 	@Automapped
 	private String				fullName;
 
@@ -46,11 +46,10 @@ public class Passenger extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	@Automapped
 	private Date				dateBirth;
 
 	@Optional
-	@ValidString(min = 51)
+	@ValidString(max = 50)
 	@Automapped
 	private String				specialNeeds;
 
@@ -58,7 +57,7 @@ public class Passenger extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false) //No se si es true
+	@ManyToOne(optional = false) //No se puede unir directamente hace falta entidad intermedia solo para la relacion 
 	@Automapped
 	private Booking				booking;
 }

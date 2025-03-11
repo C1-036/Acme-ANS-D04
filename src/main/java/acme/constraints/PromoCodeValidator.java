@@ -34,7 +34,7 @@ public class PromoCodeValidator extends AbstractValidator<ValidPromoCode, String
 
 		// Extraer los últimos dos dígitos y verificar que coincidan con el año actual
 		String lastTwoDigits = value.substring(value.length() - 2);
-		String currentYearLastTwoDigits = String.valueOf(Year.now().getValue()).substring(2);
+		String currentYearLastTwoDigits = String.valueOf(Year.now().getValue()).substring(2); //momentHelper
 
 		boolean validYear = lastTwoDigits.equals(currentYearLastTwoDigits);
 		this.state(context, validYear, "promoCode", "acme.validation.promocode.year");
