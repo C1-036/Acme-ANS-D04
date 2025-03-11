@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>736</x>
+      <y>112</y>
+      <w>496</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+MaintenanceRecord 
+bg=green
+--
+    - moment: Date {Mandatory, ValidMoment(Past = true), Temporal(TIMESTAMP), Automapped}
+    - status: Status {Mandatory, Valid, Automapped}
+    - nextInspection: Date {Mandatory, ValidMoment, Temporal(DATE), Automapped}
+    - estimatedCost: Money {Mandatory, ValidMoney(min = 0), Automapped}
+    - notes: String {Optional, ValidString(max = 255), Automapped}
+    + technician: Technician {Mandatory, Valid, Automapped}
+    + tasks: Task {Valid}
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>16</x>
+      <y>112</y>
+      <w>536</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+Package::Technician
+bg=green
+--
+    - license: String {Mandatory, ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$"), Automapped}
+    - phone: String {Mandatory, ValidString(pattern = "^\\+?\\d{6,15}$"), Automapped}
+    - specialization: String {Mandatory, ValidString(max = 50), Automapped}
+    - passedMedicalTest: Boolean {Mandatory, Valid, Automapped}
+    - yearsExperience: Integer {Mandatory, ValidNumber(min = 0, max = 100), Automapped}
+    - certifications: String {Mandatory, ValidString(max = 255), Automapped}
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>736</x>
+      <y>320</y>
+      <w>488</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Task 
+bg=green
+--
+    - type: TaskType {Mandatory, Valid, Automapped}
+    - description: String {Mandatory, ValidString(max = 255), Automapped}
+    - priority: Integer {Mandatory, ValidNumber(min = 0, max = 10), Automapped}
+    - estimatedDuration: Double {Mandatory, ValidNumber(min = 0), Automapped}
+    + maintenanceRecord: MaintenanceRecord {Mandatory, Valid, Automapped}
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>544</x>
+      <y>176</y>
+      <w>208</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+involoved in &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;240.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>232</y>
+      <w>80</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+contains &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>224</y>
+      <w>352</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..*
+performs &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;420.0;200.0</additional_attributes>
+  </element>
+</diagram>
