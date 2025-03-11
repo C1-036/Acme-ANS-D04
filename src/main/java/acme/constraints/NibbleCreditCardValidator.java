@@ -3,6 +3,8 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.customers.Booking;
@@ -11,8 +13,8 @@ import acme.entities.customers.BookingRepository;
 @Validator
 public class NibbleCreditCardValidator extends AbstractValidator<ValidNibbleCreditCard, String> {
 
-	private BookingRepository	repository;
-	private Booking				booking;
+	@Autowired
+	private BookingRepository repository;
 
 	//ConstraintValidator interface -------------------------------------------
 
@@ -24,18 +26,21 @@ public class NibbleCreditCardValidator extends AbstractValidator<ValidNibbleCred
 
 	@Override
 	public boolean isValid(final String value, final ConstraintValidatorContext context) {
+
 		assert context != null;
+
+		Booking booking = this.repository.findByCreditCard(value);
 
 		boolean result;
 		boolean isNull;
 
-		isNull = this.booking == null || this.booking.getCreditCard() == null;
+		isNull = booking == null || booking.getCreditCard() == null;
 
 		if (!isNull) {
 			String codeCreditCard;
 			boolean cuatroDigitos;
 
-			codeCreditCard = this.repository.findCreditCardByBookingId(this.booking.getId());
+			codeCreditCard = this.repository.findCreditCardByBookingId(booking.getId());
 			cuatroDigitos = value.equals(codeCreditCard) && codeCreditCard.length() == 4;
 			super.state(context, cuatroDigitos, "Cuatro digitos", "acme.validaton.booking.nibble.message");
 		}
