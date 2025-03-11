@@ -19,7 +19,7 @@ aircraft-17,Airbus A320,PQR345,180,26000,ACTIVE,High-efficiency aircraft,airline
 aircraft-18,Embraer 190,STU678,100,22000,ACTIVE,Economical regional aircraft,airline-03
 aircraft-19,Boeing 777,XYZ012,350,50000,ACTIVE,Premium airline services,airline-01
 aircraft-20,Airbus A330,ABC345,350,40000,UNDER_MAINTENANCE,Engine maintenance in progress,airline-02
-aircraft-21,Embraer 175,GHI890,80,15000,ACTIVE,Comfortable regional service,airline-03
+aircraft-21,Embraer 175,GHI889,80,15000,ACTIVE,Comfortable regional service,airline-03
 aircraft-22,Boeing 737,JKL890,160,31000,ACTIVE,Popular in short to medium haul routes,airline-01
 aircraft-23,Airbus A320,MNO234,180,27000,ACTIVE,Excellent fuel efficiency,airline-02
 aircraft-24,Boeing 787,OPQ567,300,35000,UNDER_MAINTENANCE,Engine inspection,airline-03
