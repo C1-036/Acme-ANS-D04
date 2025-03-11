@@ -36,7 +36,7 @@ public class NibbleCreditCardValidator extends AbstractValidator<ValidNibbleCred
 			boolean cuatroDigitos;
 
 			codeCreditCard = this.repository.findCreditCardByBookingId(this.booking.getId());
-			cuatroDigitos = value.equals(codeCreditCard) || codeCreditCard.length() == 4;
+			cuatroDigitos = value.equals(codeCreditCard) && codeCreditCard.length() == 4;
 			super.state(context, cuatroDigitos, "Cuatro digitos", "acme.validaton.booking.nibble.message");
 		}
 		result = !super.hasErrors(context);
