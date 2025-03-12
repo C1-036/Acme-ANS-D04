@@ -40,12 +40,12 @@ public class Aircraft extends AbstractEntity {
 	@Mandatory
 	@ValidNumber(min = 1, max = 1000)
 	@Automapped
-	private int					passengerCapacity;
+	private Integer				passengerCapacity;
 
 	@Mandatory
 	@ValidNumber(min = 2000, max = 50000)
 	@Automapped
-	private int					cargoWeight;
+	private Integer				cargoWeight;
 
 	@Mandatory
 	@Valid
