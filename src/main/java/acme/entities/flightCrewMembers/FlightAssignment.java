@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
@@ -29,37 +31,37 @@ public class FlightAssignment extends AbstractRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@Automapped
 	@Mandatory
 	@Valid
+	@Automapped
 	private FlightDuty			duty;
 
-	@Automapped
 	@Mandatory
 	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
 
-	@Automapped
 	@Mandatory
 	@Valid
+	@Automapped
 	private AssignmentStatus	status;
 
-	@Automapped
 	@Optional
 	@ValidString(max = 255)
+	@Automapped
 	private String				remarks;
 
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
 
-	@Automapped
 	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
 	private FlightCrewMembers	flightCrewMember;
 
-	@Automapped
 	@Mandatory
+	@Valid
 	@ManyToOne(optional = false)
 	private Leg					flightLeg;
 }

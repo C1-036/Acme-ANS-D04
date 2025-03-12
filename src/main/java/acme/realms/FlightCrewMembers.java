@@ -12,6 +12,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidFlightCrewMember;
 import acme.entities.airline.Airline;
 import acme.entities.flightCrewMembers.AvailabilityStatus;
 import lombok.Getter;
@@ -20,6 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidFlightCrewMember
 public class FlightCrewMembers extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
@@ -29,38 +31,38 @@ public class FlightCrewMembers extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@Column(unique = true)
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
 	private String				employeeCode;
 
-	@Automapped
 	@Mandatory
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
 	private String				phoneNumber;
 
-	@Automapped
 	@Mandatory
 	@ValidString(max = 255)
+	@Automapped
 	private String				languageSkills;
 
-	@Automapped
 	@Mandatory
 	@Valid
+	@Automapped
 	private AvailabilityStatus	availabilityStatus;
 
-	@ManyToOne(optional = false)
 	@Mandatory
-	@Automapped
+	@Valid
+	@ManyToOne(optional = false)
 	private Airline				airline;
 
-	@Automapped
 	@Mandatory
 	@ValidNumber(min = 0)
-	private double				salary;
-
 	@Automapped
+	private Double				salary;
+
 	@Optional
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 120)
+	@Automapped
 	private Integer				yearsOfExperience;
 
 	// Derived attributes -----------------------------------------------------
