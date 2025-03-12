@@ -8,7 +8,6 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.airline-manager.identifier-number.message                  = El número de identificación no es válido para un Administrador de Aerolínea.
 acme.validation.airline-manager.identifier-number.missing-name.message     = No se pudo obtener el nombre completo del usuario.
 acme.validation.airline-manager.identifier-number.invalid-format.message   = El formato del nombre completo no es válido. Debe ser 'Apellido, Nombre'.
 acme.validation.airline-manager.identifier-number.mismatch.message         = Las primeras letras del identificador deben coincidir con las iniciales del nombre y apellido del usuario.
