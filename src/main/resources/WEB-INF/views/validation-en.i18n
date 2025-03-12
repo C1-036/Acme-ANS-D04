@@ -8,7 +8,6 @@
 # purposes. The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-acme.validation.airline-manager.identifier-number.message                  = The identifier number is not valid for an Airline Manager.
 acme.validation.airline-manager.identifier-number.missing-name.message     = Could not retrieve the user's full name.
 acme.validation.airline-manager.identifier-number.invalid-format.message   = The full name format is invalid. Must be 'Last Name, First Name'.
 acme.validation.airline-manager.identifier-number.mismatch.message         = The first letters of the identifier must match the initials of the user's first and last name.

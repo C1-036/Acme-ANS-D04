@@ -16,7 +16,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
-import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidAirlineManager;
 import acme.entities.airline.Airline;
@@ -36,7 +35,6 @@ public class AirlineManager extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString //falta pattern
 	@Column(unique = true)
 	private String				identifierNumber;
 

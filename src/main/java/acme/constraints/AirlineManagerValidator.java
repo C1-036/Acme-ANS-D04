@@ -15,6 +15,8 @@ import acme.realms.AirlineManager;
 @Validator
 public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, AirlineManager> {
 
+	// ConstraintValidator interface ------------------------------------------
+
 	@Override
 	protected void initialise(final ValidAirlineManager annotation) {
 		assert annotation != null;
@@ -24,62 +26,62 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 	public boolean isValid(final AirlineManager airlineManager, final ConstraintValidatorContext context) {
 		assert context != null;
 
-		boolean result = true;
+		boolean result;
 
-		if (airlineManager == null || airlineManager.getIdentifierNumber() == null)
-			//super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-			result = false;
+		if (airlineManager == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			DefaultUserIdentity identity = airlineManager.getUserAccount().getIdentity();
-			if (identity == null || identity.getFullName() == null)
-				//super.state(context, false, "identifierNumber", "acme.validation.airline-manager.identifier-number.missing-name.message");
-				result = false;
-			else {
-				String fullName = identity.getFullName();
-				String[] parts = fullName.split(", ");
-				if (parts.length < 2) { //Comprobacion redundante
-					super.state(context, false, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid-format.message");
-					result = false;
-				} else {
-					String surname = parts[0];
-					String[] nameParts = parts[1].split(" ");
+			{ // Validación del nombre y del identificador
+				DefaultUserIdentity identity = airlineManager.getIdentity();
+				boolean validIdentity = identity != null && identity.getFullName() != null;
 
-					// Generar iniciales permitiendo 2 o 3 letras
-					StringBuilder expectedInitials = new StringBuilder();
-					expectedInitials.append(Character.toUpperCase(surname.charAt(0)));
-					for (int i = 0; i < Math.min(nameParts.length, 2); i++)
-						expectedInitials.append(Character.toUpperCase(nameParts[i].charAt(0)));
+				super.state(context, validIdentity, "identifierNumber", "acme.validation.airline-manager.identifier-number.missing-name.message");
 
-					String identifier = airlineManager.getIdentifierNumber();
-					String actualInitials = identifier.substring(0, expectedInitials.length());
+				if (validIdentity) {
+					String fullName = identity.getFullName().trim();
+					String[] nameParts = fullName.split(" ", 2);
 
-					boolean isValid = actualInitials.equals(expectedInitials.toString());
+					boolean hasSurname = nameParts.length == 2;
+					super.state(context, hasSurname, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid-format.message");
 
-					super.state(context, isValid, "identifierNumber", "acme.validation.airline-manager.identifier-number.mismatch.message");
+					if (hasSurname) {
+						String firstName = nameParts[0];
+						String lastName = nameParts[1];
 
-					if (!isValid)
-						result = false;
+						char firstInitial = Character.toUpperCase(firstName.charAt(0));
+						char lastInitial = Character.toUpperCase(lastName.charAt(0));
+
+						String expectedPrefix = "" + firstInitial + lastInitial;
+
+						if (lastName.contains(" ")) {
+							char secondLastInitial = Character.toUpperCase(lastName.split(" ")[1].charAt(0));
+							expectedPrefix += secondLastInitial;
+						}
+
+						String identifier = airlineManager.getIdentifierNumber().toUpperCase();
+
+						boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
+
+						super.state(context, validIdentifier, "identifierNumber", "acme.validation.airline-manager.identifier-number.mismatch.message");
+					}
+				}
+			}
+			{ // Validación de la fecha de nacimiento (debe ser mayor de 18 años)
+				Date birthDate = airlineManager.getDateOfBirth();
+				boolean validBirthDate = birthDate != null;
+
+				super.state(context, validBirthDate, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.required");
+
+				if (validBirthDate) {
+					Date minimumValidDate = MomentHelper.deltaFromCurrentMoment(-18, ChronoUnit.YEARS);
+					boolean isAdult = MomentHelper.isBeforeOrEqual(birthDate, minimumValidDate);
+
+					super.state(context, isAdult, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.must-be-adult");
 				}
 			}
 		}
 
-		Date birthDate = airlineManager.getDateOfBirth();
-		if (birthDate == null) {
-			super.state(context, false, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.required");
-			result = false;
-		} else {
-			// Calculamos la fecha mínima para ser mayor de 18 años usando `MomentHelper`
-			Date minimumValidDate = MomentHelper.deltaFromCurrentMoment(-18, ChronoUnit.YEARS);
-
-			// Verificamos que la fecha de nacimiento esté antes de la fecha mínima
-			boolean isAdult = MomentHelper.isBeforeOrEqual(birthDate, minimumValidDate);
-
-			if (!isAdult) {
-				super.state(context, false, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.must-be-adult");
-				result = false;
-			}
-		}
-
+		result = !super.hasErrors(context);
 		return result;
 	}
 }
