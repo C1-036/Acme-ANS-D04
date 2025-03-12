@@ -1,5 +1,39 @@
-key,fullName,email,passportNumber,dateBirth,specialNeeds,key:booking
-passenger-01,Ana Maria Bernal,anamariab@hotmail.com,ABC123,2006/03/23 13:00,Silla de ruedas.,booking-01
-passenger-02,Ignacio Salvador Nero,igsal@hotmail.com,3458792,2006/03/30 13:00,"Acompañamiento completo en el aeropuerto",booking-02
-passenger-03,Pablo Nero,pabnero@gmail.com,000234B,2010/05/03 17:00,,booking-03
-passenger-04,Ignacio Nero Bernal,ignerobernal@gmail.com,XYJ345892,2022/07/02 23:59,,booking-04
+key,fullName,email,passportNumber,dateBirth,specialNeeds
+#base entity
+passenger-01,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+# fullName standard variations
+passenger-02,L,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-03,Lo,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-04,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-05,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-06,โลเร็ม อิปซัม,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-07,لوريم إيبسوم,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-08,洛伦·伊普森,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-09,<marquee>Hacked</marquee>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-10,<script>alert(‘Hacked!’);</script>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-11,' or 'A' = 'A ,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+# email standard variations
+passenger-12,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-13,Lorem ipsum dolor sit ame,acmepassword@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-14,Lorem ipsum dolor sit ame,a@b.e,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-15,Lorem ipsum dolor sit ame,a@b.es,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-16,Lorem ipsum dolor sit ame,a@b.esx,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-17,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-18,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+# passportNumber standard variations
+passenger-19,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,A1B2C3,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-20,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-21,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,1234ABCD,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-22,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,ABCDEFG12,2002/03/05 18:00,Lorem ipsum dolor sit ame
+# dateBirth standard variations
+passenger-23,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2000/01/01 0:00,Lorem ipsum dolor sit ame
+passenger-24,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2000/01/01 0:01,Lorem ipsum dolor sit ame
+passenger-25,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2024/12/31 23:59,Lorem ipsum dolor sit ame
+passenger-26,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2025/01/01 0:00,Lorem ipsum dolor sit ame
+#specialNeeds standard variations
+passenger-27,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,L
+passenger-28,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lo
+passenger-29,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscin
+passenger-30,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscing
+
+

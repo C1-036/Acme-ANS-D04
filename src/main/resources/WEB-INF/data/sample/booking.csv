@@ -1,5 +1,42 @@
-key,locatorCode,purchaseMoment,travelClass,price,creditCard,key:customer
-booking-01,ABC123,2002/03/05 18:00,ECONOMY,EUR 50.00,0000,customer-01
-booking-02,DEF4567,2009/04/25 23:00,BUSINESS,EUR 800.00,null,customer-01
-booking-03,HJI23456,2007/08/17 13:00,ECONOMY,EUR 23.00,1111,customer-02
-booking-04,YUJ678,2022/07/02 23:59,BUSINESS,EUR 230.00,4444,customer-03
+key,locatorCode,purchaseMoment,travelClass,price,creditCard,key:customer,key:flight
+# base entity
+booking-00,ABC1234,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+# locatorCode - standard variations
+booking-01,ABC123,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-02,AB1234,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-03,A12345,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-04,123456,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-05,ABCD12,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-06,ABCDE1,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-07,ABCDEF,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-08,ABCD123,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-09,ABC1238,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-10,AB12345,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-11,A123456,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-12,1234567,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-13,ABCDE12,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-14,ABCDEF1,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-15,ABCDEFG,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-16,ABCDE123,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-17,ABCD1234,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-18,ABC12345,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-19,AB123456,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-20,A1234567,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-21,12345678,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-22,ABCDEF12,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-23,ABCDEFG1,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-24,ABCDEFGH,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+# purchaseMoment - standard variations
+booking-25,ABC1456,2024/12/31 23:59,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-26,AXD3245,2000/01/01 00:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-27,CJS2357,2000/01/01 00:01,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+# travelClass - standard variations
+booking-28,FXD3245,2000/01/01 00:00,BUSINESS,EUR 500.00,0000,customer-01,flight-00
+# price - standard variations
+booking-29,SHD823,2002/03/05 18:00,ECONOMY,EUR 0.01,0000,customer-01,flight-00
+booking-30,AFH435,2002/03/05 18:00,ECONOMY,EUR 999999.99,0000,customer-01,flight-01
+#credit card - standard variations
+booking-31,ADS759,2002/03/05 18:00,ECONOMY,EUR 500.00,,customer-01,flight-01
+#relations - standard variations
+booking-32,AGC1234,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-02,flight-01
+booking-33,AKC1234,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-03,flight-02
