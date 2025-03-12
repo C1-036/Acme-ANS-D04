@@ -1,5 +1,1 @@
-key,fullName,email,passportNumber,dateBirth,specialNeeds,key:booking
-passenger-01,Ana Maria Bernal,anamariab@hotmail.com,ABC123,2006/03/23 13:00,Silla de ruedas.,booking-01
-passenger-02,Ignacio Salvador Nero,igsal@hotmail.com,3458792,2006/03/30 13:00,"Acompañamiento completo en el aeropuerto",booking-02
-passenger-03,Pablo Nero,pabnero@gmail.com,000234B,2010/05/03 17:00,,booking-03
-passenger-04,Ignacio Nero Bernal,ignerobernal@gmail.com,XYJ345892,2022/07/02 23:59,,booking-04
+key,fullName,email,passportNumber,dateBirth,specialNeeds

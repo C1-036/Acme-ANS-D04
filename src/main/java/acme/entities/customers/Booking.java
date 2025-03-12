@@ -18,7 +18,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidNibbleCreditCard;
+import acme.entities.flights.Flight;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,9 +53,9 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidNibbleCreditCard //Puede ser un validString min 0 max 4
+	@ValidString(max = 4)
 	@Automapped
-	private String				creditCard; //ATRIBUTO CUSTOM 
+	private String				creditCard;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
@@ -63,5 +63,8 @@ public class Booking extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Customer			customer;
 
-	//falta relacion vuelo
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight				flight;
 }
