@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>288</y>
+      <w>426</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+FlightAssignment 
+bg=green
+--
+
+    + duty: Duty {Mandatory, Valid, Automapped}
+    + lastUpdate: Date {Mandatory, ValidMoment(min = "2000/01/01  00:00:00", past=true), Temporal(TIMESTAMP)}
+    + status: AssignmentStatus {Mandatory, Valid, Automapped}
+    + remarks: String {Optional, ValidString(min=0,max=255), Automapped}
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>276</y>
+      <w>456</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+FlightCrewMember
+bg=red
+--
+
+   + employeeCode: String {Mandatory, ValidString(min = 8, max = 9, pattern="^[A-Z]{2,3}\d{6}$"), Column(unique=true)}
+   + phoneNumber: String {Mandatory, ValidString(min = 6, max = 16,pattern="^\+?\d{6,15}$"), Automapped}
+   + languageSkills: String {Mandatory, ValidString(min=1, max=255), Automapped}
+   + availabilityStatus: AvailabilityStatus{Mandatory, Valid, Automapped}
+   + salary: Double {Mandatory, ValidNumber(min=0,max=1000000), Automapped}
+   + yearsOfExperience: Integer {Optional, ValidNumber(min=0,max=120), Automapped}
+   
+  
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>84</y>
+      <w>366</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+ActivityLog
+bg=green
+--
+
+    + registrationMoment: Date {Mandatory, ValidMoment(past = true), Temporal(TIMESTAMP)}
+    + incidentType: String {Mandatory, ValidString(min=1,max=50), Automapped}
+    + description: String {Mandatory, ValidString(min=1,max=255), Automapped}
+    + severity: Integer {Mandatory, ValidNumber(min=0,max=10), Automapped}
+    
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>174</y>
+      <w>66</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>belongs to v
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>324</y>
+      <w>132</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt; belongs to
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>444</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+
+bg=green
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>834</x>
+      <y>372</y>
+      <w>84</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>associated with v
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>306</x>
+      <y>150</y>
+      <w>96</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+CurrentStatus
+--
++ CONFIRMED
++ PENDING
++ CANCELLED
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>150</y>
+      <w>96</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+Duty
+--
++ PILOT
++ CO_PILOT
++ LEAD_ATTENDANT
++ CABIN_ATTENDANT
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>150</y>
+      <w>96</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+AvailabilityStatus
+--
++ AVAILABLE
++ ON_VACATION
++ ON_LEAVE
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>258</x>
+      <y>450</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airline
+
+bg=green
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>378</y>
+      <w>60</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>&lt; works for
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>54</y>
+      <w>174</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidFlightCrewMember
+--
++ employeeCode 2-3 first letters must
+correspond to the flight crew member initials
++ employeeCode must be unique
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
