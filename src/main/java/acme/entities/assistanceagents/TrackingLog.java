@@ -37,7 +37,7 @@ public class TrackingLog extends AbstractEntity {
 	private String				stepUndergoing;
 
 	@Mandatory
-	@ValidNumber(min = 0, fraction = 2)
+	@ValidNumber(min = 0, max = 100, fraction = 2)
 	@Automapped
 	private Double				resolutionPercentage;
 
