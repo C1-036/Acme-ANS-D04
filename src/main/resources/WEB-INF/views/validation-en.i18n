@@ -14,8 +14,6 @@ acme.validation.airline-manager.identifier-number.mismatch.message         = The
 acme.validation.airline-manager.date-of-birth.required                     = You must provide your date of birth.
 acme.validation.airline-manager.date-of-birth.must-be-adult                = The specified date of birth does not meet the age requirement (minimum 18 years old).
 
-
-acme.validation.leg.flight-number.message                      = The flight number must consist of the airline's IATA code followed by four digits.
 acme.validation.leg.flight-number.format.message = The flight number format is invalid. It must start with the airline's IATA code followed by four digits.
 acme.validation.leg.flight-number.duplicate.message = The flight number already exists. Please provide a unique flight number.
 

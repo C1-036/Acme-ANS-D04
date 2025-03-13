@@ -71,13 +71,11 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-
 	private Airport		departureAirport;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-
 	private Airport		arrivalAirport;
 
 	@Mandatory

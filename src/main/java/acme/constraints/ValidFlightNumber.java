@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = FlightNumberValidator.class)
 public @interface ValidFlightNumber {
 
-	String message() default "acme.validation.leg.flight-number.message";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 

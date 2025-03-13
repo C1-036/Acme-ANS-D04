@@ -30,18 +30,17 @@ public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, 
 
 		boolean result = true;
 
-		if (leg == null) { //Esto lo hace ya el mandatory
+		if (leg == null) {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 			result = false;
 		} else {
 			String flightNumber = leg.getFlightNumber();
-			{
-				//Obtener IATA Code de la aerolínea
+
+			{ // Validación del formato del número de vuelo
 				String airlineIataCode = null;
 				if (leg.getFlight() != null && leg.getFlight().getAirlinemanager() != null && leg.getFlight().getAirlinemanager().getAirline() != null)
 					airlineIataCode = leg.getFlight().getAirlinemanager().getAirline().getIataCode();
 
-				//Validar que flightNumber tenga el formato correcto basado en el IATA Code
 				boolean validFormat = false;
 				if (flightNumber != null && airlineIataCode != null) {
 					String pattern = "^" + airlineIataCode + "\\d{4}$";
@@ -53,10 +52,11 @@ public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, 
 				if (!validFormat)
 					result = false;
 			}
-			{
-				//Validar que el número de vuelo sea único usando `findLegByFlightNumber`
+
+			{ // Validación de unicidad del número de vuelo
 				Leg existingLeg = this.repository.findLegByFlightNumber(flightNumber);
 				boolean uniqueFlightNumber = existingLeg == null || existingLeg.equals(leg);
+
 				super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flight-number.duplicate.message");
 
 				if (!uniqueFlightNumber)
