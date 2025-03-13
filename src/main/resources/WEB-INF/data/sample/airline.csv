@@ -1,8 +1,8 @@
 key,name,iataCode,website,type,foundationMoment,emailAdress,phoneNumber
 #base entity
-airline-01,Lorem ipsum dolor sit ame,ABC,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
+airline-01,Lorem ipsum dolor sit ame,DGX,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 #name standard variations
-airline-02,L,ABA,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
+airline-02,L,VZX,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-03,Lo,ABB,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-04,Lorem ipsum dolor sit amet consectetur adipiscin,ABD,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-05,Lorem ipsum dolor sit amet consectetur adipiscing,ABE,http://lorem.com/ipsum,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
@@ -13,7 +13,7 @@ airline-08,Lorem ipsum dolor sit ame,ABH,http://www.lorem-ipsum.org/dolor/sit/am
 airline-09,Lorem ipsum dolor sit ame,ABI,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-10,Lorem ipsum dolor sit ame,ABJ,https://www.lorem-ipsum.org,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-11,Lorem ipsum dolor sit ame,ABK,ftp://www.lorem-ipsum.org,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
-airline-12,Lorem ipsum dolor sit ame,ABL,http://www.lorem-ipsum.org/dolor/sit.html,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
+airline-12,Lorem ipsum dolor sit ame,JKL,http://www.lorem-ipsum.org/dolor/sit.html,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-13,Lorem ipsum dolor sit ame,ABM,http://www.lorem-ipsum.org/dolor/sit.html#dolor,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-14,Lorem ipsum dolor sit ame,ABN,http://example.org?a=1&b=2,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
 airline-15,Lorem ipsum dolor sit ame,ABO,http://example.org?,STANDAR,2012/07/02 0:00,acme@lorem-ipsum.org,123456
