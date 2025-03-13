@@ -36,17 +36,17 @@ public class Service extends AbstractEntity {
 	private String				picture;
 
 	@Mandatory
-	@ValidNumber(min = 0, fraction = 2)
+	@ValidNumber(min = 0, max = 100, fraction = 2)
 	@Automapped
 	private Double				avgDwellTime;
 
 	@Optional
 	@ValidPromoCode
-	@Column(unique = true)
+	@Column(unique = true, nullable = true)
 	private String				promoCode;
 
 	@Optional
-	@ValidNumber(min = 0, fraction = 2)
+	@ValidNumber(max = 100, fraction = 2)
 	@Automapped
 	private Double				money;
 }
