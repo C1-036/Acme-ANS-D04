@@ -1,0 +1,66 @@
+
+package acme.constraints;
+
+import javax.validation.ConstraintValidatorContext;
+
+import acme.client.components.principals.DefaultUserIdentity;
+import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
+import acme.realms.Customer;
+
+@Validator
+public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Customer> {
+
+	@Override
+	public void initialize(final ValidIdentifier annotation) {
+		assert annotation != null;
+	}
+
+	@Override
+	public boolean isValid(final Customer customer, final ConstraintValidatorContext context) {
+		assert context != null;
+
+		boolean result;
+
+		if (customer == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else { // Validación del nombre y del identificador
+			DefaultUserIdentity identity = customer.getIdentity();
+			boolean validIdentity = identity != null && identity.getFullName() != null;
+
+			//super.state(context, validIdentity, "identifierNumber", "acme.validation.customer.identifier-number.missing-name.message");
+
+			if (validIdentity) {
+				String fullName = identity.getFullName().trim();
+				String[] nameParts = fullName.split(" ", 2);
+
+				boolean hasSurname = nameParts.length == 2;
+				super.state(context, hasSurname, "identifierNumber", "acme.validation.customer.identifier-number.invalid-format.message");
+
+				if (hasSurname) {
+					String firstName = nameParts[0];
+					String lastName = nameParts[1];
+
+					char firstInitial = Character.toUpperCase(firstName.charAt(0));
+					char lastInitial = Character.toUpperCase(lastName.charAt(0));
+
+					String expectedPrefix = "" + firstInitial + lastInitial;
+
+					if (lastName.contains(" ")) {
+						char secondLastInitial = Character.toUpperCase(lastName.split(" ")[1].charAt(0));
+						expectedPrefix += secondLastInitial;
+					}
+
+					String identifier = customer.getIdentifier().toUpperCase();
+
+					boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
+
+					//super.state(context, validIdentifier, "identifier", "acme.validation.customer.identifier-number.mismatch.message");
+				}
+			}
+		}
+		result = !super.hasErrors(context);
+		return result;
+	}
+
+}

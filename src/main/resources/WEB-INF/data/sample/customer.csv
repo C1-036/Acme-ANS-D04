@@ -1,4 +1,4 @@
 key,identifier,phoneNumber,physicalAddress,city,country,earnedPoints,key:user-account
-customer-01,AB123456,666666666,Calle Pirineo 23,Sevilla,España,30000,user-account-customer-01
-customer-02,ER123789,674345823,Calle roma 27,Madrid,España,0,user-account-customer-02
-customer-03,PM567891,678385385,Avenida de la ciencia 23,Barcelona,Cataluña,,user-account-customer-03
+customer-01,CC123456,666666666,Calle Pirineo 23,Sevilla,España,30000,user-account-customer-01
+customer-02,CC123457,674345823,Calle roma 27,Madrid,España,0,user-account-customer-02
+customer-03,CC123458,678385385,Avenida de la ciencia 23,Barcelona,Cataluña,,user-account-customer-03
