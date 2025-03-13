@@ -37,7 +37,7 @@ public class FlightAssignment extends AbstractEntity {
 	private FlightDuty			duty;
 
 	@Mandatory
-	@ValidMoment(past = true)
+	@ValidMoment(min = "2000/01/01  00:00:00", past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
 
@@ -47,7 +47,7 @@ public class FlightAssignment extends AbstractEntity {
 	private AssignmentStatus	status;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidString(min = 0, max = 255)
 	@Automapped
 	private String				remarks;
 

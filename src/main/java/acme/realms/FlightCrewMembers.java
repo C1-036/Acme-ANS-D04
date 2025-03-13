@@ -31,17 +31,17 @@ public class FlightCrewMembers extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				employeeCode;
 
 	@Mandatory
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidString(min = 6, max = 16, pattern = "^\\+?\\d{6,15}$")
 	@Automapped
 	private String				phoneNumber;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				languageSkills;
 
@@ -56,7 +56,7 @@ public class FlightCrewMembers extends AbstractRole {
 	private Airline				airline;
 
 	@Mandatory
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 1000000)
 	@Automapped
 	private Double				salary;
 

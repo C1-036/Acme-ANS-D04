@@ -4,9 +4,9 @@ package acme.entities.assistanceagents;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -29,7 +29,7 @@ public class Claim extends AbstractEntity {
 	//Atributos ------------------------------------
 	@Mandatory
 	@ValidMoment(past = true)
-	@Automapped
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -44,19 +44,18 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Enumerated(EnumType.STRING)
 	@Valid
 	private ClaimType			type;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	private boolean				accepted;
+	private Boolean				accepted;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	@Automapped
 	private AssistanceAgents	assistanceAgent;
 
 }

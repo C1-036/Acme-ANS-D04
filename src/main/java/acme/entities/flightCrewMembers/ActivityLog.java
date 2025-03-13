@@ -9,19 +9,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.realms.FlightCrewMembers;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class ActivityLog extends AbstractRole {
+public class ActivityLog extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -35,19 +36,19 @@ public class ActivityLog extends AbstractRole {
 	private Date				registrationMoment;
 
 	@Mandatory
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				incidentType;
 
 	@Mandatory
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				description;
 
 	@Mandatory
-	@ValidNumber(min = 0, max = 10)
+	@ValidNumber(min = 0, max = 10, integer = 2)
 	@Automapped
-	private int					severity;
+	private Integer				severity;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -56,5 +57,5 @@ public class ActivityLog extends AbstractRole {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private FlightAssignment	flightAssignment;
+	private FlightCrewMembers	flightCrewMember;
 }

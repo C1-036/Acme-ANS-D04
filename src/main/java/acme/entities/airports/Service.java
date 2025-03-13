@@ -36,7 +36,7 @@ public class Service extends AbstractEntity {
 	private String				picture;
 
 	@Mandatory
-	@ValidNumber(min = 0) //Falta el max fractions = 2
+	@ValidNumber(min = 0, fraction = 2)
 	@Automapped
 	private Double				avgDwellTime;
 
@@ -46,7 +46,7 @@ public class Service extends AbstractEntity {
 	private String				promoCode;
 
 	@Optional
-	@ValidNumber(min = 0, max = 100)
+	@ValidNumber(min = 0, fraction = 2)
 	@Automapped
 	private Double				money;
 }
