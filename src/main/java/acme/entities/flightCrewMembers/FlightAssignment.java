@@ -9,7 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRole;
+import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class FlightAssignment extends AbstractRole {
+public class FlightAssignment extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -37,7 +37,7 @@ public class FlightAssignment extends AbstractRole {
 	private FlightDuty			duty;
 
 	@Mandatory
-	@ValidMoment(min = "2000/01/01  00:00:00", past = true)
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				lastUpdate;
 
@@ -62,6 +62,6 @@ public class FlightAssignment extends AbstractRole {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Leg					flightLeg;
 }
