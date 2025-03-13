@@ -59,8 +59,15 @@ public class Flight extends AbstractEntity {
 	public Date getScheduledDeparture() {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		Date departure = repository.findScheduledDeparture(this.getId());
+		Date now = MomentHelper.getCurrentMoment(); // Fecha actual del sistema
+		Date maxDepartureDate = MomentHelper.parse("2200/12/31 23:58:00", "yyyy/MM/dd HH:mm:ss"); // Última salida posible
 
-		if (departure != null && !MomentHelper.isInRange(departure, MomentHelper.parse("2000-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss"), MomentHelper.parse("2201-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss")))
+		// Validar que la fecha de salida esté en el futuro (mínimo: CURRENT MOMENT)
+		if (departure != null && MomentHelper.isBefore(departure, now))
+			departure = null;
+
+		// Validar que la fecha de salida no supere el máximo permitido (2200/12/31 23:58:00)
+		if (departure != null && MomentHelper.isAfter(departure, maxDepartureDate))
 			departure = null;
 
 		return departure;
@@ -71,13 +78,20 @@ public class Flight extends AbstractEntity {
 		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 		Date arrival = repository.findScheduledArrival(this.getId());
 		Date departure = this.getScheduledDeparture();
+		Date maxArrivalDate = MomentHelper.parse("2201/01/01 00:00:00", "yyyy/MM/dd HH:mm:ss");
 
+		if (departure == null)
+			return null; // Si no hay salida programada, no puede haber llegada.
+
+		// Calculamos la llegada mínima: salida + 1 minuto
 		Date minArrival = MomentHelper.deltaFromMoment(departure, 1, ChronoUnit.MINUTES);
 
+		// Si no hay llegada programada o si es menor a minArrival, forzamos minArrival
 		if (arrival == null || MomentHelper.isBefore(arrival, minArrival))
 			arrival = minArrival;
 
-		if (!MomentHelper.isInRange(arrival, MomentHelper.parse("2000-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss"), MomentHelper.parse("2201-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss")))
+		// Validar que la llegada no supere el máximo permitido (2201/01/01 00:00:00)
+		if (MomentHelper.isAfter(arrival, maxArrivalDate))
 			arrival = null;
 
 		return arrival;
