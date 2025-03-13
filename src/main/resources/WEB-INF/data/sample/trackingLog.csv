@@ -1,6 +1,44 @@
 key,lastUpdateMoment,stepUndergoing,resolutionPercentage,accepted,resolutionDetails,key:claim
-tracking1,2021/03/01 15:30,Claim being reviewed,75.0,true,Investigating the cause of delay,claim1
-tracking2,2020/03/02 10:00,Waiting for passenger confirmation,50.0,false,Pending response from the passenger,claim2
-tracking3,2021/03/03 17:30,Escalated to senior agent,90.0,true,Senior agent assigned to handle the case,claim3
-tracking4,2021/03/04 13:00,Finalizing compensation offer,100.0,true,Offer for compensation being sent to passenger,claim4
-tracking5,2020/03/05 19:00,Closed after resolution,100.0,false,Case resolved but passenger rejected resolution,claim5
+#base entity
+tracking1,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim1
+#lastUpdateMoment standard variations
+tracking2,2025/01/06 00:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim2
+tracking3,2025/01/06 00:01,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim3
+tracking4,2200/12/31 23:59,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim4
+tracking5,2201/01/01 00:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim5
+#stepUndergoing standard variations
+tracking6,2022/09/01 10:00,L,50.00,True,Lorem ipsum dolor sit ame,claim6
+tracking7,2022/09/01 10:00,Lo,50.00,True,Lorem ipsum dolor sit ame,claim7
+tracking8,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",50.00,True,Lorem ipsum dolor sit ame,claim8
+tracking9,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",50.00,True,Lorem ipsum dolor sit ame,claim9
+tracking10,2022/09/01 10:00,โลเร็ม อิปซัม,50.00,True,Lorem ipsum dolor sit ame,claim10
+tracking11,2022/09/01 10:00,لوريم إيبسوم,50.00,True,Lorem ipsum dolor sit ame,claim11
+tracking12,2022/09/01 10:00,洛伦·伊普森,50.00,True,Lorem ipsum dolor sit ame,claim12
+tracking13,2022/09/01 10:00,<marquee>Hacked</marquee>,50.00,True,Lorem ipsum dolor sit ame,claim13
+tracking14,2022/09/01 10:00,<script>alert(‘Hacked!’);</script>,50.00,True,Lorem ipsum dolor sit ame,claim14
+tracking15,2022/09/01 10:00,' or 'A' = 'A,50.00,True,Lorem ipsum dolor sit ame,claim15
+#resolutionPercentage standard variations
+tracking16,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.00,True,Lorem ipsum dolor sit ame,claim16
+tracking17,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.01,True,Lorem ipsum dolor sit ame,claim17
+tracking18,2022/09/01 10:00,Lorem ipsum dolor sit ame,99.99,True,Lorem ipsum dolor sit ame,claim18
+tracking19,2022/09/01 10:00,Lorem ipsum dolor sit ame,100.00,True,Lorem ipsum dolor sit ame,claim19
+#accepted standard variations
+tracking20,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,False,Lorem ipsum dolor sit ame,claim20
+#resolutionDetails standard variations
+tracking21,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,L,claim21
+tracking22,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lo,claim22
+tracking23,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",claim23
+tracking24,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",claim24
+tracking25,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,โลเร็ม อิปซัม,claim25
+tracking26,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,لوريم إيبسوم,claim26
+tracking27,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,洛伦·伊普森,claim27
+tracking28,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,<marquee>Hacked</marquee>,claim28
+tracking29,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,<script>alert(‘Hacked!’);</script>,claim29
+tracking30,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,' or 'A' = 'A,claim30
+#key:claim standard variations
+tracking31,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim31
+tracking32,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim32
+tracking33,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim33
+tracking34,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim34
+tracking35,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim35
+tracking36,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim36
