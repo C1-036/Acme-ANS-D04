@@ -11,8 +11,10 @@ import acme.realms.Customer;
 @Validator
 public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Customer> {
 
+	// ConstraintValidator interface ------------------------------------------
+
 	@Override
-	public void initialize(final ValidIdentifier annotation) {
+	protected void initialise(final ValidIdentifier annotation) {
 		assert annotation != null;
 	}
 
@@ -28,14 +30,14 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Cust
 			DefaultUserIdentity identity = customer.getIdentity();
 			boolean validIdentity = identity != null && identity.getFullName() != null;
 
-			//super.state(context, validIdentity, "identifierNumber", "acme.validation.customer.identifier-number.missing-name.message");
+			super.state(context, validIdentity, "identifier", "acme.validation.customer.identifier.missing-name.message");
 
 			if (validIdentity) {
 				String fullName = identity.getFullName().trim();
 				String[] nameParts = fullName.split(" ", 2);
 
 				boolean hasSurname = nameParts.length == 2;
-				super.state(context, hasSurname, "identifierNumber", "acme.validation.customer.identifier-number.invalid-format.message");
+				super.state(context, hasSurname, "identifier", "acme.validation.customer.identifier.invalid-format.message");
 
 				if (hasSurname) {
 					String firstName = nameParts[0];
@@ -55,12 +57,13 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Cust
 
 					boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
 
-					//super.state(context, validIdentifier, "identifier", "acme.validation.customer.identifier-number.mismatch.message");
+					super.state(context, validIdentifier, "identifier", "acme.validation.customer.identifier.mismatch.message");
+
 				}
 			}
 		}
+
 		result = !super.hasErrors(context);
 		return result;
 	}
-
 }
