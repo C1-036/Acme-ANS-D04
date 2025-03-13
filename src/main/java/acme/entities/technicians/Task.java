@@ -1,8 +1,10 @@
 
 package acme.entities.technicians;
 
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -40,9 +42,8 @@ public class Task extends AbstractEntity {
 	@Automapped
 	private Integer				estimatedDuration;
 
-	@Mandatory
 	@Valid
-	@ManyToOne
-	private MaintenanceRecord	maintenanceRecord;
+	@OneToMany(mappedBy = "task")
+	private List<InvolvedIn>	maintenanceRecords;
 
 }
