@@ -1,6 +1,45 @@
 key,registrationMoment,passengerEmail,description,type,accepted,key:assistanceAgent
-claim1,2021/03/01 14:30,john.doe@example.com,Flight delayed for 5 hours,FLIGHT_ISSUES,true,agent1
-claim2,2020/03/02 09:15,jane.smith@example.com,Lost baggage at JFK terminal 4,LUGGAGE_ISSUES,false,agent2
-claim3,2021/03/03 16:45,robert.johnson@example.com,Security check took too long,SECURITY_INCIDENT,true,agent3
-claim4,2021/03/04 12:00,emily.white@example.com,Denied boarding due to overbooking,FLIGHT_ISSUES,true,agent1
-claim5,2020/03/05 18:20,chris.miller@example.com,Incorrect meal provided on flight,OTHER_ISSUES,false,agent2
+#base entity
+claim1,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+#registrationMoment standard variations
+claim2,2000/01/01 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim3,2000/01/01 0:01,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim4,2024/12/31 23:59,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim5,2025/01/01 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+#passengerEmail standard variations
+claim6,2012/07/02 0:00,acmepassword@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim7,2012/07/02 0:00,a@b.e,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim8,2012/07/02 0:00,a@b.es,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim9,2012/07/02 0:00,a@b.esx,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim10,2012/07/02 0:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim11,2012/07/02 0:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+#description standard variations
+claim12,2012/07/02 0:00,acme@lorem-ipsum.org,L,FLIGHT_ISSUES,True,agent1
+claim13,2012/07/02 0:00,acme@lorem-ipsum.org,Lo,FLIGHT_ISSUES,True,agent1
+claim14,2012/07/02 0:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",FLIGHT_ISSUES,True,agent1
+claim15,2012/07/02 0:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",FLIGHT_ISSUES,True,agent1
+claim16,2012/07/02 0:00,acme@lorem-ipsum.org,โลเร็ม อิปซัม,FLIGHT_ISSUES,True,agent1
+claim17,2012/07/02 0:00,acme@lorem-ipsum.org,لوريم إيبسوم,FLIGHT_ISSUES,True,agent1
+claim18,2012/07/02 0:00,acme@lorem-ipsum.org,洛伦·伊普森,FLIGHT_ISSUES,True,agent1
+claim19,2012/07/02 0:00,acme@lorem-ipsum.org,<marquee>Hacked</marquee>,FLIGHT_ISSUES,True,agent1
+claim20,2012/07/02 0:00,acme@lorem-ipsum.org,<script>alert(‘Hacked!’);</script>,FLIGHT_ISSUES,True,agent1
+claim21,2012/07/02 0:00,acme@lorem-ipsum.org,' or 'A' = 'A,FLIGHT_ISSUES,True,agent1
+#type standard variations
+claim22,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES,True,agent1
+claim23,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,SECURITY_INCIDENT,True,agent1
+claim24,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,OTHER_ISSUES,True,agent1
+#accepted standard variations
+claim25,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,False,agent1
+#key:assistanceAgent standard variations
+claim26,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent2
+claim27,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent3
+#base entity is necessary for another CSV
+claim28,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim29,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim30,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim31,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim32,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim33,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim34,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim35,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
+claim36,2012/07/02 0:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,True,agent1
