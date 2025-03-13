@@ -62,6 +62,6 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Valid
 	@OneToMany(mappedBy = "maintenanceRecord")
-	private List<Task>			tasks;
+	private List<InvolvedIn>	involvedTasks;
 
 }

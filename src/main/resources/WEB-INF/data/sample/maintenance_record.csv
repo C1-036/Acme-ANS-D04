@@ -40,5 +40,5 @@ maintenanceRecord-25,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,nul
 maintenanceRecord-26,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00," ",technician-01
 maintenanceRecord-27,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"		",technician-01
 # technician - standard variations
-maintenanceRecord-29,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-02
+maintenanceRecord-28,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",technician-02
 # technician - no singular values
