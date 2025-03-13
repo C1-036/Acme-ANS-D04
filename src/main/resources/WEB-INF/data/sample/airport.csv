@@ -2,8 +2,8 @@ key,name,iataCode,operationalScope,city,country,website,emailAddress,contactPhon
 # base entity
 airport-00,Lorem ipsum dolor sit ame,IXA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 # name - standard variations
-airport-01,L,KQL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-airport-02,Lo,QPU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
+airport-01,L,VZX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
+airport-02,Lo,DGX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",XUY,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",UKN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-05,โลเร็ม อิปซัม,GDH,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
@@ -31,8 +31,8 @@ airport-23,Lorem ipsum dolor sit ame,UXY,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-24,Lorem ipsum dolor sit ame,EAL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lo,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-25,Lorem ipsum dolor sit ame,LIH,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-26,Lorem ipsum dolor sit ame,BQM,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-airport-27,Lorem ipsum dolor sit ame,AIT,INTERNATIONAL,Lorem ipsum dolor sit ame,โลเร็ม อิปซัม,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
-airport-28,Lorem ipsum dolor sit ame,OMW,INTERNATIONAL,Lorem ipsum dolor sit ame,لوريم إيبسوم,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
+airport-27,Lorem ipsum dolor sit ame,HJD,INTERNATIONAL,Lorem ipsum dolor sit ame,โลเร็ม อิปซัม,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
+airport-28,Lorem ipsum dolor sit ame,JKG,INTERNATIONAL,Lorem ipsum dolor sit ame,لوريم إيبسوم,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-29,Lorem ipsum dolor sit ame,AKX,INTERNATIONAL,Lorem ipsum dolor sit ame,洛伦·伊普森,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-30,Lorem ipsum dolor sit ame,GPR,INTERNATIONAL,Lorem ipsum dolor sit ame,<marquee>Hacked</marquee>,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
 airport-31,Lorem ipsum dolor sit ame,OKJ,INTERNATIONAL,Lorem ipsum dolor sit ame,<script>alert(‘Hacked!’);</script>,http://lorem.com/ipsum,acme@lorem-ipsum.org,12345678
