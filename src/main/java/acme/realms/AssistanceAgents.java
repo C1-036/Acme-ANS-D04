@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRealm;
 import acme.client.components.datatypes.Money;
@@ -40,13 +43,13 @@ public class AssistanceAgents extends AbstractRealm {
 	private String				spokenLanguages;
 
 	@Mandatory
-	@Automapped
+	@Valid
 	@ManyToOne(optional = false)
 	private Airline				airline;
 
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
 	@Optional
