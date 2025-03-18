@@ -1,0 +1,46 @@
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes. The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Titles
+flight.form.title = Flight Information Form
+flight.list.title = Flight List
+
+# Labels
+flight.form.label.tag = Tag:
+flight.form.label.indication = Indication:
+flight.form.label.cost = Cost:
+flight.form.label.description = Description:
+flight.form.label.scheduledDeparture = Scheduled Departure:
+flight.form.label.scheduledArrival = Scheduled Arrival:
+flight.form.label.originCity = Origin City:
+flight.form.label.destinationCity = Destination City:
+flight.form.label.layovers = Layovers:
+
+# List Labels
+flight.list.label.tag = Tag
+flight.list.label.indication = Indication
+flight.list.label.cost = Cost
+flight.list.label.scheduledDeparture = Scheduled Departure
+flight.list.label.scheduledArrival = Scheduled Arrival
+flight.list.label.originCity = Origin City
+flight.list.label.destinationCity = Destination City
+flight.list.label.layovers = Layovers
+
+# Buttons
+flight.list.button.create = Create Flight
+flight.form.button.update = Update Flight
+flight.form.button.delete = Delete Flight
+flight.form.button.cancel = Cancel
+
+# Messages
+flight.error.not-found = The requested flight does not exist.
+flight.error.unauthorized = You do not have permission to access this flight.
+flight.success.create = Flight created successfully.
+flight.success.update = Flight updated successfully.
+flight.success.delete = Flight deleted successfully.
