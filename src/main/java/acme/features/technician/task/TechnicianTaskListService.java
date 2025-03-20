@@ -92,7 +92,7 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 
 		if (masterId != null) {
 			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-			showCreate = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());//&& maintenanceRecord.isDraftMode();
+			showCreate = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
 		} else
 			showCreate = false;
 
