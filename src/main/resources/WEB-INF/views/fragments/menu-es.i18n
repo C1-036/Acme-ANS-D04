@@ -12,21 +12,24 @@
 
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
-master.menu.anonymous.favourite-link.Alejandro-Sevillano = 53933257M: Sevillano Barea, Alejandro
-master.menu.anonymous.ignnarber = 30269898N: Naredo Bernardos,Ignacio
-master.menu.anonymous.favourite-link.Adrian-Robles = 49089126L: Robles Borrego, Adrián
-master.menu.anonymous.favourite-link.FranciscoManuel-Sabido = 53987620L: Sabido González, Francisco Manuel
-master.menu.anonymous.favourite-link.David-Escudero = 53930786H: Escudero Aldana, David
-
-
 
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
+master.menu.administrator.list-aircrafts = Ver aeronaves
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
+
+# master.menu.technician ########################################################
+
+master.menu.technician = Técnico
+master.menu.technician.list-my-maintenance-records= Listar mis registros de mantenimiento
+master.menu.technician.list-my-tasks = Listar mis tareas
+master.menu.technician.list-maintenance-record-catalogue = Listar catálogo de registros de mantenimiento
+master.menu.technician.list-task-catalogue = Listar catálogo de tareas
+
 
 # master.menu.provider ########################################################
 

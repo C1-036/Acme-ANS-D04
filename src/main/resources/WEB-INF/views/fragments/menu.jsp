@@ -20,22 +20,31 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Alejandro-Sevillano" action="http://www.youtube.com/"/>
-			<acme:menu-suboption code="master.menu.anonymous.ignnarber" action="http://www.twitter.com/"/>
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Adrian-Robles" action="https://www.instagram.com/"/>
-      		<acme:menu-suboption code="master.menu.anonymous.favourite-link.FranciscoManuel-Sabido" action="https://open.spotify.com/"/>
-      		<acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+			<acme:menu-suboption code="77940****: Vacaro Goytia, Gabriel" action="https://ev.us.es/webapps/login/"/>
+			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
+			
 		</acme:menu-option>
 
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technician.list-my-maintenance-records" action="/technician/maintenance-record/list?mine=true" />			
+			<acme:menu-suboption code="master.menu.technician.list-my-tasks" action="/technician/task/list?mine=true" />
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.technician.list-maintenance-record-catalogue" action="/technician/maintenance-record/list?mine=false" />
+			<acme:menu-suboption code="master.menu.technician.list-task-catalogue" action="/technician/task/list?mine=false" />
+			
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
@@ -60,4 +69,3 @@
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
-

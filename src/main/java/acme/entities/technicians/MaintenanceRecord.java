@@ -2,11 +2,9 @@
 package acme.entities.technicians;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -19,6 +17,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.entities.aircraft.Aircraft;
 import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,8 +27,10 @@ import lombok.Setter;
 @Setter
 public class MaintenanceRecord extends AbstractEntity {
 
+	// Serialization ----------------------------------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
+	// Attributes ------------------------------------------------------------------------
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -38,12 +39,12 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Status				status;
+	private MaintenanceStatus	status;
 
 	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				nextInspection;
+	private Date				inspectionDueDate;
 
 	@Mandatory
 	@ValidMoney
@@ -55,13 +56,15 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Automapped
 	private String				notes;
 
+	// Relations ------------------------------------------------
 	@Mandatory
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Technician			technician;
 
+	@Mandatory
 	@Valid
-	@OneToMany(mappedBy = "maintenanceRecord")
-	private List<InvolvedIn>	involvedTasks;
+	@ManyToOne(optional = false)
+	private Aircraft			aircraft;
 
 }
