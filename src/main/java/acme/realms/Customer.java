@@ -3,6 +3,7 @@ package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRealm;
 import acme.client.components.mappings.Automapped;
@@ -25,6 +26,7 @@ public class Customer extends AbstractRealm {
 	//Atributes-----------------------------------
 
 	@Mandatory
+	@Valid
 	@Column(unique = true)
 	private String				identifier;
 
