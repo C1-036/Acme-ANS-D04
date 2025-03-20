@@ -1,6 +1,7 @@
 
 package acme.realms;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
@@ -18,22 +19,24 @@ import lombok.Setter;
 @Setter
 public class Technician extends AbstractRole {
 
+	// Serializaition version ----------------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
+	// Attributes -------------------------------------------------------------
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
-	@Automapped
-	private String				license;
+	@Column(unique = true)
+	private String				licenseNumber;
 
 	@Mandatory
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
-	private String				phone;
+	private String				phoneNumber;
 
 	@Mandatory
 	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				specialization;
+	private String				specialisation;
 
 	@Mandatory
 	@Valid

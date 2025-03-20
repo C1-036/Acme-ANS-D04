@@ -1,33 +1,36 @@
-key,type,description,priority,estimatedDuration
+key,type,description,priority,estimatedDurationHours,key:technician
 # base entity
-task-000,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500
+task-000,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-01
 # type - standard variations
-task-001,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500
-task-002,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500
-task-003,REPAIR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500
-task-004,SYSTEM_CHECK,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500
+task-001,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-01
+task-002,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-01
+task-003,REPAIR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-01
+task-004,SYSTEM_CHECK,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-01
 # type - no singular values
 # description - standard variations
-task-005,INSPECTION,L,5,500
-task-006,INSPECTION,Lo,5,500
-task-007,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",5,500
-task-008,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",5,500
-task-009,INSPECTION,โลเร็ม อิปซัม,5,500
-task-010,INSPECTION,لوريم إيبسوم,5,500
-task-011,INSPECTION,洛伦·伊普森,5,500
-task-012,INSPECTION,<marquee>Hacked</marquee>,5,500
-task-013,INSPECTION,<script>alert(‘Hacked!’);</script>,5,500
-task-014,INSPECTION,' or 'A' = 'A ,5,500
+task-005,INSPECTION,L,5,500,technician-01
+task-006,INSPECTION,Lo,5,500,technician-01
+task-007,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",5,500,technician-01
+task-008,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",5,500,technician-01
+task-009,INSPECTION,โลเร็ม อิปซัม,5,500,technician-01
+task-010,INSPECTION,لوريم إيبسوم,5,500,technician-01
+task-011,INSPECTION,洛伦·伊普森,5,500,technician-01
+task-012,INSPECTION,<marquee>Hacked</marquee>,5,500,technician-01
+task-013,INSPECTION,<script>alert(‘Hacked!’);</script>,5,500,technician-01
+task-014,INSPECTION,' or 'A' = 'A ,5,500,technician-01
 # description - no singular values
 # priority - standard variations
-task-015,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",0,500
-task-016,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",1,500
-task-017,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",9,500
-task-018,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",10,500
+task-015,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",0,500,technician-01
+task-016,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",1,500,technician-01
+task-017,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",9,500,technician-01
+task-018,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",10,500,technician-01
 # priority - no singular values
-# estimatedDuration - standard variations
-task-019,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,0
-task-020,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,1
-task-021,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,999
-task-022,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,1000
-# estimatedDuration - no singular values
+# estimatedDurationHours - standard variations
+task-019,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,0,technician-01
+task-020,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,1,technician-01
+task-021,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,999,technician-01
+task-022,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,1000,technician-01
+# estimatedDurationHours - no singular values
+# technician - standard variations
+task-023,INSPECTION,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",5,500,technician-02
+# technician - no singular values
