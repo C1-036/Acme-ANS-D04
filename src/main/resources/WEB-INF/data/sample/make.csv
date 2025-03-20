@@ -1,4 +1,7 @@
 key,key:booking,key:passenger
 make-01,booking-01,passenger-01
 make-02,booking-02,passenger-02
-make-04,booking-06,passenger-10
+make-03,booking-06,passenger-10
+make-04,booking-25,passenger-05
+make-05,booking-26,passenger-06
+make-06,booking-27,passenger-07

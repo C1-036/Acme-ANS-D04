@@ -2,24 +2,20 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
 import acme.realms.Customer;
 
-@Service
+@GuiService
 public class CustomerBookingListService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
-	private CustomerBookingRepository	repository;
-
-	Customer							customer;
+	private CustomerBookingRepository repository;
 
 
 	@Override
@@ -30,10 +26,11 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 	@Override
 	public void load() {
 		Collection<Booking> bookings;
-		Date currentMoment;
-		currentMoment = MomentHelper.getCurrentMoment();
+		int customerId;
 
-		bookings = this.repository.findAllBookingByCustomer(this.customer);
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		bookings = this.repository.findAllBookingByCustomer(customerId);
 
 		super.getBuffer().addData(bookings);
 	}
@@ -43,6 +40,8 @@ public class CustomerBookingListService extends AbstractGuiService<Customer, Boo
 		Dataset dataset;
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard");
+		super.addPayload(dataset, booking, "customer", "flight");
+
 		super.getResponse().addData(dataset);
 
 	}

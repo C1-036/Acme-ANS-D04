@@ -1,20 +1,21 @@
 
 package acme.features.customer.booking;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.customers.Booking;
-import acme.realms.Customer;
 
 @Repository
 public interface CustomerBookingRepository extends AbstractRepository {
 
-	@Query("select m.booking from Make m where m.customer = :customer")
-	List<Booking> findAllBookingByCustomer(@Param("customer") Customer customer);
+	@Query("SELECT b FROM Booking b WHERE b.customer.id = :id")
+	Collection<Booking> findAllBookingByCustomer(int id);
+
+	@Query("select b FROM Booking b where b.id = :id")
+	Booking findBookingById(int id);
 
 }
