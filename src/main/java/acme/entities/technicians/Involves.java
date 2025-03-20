@@ -13,9 +13,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class InvolvedIn extends AbstractEntity {
+public class Involves extends AbstractEntity {
 
+	// Serialization -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
+
+	// Relations ----------------------------------------------
 
 	@Mandatory
 	@Valid
