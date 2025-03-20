@@ -9,9 +9,19 @@
 # they accept any liabilities with respect to them.
 
 customer.booking.list.title = Lista de reservas
+customer.booking.form.title = Formulario de reservas
 
 customer.booking.list.label.locatorCode = Codigo de localizacion
 customer.booking.list.label.purchaseMoment = Momento de compra
 customer.booking.list.label.travelClass = Clase
 customer.booking.list.label.price = Precio
 customer.booking.list.label.creditCard = Tarjeta de credito
+
+
+
+
+customer.booking.form.label.locatorCode = Codigo de localizacion
+customer.booking.form.label.purchaseMoment = Momento de compra
+customer.booking.form.label.travelClass = Clase
+customer.booking.form.label.price = Precio
+customer.booking.form.label.creditCard = Tarjeta de credito

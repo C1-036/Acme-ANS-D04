@@ -23,3 +23,4 @@
 	<acme:list-column code="customer.booking.list.label.creditCard" path="creditCard" width="10%"/>	
 	<acme:list-payload path="payload"/>
 </acme:list>
+
