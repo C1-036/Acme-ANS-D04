@@ -22,7 +22,7 @@
 	<acme:input-integer code="technician.task.form.label.estimatedDurationHours" path="estimatedDurationHours"/>
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete')}">
 			<acme:submit code="technician.task.form.button.update" action="/technician/task/update"/>
 			<acme:submit code="technician.task.form.button.delete" action="/technician/task/delete"/>
 		</jstl:when>

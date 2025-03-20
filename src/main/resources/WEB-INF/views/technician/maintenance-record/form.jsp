@@ -26,10 +26,10 @@
 	
 	
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show' && draftMode == false}">
+		<jstl:when test="${_command == 'show'}">
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?masterId=${id}"/>			
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?masterId=${id}"/>
 			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
 			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete"/>
