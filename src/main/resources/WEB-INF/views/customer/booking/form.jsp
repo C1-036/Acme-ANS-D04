@@ -21,4 +21,5 @@
 	<acme:input-textbox code="customer.booking.form.label.travelClass" path="travelClass"/>
 	<acme:input-textbox code="customer.booking.form.label.price" path="price"/>
 	<acme:input-textbox code="customer.booking.form.label.creditCard" path="creditCard"/>
+	<acme:input-textbox code="customer.booking.form.label.passenger" path="passenger"/>
 </acme:form>
