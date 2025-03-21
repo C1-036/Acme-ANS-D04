@@ -27,9 +27,9 @@ booking-22,ABCDEF12,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-
 booking-23,ABCDEFG1,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
 booking-24,ABCDEFGH,2002/03/05 18:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
 # purchaseMoment - standard variations
-booking-25,ABC1456,2024/12/31 23:59,ECONOMY,EUR 500.00,0000,customer-01,flight-00
-booking-26,AXD3245,2000/01/01 00:00,ECONOMY,EUR 500.00,0000,customer-01,flight-00
-booking-27,CJS2357,2000/01/01 00:01,ECONOMY,EUR 500.00,0000,customer-01,flight-00
+booking-25,ABC1456,2024/12/31 23:59,ECONOMY,EUR 500.00,0000,customer-02,flight-00
+booking-26,AXD3245,2000/01/01 00:00,ECONOMY,EUR 500.00,0000,customer-02,flight-00
+booking-27,CJS2357,2000/01/01 00:01,ECONOMY,EUR 500.00,0000,customer-02,flight-00
 # travelClass - standard variations
 booking-28,FXD3245,2000/01/01 00:00,BUSINESS,EUR 500.00,0000,customer-01,flight-00
 # price - standard variations

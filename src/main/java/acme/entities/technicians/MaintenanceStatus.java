@@ -1,6 +1,6 @@
 
 package acme.entities.technicians;
 
-public enum Status {
+public enum MaintenanceStatus {
 	PENDING, IN_PROGRESS, COMPLETED
 }
