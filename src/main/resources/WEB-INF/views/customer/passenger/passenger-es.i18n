@@ -11,7 +11,15 @@
 customer.passenger.list.title = Lista de pasajeros
 
 customer.passenger.list.label.fullName = Nombre completo
-customer.passenger.list.label.email = Correo electronico
+customer.passenger.list.label.email = Correo electrónico
 customer.passenger.list.label.passportNumber = Numero de pasaporte
 customer.passenger.list.label.dateBirth = Fecha de nacimiento
 customer.passenger.list.label.specialNeeds = Necesidades especiales	
+
+
+
+customer.passenger.form.label.fullName = Nombre completo
+customer.passenger.form.label.email = Correo electronico
+customer.passenger.form.label.passportNumber = Numero de pasaporte
+customer.passenger.form.label.dateBirth = Fecha de nacimiento
+customer.passenger.form.label.specialNeeds = Necesidades especiales
