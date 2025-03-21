@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = LegValidator.class)
 public @interface ValidLeg {
 
-	String message() default "acme.validation.leg.valid-leg.message";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 

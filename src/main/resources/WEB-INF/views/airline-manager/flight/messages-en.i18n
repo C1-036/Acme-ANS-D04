@@ -13,7 +13,7 @@ flight.list.title = Flight List
 
 # Labels
 flight.form.label.tag = Tag:
-flight.form.label.indication = Indication:
+flight.form.label.selfTransfer = Self Transfer:
 flight.form.label.cost = Cost:
 flight.form.label.description = Description:
 flight.form.label.scheduledDeparture = Scheduled Departure:
@@ -24,7 +24,7 @@ flight.form.label.layovers = Layovers:
 
 # List Labels
 flight.list.label.tag = Tag
-flight.list.label.indication = Indication
+flight.list.label.selfTransfer = Self Transfer
 flight.list.label.cost = Cost
 flight.list.label.scheduledDeparture = Scheduled Departure
 flight.list.label.scheduledArrival = Scheduled Arrival

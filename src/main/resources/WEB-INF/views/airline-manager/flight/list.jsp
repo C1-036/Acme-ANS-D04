@@ -17,7 +17,7 @@
 
 <acme:list>
     <acme:list-column code="flight.list.label.tag" path="tag" width="15%"/>
-    <acme:list-column code="flight.list.label.indication" path="indication" width="15%"/>
+    <acme:list-column code="flight.list.label.selfTransfer" path="selfTransfer" width="15%"/>
     <acme:list-column code="flight.list.label.cost" path="cost" width="10%"/>
     <acme:list-column code="flight.list.label.scheduledDeparture" path="scheduledDeparture" width="15%"/>
     <acme:list-column code="flight.list.label.scheduledArrival" path="scheduledArrival" width="15%"/>

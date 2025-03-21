@@ -13,7 +13,7 @@ flight.list.title = Lista de Vuelos
 
 # Etiquetas
 flight.form.label.tag = Código del vuelo:
-flight.form.label.indication = Indicación:
+flight.form.label.selfTransfer = Autotransbordo:
 flight.form.label.cost = Costo:
 flight.form.label.description = Descripción:
 flight.form.label.scheduledDeparture = Salida Programada:
@@ -24,7 +24,7 @@ flight.form.label.layovers = Escalas:
 
 # Etiquetas de la lista
 flight.list.label.tag = Código del vuelo
-flight.list.label.indication = Indicación
+flight.list.label.selfTransfer = Autotransbordo
 flight.list.label.cost = Costo
 flight.list.label.scheduledDeparture = Salida Programada
 flight.list.label.scheduledArrival = Llegada Programada

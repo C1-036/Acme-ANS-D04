@@ -61,8 +61,8 @@ public class Leg extends AbstractEntity {
 	public Double getDurationHours() {
 		if (this.scheduledDeparture == null || this.scheduledArrival == null)
 			return null;
-		long millis = this.scheduledArrival.getTime() - this.scheduledDeparture.getTime();
-		return millis / (1000.0 * 60 * 60);
+
+		return (this.scheduledArrival.getTime() - this.scheduledDeparture.getTime()) / (1000.0 * 60 * 60);
 	}
 
 	// Relationships ----------------------------------------------------------
