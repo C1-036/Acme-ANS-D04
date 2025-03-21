@@ -53,7 +53,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidString(max = 4)
+	@ValidString(max = 4, pattern = "^\\d+$")
 	@Automapped
 	private String				creditCard;
 
