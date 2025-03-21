@@ -45,17 +45,11 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.airlinemanager ##########################################################
+master.menu.airline-manager = Airline Manager
+master.menu.airline-manager.my-flights = My Flights
 
-
-
-
-
-
-
-
-
-#master.menu.customer = Customer
-
+# master.menu.customer ##########################################################
 master.menu.customer = Customer
 master.menu.customer.list.my-bookings = My bookings
 master.menu.customer.list.my-passengers = My passengers

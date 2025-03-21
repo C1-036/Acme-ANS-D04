@@ -1,21 +1,22 @@
 
 package acme.constraints;
 
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-
 import javax.validation.ConstraintValidatorContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.client.helpers.MomentHelper;
+import acme.features.airlinemanager.AirlineManagerRepository;
 import acme.realms.AirlineManager;
 
 @Validator
 public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManager, AirlineManager> {
 
-	// ConstraintValidator interface ------------------------------------------
+	@Autowired
+	private AirlineManagerRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidAirlineManager annotation) {
@@ -31,53 +32,31 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 		if (airlineManager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			{ // Validación del nombre y del identificador
-				DefaultUserIdentity identity = airlineManager.getIdentity();
-				boolean validIdentity = identity != null && identity.getFullName() != null;
+			DefaultUserIdentity identity = airlineManager.getIdentity();
 
-				super.state(context, validIdentity, "identifierNumber", "acme.validation.airline-manager.identifier-number.missing-name.message");
+			if (identity != null && identity.getName() != null && identity.getSurname() != null) {
+				String name = identity.getName().trim();
+				String surname = identity.getSurname().trim();
 
-				if (validIdentity) {
-					String fullName = identity.getFullName().trim();
-					String[] nameParts = fullName.split(" ", 2);
+				char nameInitial = name.charAt(0);
+				char surnameInitial = surname.split(" ")[0].charAt(0);
 
-					boolean hasSurname = nameParts.length == 2;
-					super.state(context, hasSurname, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid-format.message");
+				String expectedPrefix = "" + nameInitial + surnameInitial;
+				String identifier = airlineManager.getIdentifierNumber();
 
-					if (hasSurname) {
-						String firstName = nameParts[0];
-						String lastName = nameParts[1];
+				boolean matchesPattern = identifier != null && identifier.matches("^[A-Z]{2,3}\\d{6}$");
+				boolean startsWithPrefix = identifier != null && identifier.startsWith(expectedPrefix);
 
-						char firstInitial = Character.toUpperCase(firstName.charAt(0));
-						char lastInitial = Character.toUpperCase(lastName.charAt(0));
+				// Verificamos si ya existe otro manager con el mismo identifier
+				boolean alreadyExists = this.repository.existsByIdentifierNumber(identifier);
+				AirlineManager existing = this.repository.findByIdentifierNumber(identifier);
 
-						String expectedPrefix = "" + firstInitial + lastInitial;
+				// Es válido si no existe o si existe pero es el mismo
+				boolean isUnique = !alreadyExists || existing != null && existing.getId() == airlineManager.getId();
 
-						if (lastName.contains(" ")) {
-							char secondLastInitial = Character.toUpperCase(lastName.split(" ")[1].charAt(0));
-							expectedPrefix += secondLastInitial;
-						}
+				boolean isValidIdentifier = matchesPattern && startsWithPrefix && isUnique;
 
-						String identifier = airlineManager.getIdentifierNumber().toUpperCase();
-
-						boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
-
-						super.state(context, validIdentifier, "identifierNumber", "acme.validation.airline-manager.identifier-number.mismatch.message");
-					}
-				}
-			}
-			{ // Validación de la fecha de nacimiento (debe ser mayor de 18 años)
-				Date birthDate = airlineManager.getDateOfBirth();
-				boolean validBirthDate = birthDate != null;
-
-				super.state(context, validBirthDate, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.required");
-
-				if (validBirthDate) {
-					Date minimumValidDate = MomentHelper.deltaFromCurrentMoment(-18, ChronoUnit.YEARS);
-					boolean isAdult = MomentHelper.isBeforeOrEqual(birthDate, minimumValidDate);
-
-					super.state(context, isAdult, "dateOfBirth", "acme.validation.airline-manager.date-of-birth.must-be-adult");
-				}
+				super.state(context, isValidIdentifier, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid.message");
 			}
 		}
 
