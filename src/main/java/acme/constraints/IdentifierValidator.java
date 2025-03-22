@@ -26,7 +26,7 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Cust
 
 		if (customer == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else { // Validación del nombre y del identificador
+		else {
 			DefaultUserIdentity identity = customer.getIdentity();
 			boolean validIdentity = identity != null && identity.getFullName() != null;
 
@@ -43,17 +43,17 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Cust
 					String firstName = nameParts[0];
 					String lastName = nameParts[1];
 
-					char firstInitial = Character.toUpperCase(firstName.charAt(0));
-					char lastInitial = Character.toUpperCase(lastName.charAt(0));
+					char firstInitial = firstName.charAt(0);
+					char lastInitial = lastName.charAt(0);
 
 					String expectedPrefix = "" + firstInitial + lastInitial;
 
 					if (lastName.contains(" ")) {
-						char secondLastInitial = Character.toUpperCase(lastName.split(" ")[1].charAt(0));
+						char secondLastInitial = lastName.split(" ")[1].charAt(0);
 						expectedPrefix += secondLastInitial;
 					}
 
-					String identifier = customer.getIdentifier().toUpperCase();
+					String identifier = customer.getIdentifier();
 
 					boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
 
