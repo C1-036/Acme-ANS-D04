@@ -12,7 +12,7 @@ import acme.entities.customers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerListService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerListBooking extends AbstractGuiService<Customer, Passenger> {
 
 	@Autowired
 	private CustomerPassengerRepository repository;
@@ -26,14 +26,13 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 	@Override
 	public void load() {
 		Collection<Passenger> passenger;
-		int passengerId;
+		int bookingId;
 
-		passengerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		bookingId = super.getRequest().getData("bookingId", int.class);
 
-		passenger = this.repository.findAllPassengerByCustomer(passengerId);
+		passenger = this.repository.findAllPassengerByBooking(bookingId);
 
 		super.getBuffer().addData(passenger);
-
 	}
 
 	@Override
@@ -44,5 +43,4 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		super.addPayload(dataset, passenger, "specialNeeds");
 		super.getResponse().addData(dataset);
 	}
-
 }

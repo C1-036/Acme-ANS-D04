@@ -1,15 +1,12 @@
 
 package acme.features.customer.booking;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
-import acme.entities.customers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
@@ -36,14 +33,12 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 	public void load() {
 		Booking booking;
 		int id;
-		Collection<Passenger> passenger;
 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
-		passenger = this.repository.findAllPassengerBooking(id);
 
 		super.getBuffer().addData(booking);
-		super.getBuffer().addData(passenger);
+
 	}
 
 	@Override
