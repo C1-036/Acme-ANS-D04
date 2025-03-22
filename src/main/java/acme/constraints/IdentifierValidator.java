@@ -3,15 +3,22 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.entities.customers.CustomerRepository;
 import acme.realms.Customer;
 
 @Validator
 public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Customer> {
 
+	@Autowired
+	private CustomerRepository repository;
+
 	// ConstraintValidator interface ------------------------------------------
+
 
 	@Override
 	protected void initialise(final ValidIdentifier annotation) {
@@ -28,42 +35,32 @@ public class IdentifierValidator extends AbstractValidator<ValidIdentifier, Cust
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 			DefaultUserIdentity identity = customer.getIdentity();
-			boolean validIdentity = identity != null && identity.getFullName() != null;
 
-			super.state(context, validIdentity, "identifier", "acme.validation.customer.identifier.missing-name.message");
+			if (identity != null && identity.getName() != null && identity.getSurname() != null) {
+				String name = identity.getName().trim();
+				String surname = identity.getSurname().trim();
 
-			if (validIdentity) {
-				String fullName = identity.getFullName().trim();
-				String[] nameParts = fullName.split(" ", 2);
+				char nameInitial = name.charAt(0);
+				char surnameInitial = surname.split(" ")[0].charAt(0);
 
-				boolean hasSurname = nameParts.length == 2;
-				super.state(context, hasSurname, "identifier", "acme.validation.customer.identifier.invalid-format.message");
+				String expectedPrefix = "" + nameInitial + surnameInitial;
+				String identifier = customer.getIdentifier();
 
-				if (hasSurname) {
-					String firstName = nameParts[0];
-					String lastName = nameParts[1];
+				boolean matchesPattern = identifier.matches("^[A-Z]{2,3}\\d{6}$");
+				boolean startWithPrefix = identifier.startsWith(expectedPrefix);
 
-					char firstInitial = firstName.charAt(0);
-					char lastInitial = lastName.charAt(0);
+				boolean alreadyExists = this.repository.existsByIdentifier(identifier);
+				Customer existing = this.repository.findByIdentifier(identifier);
 
-					String expectedPrefix = "" + firstInitial + lastInitial;
+				boolean isUnique = !alreadyExists || existing != null && existing.getId() == customer.getId();
 
-					if (lastName.contains(" ")) {
-						char secondLastInitial = lastName.split(" ")[1].charAt(0);
-						expectedPrefix += secondLastInitial;
-					}
+				boolean isValidIdentifier = matchesPattern && startWithPrefix && isUnique;
 
-					String identifier = customer.getIdentifier();
-
-					boolean validIdentifier = identifier.matches("^[A-Z]{2,3}\\d{6}$") && identifier.startsWith(expectedPrefix);
-
-					super.state(context, validIdentifier, "identifier", "acme.validation.customer.identifier.mismatch.message");
-
-				}
+				super.state(context, isValidIdentifier, "identifier", "acme.validation.customer.identifier.invalid.message");
 			}
 		}
-
 		result = !super.hasErrors(context);
 		return result;
+
 	}
 }
