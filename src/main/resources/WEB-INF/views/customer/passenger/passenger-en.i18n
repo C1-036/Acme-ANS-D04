@@ -21,3 +21,4 @@ customer.passenger.form.label.email = Email
 customer.passenger.form.label.passportNumber = Passport Number
 customer.passenger.form.label.dateBirth = Date of Birth
 customer.passenger.form.label.specialNeeds = Special Needs
+customer.booking.form.button.passenger

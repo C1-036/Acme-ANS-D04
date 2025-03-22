@@ -23,3 +23,5 @@ customer.passenger.form.label.email = Correo electronico
 customer.passenger.form.label.passportNumber = Numero de pasaporte
 customer.passenger.form.label.dateBirth = Fecha de nacimiento
 customer.passenger.form.label.specialNeeds = Necesidades especiales
+
+customer.booking.form.button.passenger = Pasajeros

@@ -13,9 +13,12 @@ import acme.entities.customers.Passenger;
 public interface CustomerPassengerRepository extends AbstractRepository {
 
 	@Query("SELECT m.passenger FROM Make m WHERE m.booking.customer.id = :id")
-	Collection<Passenger> findAllPassengerByBooking(int id);
+	Collection<Passenger> findAllPassengerByCustomer(int id);
 
 	@Query("SELECT m.passenger FROM Make m WHERE m.passenger.id = :passengerId")
 	Passenger findPassengerByBookingId(int passengerId);
+
+	@Query("SELECT m.passenger FROM Make m WHERE m.booking.id = :bookingId")
+	Collection<Passenger> findAllPassengerByBooking(int bookingId);
 
 }

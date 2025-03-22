@@ -18,7 +18,7 @@
 <acme:form>
 	<acme:input-textbox code="customer.passenger.form.label.fullName" path="fullName"/>
 	<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
-	<acme:input-textbox code="customer.passenger.form.label.passportNumner" path="passportNumber"/>
+	<acme:input-textbox code="customer.passenger.form.label.passportNumber" path="passportNumber"/>
 	<acme:input-textbox code="customer.passenger.form.label.dateBirth" path="dateBirth"/>
 	<acme:input-textbox code="customer.passenger.form.label.specialNeeds" path="specialNeeds"/>
 </acme:form>
