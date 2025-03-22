@@ -35,6 +35,7 @@ public class AirlineManager extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
+	@Valid
 	@Column(unique = true)
 	private String				identifierNumber;
 

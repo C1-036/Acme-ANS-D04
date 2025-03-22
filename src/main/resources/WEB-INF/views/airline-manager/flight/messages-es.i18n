@@ -1,0 +1,39 @@
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes. The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Títulos
+flight.form.title = Formulario de Información de Vuelo
+flight.list.title = Lista de Vuelos
+
+# Etiquetas
+flight.form.label.tag = Código del vuelo:
+flight.form.label.selfTransfer = Autotransbordo:
+flight.form.label.cost = Costo:
+flight.form.label.description = Descripción:
+flight.form.label.scheduledDeparture = Salida Programada:
+flight.form.label.scheduledArrival = Llegada Programada:
+flight.form.label.originCity = Ciudad de Origen:
+flight.form.label.destinationCity = Ciudad de Destino:
+flight.form.label.layovers = Escalas:
+
+# Etiquetas de la lista
+flight.list.label.tag = Código del vuelo
+flight.list.label.selfTransfer = Autotransbordo
+flight.list.label.cost = Costo
+flight.list.label.scheduledDeparture = Salida Programada
+flight.list.label.scheduledArrival = Llegada Programada
+flight.list.label.originCity = Ciudad de Origen
+flight.list.label.destinationCity = Ciudad de Destino
+flight.list.label.layovers = Escalas
+
+# Botones
+flight.list.button.create = Crear Vuelo
+flight.form.button.update = Actualizar Vuelo
+flight.form.button.delete = Eliminar Vuelo
+flight.form.button.cancel = Cancelar
