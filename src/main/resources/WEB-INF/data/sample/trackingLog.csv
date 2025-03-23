@@ -1,44 +1,46 @@
 key,lastUpdateMoment,stepUndergoing,resolutionPercentage,accepted,resolutionDetails,key:claim
 #base entity
-tracking1,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim1
+tracking1,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim1
 #lastUpdateMoment standard variations
-tracking2,2025/01/06 00:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim2
-tracking3,2025/01/06 00:01,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim3
-tracking4,2200/12/31 23:59,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim4
-tracking5,2201/01/01 00:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim5
+tracking2,2025/01/06 00:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim2
+tracking3,2025/01/06 00:01,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim3
+tracking4,2200/12/31 23:59,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim4
+tracking5,2201/01/01 00:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim5
 #stepUndergoing standard variations
-tracking6,2022/09/01 10:00,L,50.00,True,Lorem ipsum dolor sit ame,claim6
-tracking7,2022/09/01 10:00,Lo,50.00,True,Lorem ipsum dolor sit ame,claim7
-tracking8,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",50.00,True,Lorem ipsum dolor sit ame,claim8
-tracking9,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",50.00,True,Lorem ipsum dolor sit ame,claim9
-tracking10,2022/09/01 10:00,โลเร็ม อิปซัม,50.00,True,Lorem ipsum dolor sit ame,claim10
-tracking11,2022/09/01 10:00,لوريم إيبسوم,50.00,True,Lorem ipsum dolor sit ame,claim11
-tracking12,2022/09/01 10:00,洛伦·伊普森,50.00,True,Lorem ipsum dolor sit ame,claim12
-tracking13,2022/09/01 10:00,<marquee>Hacked</marquee>,50.00,True,Lorem ipsum dolor sit ame,claim13
-tracking14,2022/09/01 10:00,<script>alert(‘Hacked!’);</script>,50.00,True,Lorem ipsum dolor sit ame,claim14
-tracking15,2022/09/01 10:00,' or 'A' = 'A,50.00,True,Lorem ipsum dolor sit ame,claim15
+tracking6,2022/09/01 10:00,L,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim6
+tracking7,2022/09/01 10:00,Lo,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim7
+tracking8,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim8
+tracking9,2022/09/01 10:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim9
+tracking10,2022/09/01 10:00,โลเร็ม อิปซัม,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim10
+tracking11,2022/09/01 10:00,لوريم إيبسوم,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim11
+tracking12,2022/09/01 10:00,洛伦·伊普森,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim12
+tracking13,2022/09/01 10:00,<marquee>Hacked</marquee>,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim13
+tracking14,2022/09/01 10:00,<script>alert(‘Hacked!’);</script>,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim14
+tracking15,2022/09/01 10:00,' or 'A' = 'A,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim15
 #resolutionPercentage standard variations
-tracking16,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.00,True,Lorem ipsum dolor sit ame,claim16
-tracking17,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.01,True,Lorem ipsum dolor sit ame,claim17
-tracking18,2022/09/01 10:00,Lorem ipsum dolor sit ame,99.99,True,Lorem ipsum dolor sit ame,claim18
-tracking19,2022/09/01 10:00,Lorem ipsum dolor sit ame,100.00,True,Lorem ipsum dolor sit ame,claim19
+tracking16,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.00,ACCEPTED,Lorem ipsum dolor sit ame,claim16
+tracking17,2022/09/01 10:00,Lorem ipsum dolor sit ame,0.01,ACCEPTED,Lorem ipsum dolor sit ame,claim17
+tracking18,2022/09/01 10:00,Lorem ipsum dolor sit ame,99.99,ACCEPTED,Lorem ipsum dolor sit ame,claim18
+tracking19,2022/09/01 10:00,Lorem ipsum dolor sit ame,100.00,ACCEPTED,Lorem ipsum dolor sit ame,claim19
 #accepted standard variations
-tracking20,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,False,Lorem ipsum dolor sit ame,claim20
+tracking20,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,PENDING,Lorem ipsum dolor sit ame,claim20
+tracking21,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,REJECTED,Lorem ipsum dolor sit ame,claim21
 #resolutionDetails standard variations
-tracking21,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,L,claim21
-tracking22,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lo,claim22
-tracking23,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",claim23
-tracking24,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",claim24
-tracking25,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,โลเร็ม อิปซัม,claim25
-tracking26,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,لوريم إيبسوم,claim26
-tracking27,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,洛伦·伊普森,claim27
-tracking28,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,<marquee>Hacked</marquee>,claim28
-tracking29,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,<script>alert(‘Hacked!’);</script>,claim29
-tracking30,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,' or 'A' = 'A,claim30
+tracking22,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,L,claim22
+tracking23,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lo,claim23
+tracking24,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",claim24
+tracking25,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",claim25
+tracking26,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,โลเร็ม อิปซัม,claim26
+tracking27,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,لوريم إيبسوم,claim27
+tracking28,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,洛伦·伊普森,claim28
+tracking29,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,<marquee>Hacked</marquee>,claim29
+tracking30,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,<script>alert(‘Hacked!’);</script>,claim30
+tracking31,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,' or 'A' = 'A,claim31
+tracking32,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,PENDING,"",claim32
 #key:claim standard variations
-tracking31,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim31
-tracking32,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim32
-tracking33,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim33
-tracking34,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim34
-tracking35,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim35
-tracking36,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,True,Lorem ipsum dolor sit ame,claim36
+tracking33,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim33
+tracking34,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim34
+tracking35,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim35
+tracking36,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim36
+tracking37,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim37
+tracking38,2022/09/01 10:00,Lorem ipsum dolor sit ame,50.00,ACCEPTED,Lorem ipsum dolor sit ame,claim38

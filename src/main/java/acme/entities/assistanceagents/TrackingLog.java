@@ -15,12 +15,14 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidTrackingLogResolution;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidTrackingLogResolution
 public class TrackingLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -44,9 +46,8 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				accepted;
+	private TrackingLogState	accepted;
 
-	@Mandatory
 	@ValidString(max = 255)
 	@Automapped
 	private String				resolutionDetails;
