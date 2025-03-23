@@ -8,39 +8,29 @@
 # they accept any liabilities with respect to them.
 
 # Titles
-flight.form.title = Flight Information Form
-flight.list.title = Flight List
+airline-manager.flight.form.title = Flight Information Form
+airline-manager.flight.list.title = Flight List
 
 # Labels
-flight.form.label.tag = Tag:
-flight.form.label.selfTransfer = Self Transfer:
-flight.form.label.cost = Cost:
-flight.form.label.description = Description:
-flight.form.label.scheduledDeparture = Scheduled Departure:
-flight.form.label.scheduledArrival = Scheduled Arrival:
-flight.form.label.originCity = Origin City:
-flight.form.label.destinationCity = Destination City:
-flight.form.label.layovers = Layovers:
+airline-manager.flight.form.label.tag = Tag:
+airline-manager.flight.form.label.selfTransfer = Self Transfer:
+airline-manager.flight.form.label.cost = Cost:
+airline-manager.flight.form.label.description = Description:
+airline-manager.flight.form.label.scheduledDeparture = Scheduled Departure:
+airline-manager.flight.form.label.scheduledArrival = Scheduled Arrival:
+airline-manager.flight.form.label.originCity = Origin City:
+airline-manager.flight.form.label.destinationCity = Destination City:
+airline-manager.flight.form.label.layovers = Layovers:
 
 # List Labels
-flight.list.label.tag = Tag
-flight.list.label.selfTransfer = Self Transfer
-flight.list.label.cost = Cost
-flight.list.label.scheduledDeparture = Scheduled Departure
-flight.list.label.scheduledArrival = Scheduled Arrival
-flight.list.label.originCity = Origin City
-flight.list.label.destinationCity = Destination City
-flight.list.label.layovers = Layovers
+airline-manager.flight.list.label.tag = Tag
+airline-manager.flight.list.label.selfTransfer = Self Transfer
+airline-manager.flight.list.label.cost = Cost
 
 # Buttons
-flight.list.button.create = Create Flight
-flight.form.button.update = Update Flight
-flight.form.button.delete = Delete Flight
-flight.form.button.cancel = Cancel
+airline-manager.flight.list.button.create = Create
+airline-manager.flight.form.button.legs = Legs
+airline-manager.flight.form.button.update = Update
+airline-manager.flight.form.button.delete = Delete
+airline-manager.flight.form.button.publish = Publish
 
-# Messages
-flight.error.not-found = The requested flight does not exist.
-flight.error.unauthorized = You do not have permission to access this flight.
-flight.success.create = Flight created successfully.
-flight.success.update = Flight updated successfully.
-flight.success.delete = Flight deleted successfully.

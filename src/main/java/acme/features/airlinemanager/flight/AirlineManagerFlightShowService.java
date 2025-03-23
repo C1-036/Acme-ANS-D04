@@ -12,13 +12,9 @@
 
 package acme.features.airlinemanager.flight;
 
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
@@ -40,12 +36,11 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		boolean status;
 		int id;
 		Flight flight;
-		Date deadline;
 
 		id = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(id);
-		deadline = MomentHelper.deltaFromCurrentMoment(-30, ChronoUnit.DAYS);
-		status = MomentHelper.isAfter(flight.getScheduledArrival(), deadline);
+
+		status = flight != null && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -65,7 +60,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
 
 		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
 		dataset.put("scheduledArrival", flight.getScheduledArrival());
