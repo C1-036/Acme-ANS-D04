@@ -6,7 +6,7 @@ leg-01,DGX0000,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,a
 leg-02,DGX0001,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-02
 leg-03,DGX9999,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-03
 leg-04,DGX9998,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-04
-leg-05,VZX4151,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-02,aircraft-01,flight-26
+leg-05,VZX4151,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-02,aircraft-01,flight-27
 # scheduledDeparture - standard variations
 leg-06,DGX0002,2025/01/01 00:01,2025/01/01 05:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-05
 leg-07,DGX0003,2025/01/01 00:02,2025/01/01 05:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-06
