@@ -27,10 +27,13 @@ public class AirlineManagerFlightController extends AbstractGuiController<Airlin
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerFlightListService	listService;
+	private AirlineManagerFlightListService		listService;
 
 	@Autowired
-	private AirlineManagerFlightShowService	showService;
+	private AirlineManagerFlightShowService		showService;
+
+	@Autowired
+	private AirlineManagerFlightCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -39,6 +42,7 @@ public class AirlineManagerFlightController extends AbstractGuiController<Airlin
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
 	}
 
 }

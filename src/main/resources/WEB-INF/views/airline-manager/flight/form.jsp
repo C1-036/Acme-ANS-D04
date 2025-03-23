@@ -16,15 +16,15 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-    <acme:input-textbox code="airline-manager.flight.form.label.tag" path="tag" readonly="true" />
-    <acme:input-textbox code="airline-manager.flight.form.label.selfTransfer" path="selfTransfer" readonly="true" />
-    <acme:input-money code="airline-manager.flight.form.label.cost" path="cost" readonly="true" />
-    <acme:input-textarea code="airline-manager.flight.form.label.description" path="description" readonly="true" />
-    <acme:input-moment code="airline-manager.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true" />
-    <acme:input-moment code="airline-manager.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true" />
-    <acme:input-textbox code="airline-manager.flight.form.label.originCity" path="originCity" readonly="true" />
-    <acme:input-textbox code="airline-manager.flight.form.label.destinationCity" path="destinationCity" readonly="true" />
-    <acme:input-integer code="airline-manager.flight.form.label.layovers" path="layovers" readonly="true" />
+    <acme:input-textbox code="airline-manager.flight.form.label.tag" path="tag"/>
+    <acme:input-select code="airline-manager.flight.form.label.selfTransfer" path="selfTransfer" choices="${selfTransfers}"/>
+    <acme:input-money code="airline-manager.flight.form.label.cost" path="cost"/>
+    <acme:input-textarea code="airline-manager.flight.form.label.description" path="description"/>
+    <acme:input-moment code="airline-manager.flight.form.label.scheduledDeparture" path="scheduledDeparture"/>
+    <acme:input-moment code="airline-manager.flight.form.label.scheduledArrival" path="scheduledArrival"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.originCity" path="originCity"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.destinationCity" path="destinationCity"/>
+    <acme:input-integer code="airline-manager.flight.form.label.layovers" path="layovers"/>
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">

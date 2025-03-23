@@ -19,9 +19,8 @@
     <acme:list-column code="airline-manager.flight.list.label.tag" path="tag" width="15%"/>
     <acme:list-column code="airline-manager.flight.list.label.selfTransfer" path="selfTransfer" width="15%"/>
     <acme:list-column code="airline-manager.flight.list.label.cost" path="cost" width="10%"/>
-    <acme:list-payload path="payload"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
-    <acme:button code="airline-manager.flight.list.button.create" action="/airline-manager/flight/create"/>
+    <acme:button code="airline-manager.flight.form.button.create" action="/airline-manager/flight/create"/>
 </jstl:if>
