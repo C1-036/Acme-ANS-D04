@@ -15,9 +15,11 @@ package acme.features.airlinemanager.flight;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
+import acme.entities.flights.Indication;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -60,7 +62,11 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
+		SelectChoices choices = SelectChoices.from(Indication.class, flight.getSelfTransfer());
+
 		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
+		dataset.put("selfTransfer", choices.getSelected().getKey());
+		dataset.put("selfTransfers", choices);
 
 		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
 		dataset.put("scheduledArrival", flight.getScheduledArrival());

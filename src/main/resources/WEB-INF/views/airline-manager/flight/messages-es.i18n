@@ -28,7 +28,7 @@ airline-manager.flight.list.label.selfTransfer = Autotransbordo
 airline-manager.flight.list.label.cost = Costo
 
 # Botones
-airline-manager.flight.list.button.create = Crear
+airline-manager.flight.form.button.create = Crear
 airline-manager.flight.form.button.legs = Tramos
 airline-manager.flight.form.button.update = Actualizar
 airline-manager.flight.form.button.delete = Eliminar
