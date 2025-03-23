@@ -3,6 +3,7 @@ package acme.realms;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -18,6 +19,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidAssistanceAgent;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidAssistanceAgent
 public class AssistanceAgents extends AbstractRealm {
 
 	private static final long	serialVersionUID	= 1L;
@@ -32,9 +35,8 @@ public class AssistanceAgents extends AbstractRealm {
 	//Atributes-----------------------------------
 
 	@Mandatory
-	// @ValidEmployeeCode
-	@ValidString
-	@Automapped
+	@Valid
+	@Column(unique = true)
 	private String				employeeCode;
 
 	@Mandatory

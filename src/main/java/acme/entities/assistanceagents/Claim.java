@@ -50,7 +50,7 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private Boolean				accepted;
+	private ClaimState			accepted;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory

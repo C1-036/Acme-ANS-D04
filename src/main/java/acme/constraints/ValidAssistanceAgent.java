@@ -9,14 +9,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = EmployeeCodeValidator.class)
-@Target({
-	ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE
-})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidEmployeeCode {
+@Constraint(validatedBy = AssistanceAgentValidator.class)
+public @interface ValidAssistanceAgent {
 
-	String message() default "Invalid employee code";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 
