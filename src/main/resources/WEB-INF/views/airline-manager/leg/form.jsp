@@ -16,14 +16,14 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-    <acme:input-textbox code="airline-manager.leg.form.label.flightNumber" path="flightNumber" readonly="true" />
-    <acme:input-moment code="airline-manager.leg.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true" />
-    <acme:input-moment code="airline-manager.leg.form.label.scheduledArrival" path="scheduledArrival" readonly="true" />
-    <acme:input-textbox code="airline-manager.leg.form.label.status" path="status" readonly="true" />
-    <acme:input-textbox code="airline-manager.leg.form.label.departureAirport" path="departureAirport" readonly="true" />
-    <acme:input-textbox code="airline-manager.leg.form.label.arrivalAirport" path="arrivalAirport" readonly="true" />
-    <acme:input-textbox code="airline-manager.leg.form.label.aircraft" path="aircraft" readonly="true" />
-    <acme:input-double code="airline-manager.leg.form.label.durationHours" path="durationHours" readonly="true" />
+    <acme:input-textbox code="airline-manager.leg.form.label.flightNumber" path="flightNumber"/>
+    <acme:input-moment code="airline-manager.leg.form.label.scheduledDeparture" path="scheduledDeparture"/>
+    <acme:input-moment code="airline-manager.leg.form.label.scheduledArrival" path="scheduledArrival"/>
+    <acme:input-select code="airline-manager.leg.form.label.status" path="status" choices="${statuses}"/>
+    <acme:input-select code="airline-manager.leg.form.label.departureAirport" path="departureAirport" choices="${airports}"/>
+	<acme:input-select code="airline-manager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${airports}"/>
+	<acme:input-select code="airline-manager.leg.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
+    <acme:input-double code="airline-manager.leg.form.label.durationHours" path="durationHours" readonly="True"/>
 
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">

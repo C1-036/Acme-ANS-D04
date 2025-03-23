@@ -51,7 +51,6 @@ public class AirlineManagerFlightCreateService extends AbstractGuiService<Airlin
 	@Override
 	public void validate(final Flight flight) {
 		assert flight != null;
-		// Aquí podrías validar condiciones adicionales, si las hubiera
 	}
 
 	@Override
