@@ -19,11 +19,11 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	@Override
 	public void authorise() {
 		boolean status;
-		int bookingId;
+		int passengerId;
 		Passenger passenger;
 
-		bookingId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerByBookingId(bookingId);
+		passengerId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerByPassengerId(passengerId);
 
 		status = passenger != null;
 
@@ -37,7 +37,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerByBookingId(id);
+		passenger = this.repository.findPassengerByPassengerId(id);
 
 		super.getBuffer().addData(passenger);
 
