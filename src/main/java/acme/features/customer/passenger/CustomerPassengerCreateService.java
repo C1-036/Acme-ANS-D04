@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.customers.Booking;
 import acme.entities.customers.Make;
 import acme.entities.customers.MakeRepository;
 import acme.entities.customers.Passenger;
+import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -20,6 +22,9 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 	@Autowired
 	private MakeRepository				makeRepository;
 
+	@Autowired
+	private CustomerBookingRepository	bookingRepository;
+
 
 	@Override
 	public void authorise() {
@@ -28,24 +33,20 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void load() {
-		//Customer customer;
+		int customerId;
+		Customer customer;
 		Passenger passenger;
-		//Make make = (Make) super.getRequest().getData("make");
-		Customer customer = (Customer) super.getRequest().getData("customer");
-		//customer.getB
+		Make make;
+		Booking booking;
 
-		//Booking booking = make.getBooking();
-		Make make = new Make();
-		//make.setBooking(booking);
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		booking = this.bookingRepository.findABookingByCustomer(customerId);
+		make = this.makeRepository.findByBookingId(booking.getId());
+
 		passenger = new Passenger();
 		passenger.setDraftMode(true);
-		make.getBooking();
+		make.setPassenger(passenger);
 
-		//make.setPassenger(passenger);
-		//this.makeRepository.save(make);
-
-		//super.getBuffer().addData(make);
-		super.getBuffer().addData(passenger);
 	}
 	@Override
 	public void bind(final Passenger passenger) {
