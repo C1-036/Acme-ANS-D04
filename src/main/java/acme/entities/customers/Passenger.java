@@ -51,4 +51,9 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	private String				specialNeeds;
 
+	@Mandatory
+	//@Valid by default.
+	@Automapped
+	private boolean				draftMode;
+
 }

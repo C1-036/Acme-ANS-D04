@@ -16,7 +16,7 @@ public interface CustomerPassengerRepository extends AbstractRepository {
 	Collection<Passenger> findAllPassengerByCustomer(int id);
 
 	@Query("SELECT m.passenger FROM Make m WHERE m.passenger.id = :passengerId")
-	Passenger findPassengerByBookingId(int passengerId);
+	Passenger findPassengerByPassengerId(int passengerId);
 
 	@Query("SELECT m.passenger FROM Make m WHERE m.booking.id = :bookingId")
 	Collection<Passenger> findAllPassengerByBooking(int bookingId);
