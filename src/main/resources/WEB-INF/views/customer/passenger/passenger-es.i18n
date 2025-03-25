@@ -25,3 +25,6 @@ customer.passenger.form.label.dateBirth = Fecha de nacimiento
 customer.passenger.form.label.specialNeeds = Necesidades especiales
 
 customer.booking.form.button.passenger = Pasajeros
+
+customer.passenger.list.button.create = Crear 
+customer.passenger.form.button.create = Crear

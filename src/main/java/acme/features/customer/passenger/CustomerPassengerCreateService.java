@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.customers.Booking;
-import acme.entities.customers.Make;
-import acme.entities.customers.MakeRepository;
+import acme.entities.customers.CustomerRepository;
 import acme.entities.customers.Passenger;
-import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -20,10 +17,7 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 	private CustomerPassengerRepository	repository;
 
 	@Autowired
-	private MakeRepository				makeRepository;
-
-	@Autowired
-	private CustomerBookingRepository	bookingRepository;
+	private CustomerRepository			customerRepository;
 
 
 	@Override
@@ -36,16 +30,14 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 		int customerId;
 		Customer customer;
 		Passenger passenger;
-		Make make;
-		Booking booking;
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		booking = this.bookingRepository.findABookingByCustomer(customerId);
-		make = this.makeRepository.findByBookingId(booking.getId());
+		customer = this.customerRepository.findById(customerId);
 
 		passenger = new Passenger();
 		passenger.setDraftMode(true);
-		make.setPassenger(passenger);
+		passenger.setCustomer(customer);
+		super.getBuffer().addData(passenger);
 
 	}
 	@Override
@@ -68,13 +60,14 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void unbind(final Passenger passenger) {
-		int passengerId;
+		int customerId;
+		Customer customer;
+		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		customer = this.customerRepository.findById(customerId);
 		Dataset dataset;
 
-		passengerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateBirth", "specialNeeds", "draftMode");
-
+		dataset.put("customer", customer);
 		super.getResponse().addData(dataset);
 
 	}

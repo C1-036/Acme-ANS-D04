@@ -16,4 +16,7 @@ public interface CustomerRepository extends AbstractRepository {
 	@Query("Select c from Customer c where c.identifier= :identifier")
 	Customer findByIdentifier(String identifier);
 
+	@Query("Select c from Customer c where c.id = :id")
+	Customer findById(int id);
+
 }
