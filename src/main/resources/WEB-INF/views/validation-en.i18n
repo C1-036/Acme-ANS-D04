@@ -9,8 +9,8 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.airline-manager.identifier-number.invalid.message          = The identifier must begin with your initials, follow the required format, and not already be in use.
-acme.validation.airline-manager.date-of-birth.required                     = You must provide your date of birth.
-acme.validation.airline-manager.date-of-birth.must-be-adult                = The specified date of birth does not meet the age requirement (minimum 18 years old).
+
+acme.validation.flight.delete-has-assignments							   = The flight cannot be deleted because there are crew members assigned to its legs.
 
 acme.validation.leg.flight-number.format.message     					   = The flight number must start with the airline's IATA code followed by 4 digits.
 acme.validation.leg.flight-number.duplicate.message  					   = Another leg with the same flight number already exists.
