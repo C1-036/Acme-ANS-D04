@@ -95,7 +95,7 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 
 		// Flight info
 		dataset.put("masterId", leg.getFlight().getId());
-		dataset.put("draftMode", leg.getFlight().isDraftMode());
+		dataset.put("draftMode", leg.isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
