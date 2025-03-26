@@ -51,7 +51,6 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void unbind(final Leg leg) {
-		assert leg != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
@@ -61,7 +60,6 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void unbind(final Collection<Leg> legs) {
-		assert legs != null;
 		int masterId;
 		Flight flight;
 		final boolean showCreate;

@@ -1,5 +1,5 @@
 /*
- * AuthenticatedAnnouncementShowService.java
+ * 
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -63,17 +63,14 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void unbind(final Leg leg) {
-		assert leg != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
 
-		// Statuses
 		SelectChoices statuses = SelectChoices.from(LegStatus.class, leg.getStatus());
 		dataset.put("status", statuses.getSelected().getKey());
 		dataset.put("statuses", statuses);
 
-		// Departure and arrival airports
 		Collection<Airport> airports = this.repository.findAllAirports();
 		SelectChoices departureChoices = SelectChoices.from(airports, "name", leg.getDepartureAirport());
 		SelectChoices arrivalChoices = SelectChoices.from(airports, "name", leg.getArrivalAirport());
@@ -83,17 +80,12 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 		dataset.put("arrivalAirport", arrivalChoices.getSelected().getKey());
 		dataset.put("arrivalAirportChoices", arrivalChoices);
 
-		// Aircrafts
 		Collection<Aircraft> aircrafts = this.repository.findAllAircrafts();
 		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircraftChoices", aircraftChoices);
-
-		// Duration (readonly)
 		dataset.put("durationHours", leg.getDurationHours());
-
-		// Flight info
 		dataset.put("masterId", leg.getFlight().getId());
 		dataset.put("draftMode", leg.isDraftMode());
 

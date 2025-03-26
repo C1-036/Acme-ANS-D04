@@ -22,7 +22,7 @@
     <acme:list-column code="airline-manager.leg.list.label.status" path="status" />
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
+<jstl:if test="${_command == 'list' && showCreate}">
    <acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create?masterId=${masterId}" />
 
 </jstl:if>
