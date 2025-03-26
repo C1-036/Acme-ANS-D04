@@ -1,3 +1,14 @@
+/*
+ * EmployerDutyUpdateService.java
+ *
+ * Copyright (C) 2012-2025 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
 
 package acme.features.airlinemanager.leg;
 
@@ -17,7 +28,7 @@ import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
 
 @GuiService
-public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineManager, Leg> {
+public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineManager, Leg> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -30,28 +41,23 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int legId;
 		Flight flight;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
-
+		legId = super.getRequest().getData("id", int.class);
+		flight = this.repository.findFlightByLegId(legId);
 		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
+
 		super.getResponse().setAuthorised(status);
 	}
+
 	@Override
 	public void load() {
 		Leg leg;
-		int masterId;
-		Flight flight;
+		int id;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
-
-		leg = new Leg();
-		leg.setFlight(flight);
-		leg.setStatus(LegStatus.ON_TIME);
-		leg.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		leg = this.repository.findLegById(id);
 
 		super.getBuffer().addData(leg);
 	}

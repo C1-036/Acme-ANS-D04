@@ -17,7 +17,7 @@ import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
 
 @GuiService
-public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineManager, Leg> {
+public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineManager, Leg> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -30,28 +30,24 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int legId;
 		Flight flight;
+		Leg leg;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
+		legId = super.getRequest().getData("id", int.class);
+		flight = this.repository.findFlightByLegId(legId);
+		leg = this.repository.findLegById(legId);
 
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
+		status = flight != null && leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
 		super.getResponse().setAuthorised(status);
 	}
 	@Override
 	public void load() {
 		Leg leg;
-		int masterId;
-		Flight flight;
+		int id;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
-
-		leg = new Leg();
-		leg.setFlight(flight);
-		leg.setStatus(LegStatus.ON_TIME);
-		leg.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		leg = this.repository.findLegById(id);
 
 		super.getBuffer().addData(leg);
 	}
@@ -80,6 +76,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void perform(final Leg leg) {
+		leg.setDraftMode(false);
 		this.repository.save(leg);
 	}
 
@@ -117,7 +114,7 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
 		dataset.put("aircraftChoices", aircraftChoices);
 		dataset.put("masterId", leg.getFlight().getId());
-		dataset.put("draftMode", leg.getFlight().isDraftMode());
+		dataset.put("draftMode", leg.isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

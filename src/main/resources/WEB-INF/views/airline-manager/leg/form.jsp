@@ -26,12 +26,14 @@
     <acme:input-double code="airline-manager.leg.form.label.durationHours" path="durationHours" readonly="True"/>
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
-			<acme:submit code="airline-manager.leg.form.button.update" action="/airline-manager/leg/update"/>
-			<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete"/>
-		</jstl:when>
-		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="airline-manager.leg.form.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
-		</jstl:when>		
-	</jstl:choose>
+	<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+		<acme:submit code="airline-manager.leg.form.button.update" action="/airline-manager/leg/update"/>
+		<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete"/>
+		<acme:submit code="airline-manager.leg.form.button.publish" action="/airline-manager/leg/publish"/>
+	</jstl:when>
+	<jstl:when test="${_command == 'create'}">
+		<acme:submit code="airline-manager.leg.form.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
+	</jstl:when>
+</jstl:choose>
+
 </acme:form>
