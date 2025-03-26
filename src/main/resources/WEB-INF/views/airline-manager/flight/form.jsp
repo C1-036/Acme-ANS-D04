@@ -24,7 +24,7 @@
     <acme:input-moment code="airline-manager.flight.form.label.scheduledArrival" path="scheduledArrival"/>
     <acme:input-textbox code="airline-manager.flight.form.label.originCity" path="originCity"/>
     <acme:input-textbox code="airline-manager.flight.form.label.destinationCity" path="destinationCity"/>
-    <acme:input-integer code="airline-manager.flight.form.label.layovers" path="layovers"/>
+    <acme:input-textbox code="airline-manager.flight.form.label.layovers" path="layovers"/>
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">

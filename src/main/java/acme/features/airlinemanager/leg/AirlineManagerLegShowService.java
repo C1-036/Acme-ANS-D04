@@ -12,13 +12,19 @@
 
 package acme.features.airlinemanager.leg;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.aircraft.Aircraft;
+import acme.entities.airports.Airport;
 import acme.entities.flights.Flight;
 import acme.entities.flights.Leg;
+import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -60,14 +66,35 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 		assert leg != null;
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
 
+		// Statuses
+		SelectChoices statuses = SelectChoices.from(LegStatus.class, leg.getStatus());
+		dataset.put("status", statuses.getSelected().getKey());
+		dataset.put("statuses", statuses);
+
+		// Departure and arrival airports
+		Collection<Airport> airports = this.repository.findAllAirports();
+		SelectChoices departureChoices = SelectChoices.from(airports, "name", leg.getDepartureAirport());
+		SelectChoices arrivalChoices = SelectChoices.from(airports, "name", leg.getArrivalAirport());
+
+		dataset.put("departureAirport", departureChoices.getSelected().getKey());
+		dataset.put("departureAirportChoices", departureChoices);
+		dataset.put("arrivalAirport", arrivalChoices.getSelected().getKey());
+		dataset.put("arrivalAirportChoices", arrivalChoices);
+
+		// Aircrafts
+		Collection<Aircraft> aircrafts = this.repository.findAllAircrafts();
+		SelectChoices aircraftChoices = SelectChoices.from(aircrafts, "model", leg.getAircraft());
+
+		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("aircraftChoices", aircraftChoices);
+
+		// Duration (readonly)
 		dataset.put("durationHours", leg.getDurationHours());
-		dataset.put("departureAirport", leg.getDepartureAirport().getName());
-		dataset.put("arrivalAirport", leg.getArrivalAirport().getName());
-		dataset.put("aircraft", leg.getAircraft().getModel());
 
-		dataset.put("masterId", leg.getFlight().getId()); // muy útil si querés un botón "Volver"
+		// Flight info
+		dataset.put("masterId", leg.getFlight().getId());
 		dataset.put("draftMode", leg.getFlight().isDraftMode());
 
 		super.getResponse().addData(dataset);

@@ -31,3 +31,9 @@ leg-21,DGX0017,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-06,airport-07,a
 leg-22,DGX0018,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-21
 leg-23,DGX0019,2022/09/01 12:10,2022/09/01 12:20,ON_TIME,airport-00,airport-01,aircraft-01,flight-21
 leg-24,DGX0020,2022/09/01 12:30,2022/09/01 12:50,ON_TIME,airport-00,airport-01,aircraft-01,flight-21
+# more legs - standard variations
+leg-25,DGX0021,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-22
+leg-26,DGX0022,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-23
+leg-27,DGX0023,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-24
+leg-28,DGX0024,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-25
+leg-29,DGX0025,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,airport-00,airport-01,aircraft-01,flight-26
