@@ -9,8 +9,8 @@
 # they accept any liabilities with respect to them.
 
 acme.validation.airline-manager.identifier-number.invalid.message          = El identificador debe comenzar por tus iniciales, seguir el formato requerido y no estar ya en uso.
-acme.validation.airline-manager.date-of-birth.required                     = Debe proporcionar su fecha de nacimiento.
-acme.validation.airline-manager.date-of-birth.must-be-adult                = La fecha de nacimiento indicada no cumple con el requisito de mayoría de edad (mínimo 18 años).
+
+acme.validation.flight.delete-has-assignments 							   = No se puede eliminar el vuelo porque hay miembros de tripulación asignados a sus tramos.
 
 acme.validation.leg.flight-number.format.message 						   = El número de vuelo debe comenzar con el código IATA de la aerolínea seguido de 4 dígitos.
 acme.validation.leg.flight-number.duplicate.message 					   = Ya existe otro tramo con ese número de vuelo.
