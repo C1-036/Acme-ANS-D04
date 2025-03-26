@@ -3,7 +3,7 @@ key,fullName,email,passportNumber,dateBirth,specialNeeds,draftMode,key:customer
 passenger-01,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
 # fullName standard variations
 passenger-02,L,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
-passenger-03,Lo,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-03,Lo,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,TRUE,customer-01
 passenger-04,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
 passenger-05,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
 passenger-06,โลเร็ม อิปซัม,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01

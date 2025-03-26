@@ -9,6 +9,7 @@
 # they accept any liabilities with respect to them.
 
 customer.passenger.list.title = Listing of Passengers
+customer.passenger.form.title = Passenger form
 
 customer.passenger.list.label.fullName = Full Name
 customer.passenger.list.label.email = Email
@@ -21,6 +22,12 @@ customer.passenger.form.label.email = Email
 customer.passenger.form.label.passportNumber = Passport Number
 customer.passenger.form.label.dateBirth = Date of Birth
 customer.passenger.form.label.specialNeeds = Special Needs
+
+
 customer.booking.form.button.passenger
+
 customer.passenger.list.button.create = Create
 customer.passenger.form.button.create = Create
+
+customer.passenger.form.button.update = Update
+customer.passenger.form.button.publish = Publish
