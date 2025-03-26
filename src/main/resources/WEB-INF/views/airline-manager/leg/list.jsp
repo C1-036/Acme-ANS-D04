@@ -23,5 +23,6 @@
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
-    <acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create?masterId=${masterId}" />
+   <acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create?masterId=${masterId}" />
+
 </jstl:if>

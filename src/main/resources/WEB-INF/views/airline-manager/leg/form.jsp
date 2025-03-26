@@ -20,9 +20,9 @@
     <acme:input-moment code="airline-manager.leg.form.label.scheduledDeparture" path="scheduledDeparture"/>
     <acme:input-moment code="airline-manager.leg.form.label.scheduledArrival" path="scheduledArrival"/>
     <acme:input-select code="airline-manager.leg.form.label.status" path="status" choices="${statuses}"/>
-    <acme:input-select code="airline-manager.leg.form.label.departureAirport" path="departureAirport" choices="${airports}"/>
-	<acme:input-select code="airline-manager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${airports}"/>
-	<acme:input-select code="airline-manager.leg.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
+    <acme:input-select code="airline-manager.leg.form.label.departureAirport" path="departureAirport" choices="${departureAirportChoices}"/>
+	<acme:input-select code="airline-manager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirportChoices}"/>
+	<acme:input-select code="airline-manager.leg.form.label.aircraft" path="aircraft" choices="${aircraftChoices}"/>
     <acme:input-double code="airline-manager.leg.form.label.durationHours" path="durationHours" readonly="True"/>
 
 	<jstl:choose>
@@ -34,7 +34,4 @@
 			<acme:submit code="airline-manager.leg.form.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
 		</jstl:when>		
 	</jstl:choose>
-	<jstl:if test="${_command == 'show'}">
-        <acme:button code="airline-manager.leg.form.button.return" action="/airline-manager/flight/show?id=${masterId}" />
-    </jstl:if>
 </acme:form>

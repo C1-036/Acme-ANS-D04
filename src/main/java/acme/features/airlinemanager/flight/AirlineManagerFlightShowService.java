@@ -74,6 +74,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		dataset.put("destinationCity", flight.getDestinationCity());
 		dataset.put("layovers", flight.getLayovers());
 
+		dataset.put("id", flight.getId());
 		super.getResponse().addData(dataset);
 	}
 

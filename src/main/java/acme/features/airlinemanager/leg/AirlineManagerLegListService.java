@@ -46,7 +46,6 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 		legs = this.repository.findLegsByFlightId(flightId);
 
 		super.getBuffer().addData(legs);
-		super.getBuffer().addGlobal("masterId", flightId);
 
 	}
 
@@ -56,9 +55,23 @@ public class AirlineManagerLegListService extends AbstractGuiService<AirlineMana
 		Dataset dataset;
 
 		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
-		dataset.put("masterId", leg.getFlight().getId());
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<Leg> legs) {
+		assert legs != null;
+		int masterId;
+		Flight flight;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		flight = this.repository.findFlightById(masterId);
+		showCreate = flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 
 }
