@@ -12,7 +12,7 @@ airline-manager.flight.form.title = Información del Vuelo
 airline-manager.flight.list.title = Lista de Vuelos
 
 # Etiquetas
-airline-manager.flight.form.label.tag = Código del vuelo:
+airline-manager.flight.form.label.tag = Etiqueta:
 airline-manager.flight.form.label.selfTransfer = Autotransbordo:
 airline-manager.flight.form.label.cost = Costo:
 airline-manager.flight.form.label.description = Descripción:
