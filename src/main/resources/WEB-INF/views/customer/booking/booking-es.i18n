@@ -31,4 +31,8 @@ customer.booking.form.label.flight = Vuelo
 customer.booking.form.button.create = Crear
 customer.booking.list.button.create = Crear
 
+
+customer.booking.form.button.update = Actualizar
+customer.booking.form.button.publish = Publicar
+
 c
