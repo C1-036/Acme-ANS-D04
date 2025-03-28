@@ -25,7 +25,7 @@
 	
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show'}">
-			<acme:submit code="customer.booking.form.button.passenger" action="/customer/passenger/list-booking?bookingId=${id}"/>			
+			<acme:button code="customer.booking.form.button.passenger" action="/customer/passenger/list-booking?bookingId=${id}"/>			
 		</jstl:when>
 		</jstl:choose>
 		<jstl:choose>
