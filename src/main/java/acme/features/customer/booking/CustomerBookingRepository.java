@@ -34,5 +34,5 @@ public interface CustomerBookingRepository extends AbstractRepository {
 	Flight findFlightById(int flightId);
 
 	@Query("SELECT f.cost FROM Flight f WHERE f.id = :flightId")
-	Money findCostByFlight(int flightId);
+	Money findCostByFlightBooking(int flightId);
 }

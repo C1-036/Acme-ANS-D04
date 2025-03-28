@@ -76,7 +76,7 @@ public class Booking extends AbstractEntity {
 	public Money getPrice() {
 		Money result;
 		CustomerBookingRepository bookingRepository = SpringHelper.getBean(CustomerBookingRepository.class);
-		result = bookingRepository.findCostByFlight(this.flight.getId());
+		result = bookingRepository.findCostByFlightBooking(this.flight.getId());
 		Collection<Passenger> passengers = bookingRepository.findAllPassengerBooking(this.getId());
 		double amount = result.getAmount() * passengers.size();
 		result.setAmount(amount);
