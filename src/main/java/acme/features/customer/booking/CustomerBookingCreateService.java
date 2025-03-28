@@ -1,13 +1,15 @@
 
 package acme.features.customer.booking;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
-import acme.entities.customers.CustomerRepository;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
@@ -15,10 +17,7 @@ import acme.realms.Customer;
 public class CustomerBookingCreateService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
-	private CustomerBookingRepository	repository;
-
-	@Autowired
-	private CustomerRepository			customerRepository;
+	private CustomerBookingRepository repository;
 
 
 	@Override
@@ -28,16 +27,15 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void load() {
-		int customerId;
 		Customer customer;
 		Booking booking;
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		customer = this.customerRepository.findById(customerId);
+		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
 		booking = new Booking();
 		booking.setDraftMode(true);
 		booking.setCustomer(customer);
+
 		super.getBuffer().addData(booking);
 
 	}
@@ -49,7 +47,9 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
+
 		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard");
+
 		booking.setFlight(flight);
 	}
 
@@ -65,20 +65,19 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void unbind(final Booking booking) {
-		int customerId;
-		int flightId;
-		Customer customer;
-		Dataset dataset;
-		Flight flight;
 
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		customer = this.customerRepository.findById(customerId);
+		Collection<Flight> flights;
+		SelectChoices choices;
+		Dataset dataset;
+
+		flights = this.repository.findAllFlights();
+
+		choices = SelectChoices.from(flights, "tag", booking.getFlight());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard");
-		dataset.put("customer", customer);
-		dataset.put("flight", flight);
+		dataset.put("flight", choices.getSelected().getKey());
+		dataset.put("flights", choices);
+
 		super.getResponse().addData(dataset);
 
 	}

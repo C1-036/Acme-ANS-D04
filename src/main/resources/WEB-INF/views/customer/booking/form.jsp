@@ -21,10 +21,11 @@
 	<acme:input-textbox code="customer.booking.form.label.travelClass" path="travelClass"/>
 	<acme:input-textbox code="customer.booking.form.label.price" path="price"/>
 	<acme:input-textbox code="customer.booking.form.label.creditCard" path="creditCard"/>
+	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
 	
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show'}">
-			<acme:button code="customer.booking.form.button.passenger" action="/customer/passenger/list-booking?bookingId=${id}"/>			
+			<acme:submit code="customer.booking.form.button.passenger" action="/customer/passenger/list-booking?bookingId=${id}"/>			
 		</jstl:when>
 		</jstl:choose>
 		<jstl:choose>
