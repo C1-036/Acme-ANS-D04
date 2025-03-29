@@ -38,7 +38,7 @@
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 			
 		</acme:menu-option>
-
+		
 		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
 			<acme:menu-suboption code="master.menu.technician.list-my-maintenance-records" action="/technician/maintenance-record/list?mine=true" />			
 			<acme:menu-suboption code="master.menu.technician.list-my-tasks" action="/technician/task/list?mine=true" />
@@ -58,6 +58,10 @@
 		
 		<acme:menu-option code="master.menu.airline-manager" access="hasRealm('AirlineManager')">
 			<acme:menu-suboption code="master.menu.airline-manager.my-flights" action="/airline-manager/flight/list"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgents')">
+			<acme:menu-suboption code="master.menu.assistanceAgent.my-completed-claim-list" action="/assistanceAgent/claim/listCompleted"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
