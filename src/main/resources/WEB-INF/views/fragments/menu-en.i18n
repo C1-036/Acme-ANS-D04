@@ -49,6 +49,10 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.airline-manager = Airline Manager
 master.menu.airline-manager.my-flights = My Flights
 
+# master.menu.assistanceagent ##########################################################
+master.menu.assistanceagent = Assistance Agent
+master.menu.assistanceagent.my-trackingLogs = My Tracking Logs
+
 # master.menu.customer ##########################################################
 master.menu.customer = Customer
 master.menu.customer.list.my-bookings = My bookings

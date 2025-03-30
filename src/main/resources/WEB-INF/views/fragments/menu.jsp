@@ -60,6 +60,10 @@
 			<acme:menu-suboption code="master.menu.airline-manager.my-flights" action="/airline-manager/flight/list"/>
 		</acme:menu-option>
 		
+		<acme:menu-option code="master.menu.assistanceagent" access="hasRealm('AssistanceAgents')">
+			<acme:menu-suboption code="master.menu.assistanceagent.my-trackingLogs" action="/assistanceagent/trackingLog/list"/>
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list.my-bookings" action="/customer/booking/list"/>
 			<acme:menu-suboption code="master.menu.customer.list.my-passengers" action="/customer/passenger/list"/>
