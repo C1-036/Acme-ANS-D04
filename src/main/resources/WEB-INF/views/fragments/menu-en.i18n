@@ -37,8 +37,8 @@ master.menu.technician.list-task-catalogue = List task catalogue
 
 # master.menu.assistance-agent ########################################################
 
-master.menu.assistanceAgent = Assistance Agent
-master.menu.assistanceAgent..my-completed-claim-list = List completed claims
+master.menu.assistanceagent = Assistance Agent
+master.menu.assistanceagent.my-completed-claim-list = List completed claims
 
 # master.menu.provider ########################################################
 

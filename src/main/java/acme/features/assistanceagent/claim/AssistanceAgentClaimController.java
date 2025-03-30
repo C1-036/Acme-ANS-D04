@@ -16,6 +16,12 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
+	private AssistanceAgentClaimList			listService;
+
+	@Autowired
+	private AssistanceAgentClaimShow			showService;
+
+	@Autowired
 	private AssistanceAgentClaimListCompleted	listCompleted;
 
 	@Autowired
@@ -35,11 +41,14 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("listCompleted", this.listCompleted);
-		super.addBasicCommand("showCompleted", this.showCompleted);
-		super.addBasicCommand("listUndergoing", this.listUndergoing);
-		super.addBasicCommand("showUndergoing", this.showUndergoing);
-		super.addBasicCommand("createClaim", this.createClaim);
+		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createClaim);
+
+		super.addCustomCommand("listCompleted", "list", this.listCompleted);
+		super.addCustomCommand("showCompleted", "show", this.showCompleted);
+		super.addCustomCommand("listUndergoing", "list", this.listUndergoing);
+		super.addCustomCommand("showUndergoing", "show", this.showUndergoing);
 	}
 
 }

@@ -1,0 +1,30 @@
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes. The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Títulos
+assistanceagent.claim.form.title = Información de la Reclamación
+assistanceagent.claim.list.title = Lista de Reclamaciones
+
+# Etiquetas del formulario
+assistanceagent.claim.form.label.registrationMoment = Fecha de Registro:
+assistanceagent.claim.form.label.passengerEmail = Correo del Pasajero:
+assistanceagent.claim.form.label.description = Descripción:
+assistanceagent.claim.form.label.type = Tipo de Reclamación:
+assistanceagent.claim.form.label.accepted = Estado:
+
+# Etiquetas de la lista
+assistanceagent.claim.list.label.registrationMoment = Fecha de Registro
+assistanceagent.claim.list.label.passengerEmail = Correo del Pasajero
+assistanceagent.claim.list.label.type = Tipo
+assistanceagent.claim.list.label.accepted = Estado
+
+# Botones
+assistanceagent.claim.form.button.create = Crear
+assistanceagent.claim.form.button.update = Actualizar
+assistanceagent.claim.form.button.delete = Eliminar
