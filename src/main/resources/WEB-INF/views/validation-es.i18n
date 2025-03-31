@@ -32,3 +32,5 @@ acme.validation.airline-manager.leg.delete.only-one						   = No puedes eliminar
 acme.validation.airline-manager.leg.leg-not-in-draft                       = No se puede actualizar, eliminar o volver a publicar un tramo que ya ha sido publicado.
 acme.validation.airline-manager.leg.status.required                        = Debe seleccionar un estado de segmento de vuelo.
 acme.validation.airline-manager.leg.invalid-request 					   = Este tramo del vuelo no existe o no se puede acceder a él.
+acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = No puedes añadir tramos a un vuelo configurado sin autotransbordo. Debes cambiar esta opción antes.
+

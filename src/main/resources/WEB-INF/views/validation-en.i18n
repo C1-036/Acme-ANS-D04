@@ -32,3 +32,5 @@ acme.validation.airline-manager.leg.delete.only-one						   = You cannot delete 
 acme.validation.airline-manager.leg.leg-not-in-draft 					   = You cannot update, delete, or republish a leg that has already been published.
 acme.validation.airline-manager.leg.status.required                        = You must select a flight segment status.
 acme.validation.airline-manager.leg.invalid-request 					   = This leg does not exist or cannot be accessed.
+acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = You cannot add segments to a flight configured as not self transfer. Please update this setting before adding legs.
+
