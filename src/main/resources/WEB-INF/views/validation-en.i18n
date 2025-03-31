@@ -12,6 +12,10 @@ acme.validation.airline-manager.flight.identifier-number.invalid.message   = The
 acme.validation.airline-manager.flight.delete-has-assignments			   = The flight cannot be deleted because there are crew members assigned to its legs.
 acme.validation.airline-manager.flight.no-legs							   = A flight cannot be published without legs.
 acme.validation.airline-manager.flight.legs-not-published				   = All legs must be published before publishing the flight.
+acme.validation.airline-manager.flight.invalid-selfTransfer-layovers	   = Cannot set "NO_SELF_TRANSFER" when the flight has layovers. The passenger must handle connections between segments.
+acme.validation.airline-manager.flight.not-owner						   = You do not have permission to show, create, update, delete or published flights that do not belong to you.
+acme.validation.airline-manager.flight.invalid-request 					   = This flight does not exist or cannot be accessed.
+acme.validation.airline-manager.flight.not-in-draft                        = You cannot update, delete, or republish a flight that has already been published.
 
 acme.validation.airline-manager.leg.flight-number.format.message     	   = The flight number must start with the airline's IATA code followed by 4 digits.
 acme.validation.airline-manager.leg.flight-number.duplicate.message 	   = Another leg with the same flight number already exists.

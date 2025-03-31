@@ -28,25 +28,27 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightId;
-		Flight flight;
-		AirlineManager airlinemanager;
-
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(flightId);
-		airlinemanager = flight == null ? null : flight.getAirlinemanager();
-
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(airlinemanager);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
 		super.getResponse().setAuthorised(status);
 	}
+
 	@Override
 	public void load() {
-		Flight flight;
-		int id;
+		int id = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(id);
 
-		id = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(id);
+		super.state(flight != null, "*", "acme.validation.airline-manager.flight.invalid-request");
+		if (flight == null)
+			return;
+
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean isOwner = flight.getAirlinemanager().equals(current);
+		super.state(isOwner, "*", "acme.validation.airline-manager.flight.not-owner");
+		if (!isOwner)
+			return;
+
+		boolean isDraft = flight.isDraftMode();
+		super.state(isDraft, "*", "acme.validation.airline-manager.flight.not-in-draft");
 
 		super.getBuffer().addData(flight);
 	}
