@@ -36,6 +36,14 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 	@Autowired
 	private AssistanceAgentClaimCreate			createClaim;
 
+	@Autowired
+	private AssistanceAgentClaimDelete			deleteClaim;
+
+	@Autowired
+	private AssistanceAgentClaimUpdate			updateClaim;
+
+	@Autowired
+	private AssistanceAgentClaimPublish			publishClaim;
 	// Constructors -----------------------------------------------------------
 
 
@@ -44,7 +52,10 @@ public class AssistanceAgentClaimController extends AbstractGuiController<Assist
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createClaim);
+		super.addBasicCommand("delete", this.deleteClaim);
+		super.addBasicCommand("update", this.updateClaim);
 
+		super.addCustomCommand("publish", "update", this.publishClaim);
 		super.addCustomCommand("listCompleted", "list", this.listCompleted);
 		super.addCustomCommand("showCompleted", "show", this.showCompleted);
 		super.addCustomCommand("listUndergoing", "list", this.listUndergoing);
