@@ -22,7 +22,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airports.Airport;
-import acme.entities.flights.Flight;
 import acme.entities.flights.Leg;
 import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
@@ -40,24 +39,33 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int legId;
-		Flight flight;
-
-		legId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightByLegId(legId);
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
-
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Leg leg;
-		int id;
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
 
-		id = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(id);
+		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
+		if (leg == null)
+			return;
+
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean isOwner = leg.getFlight().getAirlinemanager().equals(current);
+		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
+		if (!isOwner)
+			return;
+
+		boolean flightInDraft = leg.getFlight().isDraftMode();
+		boolean legInDraft = leg.isDraftMode();
+
+		if (!flightInDraft)
+			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
+
+		if (!legInDraft)
+			super.state(false, "*", "acme.validation.airline-manager.leg.leg-not-in-draft");
 
 		super.getBuffer().addData(leg);
 	}
@@ -82,6 +90,18 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void validate(final Leg leg) {
+
+		if (!leg.isDraftMode())
+			super.state(false, "*", "acme.validation.airline-manager.leg.leg-not-in-draft");
+
+		if (!leg.getFlight().isDraftMode())
+			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
+
+		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
+			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());
+			super.state(!sameAirport, "arrivalAirport", "acme.validation.airline-manager.leg.departure-equals-arrival");
+		}
+
 	}
 
 	@Override
@@ -123,7 +143,7 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
 		dataset.put("aircraftChoices", aircraftChoices);
 		dataset.put("masterId", leg.getFlight().getId());
-		dataset.put("draftMode", leg.getFlight().isDraftMode());
+		dataset.put("draftMode", leg.isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

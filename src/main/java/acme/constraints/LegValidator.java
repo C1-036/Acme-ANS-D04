@@ -23,10 +23,12 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 		boolean result = true;
 
-		if (leg == null || leg.getFlight() == null || leg.getScheduledDeparture() == null || leg.getScheduledArrival() == null) {
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-			result = false;
-		} else {
+		if (leg == null)
+			return false;
+
+		if (leg.getFlight() == null || leg.getScheduledDeparture() == null || leg.getScheduledArrival() == null)
+			return true;
+		else {
 			Flight flight = leg.getFlight();
 			FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 			List<Leg> allLegs = repository.findLegsByFlight(flight.getId());

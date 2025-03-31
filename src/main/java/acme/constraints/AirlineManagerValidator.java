@@ -56,7 +56,7 @@ public class AirlineManagerValidator extends AbstractValidator<ValidAirlineManag
 
 				boolean isValidIdentifier = matchesPattern && startsWithPrefix && isUnique;
 
-				super.state(context, isValidIdentifier, "identifierNumber", "acme.validation.airline-manager.identifier-number.invalid.message");
+				super.state(context, isValidIdentifier, "identifierNumber", "acme.validation.airline-manager.flight.identifier-number.invalid.message");
 			}
 		}
 
