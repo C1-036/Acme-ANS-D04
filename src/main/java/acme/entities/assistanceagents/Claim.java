@@ -54,7 +54,7 @@ public class Claim extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private boolean				draftMode;
+	private Boolean				draftMode;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
