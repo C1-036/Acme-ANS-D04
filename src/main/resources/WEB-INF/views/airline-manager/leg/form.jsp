@@ -31,7 +31,7 @@
 		<acme:submit code="airline-manager.leg.form.button.delete" action="/airline-manager/leg/delete"/>
 		<acme:submit code="airline-manager.leg.form.button.publish" action="/airline-manager/leg/publish"/>
 	</jstl:when>
-	<jstl:when test="${_command == 'create'}">
+	<jstl:when test="${_command == 'create' && allowCreate}">
 		<acme:submit code="airline-manager.leg.form.button.create" action="/airline-manager/leg/create?masterId=${masterId}"/>
 	</jstl:when>
 </jstl:choose>

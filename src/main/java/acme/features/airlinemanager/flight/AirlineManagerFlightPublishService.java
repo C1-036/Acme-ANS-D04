@@ -61,10 +61,10 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		int flightId = flight.getId();
 
 		Collection<Leg> legs = this.repository.findLegsByFlightId(flightId);
-		super.state(!legs.isEmpty(), "*", "acme.validation.flight.no-legs");
+		super.state(!legs.isEmpty(), "*", "acme.validation.airline-manager.flight.no-legs");
 
 		boolean allLegsPublished = legs.stream().allMatch(l -> !l.isDraftMode());
-		super.state(allLegsPublished, "*", "acme.validation.flight.legs-not-published");
+		super.state(allLegsPublished, "*", "acme.validation.airline-manager.flight.legs-not-published");
 	}
 
 	@Override

@@ -23,7 +23,7 @@ airline-manager.flight.form.label.destinationCity = Ciudad de Destino:
 airline-manager.flight.form.label.layovers = Escalas:
 
 # Etiquetas de la lista
-airline-manager.flight.list.label.tag = Código del vuelo
+airline-manager.flight.list.label.tag = Etiqueta
 airline-manager.flight.list.label.selfTransfer = Autotransbordo
 airline-manager.flight.list.label.cost = Costo
 

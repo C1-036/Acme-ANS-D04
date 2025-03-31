@@ -72,7 +72,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 		int assignmentCount = this.repository.countAssignmentsByFlightId(flight.getId());
 
 		if (assignmentCount > 0)
-			super.state(false, "*", "acme.validation.flight.delete-has-assignments");
+			super.state(false, "*", "acme.validation.airline-manager.flight.delete-has-assignments");
 	}
 
 	@Override

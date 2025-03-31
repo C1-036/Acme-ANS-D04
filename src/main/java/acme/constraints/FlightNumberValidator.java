@@ -39,14 +39,14 @@ public class FlightNumberValidator extends AbstractValidator<ValidFlightNumber, 
 			String pattern = "^" + airlineIataCode + "\\d{4}$";
 			boolean validFormat = flightNumber.matches(pattern);
 
-			super.state(context, validFormat, "flightNumber", "acme.validation.leg.flight-number.format.message");
+			super.state(context, validFormat, "flightNumber", "acme.validation.airline-manager.leg.flight-number.format.message");
 			result = result && validFormat;
 
 			// Validación de unicidad del número de vuelo
 			Leg existingLeg = this.repository.findLegByFlightNumber(flightNumber);
 			boolean uniqueFlightNumber = existingLeg == null || existingLeg.equals(leg);
 
-			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flight-number.duplicate.message");
+			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.airline-manager.leg.flight-number.duplicate.message");
 			result = result && uniqueFlightNumber;
 		}
 

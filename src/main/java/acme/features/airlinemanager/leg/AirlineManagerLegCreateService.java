@@ -29,31 +29,35 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Flight flight;
-
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
-
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 	@Override
 	public void load() {
-		Leg leg;
-		int masterId;
-		Flight flight;
+		int masterId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
+		boolean flightExists = flight != null;
+		super.state(flightExists, "*", "acme.validation.airline-manager.leg.invalid-request");
+		if (!flightExists)
+			return;
 
-		leg = new Leg();
+		boolean isOwner = flight.getAirlinemanager().equals(current);
+		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
+		if (!isOwner)
+			return;
+
+		boolean isDraft = flight.isDraftMode();
+		super.state(isDraft, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
+		if (!isDraft)
+			return;
+
+		Leg leg = new Leg();
 		leg.setFlight(flight);
 		leg.setStatus(LegStatus.ON_TIME);
 		leg.setDraftMode(true);
-
 		super.getBuffer().addData(leg);
+		super.getResponse().addGlobal("allowCreate", true);
 	}
 
 	@Override
@@ -61,25 +65,46 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
 		int aircraftId = super.getRequest().getData("aircraft", int.class);
-		String statusValue = super.getRequest().getData("status", String.class);
 
 		Airport departure = this.repository.findAirportById(departureAirportId);
 		Airport arrival = this.repository.findAirportById(arrivalAirportId);
 		Aircraft aircraft = this.repository.findAircraftById(aircraftId);
 
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 		leg.setDepartureAirport(departure);
 		leg.setArrivalAirport(arrival);
 		leg.setAircraft(aircraft);
-		leg.setStatus(LegStatus.valueOf(statusValue));
 	}
 
 	@Override
 	public void validate(final Leg leg) {
+
+		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
+			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());
+			super.state(!sameAirport, "arrivalAirport", "acme.validation.airline-manager.leg.departure-equals-arrival");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("departureAirport")) {
+			int flightId = leg.getFlight().getId();
+			Collection<Leg> existingLegs = this.repository.findLegsByFlightId(flightId);
+
+			if (!existingLegs.isEmpty()) {
+				// Obtener el último tramo por la salida programada
+				Leg lastLeg = existingLegs.stream().max((l1, l2) -> l1.getScheduledDeparture().compareTo(l2.getScheduledDeparture())).orElse(null);
+
+				// Validar conexión entre tramos
+				boolean isConnected = lastLeg != null && lastLeg.getArrivalAirport().equals(leg.getDepartureAirport());
+
+				super.state(isConnected, "departureAirport", "acme.validation.airline-manager.leg.not-connected-to-previous");
+			}
+		}
+
 	}
 
 	@Override
 	public void perform(final Leg leg) {
+		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
+		super.state(leg.getFlight() != null, "*", "acme.validation.airline-manager.leg.invalid-flight");
 		this.repository.save(leg);
 	}
 
@@ -121,5 +146,4 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 		super.getResponse().addData(dataset);
 	}
-
 }
