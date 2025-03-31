@@ -14,12 +14,8 @@ import acme.realms.AssistanceAgents;
 @GuiService
 public class AssistanceAgentTrackingLogList extends AbstractGuiService<AssistanceAgents, TrackingLog> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;
-
-	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -30,10 +26,10 @@ public class AssistanceAgentTrackingLogList extends AbstractGuiService<Assistanc
 	@Override
 	public void load() {
 		Collection<TrackingLog> trackingLogs;
-		int claimId;
+		int assistanceAgentId;
 
-		claimId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		trackingLogs = this.repository.findTrackingLogsByClaimId(claimId);
+		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		trackingLogs = this.repository.findTrackingLogsByAssistanceAgentId(assistanceAgentId);
 
 		super.getBuffer().addData(trackingLogs);
 	}
@@ -41,10 +37,7 @@ public class AssistanceAgentTrackingLogList extends AbstractGuiService<Assistanc
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
 		Dataset dataset;
-
 		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "accepted", "resolutionDetails");
-
 		super.getResponse().addData(dataset);
 	}
-
 }

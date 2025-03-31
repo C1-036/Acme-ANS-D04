@@ -16,11 +16,11 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-    <acme:list-column code="assistanceagent.trackingLog.list.label.tag" path="tag" width="15%"/>
-    <acme:list-column code="assistanceagent.trackingLog.list.label.selfTransfer" path="selfTransfer" width="15%"/>
-    <acme:list-column code="assistanceagent.trackingLog.list.label.cost" path="cost" width="10%"/>
+    <acme:list-column code="assistance-agent.trackingLog.list.label.tag" path="tag" width="15%"/>
+    <acme:list-column code="assistance-agent.trackingLog.list.label.selfTransfer" path="selfTransfer" width="15%"/>
+    <acme:list-column code="assistance-agent.trackingLog.list.label.cost" path="cost" width="10%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
-    <acme:button code="assistanceagent.trackingLog.form.button.create" action="/assistanceagent/trackingLog/list"/>
+    <acme:button code="assistance-agent.trackingLog.form.button.create" action="/assistance-agent/trackingLog/list"/>
 </jstl:if>
