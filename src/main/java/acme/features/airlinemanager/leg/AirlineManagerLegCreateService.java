@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airports.Airport;
 import acme.entities.flights.Flight;
+import acme.entities.flights.Indication;
 import acme.entities.flights.Leg;
 import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
@@ -97,6 +98,11 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 				super.state(isConnected, "departureAirport", "acme.validation.airline-manager.leg.not-connected-to-previous");
 			}
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("departureAirport")) {
+			boolean isNoSelfTransfer = leg.getFlight().getSelfTransfer() == Indication.NOT_SELF_TRANSFER;
+			super.state(!isNoSelfTransfer, "*", "acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer");
 		}
 
 	}

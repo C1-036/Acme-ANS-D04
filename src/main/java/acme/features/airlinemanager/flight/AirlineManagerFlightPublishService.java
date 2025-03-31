@@ -67,6 +67,12 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 		boolean allLegsPublished = legs.stream().allMatch(l -> !l.isDraftMode());
 		super.state(allLegsPublished, "*", "acme.validation.airline-manager.flight.legs-not-published");
+
+		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
+			Integer layovers = flight.getLayovers();
+			if (flight.getSelfTransfer() == Indication.NOT_SELF_TRANSFER && layovers > 0)
+				super.state(false, "selfTransfer", "acme.validation.airline-manager.flight.invalid-selfTransfer-layovers");
+		}
 	}
 
 	@Override
