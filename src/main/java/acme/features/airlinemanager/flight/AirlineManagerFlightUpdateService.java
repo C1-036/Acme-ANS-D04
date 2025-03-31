@@ -35,26 +35,27 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Flight flight;
-		AirlineManager airlineManager;
-
-		masterId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(masterId);
-		airlineManager = flight == null ? null : flight.getAirlinemanager();
-		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(airlineManager);
-
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Flight flight;
-		int id;
+		int flightId = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(flightId);
 
-		id = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(id);
+		super.state(flight != null, "*", "acme.validation.airline-manager.flight.invalid-request");
+		if (flight == null)
+			return;
+
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean isOwner = flight.getAirlinemanager().equals(current);
+		super.state(isOwner, "*", "acme.validation.airline-manager.flight.not-owner");
+		if (!isOwner)
+			return;
+
+		boolean isDraft = flight.isDraftMode();
+		super.state(isDraft, "*", "acme.validation.airline-manager.flight.not-in-draft");
 
 		super.getBuffer().addData(flight);
 	}
@@ -66,6 +67,11 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void validate(final Flight flight) {
+		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
+			Integer layovers = flight.getLayovers();
+			if (flight.getSelfTransfer() == Indication.NOT_SELF_TRANSFER && layovers > 0)
+				super.state(false, "selfTransfer", "acme.validation.airline-manager.flight.invalid-selfTransfer-layovers");
+		}
 	}
 
 	@Override
