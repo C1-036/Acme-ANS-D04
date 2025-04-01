@@ -105,6 +105,7 @@ public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void unbind(final Leg leg) {
+
 		Dataset dataset;
 		SelectChoices statuses;
 		SelectChoices departureAirportChoices;

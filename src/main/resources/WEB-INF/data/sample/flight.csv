@@ -30,7 +30,14 @@ flight-22,Lorem ipsum dolo,SELF_TRANSFER,EUR 500000.00,洛伦·伊普森,TRUE,ai
 flight-23,Lorem ipsum dolor,SELF_TRANSFER,EUR 500000.00,<marquee>Hacked</marquee>,TRUE,airline-manager1
 flight-24,Lorem ipsum dolor s,SELF_TRANSFER,EUR 500000.00,<script>alert(‘Hacked!’);</script>,TRUE,airline-manager1
 flight-25,Lorem ipsum dolor si,SELF_TRANSFER,EUR 500000.00,' or 'A' = 'A,TRUE,airline-manager1
-# draft-mode - standard variation,""
+# draft-mode - standard variation
 flight-26,Lorem ipsum dolor sit,SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
 # airlinemanager - standard variation
 flight-27,"Lorem ipsum dolor sit,",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager2
+# more draft-mode
+flight-28,Lorem ipsum dolor sit a,SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
+flight-29,Lorem ipsum dolor sit am,SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
+flight-30,Lorem ipsum dolor sit amet,SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
+flight-31,"Lorem ipsum dolor sit amet,",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
+# flight without legs
+flight-32,"Lorem ipsum dolor sit amet, c",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
