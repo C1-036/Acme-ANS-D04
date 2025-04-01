@@ -1,30 +1,30 @@
 
-package acme.features.assistanceagents.trackingLog;
+package acme.features.assistanceagents.tracking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.assistanceagents.TrackingLog;
+import acme.entities.assistanceagents.Tracking;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentTrackingLogShow extends AbstractGuiService<AssistanceAgent, TrackingLog> {
+public class AssistanceAgentTrackingLogShow extends AbstractGuiService<AssistanceAgent, Tracking> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;
 
-	// AbstractGuiService<AssistanceAgents, TrackingLog> ----------------------
+	// AbstractGuiService<AssistanceAgents, Tracking> ----------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
 		int trackingLogId;
-		TrackingLog trackingLog;
+		Tracking trackingLog;
 
 		trackingLogId = super.getRequest().getData("id", int.class);
 		trackingLog = this.repository.findTrackingLogById(trackingLogId);
@@ -35,7 +35,7 @@ public class AssistanceAgentTrackingLogShow extends AbstractGuiService<Assistanc
 
 	@Override
 	public void load() {
-		TrackingLog trackingLog;
+		Tracking trackingLog;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
@@ -45,7 +45,7 @@ public class AssistanceAgentTrackingLogShow extends AbstractGuiService<Assistanc
 	}
 
 	@Override
-	public void unbind(final TrackingLog trackingLog) {
+	public void unbind(final Tracking trackingLog) {
 		Dataset dataset;
 
 		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "accepted", "resolutionDetails");

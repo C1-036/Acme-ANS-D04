@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagents.trackingLog;
+package acme.features.assistanceagents.tracking;
 
 import java.util.Collection;
 
@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.assistanceagents.TrackingLog;
+import acme.entities.assistanceagents.Tracking;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentTrackingLogList extends AbstractGuiService<AssistanceAgent, TrackingLog> {
+public class AssistanceAgentTrackingLogList extends AbstractGuiService<AssistanceAgent, Tracking> {
 
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;
@@ -25,7 +25,7 @@ public class AssistanceAgentTrackingLogList extends AbstractGuiService<Assistanc
 
 	@Override
 	public void load() {
-		Collection<TrackingLog> trackingLogs;
+		Collection<Tracking> trackingLogs;
 		int assistanceAgentId;
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
@@ -35,7 +35,7 @@ public class AssistanceAgentTrackingLogList extends AbstractGuiService<Assistanc
 	}
 
 	@Override
-	public void unbind(final TrackingLog trackingLog) {
+	public void unbind(final Tracking trackingLog) {
 		Dataset dataset;
 		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "accepted", "resolutionDetails");
 		super.getResponse().addData(dataset);

@@ -14,6 +14,7 @@ assistance-agent.claim.list.label.registrationMoment = Registration Date
 assistance-agent.claim.list.label.passengerEmail = Passenger Email
 assistance-agent.claim.list.label.type = Type
 assistance-agent.claim.list.label.accepted = Status
+assistance-agent.claim.list.label.description = Description
 
 # Buttons
 assistance-agent.claim.form.button.create = Create

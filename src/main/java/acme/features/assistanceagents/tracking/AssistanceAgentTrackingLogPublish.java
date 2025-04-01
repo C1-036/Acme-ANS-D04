@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagents.trackingLog;
+package acme.features.assistanceagents.tracking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,12 +7,12 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
 import acme.entities.assistanceagents.ClaimState;
-import acme.entities.assistanceagents.TrackingLog;
-import acme.entities.assistanceagents.TrackingLogState;
+import acme.entities.assistanceagents.Tracking;
+import acme.entities.assistanceagents.TrackingState;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentTrackingLogPublish extends AbstractGuiService<AssistanceAgent, TrackingLog> {
+public class AssistanceAgentTrackingLogPublish extends AbstractGuiService<AssistanceAgent, Tracking> {
 
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;
@@ -21,8 +21,8 @@ public class AssistanceAgentTrackingLogPublish extends AbstractGuiService<Assist
 	@Override
 	public void authorise() {
 		int id = super.getRequest().getData("id", int.class);
-		TrackingLog trackingLog = this.repository.findTrackingLogById(id);
-		boolean canPublish = trackingLog != null && trackingLog.getAccepted() == TrackingLogState.PENDING;
+		Tracking trackingLog = this.repository.findTrackingLogById(id);
+		boolean canPublish = trackingLog != null && trackingLog.getAccepted() == TrackingState.PENDING;
 
 		super.getResponse().setAuthorised(canPublish);
 	}
@@ -30,13 +30,13 @@ public class AssistanceAgentTrackingLogPublish extends AbstractGuiService<Assist
 	@Override
 	public void load() {
 		int id = super.getRequest().getData("id", int.class);
-		TrackingLog trackingLog = this.repository.findTrackingLogById(id);
+		Tracking trackingLog = this.repository.findTrackingLogById(id);
 
 		super.getBuffer().addData(trackingLog);
 	}
 
 	@Override
-	public void validate(final TrackingLog trackingLog) {
+	public void validate(final Tracking trackingLog) {
 		Claim claim = trackingLog.getClaim();
 		boolean claimPublished = claim.getAccepted() != ClaimState.PENDING;
 
@@ -44,8 +44,8 @@ public class AssistanceAgentTrackingLogPublish extends AbstractGuiService<Assist
 	}
 
 	@Override
-	public void perform(final TrackingLog trackingLog) {
-		trackingLog.setAccepted(TrackingLogState.ACCEPTED);
+	public void perform(final Tracking trackingLog) {
+		trackingLog.setAccepted(TrackingState.ACCEPTED);
 		this.repository.save(trackingLog);
 	}
 }

@@ -1,18 +1,17 @@
 
-package acme.features.assistanceagents.trackingLog;
+package acme.features.assistanceagents.tracking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
-import acme.entities.assistanceagents.ClaimState;
-import acme.entities.assistanceagents.TrackingLog;
-import acme.entities.assistanceagents.TrackingLogState;
+import acme.entities.assistanceagents.Tracking;
+import acme.entities.assistanceagents.TrackingState;
 import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<AssistanceAgent, TrackingLog> {
+public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<AssistanceAgent, Tracking> {
 
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;
@@ -20,37 +19,29 @@ public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<Assista
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int claimId;
-		Claim claim;
-
-		claimId = super.getRequest().getData("claimId", int.class);
-		claim = this.repository.findClaimById(claimId);
-		status = claim != null && claim.getAccepted() == ClaimState.ACCEPTED;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		TrackingLog trackingLog = new TrackingLog();
+		Tracking trackingLog = new Tracking();
 		int claimId = super.getRequest().getData("claimId", int.class);
 		Claim claim = this.repository.findClaimById(claimId);
 
 		trackingLog.setClaim(claim);
 		trackingLog.setResolutionPercentage(0.0);
-		trackingLog.setAccepted(TrackingLogState.PENDING);
+		trackingLog.setAccepted(TrackingState.PENDING);
 
 		super.getBuffer().addData(trackingLog);
 	}
 
 	@Override
-	public void bind(final TrackingLog trackingLog) {
+	public void bind(final Tracking trackingLog) {
 		super.bindObject(trackingLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "accepted", "resolutionDetails");
 	}
 
 	@Override
-	public void validate(final TrackingLog trackingLog) {
+	public void validate(final Tracking trackingLog) {
 		boolean canCreateNewLog;
 		canCreateNewLog = this.repository.existsTrackingLogWithFullResolution(trackingLog.getClaim().getId());
 
@@ -59,7 +50,7 @@ public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<Assista
 	}
 
 	@Override
-	public void perform(final TrackingLog trackingLog) {
+	public void perform(final Tracking trackingLog) {
 		this.repository.save(trackingLog);
 	}
 

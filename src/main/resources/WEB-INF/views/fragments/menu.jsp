@@ -63,7 +63,7 @@
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRealm('AssistanceAgent')">
 			<acme:menu-suboption code="master.menu.assistance-agent.my-completed-claim-list" action="/assistance-agent/claim/listCompleted"/>
 			<acme:menu-suboption code="master.menu.assistance-agent.my-undergoing-claim-list" action="/assistance-agent/claim/listUndergoing"/>			
-			<acme:menu-suboption code="master.menu.assistance-agent.my-trackingLogs" action="/assistance-agent/trackingLog/list"/>
+			<acme:menu-suboption code="master.menu.assistance-agent.my-tracking-logs" action="/assistance-agent/tracking/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">

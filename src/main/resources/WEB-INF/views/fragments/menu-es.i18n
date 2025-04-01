@@ -40,7 +40,7 @@ master.menu.technician.list-task-catalogue = Listar catálogo de tareas
 master.menu.assistance-agent = Agente de Asistencia
 master.menu.assistance-agent.my-completed-claim-list = Listar reclamaciones completadas
 master.menu.assistance-agent.my-undergoing-claim-list = Listar reclamaciones pendientes
-master.menu.assistance-agent.my-trackingLogs = Listar registros de seguimiento
+master.menu.assistance-agent.my-tracking-logs = Listar registros de seguimiento
 
 # master.menu.provider ########################################################
 
