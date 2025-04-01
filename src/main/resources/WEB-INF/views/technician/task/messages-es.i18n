@@ -19,6 +19,7 @@ technician.task.form.label.estimatedDurationHours = Duración estimada (horas):
 technician.task.form.button.create = Crear
 technician.task.form.button.update = Actualizar
 technician.task.form.button.delete = Borrar
+technician.task.form.button.publish = Publicar
 
 technician.task.form.placeholder.example = 0.00 - 100.00
 
@@ -27,3 +28,5 @@ technician.task.list.label.description = Descripción
 technician.task.list.label.priority = Prioridad
 
 technician.task.list.button.create = Crear
+technician.task.list.button.link = Vincular
+technician.task.list.button.unlink = Desvincular

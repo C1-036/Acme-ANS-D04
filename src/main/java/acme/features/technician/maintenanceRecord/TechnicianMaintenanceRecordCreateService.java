@@ -15,7 +15,7 @@ import acme.entities.technicians.MaintenanceStatus;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -27,27 +27,42 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 	@Override
 	public void authorise() {
-
-		boolean status;
-		int masterId;
-		MaintenanceRecord maintenanceRecord;
-
-		masterId = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-		status = maintenanceRecord != null && (super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) || !maintenanceRecord.isDraftMode());
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
 		MaintenanceRecord maintenanceRecord;
-		int id;
+		Technician technician;
 
-		id = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
+		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		maintenanceRecord = new MaintenanceRecord();
+		maintenanceRecord.setDraftMode(true);
+		maintenanceRecord.setTechnician(technician);
 
 		super.getBuffer().addData(maintenanceRecord);
+	}
+
+	@Override
+	public void bind(final MaintenanceRecord maintenanceRecord) {
+
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
+
+		maintenanceRecord.setTechnician(technician);
+		maintenanceRecord.setAircraft(super.getRequest().getData("aircraft", Aircraft.class));
+	}
+
+	@Override
+	public void validate(final MaintenanceRecord maintenanceRecord) {
+		;
+	}
+
+	@Override
+	public void perform(final MaintenanceRecord maintenanceRecord) {
+		this.repository.save(maintenanceRecord);
 	}
 
 	@Override
@@ -70,7 +85,6 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		dataset.put("statuses", choicesStatus);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 }

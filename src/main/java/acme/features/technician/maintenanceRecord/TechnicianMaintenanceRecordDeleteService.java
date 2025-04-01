@@ -10,31 +10,37 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.technicians.Involves;
 import acme.entities.technicians.MaintenanceRecord;
 import acme.entities.technicians.MaintenanceStatus;
+import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository repository;
+	private TechnicianMaintenanceRecordRepository	repository;
+
+	@Autowired
+	private TechnicianInvolvesRepository			involvesRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-
 		boolean status;
-		int masterId;
+		int maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
+		Technician technician;
 
-		masterId = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-		status = maintenanceRecord != null && (super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) || !maintenanceRecord.isDraftMode());
+		maintenanceRecordId = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
+		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -42,12 +48,38 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 	@Override
 	public void load() {
 		MaintenanceRecord maintenanceRecord;
-		int id;
+		int maintenanceRecordId;
 
-		id = super.getRequest().getData("id", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
+		maintenanceRecordId = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		super.getBuffer().addData(maintenanceRecord);
+	}
+
+	@Override
+	public void bind(final MaintenanceRecord maintenanceRecord) {
+
+		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+
+		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
+
+		maintenanceRecord.setTechnician(technician);
+		maintenanceRecord.setAircraft(super.getRequest().getData("aircraft", Aircraft.class));
+	}
+
+	@Override
+	public void validate(final MaintenanceRecord maintenanceRecord) {
+		;
+	}
+
+	@Override
+	public void perform(final MaintenanceRecord maintenanceRecord) {
+		Collection<Involves> involves;
+
+		involves = this.involvesRepository.findInvolvesByMaintenanceRecord(maintenanceRecord);
+		this.repository.deleteAll(involves);
+		this.repository.delete(maintenanceRecord);
+
 	}
 
 	@Override
@@ -70,7 +102,6 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		dataset.put("statuses", choicesStatus);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 }
