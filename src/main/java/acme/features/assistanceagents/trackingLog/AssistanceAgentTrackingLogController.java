@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.trackingLog;
+package acme.features.assistanceagents.trackingLog;
 
 import javax.annotation.PostConstruct;
 
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
 import acme.entities.assistanceagents.TrackingLog;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiController
-public class AssistanceAgentTrackingLogController extends AbstractGuiController<AssistanceAgents, TrackingLog> {
+public class AssistanceAgentTrackingLogController extends AbstractGuiController<AssistanceAgent, TrackingLog> {
 
 	// Internal state ---------------------------------------------------------
 

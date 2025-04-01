@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,10 +7,10 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimPublish extends AbstractGuiService<AssistanceAgents, Claim> {
+public class AssistanceAgentClaimUpdate extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AssistanceAgentClaimRepository repository;
@@ -33,13 +33,16 @@ public class AssistanceAgentClaimPublish extends AbstractGuiService<AssistanceAg
 	}
 
 	@Override
+	public void bind(final Claim claim) {
+		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
+	}
+
+	@Override
 	public void validate(final Claim claim) {
-		// LEG???
 	}
 
 	@Override
 	public void perform(final Claim claim) {
-		claim.setDraftMode(false);
 		this.repository.save(claim);
 	}
 

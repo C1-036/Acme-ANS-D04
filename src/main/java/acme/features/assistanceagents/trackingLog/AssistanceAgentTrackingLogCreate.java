@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.trackingLog;
+package acme.features.assistanceagents.trackingLog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,10 +9,10 @@ import acme.entities.assistanceagents.Claim;
 import acme.entities.assistanceagents.ClaimState;
 import acme.entities.assistanceagents.TrackingLog;
 import acme.entities.assistanceagents.TrackingLogState;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<AssistanceAgents, TrackingLog> {
+public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<AssistanceAgent, TrackingLog> {
 
 	@Autowired
 	private AssistanceAgentTrackingLogRepository repository;

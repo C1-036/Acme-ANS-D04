@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,11 +7,10 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
-import acme.entities.assistanceagents.ClaimState;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimCreate extends AbstractGuiService<AssistanceAgents, Claim> {
+public class AssistanceAgentClaimDelete extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AssistanceAgentClaimRepository repository;
@@ -19,25 +18,17 @@ public class AssistanceAgentClaimCreate extends AbstractGuiService<AssistanceAge
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int claimId = super.getRequest().getData("id", int.class);
+		Claim claim = this.repository.findClaimById(claimId);
+		boolean status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent());
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		AssistanceAgents agent;
-		agent = (AssistanceAgents) super.getRequest().getPrincipal().getActiveRealm();
-
-		Claim claim = new Claim();
-		claim.setDraftMode(true);
-		claim.setAssistanceAgent(agent);
-		claim.setAccepted(ClaimState.PENDING);
-
+		int id = super.getRequest().getData("id", int.class);
+		Claim claim = this.repository.findClaimById(id);
 		super.getBuffer().addData(claim);
-	}
-
-	@Override
-	public void bind(final Claim claim) {
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
 	}
 
 	@Override
@@ -46,7 +37,7 @@ public class AssistanceAgentClaimCreate extends AbstractGuiService<AssistanceAge
 
 	@Override
 	public void perform(final Claim claim) {
-		this.repository.save(claim);
+		this.repository.delete(claim);
 	}
 
 	@Override

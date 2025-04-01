@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import javax.annotation.PostConstruct;
 
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
 import acme.entities.assistanceagents.Claim;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiController
-public class AssistanceAgentClaimController extends AbstractGuiController<AssistanceAgents, Claim> {
+public class AssistanceAgentClaimController extends AbstractGuiController<AssistanceAgent, Claim> {
 
 	// Internal state ---------------------------------------------------------
 

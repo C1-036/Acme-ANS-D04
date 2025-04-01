@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.features.assistanceagent.AssistanceAgentRepository;
-import acme.realms.AssistanceAgents;
+import acme.features.assistanceagents.AssistanceAgentRepository;
+import acme.realms.AssistanceAgent;
 
 @Validator
-public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgents> {
+public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
 	@Autowired
 	private AssistanceAgentRepository repository;
@@ -24,7 +24,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 	}
 
 	@Override
-	public boolean isValid(final AssistanceAgents assistanceAgents, final ConstraintValidatorContext context) {
+	public boolean isValid(final AssistanceAgent assistanceAgents, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
@@ -49,7 +49,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 				// Verificamos si ya existe otro manager con el mismo identifier
 				boolean alreadyExists = this.repository.existsByEmployeeCode(identifier);
-				AssistanceAgents existing = this.repository.findByEmployeeCode(identifier);
+				AssistanceAgent existing = this.repository.findByEmployeeCode(identifier);
 
 				// Es válido si no existe o si existe pero es el mismo
 				boolean isUnique = !alreadyExists || existing != null && existing.getId() == assistanceAgents.getId();
