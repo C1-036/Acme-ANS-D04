@@ -34,9 +34,9 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 		boolean mine;
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		mine = super.getRequest().getData("mine", boolean.class);
+		mine = super.getRequest().hasData("mine", boolean.class);
 
-		if (mine == true)
+		if (mine)
 			maintenanceRecords = this.repository.findMaintenanceRecordsByTechnicianId(technicianId);
 		else
 			maintenanceRecords = this.repository.findPublishedMaintenanceRecords();
@@ -47,13 +47,22 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		Dataset dataset;
+		Boolean mine;
+		boolean showCreate = false;
+
+		mine = super.getRequest().hasData("mine");
+
+		if (mine)
+			showCreate = true;
 
 		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate");
 		super.addPayload(dataset, maintenanceRecord, //
-			"estimatedCost", "notes", "aircraft.model", //
+			"estimatedCost", "notes", "draftMode", "aircraft.model", //
 			"aircraft.registrationNumber", "technician.identity.fullName",//
 			"technician.licenseNumber", "technician.phoneNumber");
 
 		super.getResponse().addData(dataset);
+		super.getResponse().addGlobal("mine", mine);
+		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 }

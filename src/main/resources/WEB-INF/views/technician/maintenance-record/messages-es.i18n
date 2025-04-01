@@ -30,5 +30,9 @@ technician.maintenance-record.form.button.create = Crear
 technician.maintenance-record.list.label.moment = Momento del mantenimiento
 technician.maintenance-record.list.label.status = Estado
 technician.maintenance-record.list.label.inspectionDueDate = Próxima inspección
+technician.maintenance-record.list.label.draftMode = Modo borrador
 
 technician.maintenance-record.list.button.create = Crear
+
+technician.maintenance-record.form.error.zero-tasks = Para publicar un registro de mantenimiento, este debe tener al menos una tarea publicada
+technician.maintenance-record.form.error.not-all-tasks-published = Para publicar un registro de mantenimiento, este debe tener todas sus tareas publicadas

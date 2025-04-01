@@ -34,3 +34,13 @@ acme.validation.airline-manager.leg.status.required                        = Deb
 acme.validation.airline-manager.leg.invalid-request 					   = Este tramo del vuelo no existe o no se puede acceder a él.
 acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = No puedes añadir tramos a un vuelo configurado sin autotransbordo. Debes cambiar esta opción antes.
 
+acme.validation.leg.flight-number.format.message 						   = El número de vuelo debe comenzar con el código IATA de la aerolínea seguido de 4 dígitos.
+acme.validation.leg.flight-number.duplicate.message 					   = Ya existe otro tramo con ese número de vuelo.
+acme.validation.leg.valid-leg.overlap 									   = Este tramo se solapa con otro del mismo vuelo.
+acme.validation.leg.valid-leg.time-conflict 							   = La llegada debe ser al menos 1 minuto después de la salida.
+acme.validation.leg.valid-leg.sequence-order							   = Las etapas del vuelo deben estar ordenadas cronológicamente: la llegada de una debe ser anterior a la salida de la siguiente.
+
+acme.validation.technician.wrong-initials-license-number.message = La primera letra debe ser la inicial del nombre y la segunda, la del apellido
+acme.validation.technician.license-number.message  	= Debe tener 2-3 letras mayúsculas seguidas de 6 dígitos (ejemplo: AB123456 o ABC987654)
+acme.validation.technician.phone-number.message =  Debe tener entre 6 y 15 dígitos, opcionalmente comenzando con '+'. (Ejemplo: +123456789 o 987654321)
+

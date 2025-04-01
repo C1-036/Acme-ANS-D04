@@ -34,3 +34,14 @@ acme.validation.airline-manager.leg.status.required                        = You
 acme.validation.airline-manager.leg.invalid-request 					   = This leg does not exist or cannot be accessed.
 acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = You cannot add segments to a flight configured as not self transfer. Please update this setting before adding legs.
 
+
+acme.validation.leg.flight-number.format.message     					   = The flight number must start with the airline's IATA code followed by 4 digits.
+acme.validation.leg.flight-number.duplicate.message  					   = Another leg with the same flight number already exists.
+acme.validation.leg.valid-leg.overlap 									   = This leg overlaps with another one in the same flight.
+acme.validation.leg.valid-leg.time-conflict						           = The arrival must be at least 1 minute after the departure.
+acme.validation.leg.valid-leg.sequence-order 							   = The flight legs must be in chronological order: each arrival must be before the next departure.
+
+acme.validation.technician.wrong-initials-license-number.message = The first letter must match the initial of the first name, and the second must match the initial of the surname 
+acme.validation.technician.licenseNumber.message  	= Must follow the pattern: 2-3 uppercase letters followed by 6 digits (e.g., AB123456 or ABC987654)
+acme.validation.technician.phone-number.message = must have between 6 and 15 digits, optionally starting with '+'. (e.g: +123456789 or 987654321)
+
