@@ -60,7 +60,13 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		assert booking != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("creditCard")) {
+			String card = booking.getCreditCard();
+
+			super.state(!card.isBlank(), "creditCard", "javax.validation.constraints.NotNull.message");
+		}
 	}
 
 	@Override

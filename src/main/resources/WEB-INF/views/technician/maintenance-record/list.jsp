@@ -16,13 +16,13 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="technician.maintenance-record.list.label.moment" path="moment" width="40%"/>
-	<acme:list-column code="technician.maintenance-record.list.label.status" path="status" width="20%"/>
-	<acme:list-column code="technician.maintenance-record.list.label.inspectionDueDate" path="inspectionDueDate" width="40%"/>
+	<acme:list-column code="technician.maintenance-record.list.label.moment" path="moment" width="25%"/>
+	<acme:list-column code="technician.maintenance-record.list.label.status" path="status" width="25%"/>
+	<acme:list-column code="technician.maintenance-record.list.label.inspectionDueDate" path="inspectionDueDate" width="26%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
+<jstl:if test="${showCreate}">
 	<acme:button code="technician.maintenance-record.list.button.create" action="/technician/maintenance-record/create"/>
-</jstl:if>		
+</jstl:if>
 	

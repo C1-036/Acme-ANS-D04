@@ -26,6 +26,7 @@ master.menu.administrator.list-aircrafts = List aircrafts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+master.menu.administrator.list-airlines = Airlines
 
 # master.menu.technician ########################################################
 
@@ -53,6 +54,12 @@ master.menu.airline-manager.my-flights = My Flights
 master.menu.customer = Customer
 master.menu.customer.list.my-bookings = My bookings
 master.menu.customer.list.my-passengers = My passengers
+
+# master.menu.flight-crew-members ##########################################################
+master.menu.flight-crew-members = Flight Crew Member
+master.menu.flight-crew-members.flightAssignmentCompleted = List completed flight assignments 
+master.menu.flight-crew-members.flightAssignmentPlanned = List planned flight assignments 
+master.menu.flight-crew-members.activity-log = List activity logs 
 
 # master.menu.user-account ####################################################
 

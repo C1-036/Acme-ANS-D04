@@ -28,6 +28,7 @@
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
+			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
@@ -43,8 +44,8 @@
 			<acme:menu-suboption code="master.menu.technician.list-my-maintenance-records" action="/technician/maintenance-record/list?mine=true" />			
 			<acme:menu-suboption code="master.menu.technician.list-my-tasks" action="/technician/task/list?mine=true" />
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.technician.list-maintenance-record-catalogue" action="/technician/maintenance-record/list?mine=false" />
-			<acme:menu-suboption code="master.menu.technician.list-task-catalogue" action="/technician/task/list?mine=false" />
+			<acme:menu-suboption code="master.menu.technician.list-maintenance-record-catalogue" action="/technician/maintenance-record/list" />
+			<acme:menu-suboption code="master.menu.technician.list-task-catalogue" action="/technician/task/list" />
 			
 		</acme:menu-option>
 		
@@ -63,6 +64,12 @@
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list.my-bookings" action="/customer/booking/list"/>
 			<acme:menu-suboption code="master.menu.customer.list.my-passengers" action="/customer/passenger/list"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.flight-crew-members" access="hasRealm('FlightCrewMembers')">
+		    <acme:menu-suboption code="master.menu.flight-crew-members.flightAssignmentCompleted" action="/flight-crew-members/flight-assignment/list-completed"/>
+			<acme:menu-suboption code="master.menu.flight-crew-members.flightAssignmentPlanned" action="/flight-crew-members/flight-assignment/list-planned"/>
+			<acme:menu-suboption code="master.menu.flight-crew-members.activity-log" action="/flight-crew-members/activity-log/list"/>
 		</acme:menu-option>
 	</acme:menu-left> 
 

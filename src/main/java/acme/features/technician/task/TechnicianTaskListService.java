@@ -27,19 +27,17 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 	public void authorise() {
 
 		boolean status;
-		Integer masterId;
-		Boolean mine;
-		MaintenanceRecord maintenanceRecord;
-		int technicianId;
+		Integer maintenanceRecordId;
+		MaintenanceRecord maintenanceRecord = null;
 
-		// Obtener parámetros de la petición de forma segura
-		masterId = super.getRequest().hasData("masterId") ? super.getRequest().getData("masterId", int.class) : null;
-		mine = super.getRequest().hasData("mine") ? super.getRequest().getData("mine", boolean.class) : false;
-		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : null;
 
-		if (masterId != null) {
-			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-			status = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
+		if (maintenanceRecordId != null) {
+			maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+			status = maintenanceRecord != null && //
+				(!maintenanceRecord.isDraftMode() || //
+					super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()));
+
 		} else
 			status = true;
 
@@ -51,16 +49,16 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 	public void load() {
 
 		Collection<Task> tasks;
-		Integer masterId;
-		Boolean mine;
+		Integer maintenanceRecordId;
+		boolean mine;
 		int technicianId;
 
-		masterId = super.getRequest().hasData("masterId") ? super.getRequest().getData("masterId", int.class) : null;
-		mine = super.getRequest().hasData("mine") ? super.getRequest().getData("mine", boolean.class) : false;
+		maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ? super.getRequest().getData("maintenanceRecordId", int.class) : null;
+		mine = super.getRequest().hasData("mine");
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		if (masterId != null)
-			tasks = this.repository.findTasksByMasterId(masterId);
+		if (maintenanceRecordId != null)
+			tasks = this.repository.findTasksByMasterId(maintenanceRecordId);
 		else if (mine)
 			tasks = this.repository.findTasksByTechnicianId(technicianId);
 		else
@@ -75,28 +73,30 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 		Dataset dataset;
 
 		dataset = super.unbindObject(task, "type", "priority", "description");
-		super.addPayload(dataset, task, "estimatedDurationHours");
+		super.addPayload(dataset, task, "estimatedDurationHours", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
 
 	@Override
 	public void unbind(final Collection<Task> tasks) {
-		Integer masterId;
+		Integer maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
-		boolean showCreate;
+		boolean showCreate = false;
 		boolean mine;
 
-		masterId = super.getRequest().hasData("masterId") ? super.getRequest().getData("masterId", int.class) : null;
-		mine = super.getRequest().hasData("mine") ? super.getRequest().getData("mine", boolean.class) : false;
+		maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ?//
+			super.getRequest().getData("maintenanceRecordId", int.class) : null;
+		mine = super.getRequest().hasData("mine");
 
-		if (masterId != null) {
-			maintenanceRecord = this.repository.findMaintenanceRecordById(masterId);
-			showCreate = maintenanceRecord != null && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
-		} else
-			showCreate = false;
+		if (maintenanceRecordId != null) {
+			maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+			showCreate = maintenanceRecord != null && maintenanceRecord.isDraftMode() //
+				&& super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
+		} else if (mine)
+			showCreate = true;
 
-		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 		super.getResponse().addGlobal("mine", mine);
 		super.getResponse().addGlobal("showCreate", showCreate);
 	}

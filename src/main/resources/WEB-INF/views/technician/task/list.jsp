@@ -22,6 +22,13 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${showCreate}">
-	<acme:button code="technician.task.list.button.create" action="/technician/task/create?masterId=${masterId}"/>
+
+<jstl:if test="${showCreate && maintenanceRecordId != null}">
+	<acme:button code="technician.task.list.button.create" action="/technician/task/create?maintenanceRecordId=${maintenanceRecordId}"/>
+	<acme:button code="technician.task.list.button.link" action="/technician/involves/create?maintenanceRecordId=${maintenanceRecordId}"/>
+	<acme:button code="technician.task.list.button.unlink" action="/technician/involves/delete?maintenanceRecordId=${maintenanceRecordId}"/>
+	
+</jstl:if>
+<jstl:if test="${showCreate && maintenanceRecordId == null}">
+	<acme:button code="technician.task.list.button.create" action="/technician/task/create"/>
 </jstl:if>

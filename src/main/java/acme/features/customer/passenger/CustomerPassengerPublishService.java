@@ -1,11 +1,14 @@
 
 package acme.features.customer.passenger;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.customers.Booking;
 import acme.entities.customers.CustomerRepository;
 import acme.entities.customers.Passenger;
 import acme.realms.Customer;
@@ -22,7 +25,18 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		Passenger passenger;
+		Customer customer;
+
+		masterId = super.getRequest().getData("id", int.class);
+		passenger = this.repository.findPassengerByPassengerId(masterId);
+		customer = passenger == null ? null : passenger.getCustomer();
+
+		status = passenger != null && passenger.isDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -49,7 +63,16 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void validate(final Passenger passenger) {
-		;
+
+		assert passenger != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("booking")) {
+			Collection<Booking> booking;
+
+			booking = this.repository.findBookingByPassenger(passenger.getId());
+
+			super.state(!booking.isEmpty(), "booking", "javax.validation.constraints.NotNull.message");
+		}
 	}
 
 	@Override
