@@ -1,0 +1,12 @@
+# validation-es.i18n
+
+
+administrator.airline.list.title = Lista de aerolineas
+
+administrator.airline.list.label.name = Nombre
+administrator.airline.list.label.iataCode = Codigo IATA
+administrator.airline.list.label.website = Web
+administrator.airline.list.label.type = Tipo
+administrator.airline.list.label.foundationMoment = Fecha de Fundacion
+administrator.airline.list.label.emailAdress = Email
+administrator.airline.list.label.phoneNumber = Numero de telefono
