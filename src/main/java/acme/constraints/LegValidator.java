@@ -23,10 +23,12 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 		boolean result = true;
 
-		if (leg == null || leg.getFlight() == null || leg.getScheduledDeparture() == null || leg.getScheduledArrival() == null) {
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-			result = false;
-		} else {
+		if (leg == null)
+			return false;
+
+		if (leg.getFlight() == null || leg.getScheduledDeparture() == null || leg.getScheduledArrival() == null)
+			return true;
+		else {
 			Flight flight = leg.getFlight();
 			FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
 			List<Leg> allLegs = repository.findLegsByFlight(flight.getId());
@@ -38,14 +40,14 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				boolean overlaps = MomentHelper.isInRange(leg.getScheduledDeparture(), otherLeg.getScheduledDeparture(), otherLeg.getScheduledArrival());
 
-				super.state(context, !overlaps, "scheduledDeparture", "acme.validation.leg.valid-leg.overlap");
+				super.state(context, !overlaps, "scheduledDeparture", "acme.validation.airline-manager.leg.valid-leg.overlap");
 				result = result && !overlaps;
 			}
 
 			// Validar que scheduledArrival ≥ scheduledDeparture + 1 minuto
 			boolean validDuration = !MomentHelper.isBefore(leg.getScheduledArrival(), MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 1, ChronoUnit.MINUTES));
 
-			super.state(context, validDuration, "scheduledArrival", "acme.validation.leg.valid-leg.time-conflict");
+			super.state(context, validDuration, "scheduledArrival", "acme.validation.airline-manager.leg.valid-leg.time-conflict");
 			result = result && validDuration;
 
 			// Validar que las legs estén en orden cronológico (llegada[i] ≤ salida[i+1])
@@ -60,7 +62,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 				boolean correctOrder = !MomentHelper.isAfter(current.getScheduledArrival(), next.getScheduledDeparture());
 
-				super.state(context, correctOrder, "scheduledArrival", "acme.validation.leg.valid-leg.sequence-order");
+				super.state(context, correctOrder, "scheduledArrival", "acme.validation.airline-manager.leg.valid-leg.sequence-order");
 				result = result && correctOrder;
 			}
 		}

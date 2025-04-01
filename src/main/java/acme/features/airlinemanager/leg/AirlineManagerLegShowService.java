@@ -22,7 +22,6 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airports.Airport;
-import acme.entities.flights.Flight;
 import acme.entities.flights.Leg;
 import acme.entities.flights.LegStatus;
 import acme.realms.AirlineManager;
@@ -40,17 +39,7 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int legId;
-		Leg leg;
-		Flight flight;
-
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(legId);
-		flight = leg == null ? null : leg.getFlight();
-
-		status = leg != null && flight != null && super.getRequest().getPrincipal().hasRealm(flight.getAirlinemanager());
-
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -58,6 +47,18 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 	public void load() {
 		int id = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(id);
+
+		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
+		if (leg == null)
+			return;
+
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean isOwner = leg.getFlight().getAirlinemanager().equals(current);
+
+		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
+		if (!isOwner)
+			return;
+
 		super.getBuffer().addData(leg);
 	}
 

@@ -20,7 +20,7 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealmOfType(Customer.class));
 	}
 
 	@Override
