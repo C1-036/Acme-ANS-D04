@@ -19,7 +19,7 @@
 	<acme:input-textbox code="customer.booking.form.label.locatorCode" path="locatorCode"/>
 	<acme:input-textbox code="customer.booking.form.label.purchaseMoment" path="purchaseMoment"/>
 	<acme:input-textbox code="customer.booking.form.label.travelClass" path="travelClass"/>
-	<acme:input-textbox code="customer.booking.form.label.price" path="price"/>
+	<acme:input-textbox code="customer.booking.form.label.price" path="price" readonly="true"/>
 	<acme:input-textbox code="customer.booking.form.label.creditCard" path="creditCard"/>
 	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
 	
