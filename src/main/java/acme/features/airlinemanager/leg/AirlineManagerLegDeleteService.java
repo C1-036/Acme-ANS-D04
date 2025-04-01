@@ -93,13 +93,6 @@ public class AirlineManagerLegDeleteService extends AbstractGuiService<AirlineMa
 
 		if (!leg.getFlight().isDraftMode())
 			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
-
-		int flightId = leg.getFlight().getId();
-		Collection<Leg> legs = this.repository.findLegsByFlightId(flightId);
-
-		boolean isOnlyLeg = legs.size() == 1;
-		super.state(!isOnlyLeg, "*", "acme.validation.airline-manager.leg.delete.only-one");
-
 	}
 
 	@Override

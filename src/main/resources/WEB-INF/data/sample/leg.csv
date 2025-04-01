@@ -38,3 +38,7 @@ leg-27,DGX0023,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,TRUE,airport-00,airport
 # draft-mode - standard variations
 leg-28,DGX0024,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-25
 leg-29,DGX0025,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-26
+leg-30,DGX0026,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-28
+leg-31,DGX0027,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-29
+leg-32,DGX0028,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-30
+leg-33,DGX0029,2022/09/01 10:00,2022/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-31
