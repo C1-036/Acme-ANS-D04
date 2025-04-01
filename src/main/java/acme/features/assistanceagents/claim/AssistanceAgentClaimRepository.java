@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import java.util.Collection;
 

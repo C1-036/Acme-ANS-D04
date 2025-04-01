@@ -12,6 +12,6 @@
     <acme:list-column code="assistance-agent.claim.list.label.accepted" path="accepted" width="10%"/>  
 </acme:list>  
 
-<jstl:if test="${_command == 'listCompleted'}">  
+<jstl:if test="${acme:anyOf(_command, 'listCompleted||listUndergoing')}">  
     <acme:button code="assistance-agent.claim.form.button.create" action="/assistance-agent/claim/create"/>  
 </jstl:if>  

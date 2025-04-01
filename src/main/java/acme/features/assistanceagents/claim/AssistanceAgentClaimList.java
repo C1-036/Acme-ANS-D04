@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import java.util.Collection;
 
@@ -9,17 +9,13 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimListCompleted extends AbstractGuiService<AssistanceAgents, Claim> {
-
-	// Internal state ---------------------------------------------------------
+public class AssistanceAgentClaimList extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AssistanceAgentClaimRepository repository;
-
-	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -29,13 +25,13 @@ public class AssistanceAgentClaimListCompleted extends AbstractGuiService<Assist
 
 	@Override
 	public void load() {
-		Collection<Claim> completedClaims;
+		Collection<Claim> claims;
 		int assistanceAgentId;
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		completedClaims = this.repository.findCompletedClaimsByAssistanceAgentId(assistanceAgentId);
+		claims = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
 
-		super.getBuffer().addData(completedClaims);
+		super.getBuffer().addData(claims);
 	}
 
 	@Override

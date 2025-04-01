@@ -1,5 +1,5 @@
 
-package acme.features.assistanceagent.claim;
+package acme.features.assistanceagents.claim;
 
 import java.util.Collection;
 
@@ -10,10 +10,10 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.assistanceagents.Claim;
 import acme.entities.flights.Leg;
-import acme.realms.AssistanceAgents;
+import acme.realms.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimListUndergoing extends AbstractGuiService<AssistanceAgents, Claim> {
+public class AssistanceAgentClaimListUndergoing extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	// Internal state ---------------------------------------------------------
 
