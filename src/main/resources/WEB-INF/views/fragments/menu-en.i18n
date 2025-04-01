@@ -56,6 +56,8 @@ master.menu.customer.list.my-passengers = My passengers
 
 # master.menu.flight-crew-members ##########################################################
 master.menu.flight-crew-members = Flight Crew Member
+master.menu.flight-crew-members.flightAssignmentCompleted = List completed flight assignments 
+master.menu.flight-crew-members.flightAssignmentPlanned = List planned flight assignments 
 master.menu.flight-crew-members.activity-log = List activity logs 
 
 # master.menu.user-account ####################################################
