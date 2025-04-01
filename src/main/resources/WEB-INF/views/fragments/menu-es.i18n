@@ -57,6 +57,11 @@ master.menu.customer = Customer
 master.menu.customer.list.my-bookings = Mis reservas
 master.menu.customer.list.my-passengers = Mis pasajeros
 
+# master.menu.flightCrewMember ##########################################################
+
+master.menu.flight-crew-members = Miembro de la tripulación de vuelo
+master.menu.flight-crew-members.activity-log = Ver registros de actividad 
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
