@@ -10,14 +10,14 @@
     <acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>  
     <acme:input-select code="assistance-agent.claim.form.label.accepted" path="accepted" choices="${accepteds}"/> 
     <acme:input-checkbox code="assistance-agent.claim.form.label.draftMode" path="draftMode"/> 
-    <acme:input-textbox code="assistance-agent.claim.form.label.leg" path="leg"/>
+    <acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>
 
     <jstl:choose>    
         <jstl:when test="${_command == 'show' && draftMode == false}">  
-            <acme:button code="assistance-agent.claim.form.button.details" action="/assistance-agent/claim/show?masterId=${id}"/>  
+            <acme:button code="assistance-agent.claim.form.button.details" action="/assistance-agent/claim/show?id=${id}"/>  
         </jstl:when>  
         <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">  
-            <acme:button code="assistance-agent.claim.form.button.details" action="/assistance-agent/claim/show?masterId=${id}"/>  
+            <acme:button code="assistance-agent.claim.form.button.details" action="/assistance-agent/claim/show?id=${id}"/>  
             <acme:submit code="assistance-agent.claim.form.button.update" action="/assistance-agent/claim/update"/>  
             <acme:submit code="assistance-agent.claim.form.button.delete" action="/assistance-agent/claim/delete"/>  
             <acme:submit code="assistance-agent.claim.form.button.publish" action="/assistance-agent/claim/publish"/>  
