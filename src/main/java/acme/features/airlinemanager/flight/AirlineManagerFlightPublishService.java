@@ -32,7 +32,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		Flight flight = this.repository.findFlightById(id);
 		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		boolean status = flight != null && flight.getAirlinemanager().equals(current);
+		boolean status = flight != null && flight.getAirlinemanager().equals(current) && flight.isDraftMode();
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -40,9 +40,6 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	public void load() {
 		int id = super.getRequest().getData("id", int.class);
 		Flight flight = this.repository.findFlightById(id);
-
-		boolean isDraft = flight.isDraftMode();
-		super.state(isDraft, "*", "acme.validation.airline-manager.flight.not-in-draft");
 
 		super.getBuffer().addData(flight);
 	}
@@ -54,8 +51,6 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void validate(final Flight flight) {
-		super.state(flight.isDraftMode(), "*", "acme.validation.airline-manager.flight.not-in-draft");
-
 		int flightId = flight.getId();
 
 		Collection<Leg> legs = this.repository.findLegsByFlightId(flightId);

@@ -42,7 +42,7 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 		Flight flight = this.repository.findFlightById(masterId);
 
 		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
-		boolean status = flight != null && flight.getAirlinemanager().equals(current);
+		boolean status = flight != null && flight.getAirlinemanager().equals(current) && flight.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -51,9 +51,6 @@ public class AirlineManagerFlightDeleteService extends AbstractGuiService<Airlin
 	public void load() {
 		int id = super.getRequest().getData("id", int.class);
 		Flight flight = this.repository.findFlightById(id);
-
-		boolean isDraft = flight.isDraftMode();
-		super.state(isDraft, "*", "acme.validation.airline-manager.flight.not-in-draft");
 
 		super.getBuffer().addData(flight);
 	}
