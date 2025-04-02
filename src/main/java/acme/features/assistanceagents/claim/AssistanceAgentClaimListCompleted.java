@@ -2,6 +2,7 @@
 package acme.features.assistanceagents.claim;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,28 +15,29 @@ import acme.realms.AssistanceAgent;
 @GuiService
 public class AssistanceAgentClaimListCompleted extends AbstractGuiService<AssistanceAgent, Claim> {
 
-	// Internal state ---------------------------------------------------------
-
 	@Autowired
 	private AssistanceAgentClaimRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService ----------------------------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		status = super.getRequest().getPrincipal().hasRealmOfType(AssistanceAgent.class);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<Claim> completedClaims;
+		Collection<Claim> claims;
 		int assistanceAgentId;
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		completedClaims = this.repository.findCompletedClaimsByAssistanceAgentId(assistanceAgentId);
+		claims = this.repository.findCompletedClaimsByAssistanceAgentId(assistanceAgentId);
 
-		super.getBuffer().addData(completedClaims);
+		super.getBuffer().addData(claims);
 	}
 
 	@Override
@@ -44,7 +46,13 @@ public class AssistanceAgentClaimListCompleted extends AbstractGuiService<Assist
 
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "accepted");
 
+		if (claim.isDraftMode()) {
+			final Locale local = super.getRequest().getLocale();
+
+			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
+		} else
+			dataset.put("draftMode", "No");
+
 		super.getResponse().addData(dataset);
 	}
-
 }
