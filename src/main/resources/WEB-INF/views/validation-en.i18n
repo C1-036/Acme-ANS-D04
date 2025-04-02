@@ -46,4 +46,9 @@ acme.validation.technician.wrong-initials-license-number.message = The first let
 acme.validation.technician.licenseNumber.message  	= Must follow the pattern: 2-3 uppercase letters followed by 6 digits (e.g., AB123456 or ABC987654)
 acme.validation.technician.phone-number.message = must have between 6 and 15 digits, optionally starting with '+'. (e.g: +123456789 or 987654321)
 
+acme.validation.technician.maintenance-record.moment-before-inspection=The moment must be before the inspection due date.
+acme.validation.technician.maintenance-record.completed-in-draft=You cannot set the status to COMPLETED while the record is still in draft mode.
+acme.validation.technician.maintenance-record.positive-cost=The estimated cost must be greater than zero.
 
+acme.validation.technician.task.positive-duration=The estimated duration must be greater than zero.
+acme.validation.technician.task.priority-out-of-range=The priority must be between 0 and 10.

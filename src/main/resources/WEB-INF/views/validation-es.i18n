@@ -45,4 +45,9 @@ acme.validation.technician.wrong-initials-license-number.message = La primera le
 acme.validation.technician.license-number.message  	= Debe tener 2-3 letras mayúsculas seguidas de 6 dígitos (ejemplo: AB123456 o ABC987654)
 acme.validation.technician.phone-number.message =  Debe tener entre 6 y 15 dígitos, opcionalmente comenzando con '+'. (Ejemplo: +123456789 o 987654321)
 
+acme.validation.technician.maintenance-record.moment-before-inspection=La fecha del momento debe ser anterior a la fecha de inspección.
+acme.validation.technician.maintenance-record.completed-in-draft=No puedes establecer el estado en COMPLETADO mientras el registro esté en modo borrador.
+acme.validation.technician.maintenance-record.positive-cost=El coste estimado debe ser mayor que cero.
 
+acme.validation.technician.task.positive-duration=La duración estimada debe ser mayor que cero.
+acme.validation.technician.task.priority-out-of-range=La prioridad debe estar entre 0 y 10.

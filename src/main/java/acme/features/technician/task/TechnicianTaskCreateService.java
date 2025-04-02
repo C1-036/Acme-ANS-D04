@@ -64,7 +64,14 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void validate(final Task task) {
-		;
+
+		if (!super.getBuffer().getErrors().hasErrors("estimatedDurationHours"))
+			super.state(task.getEstimatedDurationHours() > 0, "estimatedDurationHours", "acme.validation.technician.task.positive-duration");
+		if (!super.getBuffer().getErrors().hasErrors("priority")) {
+			boolean validPriority = task.getPriority() >= 0 && task.getPriority() <= 10;
+			super.state(validPriority, "priority", "acme.validation.technician.task.priority-out-of-range");
+		}
+
 	}
 
 	@Override
