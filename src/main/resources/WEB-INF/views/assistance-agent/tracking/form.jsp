@@ -17,10 +17,10 @@
     </jstl:if>
 
     <jstl:choose>
-        <jstl:when test="${_command == 'show' && draftMode == false}">
+        <jstl:when test="${_command == 'show'}">
             <acme:button code="assistance-agent.tracking.form.button.add" action="/assistance-agent/trackingLog/add?masterId=${id}"/>
         </jstl:when>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
             <acme:button code="assistance-agent.tracking.form.button.add" action="/assistance-agent/tracking/add?masterId=${id}"/>
             <acme:submit code="assistance-agent.tracking.form.button.update" action="/assistance-agent/tracking/update"/>
             <acme:submit code="assistance-agent.tracking.form.button.delete" action="/assistance-agent/tracking/delete"/>

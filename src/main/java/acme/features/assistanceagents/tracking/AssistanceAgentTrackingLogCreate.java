@@ -24,10 +24,18 @@ public class AssistanceAgentTrackingLogCreate extends AbstractGuiService<Assista
 
 	@Override
 	public void load() {
-		Tracking trackingLog = new Tracking();
 		int claimId = super.getRequest().getData("claimId", int.class);
 		Claim claim = this.repository.findClaimById(claimId);
 
+		boolean isCustomerDissatisfied = this.repository.isCustomerDissatisfied(claimId);
+		boolean hasFullResolutionLog = this.repository.existsTrackingLogWithFullResolution(claimId);
+
+		if (hasFullResolutionLog && !isCustomerDissatisfied) {
+			super.getResponse().setAuthorised(false);
+			return;
+		}
+
+		Tracking trackingLog = new Tracking();
 		trackingLog.setClaim(claim);
 		trackingLog.setResolutionPercentage(0.0);
 		trackingLog.setAccepted(TrackingState.PENDING);

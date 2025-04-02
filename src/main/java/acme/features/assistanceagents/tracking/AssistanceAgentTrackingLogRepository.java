@@ -28,4 +28,7 @@ public interface AssistanceAgentTrackingLogRepository extends AbstractRepository
 	@Query("SELECT t FROM Tracking t WHERE t.id = :id")
 	Tracking findTrackingLogById(int id);
 
+	@Query("SELECT COUNT(t) > 0 FROM Tracking t WHERE t.claim.id = :claimId AND t.customerDissatisfied = true")
+	boolean isCustomerDissatisfied(int claimId);
+
 }
