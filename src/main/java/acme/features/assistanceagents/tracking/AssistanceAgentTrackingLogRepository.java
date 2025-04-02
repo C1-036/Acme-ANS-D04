@@ -13,14 +13,8 @@ import acme.entities.assistanceagents.Tracking;
 @Repository
 public interface AssistanceAgentTrackingLogRepository extends AbstractRepository {
 
-	@Query("SELECT t FROM Tracking t WHERE t.claim.assistanceAgent.id = :assistanceAgentId")
-	Collection<Tracking> findTrackingLogsByAssistanceAgentId(int assistanceAgentId);
-
-	@Query("SELECT t FROM Tracking t WHERE t.claim.id = :claimId ORDER BY t.lastUpdateMoment DESC")
+	@Query("SELECT t FROM Tracking t WHERE t.claim.id = :claimId")
 	Collection<Tracking> findTrackingLogsByClaimId(int claimId);
-
-	@Query("SELECT COUNT(t) > 0 FROM Tracking t WHERE t.claim.id = :claimId AND t.resolutionPercentage = 100")
-	boolean existsTrackingLogWithFullResolution(int claimId);
 
 	@Query("SELECT c FROM Claim c WHERE c.id = :id")
 	Claim findClaimById(int id);

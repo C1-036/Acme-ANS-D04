@@ -46,11 +46,15 @@ public class Tracking extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private TrackingState	accepted;
+	private TrackingState		accepted;
 
 	@ValidString(max = 255)
 	@Automapped
 	private String				resolutionDetails;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
 	// Relationships ----------------------------------------------------------
 	@Mandatory
