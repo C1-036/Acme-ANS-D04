@@ -17,7 +17,7 @@
 
 <acme:form>
 <acme:input-moment code="flight-crew-members.flight-assignment.form.label.lastUpdate" path="lastUpdate" readonly="true"/>
-	<acme:input-select code="flight-crew-members.flight-assignment.form.label.flight-crew-member" path="member" choices= "${members}"/>
+	<acme:input-select code="flight-crew-members.flight-assignment.form.label.flightCrewMember" path="member" choices= "${members}"/>
 	<acme:input-select code="flight-crew-members.flight-assignment.form.label.duty" path="duty" choices= "${duties}"/>	
 	<acme:input-select code="flight-crew-members.flight-assignment.form.label.flightLeg" path="flightLeg" choices= "${legs}"/>
 	<acme:input-select code="flight-crew-members.flight-assignment.form.label.status" path="status" choices= "${statuses}"/>
@@ -26,11 +26,11 @@
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:button code="flight-crew-members.flight-assignment.form.button.leg" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>	
+			<acme:button code="flight-crew-members.flight-assignment.form.button.flightLeg" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>	
 			<acme:button code="flight-crew-members.flight-assignment.form.button.member" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>					
 		</jstl:when> 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
-			<acme:button code="flight-crew-members.flight-assignment.form.button.leg" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>	
+			<acme:button code="flight-crew-members.flight-assignment.form.button.flightLeg" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>	
 			<acme:button code="flight-crew-members.flight-assignment.form.button.member" action="/flight-crew-members/flight-assignment/show?masterId=${id}"/>	
 			<acme:submit code="flight-crew-members.flight-assignment.form.button.update" action="/flight-crew-members/flight-assignment/update"/>
 			<acme:submit code="flight-crew-members.flight-assignment.form.button.delete" action="/flight-crew-members/flight-assignment/delete"/>
@@ -39,5 +39,6 @@
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="flight-crew-members.flight-assignment.form.button.create" action="/flight-crew-members/flight-assignment/create"/>
 		</jstl:when>		
-	</jstl:choose>	
+	</jstl:choose>
 </acme:form>
+
