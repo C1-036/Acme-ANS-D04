@@ -31,28 +31,19 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
-	}
-	@Override
-	public void load() {
 		int masterId = super.getRequest().getData("masterId", int.class);
 		Flight flight = this.repository.findFlightById(masterId);
 		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
 
-		boolean flightExists = flight != null;
-		super.state(flightExists, "*", "acme.validation.airline-manager.leg.invalid-request");
-		if (!flightExists)
-			return;
+		boolean status = flight != null && flight.getAirlinemanager().equals(current) && flight.isDraftMode();
 
-		boolean isOwner = flight.getAirlinemanager().equals(current);
-		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
-		if (!isOwner)
-			return;
+		super.getResponse().setAuthorised(status);
+	}
 
-		boolean isDraft = flight.isDraftMode();
-		super.state(isDraft, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
-		if (!isDraft)
-			return;
+	@Override
+	public void load() {
+		int masterId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
 
 		Leg leg = new Leg();
 		leg.setFlight(flight);
