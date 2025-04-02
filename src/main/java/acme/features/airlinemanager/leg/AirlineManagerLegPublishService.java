@@ -29,33 +29,18 @@ public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean status = leg != null && leg.getFlight().getAirlinemanager().equals(current) && leg.getFlight().isDraftMode() && leg.isDraftMode();
+
 		super.getResponse().setAuthorised(status);
 	}
 	@Override
 	public void load() {
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
-
-		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
-		if (leg == null)
-			return;
-
-		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
-		boolean isOwner = leg.getFlight().getAirlinemanager().equals(current);
-		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
-		if (!isOwner)
-			return;
-
-		boolean flightInDraft = leg.getFlight().isDraftMode();
-		boolean legInDraft = leg.isDraftMode();
-
-		if (!flightInDraft)
-			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
-
-		if (!legInDraft)
-			super.state(false, "*", "acme.validation.airline-manager.leg.leg-not-in-draft");
-
 		super.getBuffer().addData(leg);
 	}
 
@@ -79,8 +64,6 @@ public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void validate(final Leg leg) {
-
-		super.state(leg.isDraftMode(), "*", "acme.validation.airline-manager.leg.already-published");
 
 		boolean validStatus = leg.getStatus() == LegStatus.ON_TIME || leg.getStatus() == LegStatus.DELAYED;
 		super.state(validStatus, "status", "acme.validation.airline-manager.leg.invalid-status-on-publish");
