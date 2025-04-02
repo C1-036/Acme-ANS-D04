@@ -65,8 +65,6 @@ public class AirlineManagerLegPublishService extends AbstractGuiService<AirlineM
 	@Override
 	public void validate(final Leg leg) {
 
-		super.state(leg.isDraftMode(), "*", "acme.validation.airline-manager.leg.already-published");
-
 		boolean validStatus = leg.getStatus() == LegStatus.ON_TIME || leg.getStatus() == LegStatus.DELAYED;
 		super.state(validStatus, "status", "acme.validation.airline-manager.leg.invalid-status-on-publish");
 

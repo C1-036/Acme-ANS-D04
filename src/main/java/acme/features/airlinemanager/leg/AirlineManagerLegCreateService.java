@@ -87,10 +87,8 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 			Collection<Leg> existingLegs = this.repository.findLegsByFlightId(flightId);
 
 			if (!existingLegs.isEmpty()) {
-				// Obtener el último tramo por la salida programada
 				Leg lastLeg = existingLegs.stream().max((l1, l2) -> l1.getScheduledDeparture().compareTo(l2.getScheduledDeparture())).orElse(null);
 
-				// Validar conexión entre tramos
 				boolean isConnected = lastLeg != null && lastLeg.getArrivalAirport().equals(leg.getDepartureAirport());
 
 				super.state(isConnected, "departureAirport", "acme.validation.airline-manager.leg.not-connected-to-previous");
