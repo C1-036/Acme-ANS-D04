@@ -42,8 +42,7 @@ public class AirlineManagerLegShowService extends AbstractGuiService<AirlineMana
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
 		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
-
-		boolean status = leg != null && leg.getFlight().getAirlinemanager().equals(current) && leg.isDraftMode();
+		boolean status = leg != null && leg.getFlight().getAirlinemanager().equals(current);
 
 		super.getResponse().setAuthorised(status);
 	}
