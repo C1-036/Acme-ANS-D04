@@ -15,7 +15,7 @@ assistance-agent.claim.list.label.passengerEmail = Passenger Email
 assistance-agent.claim.list.label.type = Type
 assistance-agent.claim.list.label.accepted = Status
 assistance-agent.claim.list.label.description = Description
-assistance-agent.claim.form.label.draftMode = Draft Mode:
+assistance-agent.claim.form.label.draftMode = Draft Mode
 assistance-agent.claim.form.label.leg = Leg:
 
 # Buttons
