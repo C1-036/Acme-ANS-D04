@@ -40,7 +40,12 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean status = leg != null && leg.getFlight().getAirlinemanager().equals(current) && leg.isDraftMode();
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,25 +53,6 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	public void load() {
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
-
-		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
-		if (leg == null)
-			return;
-
-		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
-		boolean isOwner = leg.getFlight().getAirlinemanager().equals(current);
-		super.state(isOwner, "*", "acme.validation.airline-manager.leg.not-owner");
-		if (!isOwner)
-			return;
-
-		boolean flightInDraft = leg.getFlight().isDraftMode();
-		boolean legInDraft = leg.isDraftMode();
-
-		if (!flightInDraft)
-			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
-
-		if (!legInDraft)
-			super.state(false, "*", "acme.validation.airline-manager.leg.leg-not-in-draft");
 
 		super.getBuffer().addData(leg);
 	}
@@ -96,12 +82,6 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 			boolean isPastOrPresent = MomentHelper.isPresentOrPast(leg.getScheduledDeparture());
 			super.state(!isPastOrPresent, "scheduledDeparture", "acme.validation.airline-manager.leg.departure-in-the-past");
 		}
-
-		if (!leg.isDraftMode())
-			super.state(false, "*", "acme.validation.airline-manager.leg.leg-not-in-draft");
-
-		if (!leg.getFlight().isDraftMode())
-			super.state(false, "*", "acme.validation.airline-manager.leg.flight-not-in-draft");
 
 		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
 			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());

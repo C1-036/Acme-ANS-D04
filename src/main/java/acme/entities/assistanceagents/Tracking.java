@@ -23,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidTrackingLogResolution
-public class TrackingLog extends AbstractEntity {
+public class Tracking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -46,7 +46,7 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private TrackingLogState	accepted;
+	private TrackingState	accepted;
 
 	@ValidString(max = 255)
 	@Automapped
