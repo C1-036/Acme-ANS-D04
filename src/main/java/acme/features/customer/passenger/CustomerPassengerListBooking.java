@@ -33,6 +33,8 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 		passenger = this.repository.findAllPassengerByBooking(bookingId);
 
 		super.getBuffer().addData(passenger);
+		super.getResponse().addGlobal("id", bookingId);
+
 	}
 
 	@Override
@@ -42,5 +44,6 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateBirth");
 		super.addPayload(dataset, passenger, "specialNeeds");
 		super.getResponse().addData(dataset);
+
 	}
 }
