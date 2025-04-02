@@ -28,7 +28,11 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		int id = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(id);
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean status = flight != null && flight.getAirlinemanager().equals(current);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -36,16 +40,6 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	public void load() {
 		int id = super.getRequest().getData("id", int.class);
 		Flight flight = this.repository.findFlightById(id);
-
-		super.state(flight != null, "*", "acme.validation.airline-manager.flight.invalid-request");
-		if (flight == null)
-			return;
-
-		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
-		boolean isOwner = flight.getAirlinemanager().equals(current);
-		super.state(isOwner, "*", "acme.validation.airline-manager.flight.not-owner");
-		if (!isOwner)
-			return;
 
 		boolean isDraft = flight.isDraftMode();
 		super.state(isDraft, "*", "acme.validation.airline-manager.flight.not-in-draft");
@@ -60,6 +54,8 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 
 	@Override
 	public void validate(final Flight flight) {
+		super.state(flight.isDraftMode(), "*", "acme.validation.airline-manager.flight.not-in-draft");
+
 		int flightId = flight.getId();
 
 		Collection<Leg> legs = this.repository.findLegsByFlightId(flightId);
@@ -92,6 +88,13 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		dataset.put("selfTransfer", choices.getSelected().getKey());
 		dataset.put("selfTransfers", choices);
 
+		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
+		dataset.put("scheduledArrival", flight.getScheduledArrival());
+		dataset.put("originCity", flight.getOriginCity());
+		dataset.put("destinationCity", flight.getDestinationCity());
+		dataset.put("layovers", flight.getLayovers());
+
+		dataset.put("id", flight.getId());
 		super.getResponse().addData(dataset);
 	}
 
