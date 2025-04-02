@@ -30,12 +30,15 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void load() {
-		FlightAssignment assignment;
+		FlightAssignment flightAssignment;
+		FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 
-		assignment = new FlightAssignment();
-		assignment.setDraftMode(true);
+		flightAssignment = new FlightAssignment();
+		flightAssignment.setFlightCrewMember(flightCrewMember);
+		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
+		flightAssignment.setDraftMode(false);
+		super.getBuffer().addData(flightAssignment);
 
-		super.getBuffer().addData(assignment);
 	}
 
 	@Override
@@ -45,7 +48,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		int memberId;
 		FlightCrewMembers member;
 
-		legId = super.getRequest().getData("leg", int.class);
+		legId = super.getRequest().getData("flightLeg", int.class);
 		leg = this.repository.findLegById(legId);
 		memberId = super.getRequest().getData("member", int.class);
 		member = this.repository.findFlightCrewMemberById(memberId);

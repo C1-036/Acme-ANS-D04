@@ -101,6 +101,8 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		dataset.put("status", choicesStatus.getSelected().getKey());
 		dataset.put("statuses", choicesStatus);
 
+		dataset.put("id", maintenanceRecord.getId());
+
 		super.getResponse().addData(dataset);
 	}
 

@@ -4,11 +4,11 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
-import acme.entities.assistanceagents.TrackingLog;
-import acme.entities.assistanceagents.TrackingLogState;
+import acme.entities.assistanceagents.Tracking;
+import acme.entities.assistanceagents.TrackingState;
 import acme.internals.helpers.HibernateHelper;
 
-public class TrackingLogResolutionValidator extends AbstractValidator<ValidTrackingLogResolution, TrackingLog> {
+public class TrackingLogResolutionValidator extends AbstractValidator<ValidTrackingLogResolution, Tracking> {
 
 	@Override
 	public void initialise(final ValidTrackingLogResolution annotation) {
@@ -16,7 +16,7 @@ public class TrackingLogResolutionValidator extends AbstractValidator<ValidTrack
 	}
 
 	@Override
-	public boolean isValid(final TrackingLog trackingLog, final ConstraintValidatorContext context) {
+	public boolean isValid(final Tracking trackingLog, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
@@ -24,10 +24,10 @@ public class TrackingLogResolutionValidator extends AbstractValidator<ValidTrack
 		if (trackingLog == null)
 			result = true;
 		else {
-			TrackingLogState state = trackingLog.getAccepted();
+			TrackingState state = trackingLog.getAccepted();
 			String resolutionDetails = trackingLog.getResolutionDetails();
 
-			boolean requiresResolution = state == TrackingLogState.ACCEPTED || state == TrackingLogState.REJECTED;
+			boolean requiresResolution = state == TrackingState.ACCEPTED || state == TrackingState.REJECTED;
 			boolean hasResolutionDetails = resolutionDetails != null && !resolutionDetails.trim().isEmpty();
 
 			result = !requiresResolution || hasResolutionDetails;

@@ -1,7 +1,7 @@
 
 package acme.entities.assistanceagents;
 
-public enum TrackingLogState {
+public enum TrackingState {
 
 	ACCEPTED, REJECTED, PENDING
 

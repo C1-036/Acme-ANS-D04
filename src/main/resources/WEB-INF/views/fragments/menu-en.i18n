@@ -33,8 +33,15 @@ master.menu.administrator.list-airlines = Airlines
 master.menu.technician = Technician
 master.menu.technician.list-my-maintenance-records= List my maintenance records
 master.menu.technician.list-my-tasks = List my tasks
-master.menu.technician.list-maintenance-record-catalogue = List maintenance record catalogue
-master.menu.technician.list-task-catalogue = List task catalogue
+master.menu.technician.list-maintenance-record-catalogue = List published maintenance records
+master.menu.technician.list-task-catalogue = List published tasks
+
+# master.menu.assistance-agent ########################################################
+
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.my-completed-claim-list = List completed claims
+master.menu.assistance-agent.my-undergoing-claim-list = List undergoing claims
+master.menu.assistance-agent.my-tracking-logs = List tracking logs
 
 # master.menu.provider ########################################################
 
@@ -49,6 +56,10 @@ master.menu.consumer.favourite-link = Favourite link
 # master.menu.airlinemanager ##########################################################
 master.menu.airline-manager = Airline Manager
 master.menu.airline-manager.my-flights = My Flights
+
+# master.menu.assistanceagent ##########################################################
+master.menu.assistanceagent = Assistance Agent
+master.menu.assistanceagent.my-trackingLogs = My Tracking Logs
 
 # master.menu.customer ##########################################################
 master.menu.customer = Customer
