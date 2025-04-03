@@ -4,7 +4,7 @@
 
 <acme:form>
     <acme:input-textbox code="passenger.booking.form.label.booking"
-        path="bookingReference" readonly="true"/>
+        path="booking.locatorCode" readonly="true"/>
     <acme:input-select code="passenger.booking.form.label.passenger"
         path="passenger" choices="${passengers}" />
 
