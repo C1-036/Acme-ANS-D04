@@ -12,10 +12,10 @@ import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 
 @GuiService
-public class AircraftAdministratorListService extends AbstractGuiService<Administrator, Aircraft> {
+public class AdministratorAircraftListService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	private AircraftAdministratorRepository repository;
+	private AdministratorAircraftRepository repository;
 
 
 	@Override
@@ -36,8 +36,8 @@ public class AircraftAdministratorListService extends AbstractGuiService<Adminis
 	public void unbind(final Aircraft aircraft) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "passengerCapacity", "cargoWeight", "status");
-		super.addPayload(dataset, aircraft, "details");
+		dataset = super.unbindObject(aircraft, "model", "passengerCapacity", "status");
+		super.addPayload(dataset, aircraft, "registrationNumber", "cargoWeight", "details");
 
 		super.getResponse().addData(dataset);
 	}

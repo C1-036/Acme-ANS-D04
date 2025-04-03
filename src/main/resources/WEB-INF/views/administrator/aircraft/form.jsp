@@ -21,14 +21,14 @@
 	<acme:input-integer code="administrator.aircraft.form.label.passengerCapacity" path="passengerCapacity"/>
 	<acme:input-integer code="administrator.aircraft.form.label.cargoWeight" path="cargoWeight"/>
 	<acme:input-select code="administrator.aircraft.form.label.status" path="status" choices= "${statuses}"/>
+	<acme:input-select code="administrator.aircraft.form.label.airline" path="airline" choices= "${airlines}"/>
 	<acme:input-textarea code="administrator.aircraft.form.label.details" path="details"/>
 	
 	
 	<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+			<acme:input-checkbox code="administrator.aircraft.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="administrator.aircraft.form.button.update" action="/administrator/aircraft/update"/>
-			<acme:submit code="administrator.aircraft.form.button.delete" action="/administrator/aircraft/delete"/>
-			<acme:submit code="administrator.aircraft.form.button.publish" action="/administrator/aircraft/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:input-checkbox code="administrator.aircraft.form.label.confirmation" path="confirmation"/>

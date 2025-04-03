@@ -1,19 +1,24 @@
 
 package acme.features.administrator.aircraft;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.aircraft.AircraftStatus;
+import acme.entities.airline.Airline;
 
 @GuiService
-public class AircraftAdministratorDeleteService extends AbstractGuiService<Administrator, Aircraft> {
+public class AdministratorAircraftShowService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	private AircraftAdministratorRepository repository;
+	private AdministratorAircraftRepository repository;
 
 
 	@Override
@@ -33,27 +38,22 @@ public class AircraftAdministratorDeleteService extends AbstractGuiService<Admin
 	}
 
 	@Override
-	public void bind(final Aircraft aircraft) {
-		super.bindObject(aircraft, "model", "registrationNumber", "passengerCapacity", "cargoWeight", "status", "details");
-	}
-
-	@Override
-	public void validate(final Aircraft aircraft) {
-		super.state(true, "*", "administrator.aircraft.delete.aircraft-linked");
-	}
-
-	@Override
-	public void perform(final Aircraft aircraft) {
-		this.repository.delete(aircraft);
-	}
-
-	@Override
 	public void unbind(final Aircraft aircraft) {
 		Dataset dataset;
+		SelectChoices statuses;
+		SelectChoices selectedAirlines;
+		Collection<Airline> airlines;
+
+		statuses = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
+		airlines = this.repository.findAllAirlines();
+		selectedAirlines = SelectChoices.from(airlines, "name", aircraft.getAirline());
 
 		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "passengerCapacity", "cargoWeight", "status", "details");
+		dataset.put("confirmation", false);
+		dataset.put("statuses", statuses);
+		dataset.put("airlines", selectedAirlines);
+		dataset.put("airline", selectedAirlines.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}
-
 }
