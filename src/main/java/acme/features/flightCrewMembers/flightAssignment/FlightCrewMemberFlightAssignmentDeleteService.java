@@ -57,7 +57,7 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		Integer memberId;
 		FlightCrewMembers member;
 
-		legId = super.getRequest().getData("leg", int.class);
+		legId = super.getRequest().getData("flightLeg", int.class);
 		leg = this.repository.findLegById(legId);
 		memberId = super.getRequest().getData("member", int.class);
 		member = this.repository.findFlightCrewMemberById(memberId);

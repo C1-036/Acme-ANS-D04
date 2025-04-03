@@ -23,9 +23,10 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 		assert context != null;
 
 		boolean result;
-		if (log == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		boolean isNull;
+		isNull = log == null || log.getFlightAssignment() == null || log.getFlightAssignment().getFlightLeg() == null;
+
+		if (!isNull) {
 			Leg leg = log.getFlightAssignment().getFlightLeg();
 			Date endMoment = leg.getScheduledArrival();
 			Date registrationMoment = log.getRegistrationMoment();
