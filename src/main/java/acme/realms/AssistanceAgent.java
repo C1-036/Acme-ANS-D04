@@ -28,7 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAssistanceAgent
-public class AssistanceAgents extends AbstractRealm {
+public class AssistanceAgent extends AbstractRealm {
 
 	private static final long	serialVersionUID	= 1L;
 

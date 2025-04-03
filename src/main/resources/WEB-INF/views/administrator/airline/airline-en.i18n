@@ -10,3 +10,11 @@ administrator.airline.list.label.type = Type
 administrator.airline.list.label.foundationMoment = Foundation Moment
 administrator.airline.list.label.emailAdress = Email
 administrator.airline.list.label.phoneNumber = Phone Number
+
+
+administrator.airline.form.label.name = Name
+administrator.airline.form.label.iataCode = Iata Code
+administrator.airline.form.label.website = Website
+administrator.airline.form.label.type = Type
+administrator.airline.form.label.emailAdress = Email Adress
+administrator.airline.form.label.phoneNumber = Phone number

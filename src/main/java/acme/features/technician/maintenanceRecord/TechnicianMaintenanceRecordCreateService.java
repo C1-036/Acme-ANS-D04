@@ -57,7 +57,22 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		;
+
+		if (!super.getBuffer().getErrors().hasErrors("moment") && !super.getBuffer().getErrors().hasErrors("inspectionDueDate")) {
+			boolean momentBeforeInspection = maintenanceRecord.getMoment().before(maintenanceRecord.getInspectionDueDate());
+			super.state(momentBeforeInspection, "inspectionDueDate", "acme.validation.technician.maintenance-record.moment-before-inspection");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("status")) {
+			boolean validStatus = !(maintenanceRecord.isDraftMode() && maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED));
+			super.state(validStatus, "status", "acme.validation.technician.maintenance-record.completed-in-draft");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("estimatedCost")) {
+			boolean positiveCost = maintenanceRecord.getEstimatedCost().getAmount() != null && maintenanceRecord.getEstimatedCost().getAmount() > 0;
+			super.state(positiveCost, "estimatedCost", "acme.validation.technician.maintenance-record.positive-cost");
+		}
+
 	}
 
 	@Override
