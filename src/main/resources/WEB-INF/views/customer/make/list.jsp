@@ -21,4 +21,4 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<acme:button code="customer.passenger.list.button.link" action="/customer/make/create?bookingId=${id}" />
+<acme:button code="customer.passenger.list.button.link" action="/customer/make/create?bookingId=${bookingId}" />

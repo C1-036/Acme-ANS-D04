@@ -46,6 +46,7 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 		make = new Make();
 		make.setBooking(booking);
 		super.getBuffer().addData(make);
+		super.getResponse().addGlobal("bookingId", bookingId);
 	}
 
 	@Override
@@ -58,6 +59,7 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 
 		super.bindObject(make, "passenger");
 		make.setBooking(booking);
+		super.getResponse().addGlobal("bookingId", bookingId);
 	}
 
 	@Override

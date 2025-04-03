@@ -11,6 +11,8 @@
 passenger.booking.form.label.booking = Booking
 passenger.booking.form.label.passenger = Passenger
 
+customer.make.form.title = Link Booking and Passenger
+
 customer.make.form.button.link = Link
 
 customer.make.form.button.unlink = Unlink
@@ -18,5 +20,7 @@ customer.make.form.button.unlink = Unlink
 passenger.booking.list.label.booking = Booking
 
 passenger.booking.list.label.passenger = Passenger 
+
+customer.passenger.list.button.link = Link
 
 customer.passenger.list.button.link = Link
