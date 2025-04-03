@@ -41,3 +41,7 @@ flight-30,Lorem ipsum dolor sit amet,SELF_TRANSFER,EUR 500000.00,"Lorem ipsum do
 flight-31,"Lorem ipsum dolor sit amet,",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,airline-manager1
 # flight without legs
 flight-32,"Lorem ipsum dolor sit amet, c",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
+# flight for validation for claims
+flight-33,"Lorem ipsum dolor sit amet, c",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
+flight-34,"Lorem ipsum dolor sit amet, co",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
+flight-35,"Lorem ipsum dolor sit amet, con",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
