@@ -1,39 +1,39 @@
-key,fullName,email,passportNumber,dateBirth,specialNeeds
+key,fullName,email,passportNumber,dateBirth,specialNeeds,draftMode,key:customer
 #base entity
-passenger-01,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-01,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
 # fullName standard variations
-passenger-02,L,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-03,Lo,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-04,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-05,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-06,โลเร็ม อิปซัม,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-07,لوريم إيبسوم,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-08,洛伦·伊普森,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-09,<marquee>Hacked</marquee>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-10,<script>alert(‘Hacked!’);</script>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-11,' or 'A' = 'A ,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-# email standard variations
-passenger-12,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-13,Lorem ipsum dolor sit ame,acmepassword@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-14,Lorem ipsum dolor sit ame,a@b.e,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-15,Lorem ipsum dolor sit ame,a@b.es,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-16,Lorem ipsum dolor sit ame,a@b.esx,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-17,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-18,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-02,L,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-03,Lo,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,TRUE,customer-01
+passenger-04,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-05,Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-06,โลเร็ม อิปซัม,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-07,لوريم إيبسوم,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-08,洛伦·伊普森,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-09,<marquee>Hacked</marquee>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-10,<script>alert(‘Hacked!’);</script>,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-11,' or 'A' = 'A ,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+# email standard variations,true,customer-01
+passenger-12,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-13,Lorem ipsum dolor sit ame,acmepassword@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-14,Lorem ipsum dolor sit ame,a@b.e,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-15,Lorem ipsum dolor sit ame,a@b.es,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-01
+passenger-16,Lorem ipsum dolor sit ame,a@b.esx,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-17,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-18,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 # passportNumber standard variations
-passenger-19,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,A1B2C3,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-20,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-21,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,1234ABCD,2002/03/05 18:00,Lorem ipsum dolor sit ame
-passenger-22,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,ABCDEFG12,2002/03/05 18:00,Lorem ipsum dolor sit ame
+passenger-19,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,A1B2C3,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-20,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-21,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,1234ABCD,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-22,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,ABCDEFG12,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 # dateBirth standard variations
-passenger-23,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2000/01/01 0:00,Lorem ipsum dolor sit ame
-passenger-24,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2000/01/01 0:01,Lorem ipsum dolor sit ame
-passenger-25,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2024/12/31 23:59,Lorem ipsum dolor sit ame
-passenger-26,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2025/01/01 0:00,Lorem ipsum dolor sit ame
+passenger-23,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-24,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2000/01/01 0:01,Lorem ipsum dolor sit ame,true,customer-02
+passenger-25,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2024/12/31 23:59,Lorem ipsum dolor sit ame,true,customer-02
+passenger-26,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2025/01/01 0:00,Lorem ipsum dolor sit ame,true,customer-02
 #specialNeeds standard variations
-passenger-27,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,L
-passenger-28,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lo
-passenger-29,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscin
-passenger-30,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscing
+passenger-27,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,L,true,customer-02
+passenger-28,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lo,true,customer-02
+passenger-29,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscin,true,customer-02
+passenger-30,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit amet consectetur adipiscing,true,customer-02
 
 

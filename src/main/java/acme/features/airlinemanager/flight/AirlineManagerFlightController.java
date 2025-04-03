@@ -1,5 +1,5 @@
 /*
- * AuthenticatedAnnouncementController.java
+ * 
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -27,10 +27,22 @@ public class AirlineManagerFlightController extends AbstractGuiController<Airlin
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerFlightListService	listService;
+	private AirlineManagerFlightListService		listService;
 
 	@Autowired
-	private AirlineManagerFlightShowService	showService;
+	private AirlineManagerFlightShowService		showService;
+
+	@Autowired
+	private AirlineManagerFlightCreateService	createService;
+
+	@Autowired
+	private AirlineManagerFlightUpdateService	updateService;
+
+	@Autowired
+	private AirlineManagerFlightDeleteService	deleteService;
+
+	@Autowired
+	private AirlineManagerFlightPublishService	publishService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -39,6 +51,12 @@ public class AirlineManagerFlightController extends AbstractGuiController<Airlin
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
+
+		super.addCustomCommand("publish", "update", this.publishService);
+
 	}
 
 }

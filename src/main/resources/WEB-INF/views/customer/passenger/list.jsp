@@ -22,4 +22,20 @@
 	<acme:list-column code="customer.passenger.list.label.dateBirth" path="dateBirth" width="10%"/>
 	<acme:list-column code="customer.passenger.list.label.specialNeeds" path="specialNeeds" width="10%"/>	
 	<acme:list-payload path="payload"/>
-</acme:list>
+	</acme:list>
+	
+	<jstl:if test="${_command == 'list'}">
+	<acme:button code="customer.passenger.list.button.create" action="/customer/passenger/create"/>
+	</jstl:if>	
+	
+		<jstl:if test="${_command == 'list-booking'}">
+	<acme:button code="customer.make.list.button.create" action="/customer/passenger/create?bookingId=${bookingId}"/>
+	<acme:button code="customer.make.list.button.link" action="/customer/make/create?bookingId=${bookingId}"/>
+	<acme:button code="customer.make.list.button.unlink" action="/customer/make/delete?bookingId=${bookingId}"/>
+	</jstl:if>
+
+
+
+
+
+

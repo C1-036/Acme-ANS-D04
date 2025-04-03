@@ -20,7 +20,7 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealmOfType(Customer.class));
 	}
 
 	@Override
@@ -33,6 +33,8 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 		passenger = this.repository.findAllPassengerByBooking(bookingId);
 
 		super.getBuffer().addData(passenger);
+		super.getResponse().addGlobal("bookingId", bookingId);
+
 	}
 
 	@Override
@@ -42,5 +44,6 @@ public class CustomerPassengerListBooking extends AbstractGuiService<Customer, P
 		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "dateBirth");
 		super.addPayload(dataset, passenger, "specialNeeds");
 		super.getResponse().addData(dataset);
+
 	}
 }

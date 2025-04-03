@@ -30,5 +30,9 @@ technician.maintenance-record.form.button.create = Create
 technician.maintenance-record.list.label.moment = Maintenance moment
 technician.maintenance-record.list.label.status = Status
 technician.maintenance-record.list.label.inspectionDueDate = Inspection due date
+technician.maintenance-record.list.label.draftMode = Draft mode
 
 technician.maintenance-record.list.button.create = Create
+
+technician.maintenance-record.form.error.zero-tasks = In order to publish a maintenance record, it must have at least one published task
+technician.maintenance-record.form.error.not-all-tasks-published = In order to publish a maintenance record, it must have all it tasks published

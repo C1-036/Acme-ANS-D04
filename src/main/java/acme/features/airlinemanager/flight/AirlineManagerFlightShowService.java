@@ -1,5 +1,5 @@
 /*
- * AuthenticatedAnnouncementShowService.java
+ * 
  *
  * Copyright (C) 2012-2025 Rafael Corchuelo.
  *
@@ -12,16 +12,14 @@
 
 package acme.features.airlinemanager.flight;
 
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
+import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
+import acme.entities.flights.Indication;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -37,26 +35,19 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int id;
-		Flight flight;
-		Date deadline;
+		int masterId = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
 
-		id = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(id);
-		deadline = MomentHelper.deltaFromCurrentMoment(-30, ChronoUnit.DAYS);
-		status = MomentHelper.isAfter(flight.getScheduledArrival(), deadline);
+		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status = flight != null && flight.getAirlinemanager().equals(current);
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Flight flight;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlightById(id);
+		int id = super.getRequest().getData("id", int.class);
+		Flight flight = this.repository.findFlightById(id);
 
 		super.getBuffer().addData(flight);
 	}
@@ -65,7 +56,11 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "tag", "cost", "description");
+		SelectChoices choices = SelectChoices.from(Indication.class, flight.getSelfTransfer());
+
+		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description", "draftMode");
+		dataset.put("selfTransfer", choices.getSelected().getKey());
+		dataset.put("selfTransfers", choices);
 
 		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
 		dataset.put("scheduledArrival", flight.getScheduledArrival());
@@ -73,6 +68,7 @@ public class AirlineManagerFlightShowService extends AbstractGuiService<AirlineM
 		dataset.put("destinationCity", flight.getDestinationCity());
 		dataset.put("layovers", flight.getLayovers());
 
+		dataset.put("id", flight.getId());
 		super.getResponse().addData(dataset);
 	}
 

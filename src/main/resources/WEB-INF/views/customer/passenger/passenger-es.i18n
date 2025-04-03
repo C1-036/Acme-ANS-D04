@@ -1,4 +1,4 @@
-# validation-en.i18n
+# validation-es.i18n
 #
 # Copyright (C) 2012-2025 Rafael Corchuelo.
 #
@@ -9,6 +9,7 @@
 # they accept any liabilities with respect to them.
 
 customer.passenger.list.title = Lista de pasajeros
+customer.passenger.form.title = Formulario de pasajeros
 
 customer.passenger.list.label.fullName = Nombre completo
 customer.passenger.list.label.email = Correo electrónico
@@ -25,3 +26,15 @@ customer.passenger.form.label.dateBirth = Fecha de nacimiento
 customer.passenger.form.label.specialNeeds = Necesidades especiales
 
 customer.booking.form.button.passenger = Pasajeros
+
+customer.passenger.list.button.create = Crear 
+customer.passenger.form.button.create = Crear
+
+customer.passenger.form.button.update = Actualizar
+customer.passenger.form.button.publish = Publicar
+
+customer.make.list.button.create = Crear
+
+customer.make.list.button.link = Unir
+
+customer.make.list.button.unlink = Desunir
