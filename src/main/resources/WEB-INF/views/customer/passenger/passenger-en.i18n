@@ -31,3 +31,10 @@ customer.passenger.form.button.create = Create
 
 customer.passenger.form.button.update = Update
 customer.passenger.form.button.publish = Publish
+
+
+customer.make.list.button.create = Create
+
+customer.make.list.button.link = Link
+
+customer.make.list.button.unlink = UnLink

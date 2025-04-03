@@ -12,11 +12,11 @@
 	<jstl:choose>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customer.make.form.button.link"
-             action="/customer/make/create?bookingId=${id}" />
+             action="/customer/make/create?bookingId=${bookingId}" />
 		</jstl:when>
 		<jstl:when test="${_command == 'delete'}">
 			<acme:submit code="customer.make.form.button.unlink"
-				action="/customer/make/delete" />
+				action="/customer/make/delete?bookingId=${bookingId}" />
 		</jstl:when>
 	</jstl:choose>
 </acme:form>
