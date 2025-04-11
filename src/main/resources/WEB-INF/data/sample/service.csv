@@ -13,12 +13,12 @@ service9,<marquee>Hacked</marquee>,http://lorem.com/ipsum,50.00,VDGH-25,50.00
 service10,<script>alert(‘Hacked!’),http://lorem.com/ipsum,50.00,SGBT-25,50.00
 service11,' or 'A' = 'A,http://lorem.com/ipsum,50.00,STNJ-25,50.00
 #picture standard variations
-service12,Lorem ipsum dolor sit ame,ftp://a,50.00,DSGT-25,50.00
-service13,Lorem ipsum dolor sit ame,ftp://a.b,50.00,FSTG-25,50.00
+service12,Lorem ipsum dolor sit ame,https://acme.com/a,50.00,DSGT-25,50.00
+service13,Lorem ipsum dolor sit ame,https://a.b,50.00,FSTG-25,50.00
 service14,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/,50.00,FRSV-25,50.00
 service15,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit/amet/consectetur/adipiscing/elit/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X,50.00,FKAB-25,50.00
 service16,Lorem ipsum dolor sit ame,https://www.lorem-ipsum.org,50.00,FRAS-25,50.00
-service17,Lorem ipsum dolor sit ame,ftp://www.lorem-ipsum.org,50.00,FRAD-25,50.00
+service17,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org,50.00,FRAD-25,50.00
 service18,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html,50.00,FRAF-25,50.00
 service19,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html#dolor,50.00,FRAG-25,50.00
 service20,Lorem ipsum dolor sit ame,http://example.org?a=1&b=2,50.00,FRAH-25,50.00
