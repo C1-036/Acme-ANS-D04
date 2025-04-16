@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
+import acme.entities.customers.Passenger;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
@@ -23,13 +24,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	@Override
 	public void authorise() {
 		boolean status;
-		int bookingId;
+		int customerId;
 		Booking booking;
+		Customer customer;
 
-		bookingId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(bookingId);
+		customerId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(customerId);
 
-		status = booking != null;
+		customer = booking == null ? null : booking.getCustomer();
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -66,6 +70,15 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			String card = booking.getCreditCard();
 
 			super.state(!card.isBlank(), "creditCard", "javax.validation.constraints.NotNull.message");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("passenger")) {
+			Collection<Passenger> passengers;
+
+			passengers = this.repository.findAllPassengerBooking(booking.getId());
+
+			super.state(!passengers.isEmpty(), "passengers", "acme.validation.customer.booking.no-associated-passenger"); //El mensaje esta mal,
+
 		}
 	}
 

@@ -1,14 +1,11 @@
 
 package acme.features.customer.passenger;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.customers.Booking;
 import acme.entities.customers.CustomerRepository;
 import acme.entities.customers.Passenger;
 import acme.realms.Customer;
@@ -64,15 +61,17 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 	@Override
 	public void validate(final Passenger passenger) {
 
-		assert passenger != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("booking")) {
-			Collection<Booking> booking;
-
-			booking = this.repository.findBookingByPassenger(passenger.getId());
-
-			super.state(!booking.isEmpty(), "booking", "javax.validation.constraints.NotNull.message");
-		}
+		/*
+		 * assert passenger != null;
+		 * 
+		 * if (!super.getBuffer().getErrors().hasErrors("booking")) { //Un pasajero solo puede publicarse si tiene un booking asociado
+		 * Collection<Booking> booking;
+		 * 
+		 * booking = this.repository.findBookingByPassenger(passenger.getId());
+		 * 
+		 * super.state(!booking.isEmpty(), "booking", "javax.validation.constraints.NotNull.message");
+		 * }
+		 */ //Creo que no tiene sentido.
 	}
 
 	@Override

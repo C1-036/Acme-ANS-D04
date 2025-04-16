@@ -54,3 +54,8 @@ acme.validation.technician.maintenance-record.positive-cost=El coste estimado de
 
 acme.validation.technician.task.positive-duration=La duración estimada debe ser mayor que cero.
 acme.validation.technician.task.priority-out-of-range=La prioridad debe estar entre 0 y 10.
+
+
+
+
+acme.validation.customer.booking.no-associated-passenger = La reserva debe tener mínimo un pasajero asociado.
