@@ -34,5 +34,4 @@ customer.booking.list.button.create = Crear
 
 customer.booking.form.button.update = Actualizar
 customer.booking.form.button.publish = Publicar
-
-c
+customer.booking.form.button.delete = Eliminar

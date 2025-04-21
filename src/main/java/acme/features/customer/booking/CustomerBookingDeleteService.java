@@ -10,12 +10,13 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
+import acme.entities.customers.Make;
 import acme.entities.customers.TravelClass;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingShowService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
 	private CustomerBookingRepository repository;
@@ -39,14 +40,30 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void load() {
-		Booking booking;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(id);
+		int id = super.getRequest().getData("id", int.class);
+		Booking booking = this.repository.findBookingById(id);
 
 		super.getBuffer().addData(booking);
+	}
 
+	@Override
+	public void bind(final Booking booking) {
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard");
+
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+		;
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		Collection<Make> make;
+
+		make = this.repository.findAllMakeByBooking(booking.getId());
+		this.repository.deleteAll(make);
+		this.repository.delete(booking);
 	}
 
 	@Override
@@ -61,14 +78,13 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
 		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "creditCard", "customer", "flight", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard", "customer", "flight", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClass", choices2.getSelected().getKey());
 		dataset.put("travelClasss", choices2);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 }

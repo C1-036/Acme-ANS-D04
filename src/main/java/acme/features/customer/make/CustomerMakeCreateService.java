@@ -31,7 +31,18 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int bookingId;
+		Booking booking;
+		Customer customer;
+
+		bookingId = super.getRequest().getData("bookingId", int.class);
+		booking = this.bookingRepository.findBookingById(bookingId);
+
+		customer = booking == null ? null : booking.getCustomer();
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

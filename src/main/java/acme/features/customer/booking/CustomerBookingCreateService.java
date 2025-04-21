@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
+import acme.entities.customers.TravelClass;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
@@ -72,14 +73,18 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights;
 		SelectChoices choices;
 		Dataset dataset;
+		SelectChoices choices2;
 
 		flights = this.repository.findAllFlights();
 
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
+		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "creditCard");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("travelClass", choices2.getSelected().getKey());
+		dataset.put("travelClasss", choices2);
 
 		super.getResponse().addData(dataset);
 
