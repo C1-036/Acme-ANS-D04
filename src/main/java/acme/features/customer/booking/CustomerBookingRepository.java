@@ -39,4 +39,7 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("Select m from Make m where m.booking.id = :bookingId")
 	Collection<Make> findAllMakeByBooking(int bookingId);
+
+	@Query("Select COUNT(b) > 0 from Booking b WHERE b.locatorCode = :locatorCode")
+	boolean existsByLocatorCode(String locatorCode);
 }

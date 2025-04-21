@@ -57,5 +57,5 @@ acme.validation.technician.task.priority-out-of-range=La prioridad debe estar en
 
 
 
-
-acme.validation.customer.booking.no-associated-passenger = La reserva debe tener mínimo un pasajero asociado.
+acme.validation.customer.booking.locatorCode-already-exits = Ya existe una reserva con este código de localización
+acme.validation.customer.booking.no-associated-passenger = La reserva debe tener un pasajero asociado.
