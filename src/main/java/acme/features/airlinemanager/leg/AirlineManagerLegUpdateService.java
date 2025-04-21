@@ -62,17 +62,15 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
 		int aircraftId = super.getRequest().getData("aircraft", int.class);
-		String statusValue = super.getRequest().getData("status", String.class);
 
 		Airport departure = this.repository.findAirportById(departureAirportId);
 		Airport arrival = this.repository.findAirportById(arrivalAirportId);
 		Aircraft aircraft = this.repository.findAircraftById(aircraftId);
 
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 		leg.setDepartureAirport(departure);
 		leg.setArrivalAirport(arrival);
 		leg.setAircraft(aircraft);
-		leg.setStatus(LegStatus.valueOf(statusValue));
 	}
 
 	@Override
