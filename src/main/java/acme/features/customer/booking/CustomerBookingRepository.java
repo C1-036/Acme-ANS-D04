@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.components.datatypes.Money;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.customers.Booking;
+import acme.entities.customers.Make;
 import acme.entities.customers.Passenger;
 import acme.entities.flights.Flight;
 
@@ -35,4 +36,7 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("SELECT f.cost FROM Flight f WHERE f.id = :flightId")
 	Money findCostByFlightBooking(int flightId);
+
+	@Query("Select m from Make m where m.booking.id = :bookingId")
+	Collection<Make> findAllMakeByBooking(int bookingId);
 }

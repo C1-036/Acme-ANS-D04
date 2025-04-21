@@ -18,7 +18,7 @@
 <acme:form>
 	<acme:input-textbox code="customer.booking.form.label.locatorCode" path="locatorCode"/>
 	<acme:input-textbox code="customer.booking.form.label.purchaseMoment" path="purchaseMoment"/>
-	<acme:input-textbox code="customer.booking.form.label.travelClass" path="travelClass"/>
+	<acme:input-select code="customer.booking.form.label.travelClass" path="travelClass" choices="${travelClasss}"/>
 	<acme:input-textbox code="customer.booking.form.label.price" path="price" readonly="true"/>
 	<acme:input-textbox code="customer.booking.form.label.creditCard" path="creditCard"/>
 	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
@@ -32,6 +32,7 @@
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">	
 			<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
 			<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>
+			<acme:submit code= "customer.booking.form.button.delete" action="/customer/booking/delete"/>
 		</jstl:when>		
 	<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customer.booking.form.button.create" action="/customer/booking/create"/>

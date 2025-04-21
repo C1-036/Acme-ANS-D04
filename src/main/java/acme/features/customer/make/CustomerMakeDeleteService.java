@@ -23,7 +23,18 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int bookingId;
+		Booking booking;
+		Customer customer;
+
+		bookingId = super.getRequest().getData("bookingId", int.class);
+		booking = this.repository.findBookingById(bookingId);
+
+		customer = booking == null ? null : booking.getCustomer();
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -38,6 +49,8 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 		make = new Make();
 		make.setBooking(booking);
 		super.getBuffer().addData(make);
+		super.getResponse().addGlobal("bookingId", bookingId);
+
 	}
 
 	@Override
