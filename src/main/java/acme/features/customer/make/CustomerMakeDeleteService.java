@@ -109,6 +109,7 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 
 		dataset = super.unbindObject(make, "booking");
 		dataset.put("bookingId", make.getBooking().getId());
+		dataset.put("locatorCode", booking.getLocatorCode());
 		dataset.put("passenger", choices.getSelected().getKey());
 		dataset.put("passengers", choices);
 		dataset.put("tag", make.getBooking().getFlight().getTag());
