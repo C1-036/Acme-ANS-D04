@@ -61,5 +61,6 @@ acme.validation.technician.task.priority-out-of-range=The priority must be betwe
 
 
 
-acme.validation.customer.booking.no-associated-passenger = A booking must have at least one passenger associated.
+acme.validation.customer.booking.no-publicated-passenger = A booking must have all passengers published.
 acme.validation.customer.booking.locatorCode-already-exits = A booking with this locator code already exits.
+acme.validation.customer.booking.no-associated-passenger = A booking must have at least one passenger.

@@ -74,11 +74,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 		if (!super.getBuffer().getErrors().hasErrors("passenger")) {
 			Collection<Passenger> passengers;
-
 			passengers = this.repository.findAllPassengerBooking(booking.getId());
-
-			super.state(!passengers.isEmpty(), "*", "acme.validation.customer.booking.no-associated-passenger"); //El mensaje esta mal,
-
+			boolean allPassengerPublished = passengers.stream().allMatch(p -> !p.isDraftMode());
+			super.state(!passengers.isEmpty(), "*", "acme.validation.customer.booking.no-associated-passenger");
+			super.state(allPassengerPublished, "*", "acme.validation.customer.booking.no-publicated-passenger");
 		}
 	}
 
