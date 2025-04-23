@@ -71,6 +71,15 @@ public class Booking extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Flight				flight;
 
+	/*
+	 * @Transient
+	 * private Date getPurchaseMoment() {
+	 * if (this.purchaseMoment == null)
+	 * this.purchaseMoment = new Date();
+	 * return this.purchaseMoment;
+	 * }
+	 */
+
 
 	@Transient
 	public Money getPrice() {
