@@ -21,7 +21,7 @@ passenger-16,Lorem ipsum dolor sit ame,a@b.esx,X9Y8Z7W,2002/03/05 18:00,Lorem ip
 passenger-17,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 passenger-18,Lorem ipsum dolor sit ame,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 # passportNumber standard variations
-passenger-19,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,A1B2C3,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
+passenger-19,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,A1B2C3,2002/03/05 18:00,Lorem ipsum dolor sit ame,false,customer-02
 passenger-20,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,X9Y8Z7W,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 passenger-21,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,1234ABCD,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
 passenger-22,Lorem ipsum dolor sit ame,acme@lorem-ipsum.org,ABCDEFG12,2002/03/05 18:00,Lorem ipsum dolor sit ame,true,customer-02
