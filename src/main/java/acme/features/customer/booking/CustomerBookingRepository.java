@@ -42,4 +42,11 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("Select COUNT(b) > 0 from Booking b WHERE b.locatorCode = :locatorCode")
 	boolean existsByLocatorCode(String locatorCode);
+
+	@Query("SELECT COUNT(b) > 0 FROM Booking b WHERE b.flight.id = :flightId AND b.customer.id = :customerId")
+	boolean isFlightBookedByCustomer(int flightId, int customerId);
+
+	@Query("SELECT COUNT(f) > 0 FROM Flight f WHERE f.id = :flightId AND f.draftMode = false")
+	boolean isFlightPublished(int flightId);
+
 }

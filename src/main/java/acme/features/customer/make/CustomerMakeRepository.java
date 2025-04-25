@@ -32,4 +32,11 @@ public interface CustomerMakeRepository extends AbstractRepository {
 
 	@Query("select m from Make m where m.booking = :booking and m.passenger = :passenger")
 	Make findMakeByBookingAndPassenger(Booking booking, Passenger passenger);
+
+	@Query("SELECT COUNT(p) > 0 FROM Passenger p WHERE p.id = :passengerId AND p.customer.id = :customerId")
+	boolean isAccessiblePassenger(int passengerId, int customerId);
+
+	@Query("SELECT COUNT(m) > 0 FROM Make m WHERE m.passenger.id = :passengerId AND m.booking.id = :bookingId")
+	boolean isLinkedPassenger(int passengerId, int bookingId);
+
 }

@@ -34,13 +34,30 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 		boolean status;
 		int bookingId;
 		Booking booking;
-		Customer customer;
+		Customer bookingCustomer;
+		Customer currentCustomer;
 
 		bookingId = super.getRequest().getData("bookingId", int.class);
 		booking = this.bookingRepository.findBookingById(bookingId);
 
-		customer = booking == null ? null : booking.getCustomer();
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+		currentCustomer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean hasPassengerId = super.getRequest().hasData("passenger", int.class);
+		boolean isPassengerAccessible = false;
+
+		if (hasPassengerId) {
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
+			if (passengerId != 0)
+				isPassengerAccessible = this.repository.isAccessiblePassenger(passengerId, currentCustomer.getId());
+			else
+				isPassengerAccessible = true;
+		} else
+			isPassengerAccessible = true;
+
+		bookingCustomer = booking == null ? null : booking.getCustomer();
+
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible;
 
 		super.getResponse().setAuthorised(status);
 	}

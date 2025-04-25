@@ -25,10 +25,27 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-
+		boolean status;
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealm(customer));
+		boolean hasFlightId = super.getRequest().hasData("flight", int.class);
+		boolean isFlightAccessible = false;
+
+		if (hasFlightId) {
+			int flightId = super.getRequest().getData("flight", int.class);
+
+			if (flightId != 0)
+				isFlightAccessible = this.repository.isFlightPublished(flightId);
+			else
+
+				isFlightAccessible = true;
+		} else
+
+			isFlightAccessible = true;
+
+		status = super.getRequest().getPrincipal().hasRealm(customer) && isFlightAccessible;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
