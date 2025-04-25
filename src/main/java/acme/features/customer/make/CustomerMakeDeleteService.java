@@ -30,17 +30,30 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 		boolean status;
 		int bookingId;
 		Booking booking;
-		Customer customer;
+		Customer bookingCustomer;
 
 		bookingId = super.getRequest().getData("bookingId", int.class);
-		booking = this.repository.findBookingById(bookingId);
+		booking = this.bookingRepository.findBookingById(bookingId);
 
-		customer = booking == null ? null : booking.getCustomer();
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+		boolean hasPassengerId = super.getRequest().hasData("passenger", int.class);
+		boolean isPassengerAccessible = false;
+
+		if (hasPassengerId) {
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
+			if (passengerId != 0)
+				isPassengerAccessible = this.repository.isLinkedPassenger(passengerId, bookingId);
+			else
+				isPassengerAccessible = true;
+		} else
+			isPassengerAccessible = true;
+
+		bookingCustomer = booking == null ? null : booking.getCustomer();
+
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible;
 
 		super.getResponse().setAuthorised(status);
 	}
-
 	@Override
 	public void load() {
 		Make make;

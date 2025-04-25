@@ -27,11 +27,26 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		int customerId;
 		Booking booking;
 
-		customerId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(customerId);
+		int bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(bookingId);
+
+		boolean hasFlightId = super.getRequest().hasData("flight", int.class);
+		boolean isFlightAccessible = false;
+
+		if (hasFlightId) {
+			int flightId = super.getRequest().getData("flight", int.class);
+
+			if (flightId != 0)
+				isFlightAccessible = this.repository.isFlightPublished(flightId);
+			else
+
+				isFlightAccessible = true;
+		} else
+
+			isFlightAccessible = true;
 
 		Customer current = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-		status = booking != null && booking.getCustomer().equals(current) && booking.isDraftMode();
+		status = booking != null && booking.getCustomer().equals(current) && booking.isDraftMode() && isFlightAccessible;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -55,7 +70,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard");
+		super.bindObject(booking, "locatorCode", "travelClass", "creditCard");
 
 		booking.setFlight(flight);
 	}
@@ -82,7 +97,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
 		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "creditCard", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClass", choices2.getSelected().getKey());
