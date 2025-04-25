@@ -67,6 +67,10 @@ public class Airline extends AbstractEntity {
 	private String				phoneNumber;
 
 	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
+	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Administrator		administrator;

@@ -19,19 +19,19 @@
 	<acme:input-textbox code="administrator.airline.form.label.name" path="name"/>
 	<acme:input-textbox code="administrator.airline.form.label.iataCode" path="iataCode"/>
 	<acme:input-textbox code="administrator.airline.form.label.website" path="website"/>
-	<acme:input-textbox code="administrator.airline.form.label.type" path="type"/>
+	<acme:input-select 	code="administrator.airline.form.label.type" path="type" choices="${types}"/>
+	<acme:input-textbox code="administrator.airline.form.label.foundationMoment" path="foundationMoment"/>
 	<acme:input-textbox code="administrator.airline.form.label.emailAdress" path="emailAdress"/>
 	<acme:input-textbox code="administrator.airline.form.label.phoneNumber" path="phoneNumber"/>
 	
 	
 	<jstl:choose>
 	
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
-			<acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish"/>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')}">
+			<acme:submit code="administrator.airline.form.button.update" action="/administrator/airline/update"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="customer.passenger.form.button.create" action="/customer/passenger/create"/>
+			<acme:submit code="administrator.airline.form.button.create" action="/administrator/airline/create"/>
 		</jstl:when>
 		</jstl:choose>		
 </acme:form>

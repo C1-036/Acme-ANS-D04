@@ -24,7 +24,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Override
 	public void authorise() {
 		boolean status;
-		int customerId;
 		Booking booking;
 
 		int bookingId = super.getRequest().getData("id", int.class);
