@@ -30,7 +30,6 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 		administrator = (Administrator) super.getRequest().getPrincipal().getActiveRealm();
 
 		airline = new Airline();
-		airline.setDraftMode(true);
 		airline.setAdministrator(administrator);
 
 		super.getBuffer().addData(airline);
