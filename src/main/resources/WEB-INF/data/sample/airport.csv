@@ -56,7 +56,7 @@ airport-47,Lorem ipsum dolor sit ame,JXP,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-48,Lorem ipsum dolor sit ame,LKR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org/a/b,acme@lorem-ipsum.org,12345678
 airport-49,Lorem ipsum dolor sit ame,MZQ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org/a/b?,acme@lorem-ipsum.org,12345678
 airport-50,Lorem ipsum dolor sit ame,VYN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org/a/b?a&b,acme@lorem-ipsum.org,12345678
-airport-51,Lorem ipsum dolor sit ame,TPX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://a,acme@lorem-ipsum.org,12345678
+airport-51,Lorem ipsum dolor sit ame,TPX,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org/a/b?a&bb,acme@lorem-ipsum.org,12345678
 # emailAdress - singular values,"","","","","",""
 airport-52,Lorem ipsum dolor sit ame,NXA,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.e,12345678
 airport-53,Lorem ipsum dolor sit ame,GFT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,a@b.es,12345678
