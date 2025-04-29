@@ -4,101 +4,100 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>90</y>
-      <w>210</w>
+      <x>10</x>
+      <y>40</y>
+      <w>600</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Booking
 --
-- id: int
-- locatorCode: String
-- purchaseMoment: Date
-- travelClass: TravelClass
-- price: Money
-- creditCard: String
-- customer: Customer</panel_attributes>
+- locatorCode: String (Mandatory, ValidString(pattern=,"^[A-Z0-9]{6,8}$",Column(unique=true))
+- purchaseMoment: Date (Mandatory,ValidMoment(past=true),Temporal(Timestamp))
+- travelClass: TravelClass (Mandatory,Valid)
+- price: Money 
+- creditCard: String (Optional,ValidString(min=4,max=4,pattern ="^\\d+$"))
+- customer: Customer (Mandatory,Valid,ManyToOne)
+- flight: Flight (Mandatory,Valid,ManyToOne))</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>710</x>
-      <y>100</y>
-      <w>210</w>
-      <h>190</h>
+      <x>690</x>
+      <y>50</y>
+      <w>470</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customer
 --
-- id: int
-- identifier: String
-- phoneNumber: String
-- physicalAddress: String
-- city: String
-- country: String
-- Integer: earnedPoints
+- identifier: String (Mandatory,Valid,Column(unique=true))
+- phoneNumber: String (Mandatory,ValidString(pattern="^\\+?\\d{6,15}$"))
+- physicalAddress: String(Mandatory,ValidEmail)
+- city: String (Mandatory,ValidString(max=50))
+- country: String (Mandatory,ValidString(max=50))
+- Integer: earnedPoints(Optional, ValidNumber(min=0,max=50000)
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>390</y>
-      <w>210</w>
+      <x>630</x>
+      <y>490</y>
+      <w>480</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Passenger
 --
-fullName: String
-email: String
-passportNumber: String
-dateBirth: Date
-specialNeeds: String
-booking: Booking
+fullName: String (Mandatory,ValidString)
+email: String (Mandatory, ValidEmail)
+passportNumber: String (Mandatory, ValidString(pattern= "^[A-Z0-9]{6,9}$")
+dateBirth: Date (Mandatory,ValidDate(past=true),Temporal(TimeStamp))
+specialNeeds: String (Optional,ValidString(max=50))
+booking: Booking (Mandatory,Valid,ManyToOne
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>170</y>
-      <w>220</w>
+      <x>600</x>
+      <y>120</y>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=1
 tienen &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>380</y>
-      <w>210</w>
+      <x>10</x>
+      <y>470</y>
+      <w>350</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Make
 --
--booking:Booking
--passenger: Passenger
+-booking:Booking (Mandatory,Valid,ManyToOne)
+-passenger: Passenger (Mandatory,Valid,ManyToOne)
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>270</y>
-      <w>80</w>
-      <h>130</h>
+      <x>100</x>
+      <y>220</y>
+      <w>90</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -106,15 +105,15 @@ m2=1
 tienen &gt;
 
 </panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>20.0;250.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
-      <y>450</y>
-      <w>200</w>
-      <h>60</h>
+      <x>350</x>
+      <y>540</y>
+      <w>300</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -122,6 +121,6 @@ m2=1
 tienen &gt;
 
 </panel_attributes>
-    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>280.0;30.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
