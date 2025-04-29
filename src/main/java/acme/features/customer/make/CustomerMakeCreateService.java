@@ -31,7 +31,35 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int bookingId;
+		Booking booking;
+		Customer bookingCustomer;
+		Customer currentCustomer;
+
+		bookingId = super.getRequest().getData("bookingId", int.class);
+		booking = this.bookingRepository.findBookingById(bookingId);
+
+		currentCustomer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+
+		boolean hasPassengerId = super.getRequest().hasData("passenger", int.class);
+		boolean isPassengerAccessible = false;
+
+		if (hasPassengerId) {
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
+			if (passengerId != 0)
+				isPassengerAccessible = this.repository.isAccessiblePassenger(passengerId, currentCustomer.getId());
+			else
+				isPassengerAccessible = true;
+		} else
+			isPassengerAccessible = true;
+
+		bookingCustomer = booking == null ? null : booking.getCustomer();
+
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -85,6 +113,7 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 
 		dataset = super.unbindObject(make, "booking");
 		dataset.put("bookingId", super.getRequest().getData("bookingId", int.class));
+		dataset.put("locatorCode", make.getBooking().getLocatorCode());
 		dataset.put("passenger", choices.getSelected().getKey());
 		dataset.put("passengers", choices);
 		dataset.put("tag", make.getBooking().getFlight().getTag());

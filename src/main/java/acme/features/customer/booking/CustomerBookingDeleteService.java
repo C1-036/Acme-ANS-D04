@@ -10,13 +10,13 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
-import acme.entities.customers.Passenger;
+import acme.entities.customers.Make;
 import acme.entities.customers.TravelClass;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingDeleteService extends AbstractGuiService<Customer, Booking> {
 
 	@Autowired
 	private CustomerBookingRepository repository;
@@ -39,52 +39,30 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void load() {
-		Booking booking;
-		int id;
-
-		id = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(id);
+		int id = super.getRequest().getData("id", int.class);
+		Booking booking = this.repository.findBookingById(id);
 
 		super.getBuffer().addData(booking);
-
 	}
 
 	@Override
 	public void bind(final Booking booking) {
-		int flightId;
-		Flight flight;
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard");
 
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
-
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard");
-
-		booking.setFlight(flight);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		assert booking != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("creditCard")) {
-			String card = booking.getCreditCard();
-
-			super.state(!card.isBlank(), "creditCard", "javax.validation.constraints.NotNull.message");
-		}
-
-		if (!super.getBuffer().getErrors().hasErrors("passenger")) {
-			Collection<Passenger> passengers;
-			passengers = this.repository.findAllPassengerBooking(booking.getId());
-			boolean allPassengerPublished = passengers.stream().allMatch(p -> !p.isDraftMode());
-			super.state(!passengers.isEmpty(), "*", "acme.validation.customer.booking.no-associated-passenger");
-			super.state(allPassengerPublished, "*", "acme.validation.customer.booking.no-publicated-passenger");
-		}
+		;
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		booking.setDraftMode(false);
-		this.repository.save(booking);
+		Collection<Make> make;
+
+		make = this.repository.findAllMakeByBooking(booking.getId());
+		this.repository.deleteAll(make);
+		this.repository.delete(booking);
 	}
 
 	@Override
@@ -106,7 +84,6 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		dataset.put("travelClasss", choices2);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 }

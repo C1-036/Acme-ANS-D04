@@ -2,14 +2,17 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.customers.Booking;
+import acme.entities.customers.TravelClass;
 import acme.entities.flights.Flight;
 import acme.realms.Customer;
 
@@ -22,10 +25,27 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-
+		boolean status;
 		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealm(customer));
+		boolean hasFlightId = super.getRequest().hasData("flight", int.class);
+		boolean isFlightAccessible = false;
+
+		if (hasFlightId) {
+			int flightId = super.getRequest().getData("flight", int.class);
+
+			if (flightId != 0)
+				isFlightAccessible = this.repository.isFlightPublished(flightId);
+			else
+
+				isFlightAccessible = true;
+		} else
+
+			isFlightAccessible = true;
+
+		status = super.getRequest().getPrincipal().hasRealm(customer) && isFlightAccessible;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -50,19 +70,34 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
+		Date purchaseMoment;
+		purchaseMoment = MomentHelper.getCurrentMoment();
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard");
+		super.bindObject(booking, "locatorCode", "travelClass", "creditCard");
+
+		booking.setPurchaseMoment(purchaseMoment);
 
 		booking.setFlight(flight);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		assert booking != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+
+			boolean exists = this.repository.existsByLocatorCode(locatorCode);
+
+			super.state(!exists, "locatorCode", "acme.validation.customer.booking.locatorCode-already-exits");
+		}
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		Date purchaseMoment;
+		purchaseMoment = MomentHelper.getCurrentMoment();
+		booking.setPurchaseMoment(purchaseMoment);
 		this.repository.save(booking);
 	}
 
@@ -72,14 +107,21 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights;
 		SelectChoices choices;
 		Dataset dataset;
+		SelectChoices choices2;
 
+		Date purchaseMoment;
+		purchaseMoment = MomentHelper.getCurrentMoment();
 		flights = this.repository.findAllFlights();
 
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
+		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard");
+		dataset = super.unbindObject(booking, "locatorCode", "creditCard");
+		dataset.put("purchaseMoment", purchaseMoment);
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("travelClass", choices2.getSelected().getKey());
+		dataset.put("travelClasss", choices2);
 
 		super.getResponse().addData(dataset);
 

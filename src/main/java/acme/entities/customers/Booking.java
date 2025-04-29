@@ -51,7 +51,7 @@ public class Booking extends AbstractEntity {
 	private TravelClass			travelClass;
 
 	@Optional
-	@ValidString(max = 4, pattern = "^\\d+$")
+	@ValidString(min = 4, max = 4, pattern = "^\\d+$")
 	@Automapped
 	private String				creditCard;
 
@@ -70,6 +70,15 @@ public class Booking extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Flight				flight;
+
+	/*
+	 * @Transient
+	 * private Date getPurchaseMoment() {
+	 * if (this.purchaseMoment == null)
+	 * this.purchaseMoment = new Date();
+	 * return this.purchaseMoment;
+	 * }
+	 */
 
 
 	@Transient
