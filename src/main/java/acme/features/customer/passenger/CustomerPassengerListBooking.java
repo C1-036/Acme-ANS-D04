@@ -8,21 +8,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.customers.Booking;
 import acme.entities.customers.Passenger;
+import acme.features.customer.booking.CustomerBookingRepository;
 import acme.realms.Customer;
 
 @GuiService
 public class CustomerPassengerListBooking extends AbstractGuiService<Customer, Passenger> {
 
 	@Autowired
-	private CustomerPassengerRepository repository;
+	private CustomerPassengerRepository	repository;
+
+	@Autowired
+	private CustomerBookingRepository	bookingRepository;
 
 
 	@Override
 	public void authorise() {
-		Customer customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		Customer currentCustomer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status;
+		int bookingId;
+		Booking booking;
 
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRealm(customer));
+		bookingId = super.getRequest().getData("bookingId", int.class);
+		booking = this.bookingRepository.findBookingById(bookingId);
+
+		status = super.getRequest().getPrincipal().hasRealm(currentCustomer) && currentCustomer.getId() == booking.getCustomer().getId();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

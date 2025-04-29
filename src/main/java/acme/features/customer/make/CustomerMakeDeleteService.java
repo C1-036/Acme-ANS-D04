@@ -31,9 +31,12 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 		int bookingId;
 		Booking booking;
 		Customer bookingCustomer;
+		Customer currentCustomer;
 
 		bookingId = super.getRequest().getData("bookingId", int.class);
 		booking = this.bookingRepository.findBookingById(bookingId);
+
+		currentCustomer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
 		boolean hasPassengerId = super.getRequest().hasData("passenger", int.class);
 		boolean isPassengerAccessible = false;
@@ -50,7 +53,7 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 
 		bookingCustomer = booking == null ? null : booking.getCustomer();
 
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible;
+		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible && bookingCustomer.getId() == currentCustomer.getId();
 
 		super.getResponse().setAuthorised(status);
 	}
