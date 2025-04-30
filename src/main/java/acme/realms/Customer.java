@@ -5,7 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractRealm;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidIdentifier
-public class Customer extends AbstractRealm {
+public class Customer extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
