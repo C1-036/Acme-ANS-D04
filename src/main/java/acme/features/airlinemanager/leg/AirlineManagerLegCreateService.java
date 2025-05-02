@@ -31,12 +31,31 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		int masterId = super.getRequest().getData("masterId", int.class);
-		Flight flight = this.repository.findFlightById(masterId);
-		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status;
+		String method = super.getRequest().getMethod();
 
-		boolean status = flight != null && flight.getAirlinemanager().equals(current) && flight.isDraftMode();
+		if (method.equals("GET"))
+			status = true;
+		else {
+			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			int flightId = super.getRequest().getData("masterId", int.class);
 
+			Flight flight = this.repository.findFlightById(flightId);
+
+			status = flight != null && flight.getAirlinemanager().getId() == managerId && flight.isDraftMode();
+
+			if (status) {
+				int depAirportId = super.getRequest().getData("departureAirport", int.class);
+				int arrAirportId = super.getRequest().getData("arrivalAirport", int.class);
+				int aircraftId = super.getRequest().getData("aircraft", int.class);
+
+				boolean depOk = this.repository.existsAirportInFlight(flightId, depAirportId);
+				boolean arrOk = this.repository.existsAirportInFlight(flightId, arrAirportId);
+				boolean planeOk = this.repository.existsAircraftOfManager(managerId, aircraftId);
+
+				status = depOk && arrOk && planeOk;
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
