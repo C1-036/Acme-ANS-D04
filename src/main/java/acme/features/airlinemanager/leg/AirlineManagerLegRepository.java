@@ -45,4 +45,10 @@ public interface AirlineManagerLegRepository extends AbstractRepository {
 	@Query("select l from Leg l " + "where l.id = :legId " + "and l.departureAirport.id = :departureAirportId " + "and l.arrivalAirport.id = :arrivalAirportId " + "and l.aircraft.id = :aircraftId")
 	Leg findLegByIdAndFields(int legId, int departureAirportId, int arrivalAirportId, int aircraftId);
 
+	@Query("select count(l) > 0 from Leg l " + "where l.flight.id = :flightId " + "and (l.departureAirport.id = :airportId " + "     or l.arrivalAirport.id   = :airportId)")
+	boolean existsAirportInFlight(int flightId, int airportId);
+
+	@Query("select count(a) > 0 from Aircraft a, AirlineManager m " + "where a.id = :aircraftId " + "and   m.id = :managerId " + "and   a.airline = m.airline")
+	boolean existsAircraftOfManager(int managerId, int aircraftId);
+
 }
