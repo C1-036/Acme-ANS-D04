@@ -40,11 +40,23 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		int legId = super.getRequest().getData("id", int.class);
-		Leg leg = this.repository.findLegById(legId);
-		AirlineManager current = (AirlineManager) super.getRequest().getPrincipal().getActiveRealm();
+		boolean status;
+		int id;
+		Leg leg;
+		String method;
 
-		boolean status = leg != null && leg.getFlight().getAirlinemanager().equals(current) && leg.isDraftMode();
+		id = super.getRequest().getData("id", int.class);
+		leg = this.repository.findLegById(id);
+		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(leg.getFlight().getAirlinemanager());
+		method = super.getRequest().getMethod();
+
+		if (status && method.equals("POST")) {
+			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			Leg checked = this.repository.findLegByIdAndFields(id, departureAirportId, arrivalAirportId, aircraftId);
+			status = checked != null;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
