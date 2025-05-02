@@ -43,6 +43,6 @@ leg-31,DGX0027,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airpor
 leg-32,DGX0028,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-30
 leg-33,DGX0029,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-31
 # draft-mode in false for claims
-leg-34,DGX0030,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-33
-leg-35,DGX0031,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-34
-leg-36,DGX0032,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,TRUE,airport-00,airport-01,aircraft-01,flight-35
+leg-34,DGX0030,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-33
+leg-35,DGX0031,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-34
+leg-36,DGX0032,2025/09/01 10:00,2025/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-35
