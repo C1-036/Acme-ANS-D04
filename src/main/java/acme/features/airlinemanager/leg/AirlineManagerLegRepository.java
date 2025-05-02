@@ -42,4 +42,7 @@ public interface AirlineManagerLegRepository extends AbstractRepository {
 	@Query("select count(c) > 0 from Claim c where c.legs.id = :legId")
 	boolean existsClaimsByLegId(int legId);
 
+	@Query("select l from Leg l " + "where l.id = :legId " + "and l.departureAirport.id = :departureAirportId " + "and l.arrivalAirport.id = :arrivalAirportId " + "and l.aircraft.id = :aircraftId")
+	Leg findLegByIdAndFields(int legId, int departureAirportId, int arrivalAirportId, int aircraftId);
+
 }
