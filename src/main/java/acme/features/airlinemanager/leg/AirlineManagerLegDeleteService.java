@@ -77,8 +77,6 @@ public class AirlineManagerLegDeleteService extends AbstractGuiService<AirlineMa
 	@Override
 	public void validate(final Leg leg) {
 
-		boolean hasClaims = this.repository.existsClaimsByLegId(leg.getId());
-		super.state(!hasClaims, "flightNumber", "acme.validation.airline-manager.leg.cannot-delete-linked-claim");
 	}
 
 	@Override

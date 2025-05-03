@@ -70,10 +70,12 @@ public class AssistanceAgentClaimCreate extends AbstractGuiService<AssistanceAge
 
 	@Override
 	public void validate(final Claim claim) {
+		Leg leg = claim.getLegs();
 
-		if (claim.getLegs() == null)
-			super.state(claim.getLegs() != null, "leg", "assistanceAgent.claim.form.error.emptyLeg");
+		super.state(leg != null, "leg", "assistanceAgent.claim.form.error.emptyLeg");
 
+		if (leg != null)
+			super.state(!leg.isDraftMode(), "leg", "assistanceAgent.claim.form.error.legNotPublished");
 	}
 
 	@Override
