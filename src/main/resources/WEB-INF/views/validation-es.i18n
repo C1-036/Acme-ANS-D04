@@ -12,7 +12,7 @@ acme.validation.airline-manager.flight.identifier-number.invalid.message   = El 
 acme.validation.airline-manager.flight.delete-has-assignments 			   = No se puede eliminar el vuelo porque hay miembros de tripulación asignados a sus tramos.
 acme.validation.airline-manager.flight.no-legs 							   = No se puede publicar un vuelo que no tiene tramos.
 acme.validation.airline-manager.flight.legs-not-published 				   = Todos los tramos deben estar publicados antes de publicar el vuelo.
-acme.validation.airline-manager.flight.invalid-selfTransfer-layovers	   = No se puede configurar autotransbordo cuando el vuelo tiene escalas. El pasajero debe gestionar las conexiones entre segmentos.
+acme.validation.airline-manager.flight.invalid-selfTransfer 			   = El autotransbordo debe estar habilitado cuando los vuelos de conexión utilizan aviones diferentes.
 
 acme.validation.airline-manager.leg.flight-number.format.message 		   = El número de vuelo debe comenzar con el código IATA de la aerolínea seguido de 4 dígitos.
 acme.validation.airline-manager.leg.flight-number.duplicate.message 	   = Ya existe otro tramo con ese número de vuelo.

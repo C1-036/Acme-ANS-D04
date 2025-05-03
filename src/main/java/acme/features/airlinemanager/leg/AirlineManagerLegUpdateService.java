@@ -54,8 +54,12 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
 			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
 			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			Leg checked = this.repository.findLegByIdAndFields(id, departureAirportId, arrivalAirportId, aircraftId);
-			status = checked != null;
+			boolean validDeparture = this.repository.existsAirportInFlight(leg.getFlight().getId(), departureAirportId);
+			boolean validArrival = this.repository.existsAirportInFlight(leg.getFlight().getId(), arrivalAirportId);
+			boolean validAircraft = this.repository.existsAircraftOfManager(leg.getFlight().getAirlinemanager().getId(), aircraftId);
+
+			status = validDeparture && validArrival && validAircraft;
+
 		}
 
 		super.getResponse().setAuthorised(status);
