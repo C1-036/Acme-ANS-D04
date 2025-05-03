@@ -12,7 +12,7 @@ acme.validation.airline-manager.flight.identifier-number.invalid.message   = The
 acme.validation.airline-manager.flight.delete-has-assignments			   = The flight cannot be deleted because there are crew members assigned to its legs.
 acme.validation.airline-manager.flight.no-legs							   = A flight cannot be published without legs.
 acme.validation.airline-manager.flight.legs-not-published				   = All legs must be published before publishing the flight.
-acme.validation.airline-manager.flight.invalid-selfTransfer-layovers	   = Cannot set "NO_SELF_TRANSFER" when the flight has layovers. The passenger must handle connections between segments.
+acme.validation.airline-manager.flight.invalid-selfTransfer 			   = Self-transfer must be enabled when connecting flights use different aircraft.
 
 acme.validation.airline-manager.leg.flight-number.format.message     	   = The flight number must start with the airline's IATA code followed by 4 digits.
 acme.validation.airline-manager.leg.flight-number.duplicate.message 	   = Another leg with the same flight number already exists.
@@ -24,7 +24,6 @@ acme.validation.airline-manager.leg.not-connected-to-previous              = The
 acme.validation.airline-manager.leg.invalid-status-on-publish 			   = The flight is only allowed to be on time or delayed when publishing a leg.
 acme.validation.airline-manager.leg.legs-not-connected                     = The flight segments are not properly connected.
 acme.validation.airline-manager.leg.status.required                        = You must select a flight segment status.
-acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = You cannot add segments to a flight configured as not self transfer. Please update this setting before adding legs.
 acme.validation.airline-manager.leg.departure-in-the-past                  = The scheduled departure cannot be in the past
 
 acme.validation.leg.flight-number.format.message     					   = The flight number must start with the airline's IATA code followed by 4 digits.

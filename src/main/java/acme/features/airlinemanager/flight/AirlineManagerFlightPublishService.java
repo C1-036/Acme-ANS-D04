@@ -12,7 +12,6 @@ import acme.client.services.GuiService;
 import acme.entities.flights.Flight;
 import acme.entities.flights.Indication;
 import acme.entities.flights.Leg;
-import acme.features.airlinemanager.leg.AirlineManagerLegRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
@@ -21,7 +20,7 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AirlineManagerLegRepository repository;
+	private AirlineManagerFlightRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -60,10 +59,12 @@ public class AirlineManagerFlightPublishService extends AbstractGuiService<Airli
 		super.state(allLegsPublished, "*", "acme.validation.airline-manager.flight.legs-not-published");
 
 		if (!super.getBuffer().getErrors().hasErrors("selfTransfer")) {
-			Integer layovers = flight.getLayovers();
-			if (flight.getSelfTransfer() == Indication.NOT_SELF_TRANSFER && layovers > 0)
-				super.state(false, "selfTransfer", "acme.validation.airline-manager.flight.invalid-selfTransfer-layovers");
+			boolean requiresSelfTransfer = this.repository.requiresSelfTransferBetweenConsecutiveLegs(flight.getId());
+
+			if (flight.getSelfTransfer() == Indication.NOT_SELF_TRANSFER && requiresSelfTransfer)
+				super.state(false, "selfTransfer", "acme.validation.airline-manager.flight.invalid-selfTransfer");
 		}
+
 	}
 
 	@Override

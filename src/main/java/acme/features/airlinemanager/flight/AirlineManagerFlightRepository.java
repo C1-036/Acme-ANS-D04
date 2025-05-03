@@ -36,4 +36,7 @@ public interface AirlineManagerFlightRepository extends AbstractRepository {
 	@Query("select count(fa) from FlightAssignment fa where fa.flightLeg.flight.id = :flightId")
 	int countAssignmentsByFlightId(int flightId);
 
+	@Query("SELECT COUNT(l1) > 0 FROM Leg l1, Leg l2 WHERE l1.flight.id = :flightId AND l2.flight.id = :flightId AND l1.scheduledArrival < l2.scheduledDeparture AND NOT EXISTS (SELECT l3 FROM Leg l3 WHERE l3.flight.id = :flightId AND l3.scheduledDeparture > l1.scheduledArrival AND l3.scheduledDeparture < l2.scheduledDeparture) AND l1.aircraft != l2.aircraft")
+	boolean requiresSelfTransferBetweenConsecutiveLegs(int flightId);
+
 }
