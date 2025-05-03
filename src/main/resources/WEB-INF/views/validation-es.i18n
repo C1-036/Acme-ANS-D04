@@ -24,7 +24,6 @@ acme.validation.airline-manager.leg.not-connected-to-previous              = El 
 acme.validation.airline-manager.leg.invalid-status-on-publish              = El vuelo solo podrá ser puntual o retrasado en el momento de publicar un tramo.
 acme.validation.airline-manager.leg.legs-not-connected                     = Los tramos no están correctamente conectados.
 acme.validation.airline-manager.leg.status.required                        = Debe seleccionar un estado de segmento de vuelo.
-acme.validation.airline-manager.leg.cannot-add-leg-to-no-self-transfer     = No puedes añadir tramos a un vuelo configurado sin autotransbordo. Debes cambiar esta opción antes.
 acme.validation.airline-manager.leg.departure-in-the-past                  = La salida programada no puede ser en el pasado
 
 acme.validation.leg.flight-number.format.message 						   = El número de vuelo debe comenzar con el código IATA de la aerolínea seguido de 4 dígitos.
