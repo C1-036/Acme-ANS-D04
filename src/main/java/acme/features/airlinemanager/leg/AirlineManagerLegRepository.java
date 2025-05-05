@@ -2,6 +2,7 @@
 package acme.features.airlinemanager.leg;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -39,16 +40,13 @@ public interface AirlineManagerLegRepository extends AbstractRepository {
 	@Query("select l.flight from Leg l where l.id = :id")
 	Flight findFlightByLegId(int id);
 
-	@Query("select count(c) > 0 from Claim c where c.legs.id = :legId")
-	boolean existsClaimsByLegId(int legId);
-
-	@Query("select l from Leg l " + "where l.id = :legId " + "and l.departureAirport.id = :departureAirportId " + "and l.arrivalAirport.id = :arrivalAirportId " + "and l.aircraft.id = :aircraftId")
-	Leg findLegByIdAndFields(int legId, int departureAirportId, int arrivalAirportId, int aircraftId);
-
 	@Query("select count(l) > 0 from Leg l " + "where l.flight.id = :flightId " + "and (l.departureAirport.id = :airportId " + "     or l.arrivalAirport.id   = :airportId)")
 	boolean existsAirportInFlight(int flightId, int airportId);
 
 	@Query("select count(a) > 0 from Aircraft a, AirlineManager m " + "where a.id = :aircraftId " + "and   m.id = :managerId " + "and   a.airline = m.airline")
 	boolean existsAircraftOfManager(int managerId, int aircraftId);
+
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.scheduledDeparture < (SELECT ll.scheduledDeparture FROM Leg ll WHERE ll.id = :currentLegId) ORDER BY l.scheduledDeparture DESC")
+	List<Leg> findPreviousLeg(int flightId, int currentLegId);
 
 }

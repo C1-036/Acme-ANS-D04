@@ -30,31 +30,28 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 		String method = super.getRequest().getMethod();
 
-		if (method.equals("GET"))
-			status = true;
-		else {
-			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-			int flightId = super.getRequest().getData("masterId", int.class);
+		int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int flightId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(flightId);
 
-			Flight flight = this.repository.findFlightById(flightId);
+		// Seguridad básica común a GET y POST
+		status = flight != null && flight.isDraftMode() && flight.getAirlinemanager().getId() == managerId;
 
-			status = flight != null && flight.getAirlinemanager().getId() == managerId && flight.isDraftMode();
+		if (status && "POST".equals(method)) {
+			int depId = super.getRequest().getData("departureAirport", int.class);
+			int arrId = super.getRequest().getData("arrivalAirport", int.class);
+			int planeId = super.getRequest().getData("aircraft", int.class);
 
-			if (status) {
-				int depAirportId = super.getRequest().getData("departureAirport", int.class);
-				int arrAirportId = super.getRequest().getData("arrivalAirport", int.class);
-				int aircraftId = super.getRequest().getData("aircraft", int.class);
+			boolean validDep = depId == 0 || this.repository.findAirportById(depId) != null;
+			boolean validArr = arrId == 0 || this.repository.findAirportById(arrId) != null;
+			boolean validPlane = planeId == 0 || this.repository.existsAircraftOfManager(managerId, planeId);
 
-				boolean depOk = this.repository.existsAirportInFlight(flightId, depAirportId);
-				boolean arrOk = this.repository.existsAirportInFlight(flightId, arrAirportId);
-				boolean planeOk = this.repository.existsAircraftOfManager(managerId, aircraftId);
-
-				status = depOk && arrOk && planeOk;
-			}
+			status = validDep && validArr && validPlane;
 		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -95,6 +92,11 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 			super.state(!isPastOrPresent, "scheduledDeparture", "acme.validation.airline-manager.leg.departure-in-the-past");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("scheduledArrival")) {
+			boolean isPastOrPresent = MomentHelper.isPresentOrPast(leg.getScheduledArrival());
+			super.state(!isPastOrPresent, "scheduledArrival", "acme.validation.airline-manager.leg.arrival-in-the-past");
+		}
+
 		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
 			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());
 			super.state(!sameAirport, "arrivalAirport", "acme.validation.airline-manager.leg.departure-equals-arrival");
@@ -117,8 +119,6 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void perform(final Leg leg) {
-		super.state(leg != null, "*", "acme.validation.airline-manager.leg.invalid-request");
-		super.state(leg.getFlight() != null, "*", "acme.validation.airline-manager.leg.invalid-flight");
 		this.repository.save(leg);
 	}
 

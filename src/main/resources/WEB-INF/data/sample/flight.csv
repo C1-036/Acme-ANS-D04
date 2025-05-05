@@ -47,3 +47,5 @@ flight-34,"Lorem ipsum dolor sit amet, con",SELF_TRANSFER,EUR 500000.00,"Lorem i
 flight-35,"Lorem ipsum dolor sit amet, cons",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
 # flight for validation selftransfer
 flight-36,"Lorem ipsum dolor sit amet, conse",NOT_SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
+# flight with 2 legs
+flight-37,"Lorem ipsum dolor sit amet, consec",SELF_TRANSFER,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,airline-manager1
