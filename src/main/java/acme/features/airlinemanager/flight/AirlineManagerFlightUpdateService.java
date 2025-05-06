@@ -59,6 +59,7 @@ public class AirlineManagerFlightUpdateService extends AbstractGuiService<Airlin
 
 	@Override
 	public void validate(final Flight flight) {
+		;
 	}
 
 	@Override

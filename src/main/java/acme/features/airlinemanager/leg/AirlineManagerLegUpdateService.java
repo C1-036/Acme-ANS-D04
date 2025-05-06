@@ -13,6 +13,7 @@
 package acme.features.airlinemanager.leg;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,25 +42,25 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
-		Leg leg;
-		String method;
+		int legId = super.getRequest().getData("id", int.class);
+		Leg leg = this.repository.findLegById(legId);
 
-		id = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(id);
 		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(leg.getFlight().getAirlinemanager());
-		method = super.getRequest().getMethod();
 
-		if (status && method.equals("POST")) {
-			int departureAirportId = super.getRequest().getData("departureAirport", int.class);
-			int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			boolean validDeparture = this.repository.existsAirportInFlight(leg.getFlight().getId(), departureAirportId);
-			boolean validArrival = this.repository.existsAirportInFlight(leg.getFlight().getId(), arrivalAirportId);
-			boolean validAircraft = this.repository.existsAircraftOfManager(leg.getFlight().getAirlinemanager().getId(), aircraftId);
+		if (status && !super.getRequest().getMethod().equals("GET")) {
 
-			status = validDeparture && validArrival && validAircraft;
+			int depId = super.getRequest().getData("departureAirport", int.class);
+			int arrId = super.getRequest().getData("arrivalAirport", int.class);
+			int planeId = super.getRequest().getData("aircraft", int.class);
 
+			int flightId = leg.getFlight().getId();
+			int managerId = leg.getFlight().getAirlinemanager().getId();
+
+			boolean validDep = depId == 0 || this.repository.existsAirportInFlight(flightId, depId);
+			boolean validArr = arrId == 0 || this.repository.existsAirportInFlight(flightId, arrId);
+			boolean validPlane = planeId == 0 || this.repository.existsAircraftOfManager(managerId, planeId);
+
+			status = validDep && validArr && validPlane;
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -97,9 +98,26 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 			super.state(!isPastOrPresent, "scheduledDeparture", "acme.validation.airline-manager.leg.departure-in-the-past");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("scheduledArrival")) {
+			boolean isPastOrPresent = MomentHelper.isPresentOrPast(leg.getScheduledArrival());
+			super.state(!isPastOrPresent, "scheduledArrival", "acme.validation.airline-manager.leg.arrival-in-the-past");
+		}
+
 		if (!super.getBuffer().getErrors().hasErrors("arrivalAirport") && !super.getBuffer().getErrors().hasErrors("departureAirport")) {
 			boolean sameAirport = leg.getDepartureAirport().equals(leg.getArrivalAirport());
 			super.state(!sameAirport, "arrivalAirport", "acme.validation.airline-manager.leg.departure-equals-arrival");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("departureAirport")) {
+			int flightId = leg.getFlight().getId();
+			int legId = leg.getId();
+			List<Leg> previousLegs = this.repository.findPreviousLeg(flightId, legId);
+			Leg previousLeg = previousLegs.isEmpty() ? null : previousLegs.get(0);
+
+			if (previousLeg != null) {
+				boolean isConnected = previousLeg.getArrivalAirport().equals(leg.getDepartureAirport());
+				super.state(isConnected, "departureAirport", "acme.validation.airline-manager.leg.not-connected-to-previous");
+			}
 		}
 
 	}
@@ -130,6 +148,10 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		arrivalAirportChoices = SelectChoices.from(airports, "name", leg.getArrivalAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 
+		dataset.put("departureAirportChoices", departureAirportChoices);
+		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
+		dataset.put("aircraftChoices", aircraftChoices);
+
 		if (leg.getDepartureAirport() != null)
 			dataset.put("departureAirport", departureAirportChoices.getSelected().getKey());
 
@@ -139,9 +161,6 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		if (leg.getAircraft() != null)
 			dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 
-		dataset.put("departureAirportChoices", departureAirportChoices);
-		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
-		dataset.put("aircraftChoices", aircraftChoices);
 		dataset.put("masterId", leg.getFlight().getId());
 		dataset.put("draftMode", leg.isDraftMode());
 
