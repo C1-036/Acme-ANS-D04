@@ -37,7 +37,6 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 		int flightId = super.getRequest().getData("masterId", int.class);
 		Flight flight = this.repository.findFlightById(flightId);
 
-		// Seguridad básica común a GET y POST
 		status = flight != null && flight.isDraftMode() && flight.getAirlinemanager().getId() == managerId;
 
 		if (status && "POST".equals(method)) {
@@ -70,6 +69,10 @@ public class AirlineManagerLegCreateService extends AbstractGuiService<AirlineMa
 
 	@Override
 	public void bind(final Leg leg) {
+		int masterId = super.getRequest().getData("masterId", int.class);
+		Flight flight = this.repository.findFlightById(masterId);
+		leg.setFlight(flight);
+
 		int departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		int arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
 		int aircraftId = super.getRequest().getData("aircraft", int.class);

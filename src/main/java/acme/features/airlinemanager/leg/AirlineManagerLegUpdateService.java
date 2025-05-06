@@ -42,17 +42,17 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 	@Override
 	public void authorise() {
 		boolean status;
-		String method = super.getRequest().getMethod();
-
 		int legId = super.getRequest().getData("id", int.class);
 		Leg leg = this.repository.findLegById(legId);
 
 		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(leg.getFlight().getAirlinemanager());
 
-		if (status && "POST".equals(method)) {
+		if (status && !super.getRequest().getMethod().equals("GET")) {
+
 			int depId = super.getRequest().getData("departureAirport", int.class);
 			int arrId = super.getRequest().getData("arrivalAirport", int.class);
 			int planeId = super.getRequest().getData("aircraft", int.class);
+
 			int flightId = leg.getFlight().getId();
 			int managerId = leg.getFlight().getAirlinemanager().getId();
 
@@ -148,6 +148,10 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		arrivalAirportChoices = SelectChoices.from(airports, "name", leg.getArrivalAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 
+		dataset.put("departureAirportChoices", departureAirportChoices);
+		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
+		dataset.put("aircraftChoices", aircraftChoices);
+
 		if (leg.getDepartureAirport() != null)
 			dataset.put("departureAirport", departureAirportChoices.getSelected().getKey());
 
@@ -157,9 +161,6 @@ public class AirlineManagerLegUpdateService extends AbstractGuiService<AirlineMa
 		if (leg.getAircraft() != null)
 			dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 
-		dataset.put("departureAirportChoices", departureAirportChoices);
-		dataset.put("arrivalAirportChoices", arrivalAirportChoices);
-		dataset.put("aircraftChoices", aircraftChoices);
 		dataset.put("masterId", leg.getFlight().getId());
 		dataset.put("draftMode", leg.isDraftMode());
 
