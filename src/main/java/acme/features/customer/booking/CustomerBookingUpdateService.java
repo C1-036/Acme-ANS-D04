@@ -76,7 +76,15 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		assert booking != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+
+			boolean exists = this.repository.existsByLocatorCode(locatorCode);
+
+			super.state(!exists, "locatorCode", "acme.validation.customer.booking.locatorCode-already-exits");
+		}
 	}
 
 	@Override
