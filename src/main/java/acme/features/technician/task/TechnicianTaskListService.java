@@ -97,7 +97,6 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 			showCreate = true;
 
 		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
-		super.getResponse().addGlobal("mine", mine);
 		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 

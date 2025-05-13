@@ -27,7 +27,26 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = false;
+		Integer maintenanceRecordId = null;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+
+		if (super.getRequest().hasData("maintenanceRecordId")) {
+			maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
+
+			if (maintenanceRecordId != null) {
+				maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+				if (maintenanceRecord != null) {
+					technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+					status = maintenanceRecord.isDraftMode() && technician.equals(maintenanceRecord.getTechnician());
+				}
+			}
+		} else
+			status = true;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -47,11 +66,11 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
 
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		//Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
 		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
 
-		maintenanceRecord.setTechnician(technician);
+		//maintenanceRecord.setTechnician(technician);
 		maintenanceRecord.setAircraft(super.getRequest().getData("aircraft", Aircraft.class));
 	}
 
@@ -68,10 +87,10 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 			super.state(validStatus, "status", "acme.validation.technician.maintenance-record.completed-in-draft");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("estimatedCost")) {
-			boolean positiveCost = maintenanceRecord.getEstimatedCost().getAmount() != null && maintenanceRecord.getEstimatedCost().getAmount() > 0;
-			super.state(positiveCost, "estimatedCost", "acme.validation.technician.maintenance-record.positive-cost");
-		}
+		//if (!super.getBuffer().getErrors().hasErrors("estimatedCost")) {
+		//boolean positiveCost = maintenanceRecord.getEstimatedCost().getAmount() != null && maintenanceRecord.getEstimatedCost().getAmount() > 0;
+		//super.state(positiveCost, "estimatedCost", "acme.validation.technician.maintenance-record.positive-cost");
+		//}
 
 	}
 
