@@ -17,11 +17,13 @@
 
 <acme:form>
 	<acme:input-textbox code="customer.booking.form.label.locatorCode" path="locatorCode"/>
-	<acme:input-textbox code="customer.booking.form.label.purchaseMoment" path="purchaseMoment" readonly = "true"/>
 	<acme:input-select code="customer.booking.form.label.travelClass" path="travelClass" choices="${travelClasss}"/>
-	<acme:input-textbox code="customer.booking.form.label.price" path="price" readonly="true"/>
 	<acme:input-textbox code="customer.booking.form.label.creditCard" path="creditCard"/>
 	<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
+	<jstl:if test="${_command == 'show'}">
+		<acme:input-textbox code="customer.booking.form.label.price" path="price" readonly="true"/>
+		<acme:input-textbox code="customer.booking.form.label.purchaseMoment" path="purchaseMoment" readonly = "true"/>
+	    </jstl:if>
 	
 	
 		<jstl:choose>
