@@ -32,34 +32,32 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 		Collection<MaintenanceRecord> maintenanceRecords;
 		int technicianId;
 		boolean mine;
+		boolean showCreate = false;
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		mine = super.getRequest().hasData("mine", boolean.class);
 
-		if (mine)
+		if (mine) {
 			maintenanceRecords = this.repository.findMaintenanceRecordsByTechnicianId(technicianId);
-		else
+			showCreate = true;
+		} else
 			maintenanceRecords = this.repository.findPublishedMaintenanceRecords();
 
+		super.getResponse().addGlobal("showCreate", showCreate);
 		super.getBuffer().addData(maintenanceRecords);
+
 	}
 
 	@Override
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		Dataset dataset;
-		Boolean mine;
-		boolean showCreate = false;
-
-		mine = super.getRequest().hasData("mine");
-
-		if (mine)
-			showCreate = true;
 
 		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate");
-		super.addPayload(dataset, maintenanceRecord, "estimatedCost", "notes", "draftMode", "aircraft.model", "aircraft.registrationNumber", "technician.identity.fullName", "technician.licenseNumber", "technician.phoneNumber");
+		super.addPayload(dataset, maintenanceRecord, //
+			"estimatedCost", "notes", "draftMode", "aircraft.model", //
+			"aircraft.registrationNumber", "technician.identity.fullName",//
+			"technician.licenseNumber", "technician.phoneNumber");
 
 		super.getResponse().addData(dataset);
-		super.getResponse().addGlobal("mine", mine);
-		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 }
