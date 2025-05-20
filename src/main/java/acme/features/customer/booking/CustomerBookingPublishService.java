@@ -79,6 +79,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			super.state(!passengers.isEmpty(), "*", "acme.validation.customer.booking.no-associated-passenger");
 			super.state(allPassengerPublished, "*", "acme.validation.customer.booking.no-publicated-passenger");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+			int id = booking.getId();
+			boolean exists = this.repository.existsByLocatorCodeAndIdNot(locatorCode, id);
+
+			super.state(!exists, "locatorCode", "acme.validation.customer.booking.locatorCode-already-exits");
+		}
 	}
 
 	@Override
@@ -99,9 +107,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
 		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCard", "customer", "flight", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard", "customer", "flight", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("price", booking.getPrice());
 		dataset.put("travelClass", choices2.getSelected().getKey());
 		dataset.put("travelClasss", choices2);
 
