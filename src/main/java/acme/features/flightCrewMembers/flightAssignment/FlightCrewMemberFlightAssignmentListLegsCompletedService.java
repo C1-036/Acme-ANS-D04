@@ -3,6 +3,7 @@ package acme.features.flightCrewMembers.flightAssignment;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,25 +28,27 @@ public class FlightCrewMemberFlightAssignmentListLegsCompletedService extends Ab
 
 	@Override
 	public void load() {
-		Collection<FlightAssignment> assignments;
-		int id;
-		Date now;
 
-		id = super.getRequest().getPrincipal().getActiveRealm().getId();
-		now = MomentHelper.getCurrentMoment();
+		int memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		assignments = this.repository.findCompletedFlightAssignmentsByMemberId(now, id);
+		//Collection<FlightAssignment> assignments = this.repository.assignmentsWithCompletedLegs(memberId);
+		Collection<FlightAssignment> allAssignments = this.repository.findAllAssignmentsByMemberId(memberId);
 
-		super.getBuffer().addData(assignments);
+		Date now = MomentHelper.getCurrentMoment();
+		Collection<FlightAssignment> completedAssignments = allAssignments.stream().filter(fa -> fa.getFlightLeg().getScheduledArrival().before(now)).collect(Collectors.toList());
+		//super.getBuffer().addData(assignments);
+		super.getBuffer().addData(completedAssignments);
+
 	}
 
 	@Override
 	public void unbind(final FlightAssignment assignment) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(assignment, "lastUpdate", "status", "duty");
-		super.addPayload(dataset, assignment, "remarks");
+		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status");
+		super.addPayload(dataset, assignment, "remarks", "draftMode", "flightCrewMember.identity.fullName", "flightLeg.status");
 
 		super.getResponse().addData(dataset);
 	}
+
 }

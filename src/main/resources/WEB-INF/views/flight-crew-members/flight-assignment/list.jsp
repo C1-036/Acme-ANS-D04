@@ -16,13 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.lastUpdate" path="lastUpdate" width="34%"/>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.status" path="status" width="33%"/>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.duty" path="duty" width="33%"/>
-	<acme:list-payload path="payload"/>	
-	
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.duty" path="duty" width="30%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.lastUpdate" path="lastUpdate" width="30%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.status" path="status" width="40%"/>
+	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${acme:anyOf(_command, 'list-planned|list-completed')}">
-	<acme:button code="flight-crew-members.flight-assignment.list.button.create" action="/flight-crew-members/flight-assignment/create"/>
-</jstl:if>	
+<acme:button code="flight-crew-members.flight-assignment.form.button.create" action="/flight-crew-members/flight-assignment/create"/>

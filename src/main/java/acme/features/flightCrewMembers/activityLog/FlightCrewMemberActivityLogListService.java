@@ -6,9 +6,11 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.ActivityLog;
+import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -20,26 +22,39 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int masterId;
+		int memberId;
+		FlightAssignment flightAssignment;
+		boolean status;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		flightAssignment = this.repository.findFlightAssignmentById(masterId);
+
+		status = flightAssignment != null && flightAssignment.getFlightCrewMember().getId() == memberId && flightAssignment.getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()) && !flightAssignment.isDraftMode();
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		FlightCrewMembers member = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<ActivityLog> logs;
+		int masterId;
 
-		Collection<ActivityLog> logs = this.repository.findAllLogsByFlightCrewMemberId(member.getId());
-
+		masterId = super.getRequest().getData("masterId", int.class);
+		logs = this.repository.findActivityLogsByAssignmentId(masterId);
 		super.getBuffer().addData(logs);
 	}
 
 	@Override
-	public void unbind(final ActivityLog log) {
+	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
+		int masterId;
 
-		dataset = super.unbindObject(log, "incidentType", "severity", "registrationMoment");
-		super.addPayload(dataset, log, "description");
+		dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "severity");
+		masterId = super.getRequest().getData("masterId", int.class);
+
+		super.addPayload(dataset, activityLog, "draftMode");
+		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addData(dataset);
-
 	}
-
 }
