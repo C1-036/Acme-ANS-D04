@@ -120,6 +120,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		dataset.put("purchaseMoment", purchaseMoment);
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("price", booking.getPrice());
 		dataset.put("travelClass", choices2.getSelected().getKey());
 		dataset.put("travelClasss", choices2);
 
