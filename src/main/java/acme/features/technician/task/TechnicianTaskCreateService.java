@@ -113,14 +113,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDurationHours", "draftMode");
-
-		String technicianName = task.getTechnician() != null && task.getTechnician().getIdentity() != null ? task.getTechnician().getIdentity().getFullName() : "";
-		dataset.put("technician", technicianName);
+		dataset.put("technician", task.getTechnician().getIdentity().getFullName());
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("types", choices);
-
-		Integer maintenanceRecordId = super.getBuffer().getGlobal("maintenanceRecordId", Integer.class);
-		dataset.put("maintenanceRecordId", maintenanceRecordId);
+		if (super.getRequest().hasData("maintenanceRecordId"))
+			dataset.put("maintenanceRecordId", super.getRequest().getData("maintenanceRecordId", Integer.class));
 
 		super.getResponse().addData(dataset);
 	}

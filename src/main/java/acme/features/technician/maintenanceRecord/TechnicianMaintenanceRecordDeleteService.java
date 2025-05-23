@@ -13,7 +13,6 @@ import acme.entities.aircraft.Aircraft;
 import acme.entities.technicians.Involves;
 import acme.entities.technicians.MaintenanceRecord;
 import acme.entities.technicians.MaintenanceStatus;
-import acme.features.technician.involves.TechnicianInvolvesRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -22,10 +21,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository	repository;
-
-	@Autowired
-	private TechnicianInvolvesRepository			involvesRepository;
+	private TechnicianMaintenanceRecordRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -80,7 +76,7 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 	public void perform(final MaintenanceRecord maintenanceRecord) {
 		Collection<Involves> involves;
 
-		involves = this.involvesRepository.findInvolvesByMaintenanceRecord(maintenanceRecord);
+		involves = this.repository.findInvolvesByMaintenanceRecordId(maintenanceRecord.getId());
 		this.repository.deleteAll(involves);
 		this.repository.delete(maintenanceRecord);
 
@@ -98,14 +94,12 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		choicesStatus = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
 		choicesAircrafts = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(maintenanceRecord, "moment", "inspectionDueDate", "estimatedCost", "notes", "draftMode");
 		dataset.put("technician", maintenanceRecord.getTechnician().getIdentity().getFullName());
 		dataset.put("aircraft", choicesAircrafts.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircrafts);
 		dataset.put("status", choicesStatus.getSelected().getKey());
 		dataset.put("statuses", choicesStatus);
-
-		dataset.put("id", maintenanceRecord.getId());
 
 		super.getResponse().addData(dataset);
 	}

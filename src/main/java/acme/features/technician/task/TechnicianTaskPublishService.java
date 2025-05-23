@@ -67,12 +67,22 @@ public class TechnicianTaskPublishService extends AbstractGuiService<Technician,
 
 	@Override
 	public void validate(final Task task) {
-		;
+		if (!super.getBuffer().getErrors().hasErrors("priority")) {
+			boolean validPriority = task.getPriority() >= 0 && task.getPriority() <= 10;
+			super.state(validPriority, "priority", "acme.validation.technician.task.priority-out-of-range");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("estimatedDurationHours")) {
+			boolean validDuration = task.getEstimatedDurationHours() >= 0 && task.getEstimatedDurationHours() <= 1000;
+			super.state(validDuration, "estimatedDurationHours", "acme.validation.technician.task.positive-duration");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("description")) {
+			boolean validDescription = task.getDescription() != null && task.getDescription().length() <= 255;
+			super.state(validDescription, "description", "acme.validation.technician.task.description-too-long");
+		}
 	}
 
 	@Override
 	public void perform(final Task task) {
-
 		task.setDraftMode(false);
 		this.repository.save(task);
 	}

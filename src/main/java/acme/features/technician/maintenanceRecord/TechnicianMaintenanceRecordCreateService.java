@@ -24,27 +24,44 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 
 	// AbstractGuiService interface -------------------------------------------
 
+	//	@Override
+	//	public void authorise() {
+	//		boolean status = false;
+	//		Integer maintenanceRecordId = null;
+	//		MaintenanceRecord maintenanceRecord;
+	//		Technician technician;
+	//
+	//		if (super.getRequest().hasData("maintenanceRecordId")) {
+	//			maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
+	//
+	//			if (maintenanceRecordId != null) {
+	//				maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+	//
+	//				if (maintenanceRecord != null) {
+	//					technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+	//					status = maintenanceRecord.isDraftMode() && technician.equals(maintenanceRecord.getTechnician());
+	//				}
+	//			}
+	//		} else
+	//			status = true;
+	//
+	//		super.getResponse().setAuthorised(status);
+	//	}
+
 
 	@Override
 	public void authorise() {
-		boolean status = false;
-		Integer maintenanceRecordId = null;
-		MaintenanceRecord maintenanceRecord;
-		Technician technician;
+		boolean status = true;
+		int aircraftId;
+		Aircraft aircraft;
 
-		if (super.getRequest().hasData("maintenanceRecordId")) {
-			maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
+		if (super.getRequest().hasData("aircraft", int.class)) {
+			aircraftId = super.getRequest().getData("aircraft", int.class);
+			aircraft = this.repository.findAircraftById(aircraftId);
 
-			if (maintenanceRecordId != null) {
-				maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
-
-				if (maintenanceRecord != null) {
-					technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-					status = maintenanceRecord.isDraftMode() && technician.equals(maintenanceRecord.getTechnician());
-				}
-			}
-		} else
-			status = true;
+			if (aircraft == null && aircraftId != 0)
+				status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -77,10 +94,10 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
 
-		if (!super.getBuffer().getErrors().hasErrors("moment") && !super.getBuffer().getErrors().hasErrors("inspectionDueDate")) {
-			boolean momentBeforeInspection = maintenanceRecord.getMoment().before(maintenanceRecord.getInspectionDueDate());
-			super.state(momentBeforeInspection, "inspectionDueDate", "acme.validation.technician.maintenance-record.moment-before-inspection");
-		}
+		//if (!super.getBuffer().getErrors().hasErrors("moment") && !super.getBuffer().getErrors().hasErrors("inspectionDueDate")) {
+		//boolean momentBeforeInspection = maintenanceRecord.getMoment().before(maintenanceRecord.getInspectionDueDate());
+		//super.state(momentBeforeInspection, "inspectionDueDate", "acme.validation.technician.maintenance-record.moment-before-inspection");
+		//}
 
 		if (!super.getBuffer().getErrors().hasErrors("status")) {
 			boolean validStatus = !(maintenanceRecord.isDraftMode() && maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED));
