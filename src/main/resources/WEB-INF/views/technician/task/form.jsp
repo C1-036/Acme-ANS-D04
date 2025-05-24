@@ -22,7 +22,7 @@
 	<acme:input-integer code="technician.task.form.label.estimatedDurationHours" path="estimatedDurationHours"/>
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:submit code="technician.task.form.button.update" action="/technician/task/update"/>
 			<acme:submit code="technician.task.form.button.delete" action="/technician/task/delete"/>
 			<acme:submit code="technician.task.form.button.publish" action="/technician/task/publish"/>
@@ -33,6 +33,6 @@
 		</jstl:when>
 		<jstl:when test="${_command == 'create' && maintenanceRecordId == null}">
 			<acme:submit code="technician.task.form.button.create" action="/technician/task/create"/>
-		</jstl:when>	
+		</jstl:when>		
 	</jstl:choose>		
 </acme:form>

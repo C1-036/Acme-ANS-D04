@@ -29,7 +29,6 @@
 	<acme:button code="technician.task.list.button.unlink" action="/technician/involves/delete?maintenanceRecordId=${maintenanceRecordId}"/>
 	
 </jstl:if>
-
 <jstl:if test="${showCreate && maintenanceRecordId == null}">
 	<acme:button code="technician.task.list.button.create" action="/technician/task/create"/>
 </jstl:if>
