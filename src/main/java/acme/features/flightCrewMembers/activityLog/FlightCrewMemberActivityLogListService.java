@@ -29,17 +29,21 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
+
 			// Only is allowed to view an activity log list if the creator is the flight crew member associated to the flight assignment.
-			Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
-			if (assignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
-				isAuthorised = flightAssignment != null && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("assignmentId")) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+
+				if (assignmentId != null) {
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -57,26 +61,24 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "description", "severity", "draftMode");
 
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+		// int assignmentId = super.getRequest().getData("assignmentId", int.class);
+		// FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 
 		// Show create if the assignment is completed
-		if (flightAssignment.getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-			super.getResponse().addGlobal("showAction", true);
+		// if (flightAssignment.getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+		//	super.getResponse().addGlobal("showAction", true);
 
 		super.getResponse().addData(dataset);
 	}
 
 	@Override
 	public void unbind(final Collection<ActivityLog> activityLogs) {
-		assert activityLogs != null;
-
-		int assignmentId = super.getRequest().getData("assignmentId", int.class);
-		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+		// int assignmentId = super.getRequest().getData("assignmentId", int.class);
+		// FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 
 		// Show create if the assignment is completed
-		if (flightAssignment.getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-			super.getResponse().addGlobal("showAction", true);
+		// if (flightAssignment.getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+		//	super.getResponse().addGlobal("showAction", true);
 
 		super.getResponse().addGlobal("assignmentId", super.getRequest().getData("assignmentId", int.class));
 	}

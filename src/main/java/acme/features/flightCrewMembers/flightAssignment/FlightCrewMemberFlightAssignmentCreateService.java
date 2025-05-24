@@ -26,8 +26,30 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class);
-		super.getResponse().setAuthorised(status);
+
+		boolean isAuthorised = false;
+
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class)) {
+
+			if (super.getRequest().getMethod().equals("GET"))
+				isAuthorised = true;
+
+			// Only is allowed to create a flight assignment if post method include a valid flight assignment.
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class).equals(0)) {
+
+				FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+
+				// Only is allowed to create a flight assignment if the leg selected is between the options shown.
+				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+				Leg legSelected = super.getRequest().getData("flightLeg", Leg.class);
+
+				isAuthorised = legSelected == null || legs.contains(legSelected);
+
+			}
+
+		}
+
+		super.getResponse().setAuthorised(isAuthorised);
 	}
 
 	@Override

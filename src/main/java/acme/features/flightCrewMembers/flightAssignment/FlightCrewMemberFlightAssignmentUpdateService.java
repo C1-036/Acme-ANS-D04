@@ -29,18 +29,29 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
+
 			// Only is allowed to update a flight assignment if the creator is associated.
 			// A flight assignment cannot be updated if is published, only in draft mode are allowed.
-			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
-			if (flightAssignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-				isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+
+				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+
+				if (flightAssignmentId != null) {
+
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+
+					// Only is allowed to update a flight assignment if the leg selected is between the options shown.
+					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+					Leg legSelected = super.getRequest().getData("flightLeg", Leg.class);
+
+					isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected == null || legs.contains(legSelected));
+
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
+
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
