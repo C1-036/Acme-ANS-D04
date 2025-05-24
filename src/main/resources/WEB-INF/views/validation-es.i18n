@@ -40,7 +40,6 @@ acme.validation.technician.phone-number.message =  Debe tener entre 6 y 15 dígi
 
 acme.validation.flightAssignment.duty = Cada tramo debe contener solo un piloto y un copiloto
 acme.validation.flightAssignment.flightLeg.draftmode = La asignación no puede ser realizada para tramos que estén en modo edición
-acme.validation.flightAssignment.flightLeg.airline = La asignación no puede ser realizada para tramos que pertenezcan a otras aerolineas
 acme.validation.flightAssignment.flightLeg.lastUpdate = La asignación no puede ser realizada para tramos que ocurren en el pasado
 acme.validation.flightAssignment.flightCrewMember.available = El miembro de tripulación no está disponible para ser asignado
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = El miembro de tripulación ya está asignado a otro tramo en este momento

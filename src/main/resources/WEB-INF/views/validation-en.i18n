@@ -40,7 +40,6 @@ acme.validation.technician.phone-number.message = must have between 6 and 15 dig
 
 acme.validation.flightAssignment.duty = Each leg can only have one pilot and one co-pilot
 acme.validation.flightAssignment.flightLeg.draftmode = The assignment cannot be linked to legs in draft mode
-acme.validation.flightAssignment.flightLeg.airline = The assignment cannot be linked to legs of other airlines
 acme.validation.flightAssignment.flightLeg.lastUpdate = The assignment cannot be linked to legs that have already occurred
 acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
 acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg

@@ -24,6 +24,5 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${showAction}">
+
 	<acme:button code="flight-crew-members.activity-log.list.button.create" action="/flight-crew-members/activity-log/create?assignmentId=${assignmentId}"/>
-</jstl:if>

@@ -1,6 +1,8 @@
 
 package acme.features.flightCrewMembers.flightAssignment;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -12,6 +14,7 @@ import acme.entities.flightCrewMembers.AssignmentStatus;
 import acme.entities.flightCrewMembers.AvailabilityStatus;
 import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.entities.flightCrewMembers.FlightDuty;
+import acme.entities.flights.Leg;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -30,18 +33,28 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 		boolean isAuthorised = false;
 
-		try {
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
+
 			// Only is allowed to publish a flight assignment if the creator is associated.
 			// A flight assignment cannot be published if the assignment is in published mode and not in draft mode.
-			Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
-			if (flightAssignmentId != null) {
-				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-				isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flightAssignment.getFlightCrewMember());
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+
+				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+
+				if (flightAssignmentId != null) {
+
+					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+
+					// Only is allowed to publish a flight assignment if the leg selected is between the options shown.
+					Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
+					Leg legSelected = super.getRequest().getData("flightLeg", Leg.class);
+
+					isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember) && (legSelected == null || legs.contains(legSelected));
+
+				}
+
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
@@ -79,9 +92,6 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		if (flightAssignment.getFlightLeg() != null) {
 			boolean isDraftModeLeg = flightAssignment.getFlightLeg().isDraftMode();
 			super.state(!isDraftModeLeg, "flightLeg", "acme.validation.flightAssignment.flightLeg.draftmode");
-
-			boolean isWrongAirlineLeg = flightAssignment.getFlightLeg().getAircraft().getAirline().equals(flightAssignment.getFlightCrewMember().getAirline());
-			super.state(isWrongAirlineLeg, "flightLeg", "acme.validation.flightAssignment.flightLeg.airline");
 
 			boolean isLinkedToPastLeg = flightAssignment.getFlightLeg().getScheduledDeparture().before(MomentHelper.getCurrentMoment());
 			super.state(!isLinkedToPastLeg, "flightLeg", "acme.validation.flightAssignment.flightLeg.lastUpdate");
