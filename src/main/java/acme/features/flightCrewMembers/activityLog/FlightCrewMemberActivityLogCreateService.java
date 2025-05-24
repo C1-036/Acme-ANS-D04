@@ -41,6 +41,7 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 				}
 
 			}
+
 		}
 
 		super.getResponse().setAuthorised(isAuthorised);

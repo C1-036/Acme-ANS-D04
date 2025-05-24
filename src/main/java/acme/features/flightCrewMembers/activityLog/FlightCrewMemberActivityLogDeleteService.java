@@ -8,7 +8,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.ActivityLog;
-import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -76,11 +75,12 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "description", "severity", "draftMode");
 
 		// Show create if the assignment is completed
-		if (activityLog.getFlightAssignment().getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-			super.getResponse().addGlobal("showAction", true);
+		// if (activityLog.getFlightAssignment().getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
+		//	super.getResponse().addGlobal("showAction", true);
 
 		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).isDraftMode();
 		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
+
 
 		super.getResponse().addData(dataset);
 	}

@@ -30,3 +30,4 @@ assignment-21,CO_PILOT,2012/07/02 0:00,CONFIRMED,' or 'A' = 'A ,true,member1,leg
 assignment-22,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-36
 # flightLeg - standard variations
 assignment-23,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-36
+
