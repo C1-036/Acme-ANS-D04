@@ -8,19 +8,21 @@
 # they accept any liabilities with respect to them.
 
 # Títulos
-flight-crew-members.activity-log.form.title = Detalles del registro de actividad
-flight-crew-members.activity-log.list.title = Listado de registros de actividad
+flight-crew-members.activity-log.form.title = Registro de actividad
+flight-crew-members.activity-log.list.title = Lista de registro de actividades
 
 # Etiquetas del formulario
+flight-crew-members.activity-log.form.label.registrationMoment = Fecha de registro: 
 flight-crew-members.activity-log.form.label.incidentType = Tipo de incidente:
-flight-crew-members.activity-log.form.label.severity = Nivel de gravedad:
-flight-crew-members.activity-log.form.label.flightAssignment = Asignación de vuelo:
 flight-crew-members.activity-log.form.label.description = Descripción:
+flight-crew-members.activity-log.form.label.severity = Nivel de urgencia:
 
 # Etiquetas de la lista
-flight-crew-members.activity-log.list.label.registrationMoment = Momento de registro:
+flight-crew-members.activity-log.list.label.registrationMoment = Fecha de registro: 
 flight-crew-members.activity-log.list.label.incidentType = Tipo de incidente:
-flight-crew-members.activity-log.list.label.severity = Nivel de gravedad:
+flight-crew-members.activity-log.list.label.description = Descripción:
+flight-crew-members.activity-log.list.label.severity = Nivel de urgencia:
+flight-crew-members.activity-log.list.label.draftMode = Modo edición:
 
 # Botones
 flight-crew-members.activity-log.form.button.create = Crear
