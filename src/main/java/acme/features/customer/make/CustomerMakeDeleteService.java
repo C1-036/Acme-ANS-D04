@@ -53,7 +53,7 @@ public class CustomerMakeDeleteService extends AbstractGuiService<Customer, Make
 
 		bookingCustomer = booking == null ? null : booking.getCustomer();
 
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible && bookingCustomer.getId() == currentCustomer.getId();
+		status = super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible && bookingCustomer.getId() == currentCustomer.getId();
 
 		super.getResponse().setAuthorised(status);
 	}

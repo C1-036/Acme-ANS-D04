@@ -71,30 +71,30 @@ public class Booking extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Flight				flight;
 
-	/*
-	 * @Transient
-	 * private Date getPurchaseMoment() {
-	 * if (this.purchaseMoment == null)
-	 * this.purchaseMoment = new Date();
-	 * return this.purchaseMoment;
-	 * }
-	 */
-
 
 	@Transient
 	public Money getPrice() {
-
-		Money result;
-
-		if (this.flight == null)
-			return new Money();
+		if (this.flight == null) {
+			Money porDefecto = new Money();
+			porDefecto.setAmount(0.0);
+			porDefecto.setCurrency("EUR");
+			return porDefecto;
+		}
 		CustomerBookingRepository bookingRepository = SpringHelper.getBean(CustomerBookingRepository.class);
-		result = bookingRepository.findCostByFlightBooking(this.flight.getId());
+		Money result = bookingRepository.findCostByFlightBooking(this.flight.getId());
+
+		if (result == null || result.getAmount() == null || result.getCurrency() == null) {
+			Money fallback = new Money();
+			fallback.setAmount(0.0);
+			fallback.setCurrency("EUR");
+			return fallback;
+		}
+
 		Collection<Passenger> passengers = bookingRepository.findAllPassengerBooking(this.getId());
 		double amount = result.getAmount() * passengers.size();
 		result.setAmount(amount);
-		return result;
 
+		return result;
 	}
 
 }

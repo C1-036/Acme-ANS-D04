@@ -40,9 +40,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 			else
 
 				isFlightAccessible = true;
-		} else
-
-			isFlightAccessible = true;
+		}
 
 		Customer current = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 		status = booking != null && booking.getCustomer().equals(current) && booking.isDraftMode() && isFlightAccessible;
@@ -76,7 +74,15 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		;
+		assert booking != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("locatorCode")) {
+			String locatorCode = booking.getLocatorCode();
+			int id = booking.getId();
+			boolean exists = this.repository.existsByLocatorCodeAndIdNot(locatorCode, id);
+
+			super.state(!exists, "locatorCode", "acme.validation.customer.booking.locatorCode-already-exits");
+		}
 	}
 
 	@Override
@@ -96,10 +102,11 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		choices = SelectChoices.from(flights, "tag", booking.getFlight());
 		choices2 = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "creditCard", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "creditCard", "draftMode", "price");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClass", choices2.getSelected().getKey());
+		dataset.put("price", booking.getPrice());
 		dataset.put("travelClasss", choices2);
 
 		super.getResponse().addData(dataset);

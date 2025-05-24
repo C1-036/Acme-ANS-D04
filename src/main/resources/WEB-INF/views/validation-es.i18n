@@ -56,8 +56,6 @@ acme.validation.technician.task.priority-out-of-range=La prioridad debe estar en
 assistanceAgent.claim.form.error.emptyLeg = Debes seleccionar un tramo de vuelo para la reclamación.
 assistanceAgent.claim.form.error.legNotPublished = No puedes enviar una reclamación para un tramo que no ha sido publicado.
 
-
-
 acme.validation.customer.booking.locatorCode-already-exits = Ya existe una reserva con este código de localización.
 acme.validation.customer.booking.no-publicated-passenger = La reserva debe tener todoslos pasajeros publicados.
 acme.validation.customer.booking.no-associated-passenger = La reserva debe tener almenos un pasajero.

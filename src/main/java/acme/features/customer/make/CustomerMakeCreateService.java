@@ -49,7 +49,7 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 			int passengerId = super.getRequest().getData("passenger", int.class);
 
 			if (passengerId != 0)
-				isPassengerAccessible = this.repository.isAccessiblePassenger(passengerId, currentCustomer.getId());
+				isPassengerAccessible = this.repository.isAccessiblePassenger(passengerId, currentCustomer.getId()) && !this.repository.isLinkedPassenger(passengerId, bookingId);
 			else
 				isPassengerAccessible = true;
 		} else
@@ -57,7 +57,7 @@ public class CustomerMakeCreateService extends AbstractGuiService<Customer, Make
 
 		bookingCustomer = booking == null ? null : booking.getCustomer();
 
-		status = booking != null && super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible && bookingCustomer.getId() == currentCustomer.getId();
+		status = super.getRequest().getPrincipal().hasRealm(bookingCustomer) && isPassengerAccessible && bookingCustomer.getId() == currentCustomer.getId();
 
 		super.getResponse().setAuthorised(status);
 	}

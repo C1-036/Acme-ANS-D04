@@ -26,14 +26,32 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = false;
+		Integer maintenanceRecordId = null;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+
+		if (super.getRequest().hasData("maintenanceRecordId")) {
+			maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
+
+			if (maintenanceRecordId != null) {
+				maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+				if (maintenanceRecord != null) {
+					technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+					status = maintenanceRecord.isDraftMode() && technician.equals(maintenanceRecord.getTechnician());
+				}
+			}
+		} else
+			status = true;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Task task;
 		Technician technician;
-		Integer maintenanceRecordId = null;
 
 		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
 
@@ -41,32 +59,22 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		task.setDraftMode(true);
 		task.setTechnician(technician);
 
-		if (super.getRequest().hasData("maintenanceRecordId"))
-			try {
-				maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
-			} catch (Throwable oops) {
-				maintenanceRecordId = null;
-			}
-
 		super.getBuffer().addData(task);
-		super.getBuffer().addGlobal("maintenanceRecordId", maintenanceRecordId); // 💥
 	}
 
 	@Override
 	public void bind(final Task task) {
 
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.bindObject(task, "type", "description", "priority", "estimatedDurationHours");
-
-		task.setTechnician(technician);
 	}
 
 	@Override
 	public void validate(final Task task) {
 
-		if (!super.getBuffer().getErrors().hasErrors("estimatedDurationHours"))
-			super.state(task.getEstimatedDurationHours() > 0, "estimatedDurationHours", "acme.validation.technician.task.positive-duration");
+		if (!super.getBuffer().getErrors().hasErrors("estimatedDurationHours")) {
+			boolean validPriority = task.getEstimatedDurationHours() >= 0 && task.getEstimatedDurationHours() <= 1000;
+			super.state(validPriority, "estimatedDurationHours", "acme.validation.technician.task.positive-duration");
+		}
 		if (!super.getBuffer().getErrors().hasErrors("priority")) {
 			boolean validPriority = task.getPriority() >= 0 && task.getPriority() <= 10;
 			super.state(validPriority, "priority", "acme.validation.technician.task.priority-out-of-range");
@@ -78,7 +86,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 	public void perform(final Task task) {
 		Integer maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
-		Involves involves = new Involves();
+		Involves involves;
 
 		maintenanceRecordId = super.getRequest().hasData("maintenanceRecordId") ?//
 			super.getRequest().getData("maintenanceRecordId", Integer.class) : null;
@@ -87,6 +95,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 		if (maintenanceRecordId != null) {
 
+			involves = new Involves();
 			maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 			involves.setTask(task);
