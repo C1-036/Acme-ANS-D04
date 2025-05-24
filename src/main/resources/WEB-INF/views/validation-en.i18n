@@ -51,9 +51,13 @@ acme.validation.technician.maintenance-record.moment-before-inspection=The momen
 acme.validation.technician.maintenance-record.completed-in-draft=You cannot set the status to COMPLETED while the record is still in draft mode.
 acme.validation.technician.maintenance-record.positive-cost=The estimated cost must be greater than zero.
 
+acme.validation.maintenance-record.inspection-due-date.message = The next inspection must be set after the actual maintenance takes place
+acme.validation.maintenance-record.future-inspection-due-date.message = The next inspection must be set in the future
 
 acme.validation.technician.task.positive-duration=The estimated duration must be greater than zero.
 acme.validation.technician.task.priority-out-of-range=The priority must be between 0 and 10.
+acme.validation.task.maintenance-record-linked.message = In order to delete a task it must not have any maintenance records linked
+
 
 assistanceAgent.claim.form.error.emptyLeg = You must select a flight leg for the claim.
 assistanceAgent.claim.form.error.legNotPublished = You cannot submit a claim for a leg that has not been published.
