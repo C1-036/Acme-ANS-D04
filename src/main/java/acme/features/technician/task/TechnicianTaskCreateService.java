@@ -1,3 +1,14 @@
+/*
+ * TechnicianTaskCreateService.java
+ *
+ * Copyright (C) 2012-2025 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
 
 package acme.features.technician.task;
 
@@ -70,16 +81,7 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void validate(final Task task) {
-
-		if (!super.getBuffer().getErrors().hasErrors("estimatedDurationHours")) {
-			boolean validPriority = task.getEstimatedDurationHours() >= 0 && task.getEstimatedDurationHours() <= 1000;
-			super.state(validPriority, "estimatedDurationHours", "acme.validation.technician.task.positive-duration");
-		}
-		if (!super.getBuffer().getErrors().hasErrors("priority")) {
-			boolean validPriority = task.getPriority() >= 0 && task.getPriority() <= 10;
-			super.state(validPriority, "priority", "acme.validation.technician.task.priority-out-of-range");
-		}
-
+		;
 	}
 
 	@Override
@@ -113,14 +115,11 @@ public class TechnicianTaskCreateService extends AbstractGuiService<Technician, 
 		choices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDurationHours", "draftMode");
-
-		String technicianName = task.getTechnician() != null && task.getTechnician().getIdentity() != null ? task.getTechnician().getIdentity().getFullName() : "";
-		dataset.put("technician", technicianName);
+		dataset.put("technician", task.getTechnician().getIdentity().getFullName());
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("types", choices);
-
-		Integer maintenanceRecordId = super.getBuffer().getGlobal("maintenanceRecordId", Integer.class);
-		dataset.put("maintenanceRecordId", maintenanceRecordId);
+		if (super.getRequest().hasData("maintenanceRecordId"))
+			dataset.put("maintenanceRecordId", super.getRequest().getData("maintenanceRecordId", Integer.class));
 
 		super.getResponse().addData(dataset);
 	}

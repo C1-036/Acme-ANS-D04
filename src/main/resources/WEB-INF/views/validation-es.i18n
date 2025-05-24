@@ -47,13 +47,17 @@ acme.validation.flight-assignment.leg-has-occurred.message = La escala seleccion
 acme.validation.activity-log.flight-assignment-not-published.message = Este registro no puede ser publicado porque la asignación de vuelo seleccionada no ha sido publicada todavía
 acme.validation.log.registration-moment.message = El momento de registro del registro debe ocurrir después de que termine la escala.
 
-acme.validation.technician.maintenance-record.moment-before-inspection=La fecha del momento debe ser anterior a la fecha de inspección.
-acme.validation.technician.maintenance-record.completed-in-draft=No puedes establecer el estado en COMPLETADO mientras el registro esté en modo borrador.
+acme.validation.technician.maintenance-record.moment-before-inspection=El momento debe ser anterior a la fecha límite de inspección.
+acme.validation.technician.maintenance-record.completed-in-draft=No puedes establecer el estado como COMPLETADO mientras el registro aún está en modo borrador.
 acme.validation.technician.maintenance-record.positive-cost=El coste estimado debe ser mayor que cero.
 
+acme.validation.maintenance-record.inspection-due-date.message = La siguiente inspección debe programarse después de que se realice el mantenimiento.
+acme.validation.maintenance-record.future-inspection-due-date.message = La siguiente inspección debe programarse en el futuro.
 
 acme.validation.technician.task.positive-duration=La duración estimada debe ser mayor que cero.
 acme.validation.technician.task.priority-out-of-range=La prioridad debe estar entre 0 y 10.
+acme.validation.task.maintenance-record-linked.message = Para borrar una tarea, esta no debe tener registros de mantenimiento vinculados
+
 
 assistanceAgent.claim.form.error.emptyLeg = Debes seleccionar un tramo de vuelo para la reclamación.
 assistanceAgent.claim.form.error.legNotPublished = No puedes enviar una reclamación para un tramo que no ha sido publicado.

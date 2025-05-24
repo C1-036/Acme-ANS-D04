@@ -27,7 +27,33 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+
+		boolean statusTask = true;
+		boolean status = false;
+		int taskId;
+		Task task;
+		int maintenanceRecordId;
+		MaintenanceRecord maintenanceRecord;
+		Technician technician;
+		Collection<Task> tasks;
+
+		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+		tasks = this.repository.findValidTasksToLink(maintenanceRecord, technician);
+
+		if (super.getRequest().hasData("task", int.class)) {
+			taskId = super.getRequest().getData("task", int.class);
+			task = this.repository.findTaskById(taskId);
+
+			if (!tasks.contains(task) && taskId != 0)
+				statusTask = false;
+		}
+
+		status = maintenanceRecord != null && maintenanceRecord.isDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician());
+
+		super.getResponse().setAuthorised(status && statusTask);
 	}
 
 	@Override
@@ -48,10 +74,6 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	@Override
 	public void bind(final Involves involves) {
 
-		int maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
-		MaintenanceRecord maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
-
-		involves.setMaintenanceRecord(maintenanceRecord);
 		super.bindObject(involves, "task");
 
 	}
