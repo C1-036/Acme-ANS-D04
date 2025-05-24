@@ -4,7 +4,9 @@ package acme.entities.technicians;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -16,7 +18,8 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidString;
+import acme.constraints.ValidLongText;
+import acme.constraints.ValidMaintenanceRecord;
 import acme.entities.aircraft.Aircraft;
 import acme.realms.Technician;
 import lombok.Getter;
@@ -25,6 +28,14 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidMaintenanceRecord
+@Table(indexes = {
+	@Index(columnList = "draftMode"),//
+	@Index(columnList = "status,technician_id"),//
+	@Index(columnList = "technician_id,moment"),//
+	@Index(columnList = "technician_id,estimatedCost_currency"),//
+	@Index(columnList = "technician_id,inspectionDueDate")
+})
 public class MaintenanceRecord extends AbstractEntity {
 
 	// Serialization ----------------------------------------------------------------
@@ -52,7 +63,8 @@ public class MaintenanceRecord extends AbstractEntity {
 	private Money				estimatedCost;
 
 	@Optional
-	@ValidString(min = 0, max = 255)
+	//@ValidString(min = 0, max = 255)
+	@ValidLongText
 	@Automapped
 	private String				notes;
 
