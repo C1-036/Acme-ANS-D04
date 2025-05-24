@@ -14,6 +14,7 @@ import acme.entities.flightCrewMembers.AssignmentStatus;
 import acme.entities.flightCrewMembers.AvailabilityStatus;
 import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.entities.flightCrewMembers.FlightDuty;
+import acme.entities.flights.Leg;
 import acme.realms.FlightCrewMembers;
 
 @GuiService

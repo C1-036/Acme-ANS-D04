@@ -1,6 +1,8 @@
 
 package acme.features.flightCrewMembers.flightAssignment;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -11,6 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.AssignmentStatus;
 import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.entities.flightCrewMembers.FlightDuty;
+import acme.entities.flights.Leg;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -51,7 +54,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 				}
 
 			}
-
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}

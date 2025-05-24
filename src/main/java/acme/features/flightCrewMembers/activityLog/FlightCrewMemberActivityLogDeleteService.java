@@ -4,10 +4,10 @@ package acme.features.flightCrewMembers.activityLog;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.ActivityLog;
+import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -80,7 +80,6 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 
 		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).isDraftMode();
 		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
-
 
 		super.getResponse().addData(dataset);
 	}
