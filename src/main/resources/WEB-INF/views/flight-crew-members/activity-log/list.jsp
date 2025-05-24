@@ -16,9 +16,14 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code ="flight-crew-members.activity-log.list.label.registrationMoment" path ="registrationMoment" width ="20%"/>
-	<acme:list-column code ="flight-crew-members.activity-log.list.label.incidentType" path ="incidentType" width ="20%"/>
-	<acme:list-column code ="flight-crew-members.activity-log.list.label.severity" path ="severity" width ="20%"/>
-	<acme:list-payload path="payload"/>	
+	<acme:list-column code="flight-crew-members.activity-log.list.label.registrationMoment" path="registrationMoment" width="10%"/>
+	<acme:list-column code="flight-crew-members.activity-log.list.label.incidentType" path="incidentType" width="10%"/>
+	<acme:list-column code="flight-crew-members.activity-log.list.label.severity"  path="severity" width="10%"/>
+	<acme:list-column code="flight-crew-members.activity-log.list.label.draftMode"  path="draftMode" width="10%"/>
+	
+	<acme:list-payload path="payload"/>
 </acme:list>
-<acme:button code="flight-crew-members.activity-log.list.button.create" action ="/flight-crew-members/activity-log/create?masterId=${masterId}"/>
+
+<jstl:if test="${showAction}">
+	<acme:button code="flight-crew-members.activity-log.list.button.create" action="/flight-crew-members/activity-log/create?assignmentId=${assignmentId}"/>
+</jstl:if>

@@ -71,11 +71,11 @@ master.menu.customer = Customer
 master.menu.customer.list.my-bookings = Mis reservas
 master.menu.customer.list.my-passengers = Mis pasajeros
 
-# master.menu.flightCrewMember ##########################################################
+# master.menu.flight-crew-members ##########################################################
 
 master.menu.flight-crew-members = Tripulante de vuelo
-master.menu.flight-crew-members.listCompleted = Listar asignaciones completadas
-master.menu.flight-crew-members.listPlanned = Listar asignaciones planeadas
+master.menu.flight-crew-members.list-flight-assignments-planned = Asignaciones planificadas
+master.menu.flight-crew-members.list-flight-assignments-completed = Asignaciones completadas
 
 # master.menu.user-account ####################################################
 

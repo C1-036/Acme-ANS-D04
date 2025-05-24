@@ -38,23 +38,12 @@ acme.validation.technician.wrong-initials-license-number.message = The first let
 acme.validation.technician.licenseNumber.message  	= Must follow the pattern: 2-3 uppercase letters followed by 6 digits (e.g., AB123456 or ABC987654)
 acme.validation.technician.phone-number.message = must have between 6 and 15 digits, optionally starting with '+'. (e.g: +123456789 or 987654321)
 
-acme.validation.activitylog.registrationmoment.required = Registration moment cannot be null
-acme.validation.activitylog.registrationmoment.message = Registration moment must be after the leg ends
-
-acme.validation.activityLog.invalidLeg      = The leg must have taken place
-
-acme.validation.flightassignment.flightcrewmember.available.message = Only available members can be assigned
-acme.validation.flightassignment.leg.completed.message = The assignment cannot be linked to a completed leg
-acme.validation.flightassignment.leg.overlap.message = Legs cannot be overlapped
-acme.validation.flightassignment.duty.pilot.message = Each leg can only have one pilot
-acme.validation.flightassignment.duty.copilot.message = Each leg can only have one copilot
-acme.validation.flight-crew-member.assignment.form.error.leg-not-published = The selected leg must be published.
-
-acme.validation.flight-assignment.leg.required = You must select a leg for this assignment
-acme.validation.flight-assignment.status-cancelled-not-allowed = You cannot create an assignment with status CANCELLED.
-acme.validation.flight-assignment.status-confirmed-not-allowed = You cannot create an assignment with status CONFIRMED.
-acme.validation.flight-assignment.status-not-publishable = Only assignments with status CONFIRMED or CANCELLED can be published.
-acme.validation.flight-crew-member.assignment.form.error.different-airline = You cannot be assigned to a flight of an airline you don't belong.
+acme.validation.flightAssignment.duty = Each leg can only have one pilot and one co-pilot
+acme.validation.flightAssignment.flightLeg.draftmode = The assignment cannot be linked to legs in draft mode
+acme.validation.flightAssignment.flightLeg.airline = The assignment cannot be linked to legs of other airlines
+acme.validation.flightAssignment.flightLeg.lastUpdate = The assignment cannot be linked to legs that have already occurred
+acme.validation.flightAssignment.flightCrewMember.available = The flight crew member is not available to be assigned
+acme.validation.flightAssignment.flightCrewMember.multipleLegs = The flight crew member is already assigned to another leg
 
 acme.validation.technician.maintenance-record.moment-before-inspection=The moment must be before the inspection due date.
 acme.validation.technician.maintenance-record.completed-in-draft=You cannot set the status to COMPLETED while the record is still in draft mode.

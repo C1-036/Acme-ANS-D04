@@ -8,20 +8,22 @@
 # they accept any liabilities with respect to them.
 
 # Titles
-flight-crew-members.activity-log.form.title = Activity Log
-flight-crew-members.activity-log.list.title = Listing of activity logs
+flight-crew-members.activity-log.form.title = Activity Log details
+flight-crew-members.activity-log.list.title = Activity Logs list
 
 # Labels (form)
-flight-crew-members.activity-log.form.label.registrationMoment = Registration Moment
-flight-crew-members.activity-log.form.label.incidentType = Incident Type
-flight-crew-members.activity-log.form.label.description = Description
-flight-crew-members.activity-log.form.label.severity = Severity Level
+flight-crew-members.activity-log.form.label.registrationMoment = Registration Moment: 
+flight-crew-members.activity-log.form.label.incidentType = Type of Incident:
+flight-crew-members.activity-log.form.label.description = Description:
+flight-crew-members.activity-log.form.label.severity = Severity Level:-
 flight-crew-members.activity-log.form.label.flightAssignment = Flight Assignment
 
 # List Labels
-flight-crew-members.activity-log.list.label.registrationMoment = Registration Moment
-flight-crew-members.activity-log.list.label.incidentType = Incident Type
-flight-crew-members.activity-log.list.label.severity = Severity Level
+flight-crew-members.activity-log.list.label.registrationMoment = Registration Moment: 
+flight-crew-members.activity-log.list.label.incidentType = Type of Incident:
+flight-crew-members.activity-log.list.label.description = Description:
+flight-crew-members.activity-log.list.label.severity = Severity Level:
+flight-crew-members.activity-log.list.label.draftMode = Draft mode:
 
 # Buttons
 flight-crew-members.activity-log.form.button.create = Create

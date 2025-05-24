@@ -2,8 +2,6 @@
 package acme.features.flightCrewMembers.flightAssignment;
 
 import java.util.Collection;
-import java.util.Date;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,35 +15,38 @@ import acme.realms.FlightCrewMembers;
 @GuiService
 public class FlightCrewMemberFlightAssignmentListLegsPlannedService extends AbstractGuiService<FlightCrewMembers, FlightAssignment> {
 
+	// Internal state ---------------------------------------------------------
+
 	@Autowired
 	private FlightCrewMemberFlightAssignmentRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		//Collection<FlightAssignment> assignments = this.repository.assignmentsWithPlannedLegs(memberId);
-		Collection<FlightAssignment> allAssignments = this.repository.findAllAssignmentsByMemberId(memberId);
+		FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<FlightAssignment> plannedFlightAssignments = this.repository.findAllPlannedFlightAssignments(MomentHelper.getCurrentMoment(), flightCrewMember.getId());
 
-		Date now = MomentHelper.getCurrentMoment();
-		Collection<FlightAssignment> plannedAssignments = allAssignments.stream().filter(fa -> fa.getFlightLeg().getScheduledDeparture().after(now)).collect(Collectors.toList());
-		super.getBuffer().addData(plannedAssignments);
-		//super.getBuffer().addData(assignments);
+		super.getBuffer().addData(plannedFlightAssignments);
 	}
 
 	@Override
-	public void unbind(final FlightAssignment assignment) {
-		Dataset dataset;
+	public void unbind(final FlightAssignment plannedFlightAssignments) {
+		assert plannedFlightAssignments != null;
 
-		dataset = super.unbindObject(assignment, "duty", "lastUpdate", "status");
-		super.addPayload(dataset, assignment, "remarks", "draftMode", "flightCrewMember.identity.fullName", "flightLeg.status");
+		Dataset dataset = super.unbindObject(plannedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
 
+		dataset.put("flightLeg", plannedFlightAssignments.getFlightLeg().getFlightNumber());
+
+		super.addPayload(dataset, plannedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
 		super.getResponse().addData(dataset);
-	}
 
+	}
 }

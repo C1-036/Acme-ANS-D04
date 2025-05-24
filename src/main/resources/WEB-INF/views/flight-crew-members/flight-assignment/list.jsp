@@ -16,10 +16,14 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.duty" path="duty" width="30%"/>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.lastUpdate" path="lastUpdate" width="30%"/>
-	<acme:list-column code="flight-crew-members.flight-assignment.list.label.status" path="status" width="40%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.flightLeg"  path="flightLeg" width="10%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.duty" path="duty" width="10%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.lastUpdate" path="lastUpdate" width="10%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.status"  path="status" width="10%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.remarks"  path="remarks" width="10%"/>
+	<acme:list-column code="flight-crew-members.flight-assignment.list.label.draftMode"  path="draftMode" width="10%"/>
+	
 	<acme:list-payload path="payload"/>
 </acme:list>
-
-<acme:button code="flight-crew-members.flight-assignment.form.button.create" action="/flight-crew-members/flight-assignment/create"/>
+	
+<acme:button code="flight-crew-members.flight-assignment.list.label.create" action="/flight-crew-members/flight-assignment/create"/>
