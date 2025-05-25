@@ -9,14 +9,18 @@
 # they accept any liabilities with respect to them.
 
 # Form title
-authenticated.airline-manager.form.title=Become an Airline Manager
+authenticated.airline-manager.form.title=Airline Manager form
 
 # Field labels
 authenticated.airlinemanager.form.label.identifierNumber=Identification Number
 authenticated.airlinemanager.form.label.yearsOfExperience=Years of Experience
 authenticated.airlinemanager.form.label.dateOfBirth=Date of Birth
 authenticated.airlinemanager.form.label.picture=Picture URL
+authenticated.airlinemanager.form.label.airline=Airline
 
 # Buttons
 authenticated.airline-manager.form.button.create=Create Manager
 authenticated.airline-manager.form.button.update=Update Manager
+
+#Errors
+authenticated.airline-manager.error.must-select-airline=You must select an airline.

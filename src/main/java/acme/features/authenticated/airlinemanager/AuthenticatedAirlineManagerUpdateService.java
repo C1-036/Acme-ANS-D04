@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Authenticated;
-import acme.client.components.principals.UserAccount;
 import acme.client.components.views.SelectChoices;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
@@ -29,7 +28,7 @@ import acme.realms.AirlineManager;
 
 @Service
 @GuiService
-public class AuthenticatedAirlineManagerCreateService extends AbstractGuiService<Authenticated, AirlineManager> {
+public class AuthenticatedAirlineManagerUpdateService extends AbstractGuiService<Authenticated, AirlineManager> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -41,19 +40,22 @@ public class AuthenticatedAirlineManagerCreateService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		boolean status = !this.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+		boolean status;
+
+		status = super.getRequest().getPrincipal().hasRealmOfType(AirlineManager.class);
+
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int userAccountId = this.getRequest().getPrincipal().getAccountId();
-		UserAccount userAccount = this.repository.findUserAccountById(userAccountId);
+		AirlineManager airlinemanager;
+		int userAccountId;
 
-		AirlineManager manager = new AirlineManager();
-		manager.setUserAccount(userAccount);
+		userAccountId = super.getRequest().getPrincipal().getAccountId();
+		airlinemanager = this.repository.findAirlineManagerByUserAccountId(userAccountId);
 
-		super.getBuffer().addData(manager);
+		super.getBuffer().addData(airlinemanager);
 	}
 
 	@Override
@@ -72,6 +74,7 @@ public class AuthenticatedAirlineManagerCreateService extends AbstractGuiService
 
 	@Override
 	public void perform(final AirlineManager manager) {
+		assert manager != null;
 		this.repository.save(manager);
 	}
 
@@ -87,7 +90,7 @@ public class AuthenticatedAirlineManagerCreateService extends AbstractGuiService
 
 	@Override
 	public void onSuccess() {
-		if ("POST".equals(this.getRequest().getMethod()))
+		if (super.getRequest().getMethod().equals("POST"))
 			PrincipalHelper.handleUpdate();
 	}
 }

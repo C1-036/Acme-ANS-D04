@@ -27,7 +27,10 @@ public class AuthenticatedAirlineManagerController extends AbstractGuiController
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedAirlineManagerCreateService createService;
+	private AuthenticatedAirlineManagerCreateService	createService;
+
+	@Autowired
+	private AuthenticatedAirlineManagerUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -35,6 +38,7 @@ public class AuthenticatedAirlineManagerController extends AbstractGuiController
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 	}
 
 }
