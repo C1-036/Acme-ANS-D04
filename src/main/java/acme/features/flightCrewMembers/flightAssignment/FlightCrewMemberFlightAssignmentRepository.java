@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.airline.Airline;
 import acme.entities.flightCrewMembers.ActivityLog;
 import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.entities.flightCrewMembers.FlightDuty;
@@ -66,4 +67,6 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("SELECT l FROM Leg l WHERE l.id = :id")
 	Leg findLegById(int id);
 
+	@Query("select l from Leg l where l.draftMode = false and l.scheduledArrival > :now and l.aircraft.airline = :airline")
+	Collection<Leg> findPublishedFutureOwnedLegs(Date now, Airline airline);
 }

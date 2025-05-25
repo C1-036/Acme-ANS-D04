@@ -25,29 +25,45 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 
 	// AbstractGuiService interface -------------------------------------------
 
+	//	@Override
+	//	public void authorise() {
+	//
+	//		boolean isAuthorised = false;
+	//
+	//		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
+	//
+	//			// Only is allowed to delete an flight assignment if the creator is associated.
+	//			// A flight assignment cannot be deleted if is published, only in draft mode is allowed.
+	//			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+	//
+	//				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
+	//
+	//				if (flightAssignmentId != null) {
+	//
+	//					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+	//					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+	//
+	//					isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+	//				}
+	//
+	//			}
+	//
+	//		super.getResponse().setAuthorised(isAuthorised);
+	//	}
+
 
 	@Override
 	public void authorise() {
-
 		boolean isAuthorised = false;
 
-		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
+		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class) && super.getRequest().hasData("id", Integer.class)) {
 
-			// Only is allowed to delete an flight assignment if the creator is associated.
-			// A flight assignment cannot be deleted if is published, only in draft mode is allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+			int flightAssignmentId = super.getRequest().getData("id", Integer.class);
+			FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
+			FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 
-				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
-
-				if (flightAssignmentId != null) {
-
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
-					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
-
-					isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
-				}
-
-			}
+			isAuthorised = flightAssignment != null && flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+		}
 
 		super.getResponse().setAuthorised(isAuthorised);
 	}
