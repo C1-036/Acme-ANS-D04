@@ -25,6 +25,13 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Adrian-Robles" action="https://www.instagram.com/"/>
       		<acme:menu-suboption code="master.menu.anonymous.favourite-link.FranciscoManuel-Sabido" action="https://open.spotify.com/"/>
       		<acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+      		<acme:menu-separator/>
+      		<acme:menu-suboption code="master.menu.anonymous.all-flights" action="/any/flight/list"/>
+		</acme:menu-option>
+		
+		
+		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
+			<acme:menu-suboption code="master.menu.anonymous.all-flights" action="/any/flight/list"/>	
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
