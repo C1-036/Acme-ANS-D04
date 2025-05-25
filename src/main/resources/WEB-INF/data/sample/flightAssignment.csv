@@ -14,10 +14,10 @@ assignment-08,CO_PILOT,2025/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, c
 # status - standard variations
 assignment-09,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-31
 assignment-10,PILOT,2012/07/02 0:00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-32
-assignment-11,PILOT,2012/07/02 0:00,CANCELLED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member3,leg-33
+assignment-11,PILOT,2012/07/02 0:00,CANCELLED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member3,leg-23
 # remarks - standard variations
-assignment-12,CO_PILOT,2012/07/02 0:00,CONFIRMED,,true,member1,leg-33
-assignment-13,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"L",true,member1,leg-33
+assignment-12,CO_PILOT,2012/07/02 0:00,CONFIRMED,,true,member3,leg-23
+assignment-13,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"L",true,member3,leg-23
 assignment-14,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",true,member1,leg-34
 assignment-15,CO_PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",true,member1,leg-34
 assignment-16,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,โลเร็ม อิปซัม,true,member1,leg-34
