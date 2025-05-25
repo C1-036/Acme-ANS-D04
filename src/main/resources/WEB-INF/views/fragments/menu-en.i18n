@@ -17,6 +17,11 @@ master.menu.anonymous.favourite-link.Ignacio-Naredo = 30269898N: Naredo Bernardo
 master.menu.anonymous.favourite-link.Adrian-Robles = 49089126L: Robles Borrego, Adrián
 master.menu.anonymous.favourite-link.FranciscoManuel-Sabido = 53987620L: Sabido González, Francisco Manuel
 master.menu.anonymous.favourite-link.David-Escudero = 53930786H: Escudero Aldana, David
+master.menu.anonymous.all-flights = View flights
+
+# master.menu.any #######################################################
+
+master.menu.authenticated = Authenticated
 
 # master.menu.administrator ###################################################
 
