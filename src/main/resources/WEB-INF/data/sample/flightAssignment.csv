@@ -1,18 +1,18 @@
 key,duty,lastUpdate,status,remarks,draftMode,key:flightCrewMember,key:flightLeg
 # base entity;
-assignment-00,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-28
+assignment-00,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-28
 # duty - standard variations
-assignment-01,CO_PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-28
-assignment-02,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-29
-assignment-03,LEAD_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-29
-assignment-04,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-29
+assignment-01,CO_PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-28
+assignment-02,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-29
+assignment-03,LEAD_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-29
+assignment-04,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-29
 # lastUpdate - standard variation
 assignment-05,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-30
 assignment-06,CO_PILOT,2000/01/01 00:01,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-30
-assignment-07,PILOT,2024/12/31 23:59,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-31
-assignment-08,CO_PILOT,2025/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-31
+assignment-07,PILOT,2024/12/31 23:59,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-31
+assignment-08,CO_PILOT,2025/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-31
 # status - standard variations
-assignment-09,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-31
+assignment-09,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-31
 assignment-10,PILOT,2012/07/02 0:00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-32
 assignment-11,PILOT,2012/07/02 0:00,CANCELLED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member3,leg-33
 # remarks - standard variations
@@ -29,4 +29,5 @@ assignment-21,CO_PILOT,2012/07/02 0:00,CONFIRMED,' or 'A' = 'A ,true,member1,leg
 # flightCrewMember - standard variations
 assignment-22,PILOT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member2,leg-36
 # flightLeg - standard variations
-assignment-23,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-36
+assignment-23,CABIN_ATTENDANT,2012/07/02 0:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,member1,leg-36
+
