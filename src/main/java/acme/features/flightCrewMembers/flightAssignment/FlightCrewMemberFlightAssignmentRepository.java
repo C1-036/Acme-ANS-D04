@@ -35,6 +35,9 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("SELECT l FROM Leg l WHERE l.aircraft.airline.id = :airlineId AND l.draftMode = false")
 	Collection<Leg> findAllLegsByAirlineId(int airlineId);
 
+	@Query("select l.id from Leg l where l.aircraft.airline.id = :airlineId")
+	Collection<Integer> findAllLegIdsByAirlineId(int airlineId);
+
 	// Find all the activity logs to remove the flight assignment
 	@Query("SELECT a FROM ActivityLog a WHERE a.flightAssignment.id = :flightAssignmentId")
 	Collection<ActivityLog> findAllActivityLogs(int flightAssignmentId);
