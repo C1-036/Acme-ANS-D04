@@ -24,24 +24,36 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 		boolean isAuthorised = false;
 
 		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class)) {
-			if (super.getRequest().getMethod().equals("GET"))
-				isAuthorised = true;
 
-			// Only is allowed to create an activity log if the creator is the flight crew member associated to the flight assignment.
-			// An activity log cannot be created if the assignment is planned, only complete are allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("assignmentId") && super.getRequest().getData("id", Integer.class).equals(0)) {
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("assignmentId", Integer.class) != null) {
 
 				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 
-				if (assignmentId != null) {
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+				if (flightAssignment != null) {
+
 					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = flightAssignment != null && !flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+					isAuthorised = !flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
 				}
 
 			}
 
+			// Only is allowed to create an activity log if the creator is the flight crew member associated to the flight assignment.
+			// An activity log cannot be created if the assignment is planned, only complete are allowed.
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("assignmentId", Integer.class) != null && super.getRequest().getData("id", Integer.class) != null) {
+
+				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+
+				if (flightAssignment != null && super.getRequest().getData("id", Integer.class).equals(0)) {
+
+					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
+
+					isAuthorised = !flightAssignment.isDraftMode() && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+				}
+
+			}
 		}
 
 		super.getResponse().setAuthorised(isAuthorised);

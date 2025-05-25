@@ -6,7 +6,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.ActivityLog;
@@ -32,15 +31,15 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class))
 
 			// Only is allowed to view an activity log list if the creator is the flight crew member associated to the flight assignment.
-			if (super.getRequest().getMethod().equals("GET") && super.getRequest().hasData("assignmentId")) {
+			if (super.getRequest().getMethod().equals("GET") && super.getRequest().getData("assignmentId", Integer.class) != null) {
 
 				Integer assignmentId = super.getRequest().getData("assignmentId", Integer.class);
+				FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
 
-				if (assignmentId != null) {
-					FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(assignmentId);
+				if (flightAssignment != null) {
 					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = flightAssignment != null && flightAssignment.getFlightCrewMember().equals(flightCrewMember);
+					isAuthorised = flightAssignment.getFlightCrewMember().equals(flightCrewMember);
 				}
 
 			}

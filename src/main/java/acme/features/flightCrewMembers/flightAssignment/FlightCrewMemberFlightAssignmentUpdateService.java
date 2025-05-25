@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.AssignmentStatus;
@@ -36,7 +35,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 			// Only is allowed to update a flight assignment if the creator is associated.
 			// A flight assignment cannot be updated if is published, only in draft mode are allowed.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id", Integer.class)) {
+			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer flightAssignmentId = super.getRequest().getData("id", Integer.class);
 
@@ -63,8 +62,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		int flightAssignmentId = super.getRequest().getData("id", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentById(flightAssignmentId);
 
-		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
-
 		super.getBuffer().addData(flightAssignment);
 	}
 
@@ -82,8 +79,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 	@Override
 	public void perform(final FlightAssignment flightAssignment) {
-		assert flightAssignment != null;
-
+		//flightAssignment.setMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(flightAssignment);
 	}
 
