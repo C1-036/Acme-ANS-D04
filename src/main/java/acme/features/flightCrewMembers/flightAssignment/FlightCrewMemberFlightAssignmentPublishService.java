@@ -134,7 +134,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		// Leg choices
 		SelectChoices legChoices = SelectChoices.from(this.repository.findAllLegsByAirlineId(flightAssignment.getFlightCrewMember().getAirline().getId()), "flightNumber", flightAssignment.getFlightLeg());
 		dataset.put("legChoices", legChoices);
-		dataset.put("leg", legChoices.getSelected().getKey());
+		dataset.put("flightLeg", legChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

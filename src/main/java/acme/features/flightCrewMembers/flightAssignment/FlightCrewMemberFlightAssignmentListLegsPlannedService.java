@@ -45,7 +45,7 @@ public class FlightCrewMemberFlightAssignmentListLegsPlannedService extends Abst
 
 		dataset.put("flightLeg", plannedFlightAssignments.getFlightLeg().getFlightNumber());
 
-		super.addPayload(dataset, plannedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
+		super.addPayload(dataset, plannedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "id");
 		super.getResponse().addData(dataset);
 
 	}
