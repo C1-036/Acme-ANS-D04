@@ -40,7 +40,7 @@ maintenanceRecord-25,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,nul
 maintenanceRecord-26,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00," ",TRUE,technician-01,aircraft-01
 maintenanceRecord-27,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"		",TRUE,technician-01,aircraft-01
 # draftMode - standard variations
-maintenanceRecord-28,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,technician-01,aircraft-01
+maintenanceRecord-28,2024/09/19 10:00,COMPLETED,2025/09/19 10:00,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,technician-01,aircraft-01
 # draftMode - no singular values
 # technician - standard variations
 maintenanceRecord-29,2024/09/19 10:00,PENDING,2025/09/19 10:00,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,technician-02,aircraft-01
