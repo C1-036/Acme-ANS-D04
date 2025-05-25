@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
 import acme.entities.flightCrewMembers.ActivityLog;
 import acme.entities.flights.Leg;
 
@@ -30,7 +31,7 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 			Leg leg = log.getFlightAssignment().getFlightLeg();
 			Date endMoment = leg.getScheduledArrival();
 			Date registrationMoment = log.getRegistrationMoment();
-			boolean isAfter = registrationMoment.after(endMoment);
+			boolean isAfter = MomentHelper.isAfter(registrationMoment, endMoment);
 
 			super.state(context, isAfter, "registrationMoment", "acme.validation.log.registration-moment.message");
 		}

@@ -3,7 +3,7 @@ key,model,registrationNumber,passengerCapacity,cargoWeight,status,details,key:ai
 aircraft-00,Lorem ipsum dolor sit amet,Reg-001,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
 # model - standard variations
 aircraft-01,L,Reg-002,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
-aircraft-02,Lo,Reg-003,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
+aircraft-02,Lo,Reg-003,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-04
 aircraft-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",Reg-004,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
 aircraft-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",Reg-005,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
 aircraft-05,โลเร็ม อิปซัม,Reg-006,128,26000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01
