@@ -60,6 +60,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	@Override
 	public void bind(final ActivityLog activityLog) {
 		assert activityLog != null;
+		super.bindObject(activityLog, "incidentType", "description", "severity");
 	}
 
 	@Override
