@@ -6,4 +6,4 @@ involves-01-000,maintenanceRecord-01,task-000
 involves-01-001,maintenanceRecord-01,task-001
 involves-02-000,maintenanceRecord-02,task-000
 # Singular relation: MR-28 is published therefore needs a published task at least
-involves-30-024,maintenanceRecord-30,task-024
+involves-30-024,maintenanceRecord-28,task-023

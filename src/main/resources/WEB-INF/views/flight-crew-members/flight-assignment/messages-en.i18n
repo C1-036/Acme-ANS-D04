@@ -16,20 +16,21 @@ flight-crew-members.flight-assignment.form.label.duty = Duty:
 flight-crew-members.flight-assignment.form.label.lastUpdate = Last update moment:
 flight-crew-members.flight-assignment.form.label.status = Status:
 flight-crew-members.flight-assignment.form.label.remarks = Remarks (Optional):
-flight-crew-members.flight-assignment.form.label.flightLeg = Leg:
 flight-crew-members.flight-assignment.form.label.flightCrewMember= Flight crew member:
+flight-crew-members.flight-assignment.form.label.flightLeg = Leg code:
 
 # List Labels
-flight-crew-members.flight-assignment.list.label.duty = Duty:
-flight-crew-members.flight-assignment.list.label.lastUpdate = Last update moment:
-flight-crew-members.flight-assignment.list.label.status = Status:
+flight-crew-members.flight-assignment.list.label.create = Create
+flight-crew-members.flight-assignment.list.label.duty = Duty: 
+flight-crew-members.flight-assignment.list.label.lastUpdate = Moment:
+flight-crew-members.flight-assignment.list.label.status = Current Status:
+flight-crew-members.flight-assignment.list.label.remarks = Remarks:
+flight-crew-members.flight-assignment.list.label.flightLeg = Flight Number:
+flight-crew-members.flight-assignment.list.label.draftMode = Draft mode:
 
 # Buttons
+flight-crew-members.flight-assignment.form.button.activity-log = Show activity logs
 flight-crew-members.flight-assignment.form.button.create = Create
 flight-crew-members.flight-assignment.form.button.update = Update
-flight-crew-members.flight-assignment.form.button.delete = Delete
 flight-crew-members.flight-assignment.form.button.publish = Publish
-flight-crew-members.flight-assignment.form.label.confirmation = Confirm that the flight assignment is correct.
-flight-crew-members.flight-assignment.form.button.flightLeg = Leg
-flight-crew-members.flight-assignment.form.button.member = Member
-flight-crew-members.flight-assignment.list.button.create = Create
+flight-crew-members.flight-assignment.form.button.delete = Delete

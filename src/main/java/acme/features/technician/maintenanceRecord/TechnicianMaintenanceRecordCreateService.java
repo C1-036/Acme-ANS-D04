@@ -25,26 +25,38 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	// AbstractGuiService interface -------------------------------------------
 
 
+	/*
+	 * @Override
+	 * public void authorise() {
+	 * boolean status = true;
+	 * int aircraftId;
+	 * Aircraft aircraft;
+	 * 
+	 * if (super.getRequest().hasData("aircraft", int.class)) {
+	 * aircraftId = super.getRequest().getData("aircraft", int.class);
+	 * aircraft = this.repository.findAircraftById(aircraftId);
+	 * 
+	 * if (aircraft == null && aircraftId != 0)
+	 * status = false;
+	 * }
+	 * 
+	 * super.getResponse().setAuthorised(status);
+	 * }
+	 */
 	@Override
 	public void authorise() {
-		boolean status = false;
-		Integer maintenanceRecordId = null;
-		MaintenanceRecord maintenanceRecord;
-		Technician technician;
+		boolean status = true;
 
-		if (super.getRequest().hasData("maintenanceRecordId")) {
-			maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", Integer.class);
+		// Comprobar que el usuario tiene rol de Technician
+		Technician tech = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		status = super.getRequest().getPrincipal().hasRealm(tech);
 
-			if (maintenanceRecordId != null) {
-				maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
-
-				if (maintenanceRecord != null) {
-					technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-					status = maintenanceRecord.isDraftMode() && technician.equals(maintenanceRecord.getTechnician());
-				}
-			}
-		} else
-			status = true;
+		// Si es POST y hay campo aircraft, verificar que el avión existe
+		if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("aircraft", int.class)) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			if (aircraftId != 0 && this.repository.findAircraftById(aircraftId) == null)
+				status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -66,32 +78,15 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
 
-		//Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.bindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes");
 
-		//maintenanceRecord.setTechnician(technician);
 		maintenanceRecord.setAircraft(super.getRequest().getData("aircraft", Aircraft.class));
+
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-
-		if (!super.getBuffer().getErrors().hasErrors("moment") && !super.getBuffer().getErrors().hasErrors("inspectionDueDate")) {
-			boolean momentBeforeInspection = maintenanceRecord.getMoment().before(maintenanceRecord.getInspectionDueDate());
-			super.state(momentBeforeInspection, "inspectionDueDate", "acme.validation.technician.maintenance-record.moment-before-inspection");
-		}
-
-		if (!super.getBuffer().getErrors().hasErrors("status")) {
-			boolean validStatus = !(maintenanceRecord.isDraftMode() && maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED));
-			super.state(validStatus, "status", "acme.validation.technician.maintenance-record.completed-in-draft");
-		}
-
-		//if (!super.getBuffer().getErrors().hasErrors("estimatedCost")) {
-		//boolean positiveCost = maintenanceRecord.getEstimatedCost().getAmount() != null && maintenanceRecord.getEstimatedCost().getAmount() > 0;
-		//super.state(positiveCost, "estimatedCost", "acme.validation.technician.maintenance-record.positive-cost");
-		//}
-
+		;
 	}
 
 	@Override

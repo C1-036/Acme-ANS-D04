@@ -1,0 +1,31 @@
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes. The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+# Titles
+any.flight.form.title = Flight Information
+any.flight.list.title = List of published flights
+
+# Labels
+airline-manager.flight.form.label.tag = Tag:
+airline-manager.flight.form.label.selfTransfer = Self Transfer:
+airline-manager.flight.form.label.cost = Cost:
+airline-manager.flight.form.label.description = Description:
+airline-manager.flight.form.label.scheduledDeparture = Scheduled Departure:
+airline-manager.flight.form.label.scheduledArrival = Scheduled Arrival:
+airline-manager.flight.form.label.originCity = Origin City:
+airline-manager.flight.form.label.destinationCity = Destination City:
+airline-manager.flight.form.label.layovers = Layovers:
+
+# List Labels
+airline-manager.flight.list.label.tag = Tag
+airline-manager.flight.list.label.selfTransfer = Self Transfer
+airline-manager.flight.list.label.cost = Cost
+
+# Buttons
+any.flight.form.button.legs = Legs

@@ -24,39 +24,62 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 	// AbstractGuiService interface -------------------------------------------
 
 
+	/*
+	 * @Override
+	 * public void authorise() {
+	 * boolean status = false;
+	 * boolean statusAircraft = true;
+	 * int maintenanceRecordId;
+	 * MaintenanceRecord maintenanceRecord;
+	 * boolean isDraft;
+	 * boolean isTechnician;
+	 * int aircraftId;
+	 * Aircraft aircraft;
+	 * 
+	 * if (super.getRequest().hasData("id", int.class)) {
+	 * maintenanceRecordId = super.getRequest().getData("id", int.class);
+	 * maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+	 * 
+	 * if (maintenanceRecord != null) {
+	 * Technician technician = maintenanceRecord.getTechnician();
+	 * isDraft = maintenanceRecord.isDraftMode();
+	 * isTechnician = super.getRequest().getPrincipal().hasRealm(technician);
+	 * 
+	 * status = isDraft && isTechnician;
+	 * }
+	 * }
+	 * 
+	 * if (super.getRequest().hasData("aircraft", int.class)) {
+	 * aircraftId = super.getRequest().getData("aircraft", int.class);
+	 * aircraft = this.repository.findAircraftById(aircraftId);
+	 * 
+	 * if (aircraft == null && aircraftId != 0)
+	 * statusAircraft = false;
+	 * }
+	 * 
+	 * super.getResponse().setAuthorised(status && statusAircraft);
+	 * }
+	 */
 	@Override
 	public void authorise() {
 		boolean status = false;
-		boolean statusAircraft = true;
-		int maintenanceRecordId;
-		MaintenanceRecord maintenanceRecord;
-		boolean isDraft;
-		boolean isTechnician;
-		int aircraftId;
-		Aircraft aircraft;
 
 		if (super.getRequest().hasData("id", int.class)) {
-			maintenanceRecordId = super.getRequest().getData("id", int.class);
-			maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+			int maintenanceRecordId = super.getRequest().getData("id", int.class);
+			MaintenanceRecord record = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
-			if (maintenanceRecord != null) {
-				Technician technician = maintenanceRecord.getTechnician();
-				isDraft = maintenanceRecord.isDraftMode();
-				isTechnician = super.getRequest().getPrincipal().hasRealm(technician);
+			if (record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(record.getTechnician()))
+				status = true;
 
-				status = isDraft && isTechnician;
+			// Validar aircraft si viene en el payload
+			if (status && super.getRequest().hasData("aircraft", int.class)) {
+				int aircraftId = super.getRequest().getData("aircraft", int.class);
+				if (aircraftId != 0 && this.repository.findAircraftById(aircraftId) == null)
+					status = false;
 			}
 		}
 
-		if (super.getRequest().hasData("aircraft", int.class)) {
-			aircraftId = super.getRequest().getData("aircraft", int.class);
-			aircraft = this.repository.findAircraftById(aircraftId);
-
-			if (aircraft == null && aircraftId != 0)
-				statusAircraft = false;
-		}
-
-		super.getResponse().setAuthorised(status && statusAircraft);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -92,8 +115,6 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 	public void perform(final MaintenanceRecord maintenanceRecord) {
 		this.repository.save(maintenanceRecord);
 
-		//super.getResponse().setView("/technician/maintenance-record/list?mine=true");
-
 	}
 
 	@Override
@@ -108,7 +129,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		choicesStatus = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
 		choicesAircrafts = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
 
-		dataset = super.unbindObject(maintenanceRecord, "moment", "status", "inspectionDueDate", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(maintenanceRecord, "moment", "inspectionDueDate", "estimatedCost", "notes", "draftMode");
 		dataset.put("technician", maintenanceRecord.getTechnician().getIdentity().getFullName());
 		dataset.put("aircraft", choicesAircrafts.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircrafts);
