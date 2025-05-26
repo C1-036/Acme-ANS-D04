@@ -1,0 +1,2 @@
+key,duty,lastUpdate,status,remarks,draftMode,key:flightCrewMember,key:flightLeg
+assignment-24,LEAD_ATTENDANT,2012/07/02 0:00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,member1,leg-40
