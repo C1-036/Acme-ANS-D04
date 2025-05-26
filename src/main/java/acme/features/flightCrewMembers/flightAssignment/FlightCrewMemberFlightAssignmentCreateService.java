@@ -1,8 +1,6 @@
 
 package acme.features.flightCrewMembers.flightAssignment;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -13,6 +11,7 @@ import acme.client.services.GuiService;
 import acme.entities.flightCrewMembers.AssignmentStatus;
 import acme.entities.flightCrewMembers.FlightAssignment;
 import acme.entities.flightCrewMembers.FlightDuty;
+import acme.entities.flights.Leg;
 import acme.realms.FlightCrewMembers;
 
 @GuiService
@@ -36,7 +35,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	//				isAuthorised = true;
 	//
 	//			// Only is allowed to create a flight assignment if post method include a valid flight assignment.
-	//			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class).equals(0)) {
+	//			if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class) != null) {
 	//
 	//				FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 	//
@@ -44,7 +43,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	//				Collection<Leg> legs = this.repository.findAllLegsByAirlineId(flightCrewMember.getAirline().getId());
 	//				Leg legSelected = super.getRequest().getData("flightLeg", Leg.class);
 	//
-	//				isAuthorised = legSelected == null || legs.contains(legSelected);
+	//				isAuthorised = (legSelected == null || legs.contains(legSelected)) && super.getRequest().getData("id", Integer.class).equals(0);
 	//
 	//			}
 	//
@@ -56,28 +55,19 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void authorise() {
+		boolean status = true;
+		int legId;
+		Leg leg;
 
-		boolean isAuthorised = false;
+		if (super.getRequest().hasData("flightLeg", int.class)) {
+			legId = super.getRequest().getData("flightLeg", int.class);
+			leg = this.repository.findLegById(legId);
 
-		if (super.getRequest().getPrincipal().hasRealmOfType(FlightCrewMembers.class)) {
-
-			FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
-
-			if (super.getRequest().getMethod().equals("GET"))
-				isAuthorised = true;
-			else if (super.getRequest().getMethod().equals("POST") && super.getRequest().getData("id", Integer.class).equals(0)) {
-
-				// Obtener el ID del leg enviado
-				Integer legId = super.getRequest().getData("flightLeg", Integer.class);
-
-				// Validar que el leg realmente pertenece a la aerolínea del usuario
-				Collection<Integer> validLegIds = this.repository.findAllLegIdsByAirlineId(flightCrewMember.getAirline().getId());
-
-				isAuthorised = legId == null || validLegIds.contains(legId);
-			}
+			if (leg == null && legId != 0)
+				status = false;
 		}
 
-		super.getResponse().setAuthorised(isAuthorised);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

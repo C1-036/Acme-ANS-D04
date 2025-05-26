@@ -12,7 +12,6 @@ import acme.realms.FlightCrewMembers;
 
 @GuiService
 public class FlightCrewMemberActivityLogPublishService extends AbstractGuiService<FlightCrewMembers, ActivityLog> {
-
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -32,16 +31,16 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 			// An activity log cannot be published if:
 			// - Activity log should be in draft mode and not published.
 			// - Assignment should be in published mode and not in draft mode.
-			if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("id")) {
+			if (super.getRequest().getData("id", Integer.class) != null) {
 
 				Integer activityLogId = super.getRequest().getData("id", Integer.class);
+				ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
 
-				if (activityLogId != null) {
-					ActivityLog activityLog = this.repository.findActivityLogById(activityLogId);
+				if (activityLog != null) {
 					FlightAssignment flightAssignment = activityLog.getFlightAssignment();
 					FlightCrewMembers flightCrewMember = (FlightCrewMembers) super.getRequest().getPrincipal().getActiveRealm();
 
-					isAuthorised = activityLog != null && flightAssignment != null && !flightAssignment.isDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
+					isAuthorised = flightAssignment != null && activityLog.isDraftMode() && !flightAssignment.isDraftMode() && activityLog.getFlightAssignment().getFlightCrewMember().equals(flightCrewMember);
 				}
 
 			}
@@ -60,11 +59,22 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	@Override
 	public void bind(final ActivityLog activityLog) {
 		assert activityLog != null;
+
+		super.bindObject(activityLog, "incidentType", "description", "severity");
 	}
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
 		assert activityLog != null;
+
+		//		if (activityLog.getIncidentType() == null || activityLog.getIncidentType().trim().isEmpty())
+		//			super.state(false, "incidentType", "acme.error.activity-log.incident-type.required");
+		//
+		//		if (activityLog.getDescription() == null || activityLog.getDescription().trim().isEmpty())
+		//			super.state(false, "description", "acme.error.activity-log.description.required");
+		//
+		//		if (activityLog.getSeverity() == null)
+		//			super.state(false, "severity", "acme.error.activity-log.severity.required");
 	}
 
 	@Override
@@ -77,13 +87,10 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 	@Override
 	public void unbind(final ActivityLog activityLog) {
-		assert activityLog != null;
-
 		Dataset dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "description", "severity", "flightAssignment", "draftMode");
 
-		// Show create if the assignment is completed
-		// if (activityLog.getFlightAssignment().getFlightLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment()))
-		//	super.getResponse().addGlobal("showAction", true);
+		boolean draftModeFlightAssignment = this.repository.findFlightAssignmentById(activityLog.getFlightAssignment().getId()).isDraftMode();
+		dataset.put("draftModeFlightAssignment", draftModeFlightAssignment);
 
 		super.getResponse().addData(dataset);
 	}

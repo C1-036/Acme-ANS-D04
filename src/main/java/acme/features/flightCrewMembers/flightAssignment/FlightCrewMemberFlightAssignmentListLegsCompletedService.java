@@ -38,15 +38,16 @@ public class FlightCrewMemberFlightAssignmentListLegsCompletedService extends Ab
 	}
 
 	@Override
-	public void unbind(final FlightAssignment completedFlightAssignments) {
-		assert completedFlightAssignments != null;
+	public void unbind(final FlightAssignment completedFlightAssignment) {
+		assert completedFlightAssignment != null;
 
-		Dataset dataset = super.unbindObject(completedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
+		Dataset dataset = super.unbindObject(completedFlightAssignment, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
 
-		dataset.put("flightLeg", completedFlightAssignments.getFlightLeg().getFlightNumber());
+		dataset.put("flightLeg", completedFlightAssignment.getFlightLeg().getFlightNumber());
 
-		super.addPayload(dataset, completedFlightAssignments, "duty", "lastUpdate", "status", "remarks", "draftMode", "flightLeg");
+		super.addPayload(dataset, completedFlightAssignment, "duty", "lastUpdate", "status", "remarks", "draftMode", "id");
+
 		super.getResponse().addData(dataset);
-
 	}
+
 }
