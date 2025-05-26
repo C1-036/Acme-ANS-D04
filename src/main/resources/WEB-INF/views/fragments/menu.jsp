@@ -25,6 +25,13 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link.Adrian-Robles" action="https://www.instagram.com/"/>
       		<acme:menu-suboption code="master.menu.anonymous.favourite-link.FranciscoManuel-Sabido" action="https://open.spotify.com/"/>
       		<acme:menu-suboption code="master.menu.anonymous.favourite-link.David-Escudero" action="https://www.netflix.com/es/"/>
+      		<acme:menu-separator/>
+      		<acme:menu-suboption code="master.menu.anonymous.all-flights" action="/any/flight/list"/>
+		</acme:menu-option>
+		
+		
+		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
+			<acme:menu-suboption code="master.menu.anonymous.all-flights" action="/any/flight/list"/>	
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
@@ -85,6 +92,8 @@
 			<acme:menu-suboption code="master.menu.user-account.provider-profile" action="/authenticated/provider/update" access="hasRealm('Provider')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/airline-manager/create" access="!hasRealm('AirlineManager')"/>
+			<acme:menu-suboption code="master.menu.user-account.update-manager" action="/authenticated/airline-manager/update" access="hasRealm('AirlineManager')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
