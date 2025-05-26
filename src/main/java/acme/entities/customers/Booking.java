@@ -6,7 +6,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -29,6 +31,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "locatorCode"), @Index(columnList = "flight_id, customer_id")
+})
 public class Booking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -82,13 +87,6 @@ public class Booking extends AbstractEntity {
 		}
 		CustomerBookingRepository bookingRepository = SpringHelper.getBean(CustomerBookingRepository.class);
 		Money result = bookingRepository.findCostByFlightBooking(this.flight.getId());
-
-		if (result == null || result.getAmount() == null || result.getCurrency() == null) {
-			Money fallback = new Money();
-			fallback.setAmount(0.0);
-			fallback.setCurrency("EUR");
-			return fallback;
-		}
 
 		Collection<Passenger> passengers = bookingRepository.findAllPassengerBooking(this.getId());
 		double amount = result.getAmount() * passengers.size();
