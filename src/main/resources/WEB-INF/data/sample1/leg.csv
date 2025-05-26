@@ -1,2 +1,0 @@
-key,flightNumber,scheduledDeparture,scheduledArrival,status,draftMode,key:departureAirport,key:arrivalAirport,key:aircraft,key:flight
-leg-40,DGX0035,2023/09/01 10:00,2023/09/01 12:00,ON_TIME,FALSE,airport-00,airport-01,aircraft-01,flight-38
